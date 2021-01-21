@@ -9,6 +9,10 @@ import { FooterComponent } from './dhmcolor/layout/footer/footer.component';
 import { LoginComponent } from './dhmcolor/login/login.component';
 import { LayoutComponent } from './dhmcolor/layout/layout.component';
 import { DashboardComponent } from './dhmcolor/dashboard/dashboard.component';
+import { ProductComponent } from './dhmcolor/product/product.component';
+import { ProductTypeComponent } from './dhmcolor/product-type/product-type.component';
+import { CustomerComponent } from './dhmcolor/customer/customer.component';
+import { MemberComponent } from './dhmcolor/member/member.component';
 
 
 @NgModule({
@@ -20,6 +24,10 @@ import { DashboardComponent } from './dhmcolor/dashboard/dashboard.component';
     LoginComponent,
     LayoutComponent,
     DashboardComponent,
+    ProductComponent,
+    ProductTypeComponent,
+    CustomerComponent,
+    MemberComponent,
   ],
   imports: [
     BrowserModule,

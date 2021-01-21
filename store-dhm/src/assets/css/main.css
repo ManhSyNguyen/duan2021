@@ -101,20 +101,14 @@ a#scrollUp i{
 }
 
 .social-icons ul li a i {
-  padding: 11px 15px;
+  padding: 11px 5px;
    transition: all 0.9s ease 0s;
   -moz-transition: all 0.9s ease 0s;
   -webkit-transition: all 0.9s ease 0s;
   -o-transition: all 0.9s ease 0s;
 }
 
-.social-icons ul li a i:hover{
-  color: #fff;
-   transition: all 0.9s ease 0s;
-  -moz-transition: all 0.9s ease 0s;
-  -webkit-transition: all 0.9s ease 0s;
-  -o-transition: all 0.9s ease 0s;
-}
+
 
 
 
@@ -1086,7 +1080,13 @@ h2.title {
 
 .recommended-item-control {
   position: absolute;
-  top: 41%;
+  top: 30%;
+  font-size: 30px;
+  color: #000;
+}
+.recommended-item-control:hover{
+  color: #40403E;
+  text-decoration: none;
 }
 
 .recommended-item-control .fa-angle-left .fa-angle-right {

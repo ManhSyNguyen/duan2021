@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './component/layout/navbar/navbar.component';
-import { SidebarComponent } from './component/layout/sidebar/sidebar.component';
-import { FooterComponent } from './component/layout/footer/footer.component';
-import { LoginComponent } from './component/login/login.component';
-import { DashboardComponent } from './component/clothes/dashboard/dashboard.component';
-import { ProductComponent } from './component/clothes/product/product.component';
+import { NavbarComponent } from './dhmcolor/layout/navbar/navbar.component';
+import { SidebarComponent } from './dhmcolor/layout/sidebar/sidebar.component';
+import { FooterComponent } from './dhmcolor/layout/footer/footer.component';
+import { LoginComponent } from './dhmcolor/login/login.component';
+import { LayoutComponent } from './dhmcolor/layout/layout.component';
+import { DashboardComponent } from './dhmcolor/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -18,8 +18,8 @@ import { ProductComponent } from './component/clothes/product/product.component'
     SidebarComponent,
     FooterComponent,
     LoginComponent,
+    LayoutComponent,
     DashboardComponent,
-    ProductComponent,
   ],
   imports: [
     BrowserModule,

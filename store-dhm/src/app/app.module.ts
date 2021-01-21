@@ -8,6 +8,7 @@ import { LayoutComponent } from './dhmcolor/layout/layout.component';
 import { HeaderComponent } from './dhmcolor/layout/header/header.component';
 import { FooterComponent } from './dhmcolor/layout/footer/footer.component';
 import { AboutComponent } from './dhmcolor/about/about.component';
+import { SliderComponent } from './dhmcolor/slider/slider.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AboutComponent } from './dhmcolor/about/about.component';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,

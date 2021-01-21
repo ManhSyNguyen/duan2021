@@ -13,6 +13,7 @@ import { ProductComponent } from './dhmcolor/product/product.component';
 import { ProductTypeComponent } from './dhmcolor/product-type/product-type.component';
 import { CustomerComponent } from './dhmcolor/customer/customer.component';
 import { MemberComponent } from './dhmcolor/member/member.component';
+import { Page404Component } from './dhmcolor/page404/page404.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MemberComponent } from './dhmcolor/member/member.component';
     ProductTypeComponent,
     CustomerComponent,
     MemberComponent,
+    Page404Component,
   ],
   imports: [
     BrowserModule,

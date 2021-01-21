@@ -12,6 +12,7 @@ import { SliderComponent } from './dhmcolor/slider/slider.component';
 import { ProductDetailComponent } from './dhmcolor/product-detail/product-detail.component';
 import { LoginComponent } from './dhmcolor/login/login.component';
 import { RegisterComponent } from './dhmcolor/register/register.component';
+import { Page404Component } from './dhmcolor/page404/page404.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RegisterComponent } from './dhmcolor/register/register.component';
     SliderComponent,
     ProductDetailComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,

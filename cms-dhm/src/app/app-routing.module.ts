@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CustomerComponent } from './dhmcolor/customer/customer.component';
+import { CustomerComponent } from './dhmcolor/customers/customer/customer.component';
 import { DashboardComponent } from './dhmcolor/dashboard/dashboard.component';
 import { LayoutComponent } from './dhmcolor/layout/layout.component';
 import { LoginComponent } from './dhmcolor/login/login.component';
-import { MemberComponent } from './dhmcolor/member/member.component';
+import { MemberComponent } from './dhmcolor/members/member/member.component';
 import { Page404Component } from './dhmcolor/page404/page404.component';
-import { ProductTypeComponent } from './dhmcolor/product-type/product-type.component';
-import { ProductComponent } from './dhmcolor/product/product.component';
+import { ProductTypeComponent } from './dhmcolor/types/product-type/product-type.component';
+import { ProductComponent } from './dhmcolor/products/product/product.component';
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   {
     path: '', component: LayoutComponent,
     children: [
@@ -22,7 +23,7 @@ const routes: Routes = [
       { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
     ]
   },
-  { path: 'login', component: LoginComponent }
+
 ];
 
 @NgModule({

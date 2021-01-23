@@ -13,6 +13,8 @@ import { ProductDetailComponent } from './dhmcolor/product-detail/product-detail
 import { LoginComponent } from './dhmcolor/login/login.component';
 import { RegisterComponent } from './dhmcolor/register/register.component';
 import { Page404Component } from './dhmcolor/page404/page404.component';
+import { CartComponent } from './dhmcolor/cart/cart.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,11 +29,13 @@ import { Page404Component } from './dhmcolor/page404/page404.component';
     ProductDetailComponent,
     LoginComponent,
     RegisterComponent,
-    Page404Component
+    Page404Component,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

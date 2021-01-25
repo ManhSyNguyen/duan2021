@@ -14,6 +14,8 @@ import { LoginComponent } from './dhmcolor/login/login.component';
 import { RegisterComponent } from './dhmcolor/register/register.component';
 import { Page404Component } from './dhmcolor/page404/page404.component';
 import { CartComponent } from './dhmcolor/cart/cart.component';
+import { SlideProductComponent } from './dhmcolor/slide-product/slide-product.component';
+import { ContactComponent } from './dhmcolor/contact/contact.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -30,7 +32,9 @@ import { CartComponent } from './dhmcolor/cart/cart.component';
     LoginComponent,
     RegisterComponent,
     Page404Component,
-    CartComponent
+    CartComponent,
+    SlideProductComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

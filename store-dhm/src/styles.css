@@ -113,6 +113,12 @@ a, button {
   line-height: inherit;
   text-decoration: none;
   cursor: pointer;
+  overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
 }
 
 a, button, img, input, span {

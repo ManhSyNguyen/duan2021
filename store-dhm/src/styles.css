@@ -5607,7 +5607,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .product_variant.quantity label {
   font-weight: 500;
-  text-transform: capitalize;
   font-size: 14px;
   margin-bottom: 0;
 }
@@ -9563,4 +9562,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   height: 150px;
   object-fit: contain;
 }
+
+
 /*# sourceMappingURL=style.css.map */

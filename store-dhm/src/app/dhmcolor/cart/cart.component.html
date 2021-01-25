@@ -22,9 +22,9 @@
                                 <img src="../../../assets/images/product/dior_1.jpg" width="100" alt="" />
                             </td>
                             <td>PURPLE COTTON JERSEY</td>
-                            <td class="text-right">899.000 đ</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">899.000 đ</td>
+                            <td>899.000 đ</td>
+                            <td>1</td>
+                            <td>899.000 đ</td>
                             <td>
                                 <button class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>&nbsp;Xóa
@@ -37,9 +37,9 @@
                                 <img src="../../../assets/images/product/dior_2.jpg" width="100" alt="" />
                             </td>
                             <td>PURPLE COTTON JERSEY</td>
-                            <td class="text-right">899.000 đ</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">899.000 đ</td>
+                            <td>899.000 đ</td>
+                            <td>1</td>
+                            <td>899.000 đ</td>
                             <td>
                                 <button class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i>&nbsp;Xóa
@@ -50,6 +50,52 @@
                 </table>
             </div>
         </div>
+    </div>
+    <hr />
 
+
+    <div class="row">
+        <div class="col-75">
+            <div class="container_cart">
+                <form id="validate" action="/action_page.php">
+                    <div class="row">
+                        <div class="col-50">
+                            <h3>Thông tin khách hàng</h3>
+                            <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
+                            <input class="inp_checkout" type="text" id="fname" name="fullname" placeholder="Full Name">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            <input class="inp_checkout" type="text" id="email" name="email"
+                                placeholder="abc.@gmail.com">
+                            <label for="adr"><i class="fa fa-address-card-o"></i>Địa chỉ</label>
+                            <input class="inp_checkout" type="text" id="adr" name="address"
+                                placeholder="Số nhà,Quận/Huyện">
+                            <label for="adr"><i class="fa fa-address-card-o"></i>Số điện thoại</label>
+                            <input class="inp_checkout" type="text" id="sdt" name="sdt">
+                            <label for="city"><i class="fa fa-institution"></i> Thành phố</label>
+                            <input class="inp_checkout" type="text" id="city" name="city">
+                        </div>
+                    </div>
+                    <label>
+                        <h4 class="mb-3">Payment</h4>
+                        <input type="radio" name="sameadr"> Thanh toán khi nhận hàng<br />
+                        <input type="radio" name="sameadr"> Thanh toán chuyển khoản
+                    </label>
+                    <input type="submit" value="Đặt hàng" class="btn_cart">
+                </form>
+            </div>
+        </div>
+        <div class="col-25">
+            <div class="container_cart">
+                <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
+                        <b></b></span>
+                </h4>
+                <p><a href="#">PURPLE COTTON JERSEY</a> <span class="price">899.000 vnđ</span></p>
+                <p><a href="#">PURPLE COTTON JERSEY</a> <span class="price">899.000 vnđ</span></p>
+                <hr>
+                <p>Tổng: <span class="price" style="color:black"><b>1.798.000 vnđ</b></span></p>
+            </div>
+            <hr />
+
+        </div>
     </div>
 </div>

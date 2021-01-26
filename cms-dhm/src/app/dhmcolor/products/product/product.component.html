@@ -1,8 +1,6 @@
 <h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
-
-
-
-<div class="card shadow mb-4">
+<a routerLink="/add-product"><button class="btn btn-dark">Thêm sản phẩm</button></a>
+<div class="card shadow mb-4" style="margin-top: 15px;">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
     </div>
@@ -27,8 +25,9 @@
                         <td>Còn hàng</td>
                         <td>2021/01/20</td>
                         <td>
-                            <button class="btn btn-warning btn-sm" type="button">
-                                <i class="fas fa-edit"></i></button>
+                            <a routerLink="/edit-product">
+                                <button class="btn btn-warning btn-sm" type="button">
+                                    <i class="fas fa-edit"></i></button></a>
                             &nbsp;
                             <button class="btn btn-danger btn-sm" type="button">
                                 <i class="fas fa-trash-alt"></i>

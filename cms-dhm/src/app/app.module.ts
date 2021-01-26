@@ -17,7 +17,12 @@ import { ProductTypeComponent } from './dhmcolor/types/product-type/product-type
 import { CustomerComponent } from './dhmcolor/customers/customer/customer.component';
 import { MemberComponent } from './dhmcolor/members/member/member.component';
 import { Page404Component } from './dhmcolor/page404/page404.component';
-import { AddComponent } from './dhmcolor/products/add/add.component';
+import { AddProductComponent } from './dhmcolor/products/add-product/add-product.component';
+import { EditProductComponent } from './dhmcolor/products/edit-product/edit-product.component';
+import { AddCustomerComponent } from './dhmcolor/customers/add-customer/add-customer.component';
+import { EditCustomerComponent } from './dhmcolor/customers/edit-customer/edit-customer.component';
+import { AddMemberComponent } from './dhmcolor/members/add-member/add-member.component';
+import { EditMemberComponent } from './dhmcolor/members/edit-member/edit-member.component';
 
 
 @NgModule({
@@ -34,7 +39,12 @@ import { AddComponent } from './dhmcolor/products/add/add.component';
     CustomerComponent,
     MemberComponent,
     Page404Component,
-    AddComponent,
+    AddProductComponent,
+    EditProductComponent,
+    AddCustomerComponent,
+    EditCustomerComponent,
+    AddMemberComponent,
+    EditMemberComponent,
   ],
   imports: [
     BrowserModule,

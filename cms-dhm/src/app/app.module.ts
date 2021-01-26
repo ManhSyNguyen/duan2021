@@ -23,6 +23,8 @@ import { AddCustomerComponent } from './dhmcolor/customers/add-customer/add-cust
 import { EditCustomerComponent } from './dhmcolor/customers/edit-customer/edit-customer.component';
 import { AddMemberComponent } from './dhmcolor/members/add-member/add-member.component';
 import { EditMemberComponent } from './dhmcolor/members/edit-member/edit-member.component';
+import { OderSusscesComponent } from './dhmcolor/oders/oder-sussces/oder-sussces.component';
+import { OderWaitingComponent } from './dhmcolor/oders/oder-waiting/oder-waiting.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { EditMemberComponent } from './dhmcolor/members/edit-member/edit-member.
     EditCustomerComponent,
     AddMemberComponent,
     EditMemberComponent,
+    OderSusscesComponent,
+    OderWaitingComponent,
   ],
   imports: [
     BrowserModule,

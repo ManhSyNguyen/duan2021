@@ -2664,7 +2664,7 @@ h2.title {
 }
 .pro-grid span:hover{
 	background:rgba(194, 194, 194, 0.884);
-	color:#000000;
+	color:#242424;
 }
 .row {
     display: -ms-flexbox; /* IE10 */
@@ -2706,7 +2706,7 @@ h2.title {
     width: 100%;
     margin-bottom: 20px;
     padding: 8px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.452);
     border-radius: 5px;
 }
 

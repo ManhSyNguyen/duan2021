@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "store-dhm"
+  "defaultProject": "store-dhm",
+  "cli": {
+    "analytics": false
+  }
 }

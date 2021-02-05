@@ -3,60 +3,53 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpService } from 'src/http.service';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  selector: 'app-about-category',
+  templateUrl: './about-category.component.html',
+  styleUrls: ['./about-category.component.css']
 })
-export class AboutComponent implements OnInit {
+export class AboutCategoryComponent implements OnInit {
+
   constructor(
     private activeRoute: ActivatedRoute,
     private HttpService: HttpService,
   ) { }
-
+  idProduct: any;
   listProduct: any[] = [];
-  listProductCart: any = {};
   listCategory: any[] = [];
-  listIdCategory: any[] = [];
-  thePageNumber: number = 1;
-  thePageSize: number = 5;
-  theTotalElements: number = 0;
+  listProductByIdCate: any[] = [];
 
   ngOnInit(): void {
     this.getListProduct();
     this.getListCategory();
-    this.getProductByIdCategory();
+    this.getProductByIDCategory();
   }
   getListProduct() {
-    this.HttpService.getAllProduct().subscribe(data => {
+    this.HttpService.getAll().subscribe(data => {
       this.listProduct = data;
     });
   }
-
   getListCategory() {
     this.HttpService.getAllCategory().subscribe(dataCate => {
       this.listCategory = dataCate;
     });
   }
 
-  getProductByIdCategory() {
-    this.HttpService.getAllProduct().subscribe(dataId => {
-      this.listIdCategory = dataId;
+  getProductByIDCategory() {
+    this.activeRoute.paramMap.subscribe(params => {
+      let id = params.get("id");
+      this.HttpService.getProductByCategory(id).subscribe(dataId => {
+        this.listProductByIdCate = dataId;
+      });
     });
   }
-  addToCart(listProduct: any) {
+  addToCart(listProductByIdCate: any) {
     let cart = [];
     if (localStorage.getItem('Cart')) {
       cart = JSON.parse(localStorage.getItem('Cart')!);
-      cart = [listProduct, ...cart];
+      cart = [listProductByIdCate, ...cart];
     } else {
-      cart = [listProduct];
+      cart = [listProductByIdCate];
     }
     localStorage.setItem("Cart", JSON.stringify(cart));
-  }
-
-  updatePageSize(pageSize: number) {
-    this.thePageSize = pageSize;
-    this.thePageNumber = 1;
-    this.getListProduct();
   }
 }

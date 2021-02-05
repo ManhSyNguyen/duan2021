@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './dhmcolor/home/home.component';
@@ -16,8 +15,9 @@ import { Page404Component } from './dhmcolor/page404/page404.component';
 import { CartComponent } from './dhmcolor/cart/cart.component';
 import { SlideProductComponent } from './dhmcolor/slide-product/slide-product.component';
 import { ContactComponent } from './dhmcolor/contact/contact.component';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { HttpClientModule } from '@angular/common/http';
+import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,12 +34,14 @@ import { ContactComponent } from './dhmcolor/contact/contact.component';
     Page404Component,
     CartComponent,
     SlideProductComponent,
-    ContactComponent
+    ContactComponent,
+    AboutCategoryComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    // NgbModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

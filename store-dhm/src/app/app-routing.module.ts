@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
 import { AboutComponent } from './dhmcolor/about/about.component';
 import { CartComponent } from './dhmcolor/cart/cart.component';
 import { ContactComponent } from './dhmcolor/contact/contact.component';
@@ -17,8 +18,9 @@ const routes: Routes = [
       // { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomeComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'about/:id', component: AboutCategoryComponent },
       { path: 'cart', component: CartComponent },
-      { path: 'product-detail', component: ProductDetailComponent },
+      { path: 'product-detail/:id', component: ProductDetailComponent },
       { path: 'contact', component: ContactComponent }
     ]
   },

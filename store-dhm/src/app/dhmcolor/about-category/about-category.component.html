@@ -6,60 +6,37 @@
                     <div class="left-sidebar">
                         <h2>Danh mục</h2>
                         <div class="panel-group category-products" id="accordian">
-                            <!--category-productsr-->
                             <div class="panel panel-default" *ngFor="let item of listCategory">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title" routerLink="{{item.id}}">
+                                    <h4 class="panel-title" routerLink="/about/{{item.id}}">
                                         <a>{{item.name}}</a>
                                     </h4>
                                 </div>
                             </div>
                         </div>
-                        <!--/category-products-->
                         <div class="shipping text-center">
-                            <!--shipping-->
                             <img src="../../../assets/images/1.png" alt="" />
                         </div>
-                        <!--/shipping-->
                     </div>
                 </div>
+
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
                         <h2 class="title text-center">Sản phẩm</h2>
-                        <div class="col-sm-3" *ngFor="let item of listProduct">
+                        <div class="col-sm-3" *ngFor="let item of listProductByIdCate">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <div class="product-at ">
                                             <div class="pro-grid">
-                                                <span class="buy-in" (click)="addToCart(item)">Mua
+                                                <span class="buy-in" (click)="addToCart(item)" to="/cart">Mua
                                                     ngay</span>
                                             </div>
-                                            <img src="{{item.image}}" alt="" routerLink="cart" />
+                                            <img src="{{item.image}}" alt="" />
                                         </div>
-                                        <h2>{{item.price | number}} Vnđ</h2>
+                                        <h2>{{item.price}} Vnđ</h2>
                                         <p>{{item.nameproduct}}</p>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="row">
-                                <div class="col-md-9" style="padding-left: 30%;">
-                                    <ngb-pagination [(page)]="thePageNumber" [(pageSize)]="1"
-                                        [collectionSize]="theTotalElements" [maxSize]="5" [boundaryLinks]="true"
-                                        (pageChange)="getListProduct()">
-                                    </ngb-pagination>
-                                </div>
-                                <div class="col-md-3 mt-2" style="text-align: right;">
-                                    <span class="mr-2">Page Size </span>
-                                    <select (change)="updatePageSize(2)">
-                                        <option>2</option>
-                                        <option selected="true">5</option>
-                                        <option>10</option>
-                                        <option>20</option>
-                                        <option>50</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -878,6 +878,12 @@ h2.title {
   font-weight: 400;
   color: #696763;
   text-transform: uppercase;
+  overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
 }
 .links-detail{
   text-decoration: none;

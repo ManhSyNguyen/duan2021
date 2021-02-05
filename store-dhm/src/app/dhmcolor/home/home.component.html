@@ -6,92 +6,22 @@
                 <!-- Sản phẩm mới nhất -->
                 <div class="features_items">
                     <h2 class="title text-center">Sản phẩm mới nhất</h2>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" *ngFor="let item of listProduct">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <img src="../../../assets/images/product/dior_3.jpg" alt="" />
+                                    <img src="{{item.image}}" alt="" />
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <p>Easy Polo Black Edition</p>
+                                        <p routerLink="product-detail/{{item.id}}">
+                                            {{item.nameproduct}}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../../../assets/images/product/dior_3.jpg" alt="" />
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../../../assets/images/product/dior_3.jpg" alt="" />
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../../../assets/images/product/dior_3.jpg" alt="" />
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../../../assets/images/product/dior_3.jpg" alt="" />
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="../../../assets/images/product/dior_3.jpg" alt="" />
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
                 <!-- Sản phẩm  -->
                 <div class="recommended_items">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/http.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private HttpService: HttpService,
+  ) { }
+  listDataCart: any[] = [];
 
   ngOnInit(): void {
+    this.getProductCart();
   }
-
+  getProductCart() {
+    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+    console.log(this.listDataCart);
+  }
+  delete(index: any) {
+    this.listDataCart.splice(index);
+    localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+  }
 }

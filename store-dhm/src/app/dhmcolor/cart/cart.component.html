@@ -23,7 +23,11 @@
                             </td>
                             <td>{{item.nameproduct}}</td>
                             <td>{{item.price | number}} Vnđ</td>
-                            <td>1</td>
+                            <td class="buttons_added">
+                                <input class="minus is-form" type="button" (click)="giamSL()" value="-">
+                                <input aria-label="quantity" class="input-qty" type="number" value="1" disabled>
+                                <input class="plus is-form" type="button" (click)="tangSL()" value="+">
+                            </td>
                             <td>{{item.price * 1 | number}} đ</td>
                             <td>
                                 <button class="btn btn-danger" (click)="delete(index)">
@@ -37,7 +41,6 @@
         </div>
     </div>
     <hr />
-
 
     <div class="row">
         <div class="col-75">

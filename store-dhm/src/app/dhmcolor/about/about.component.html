@@ -43,26 +43,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row">
-                                <div class="col-md-9" style="padding-left: 30%;">
-                                    <ngb-pagination [(page)]="thePageNumber" [(pageSize)]="1"
-                                        [collectionSize]="theTotalElements" [maxSize]="5" [boundaryLinks]="true"
-                                        (pageChange)="getListProduct()">
-                                    </ngb-pagination>
-                                </div>
-                                <div class="col-md-3 mt-2" style="text-align: right;">
-                                    <span class="mr-2">Page Size </span>
-                                    <select (change)="updatePageSize(2)">
-                                        <option>2</option>
-                                        <option selected="true">5</option>
-                                        <option>10</option>
-                                        <option>20</option>
-                                        <option>50</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
     private HttpService: HttpService,
   ) { }
   listDataCart: any[] = [];
+  qty = 1;
 
   ngOnInit(): void {
     this.getProductCart();
@@ -25,5 +26,11 @@ export class CartComponent implements OnInit {
   delete(index: any) {
     this.listDataCart.splice(index);
     localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+  }
+  giamSL() {
+
+  }
+  tangSL() {
+
   }
 }

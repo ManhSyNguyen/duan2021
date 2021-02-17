@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class HttpService {
+export class ProductService {
     api = 'http://localhost:5000/v1/api';
     constructor(
         private http: HttpClient
@@ -12,14 +12,8 @@ export class HttpService {
     getAll(): Observable<any> {
         return this.http.get<any>(this.api + `/productdetails`);
     }
-    getAllCategory(): Observable<any> {
-        return this.http.get<any>(this.api + '/categorys');
-    }
     getAllProduct(): Observable<any> {
         return this.http.get<any>(this.api + '/products');
-    }
-    getProductByCategory(id: any): Observable<any> {
-        return this.http.get<any>(`${this.api + '/products/categorys'}/${id}`);
     }
     getProductById(id: any): Observable<any> {
         return this.http.get<any>(`${this.api + '/productdetails'}/${id}`);

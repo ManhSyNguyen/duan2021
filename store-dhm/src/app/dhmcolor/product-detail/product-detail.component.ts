@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pink } from '@material-ui/core/colors';
-import { HttpService } from 'src/http.service';
+import { ProductService } from 'src/app/service/product.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -10,7 +10,7 @@ import { HttpService } from 'src/http.service';
 export class ProductDetailComponent implements OnInit {
 
   constructor(
-    private HttpService: HttpService,
+    private ProductService: ProductService,
     private route: ActivatedRoute,
     private activateRoute: ActivatedRoute,
   ) { }
@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
   getProductDetail() {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
-      this.HttpService.getProductById(productId).subscribe(data => {
+      this.ProductService.getProductById(productId).subscribe(data => {
         console.log(data)
         this.productDetail = data;
       })

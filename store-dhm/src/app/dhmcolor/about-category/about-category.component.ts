@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from 'src/http.service';
+import { CategoryService } from 'src/app/service/categorys.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-about-category',
@@ -11,7 +12,8 @@ export class AboutCategoryComponent implements OnInit {
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private HttpService: HttpService,
+    private CategoryService: CategoryService,
+    private ProductService: ProductService,
   ) { }
   idProduct: any;
   listProduct: any[] = [];
@@ -24,12 +26,12 @@ export class AboutCategoryComponent implements OnInit {
     this.getProductByIDCategory();
   }
   getListProduct() {
-    this.HttpService.getAll().subscribe(data => {
+    this.ProductService.getAll().subscribe(data => {
       this.listProduct = data;
     });
   }
   getListCategory() {
-    this.HttpService.getAllCategory().subscribe(dataCate => {
+    this.CategoryService.getAllCategory().subscribe(dataCate => {
       this.listCategory = dataCate;
     });
   }
@@ -37,7 +39,7 @@ export class AboutCategoryComponent implements OnInit {
   getProductByIDCategory() {
     this.activeRoute.paramMap.subscribe(params => {
       let id = params.get("id");
-      this.HttpService.getProductByCategory(id).subscribe(dataId => {
+      this.CategoryService.getProductByCategory(id).subscribe(dataId => {
         this.listProductByIdCate = dataId;
       });
     });

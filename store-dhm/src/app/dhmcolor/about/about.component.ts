@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from 'src/http.service';
+import { CategoryService } from 'src/app/service/categorys.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-about',
@@ -10,7 +11,8 @@ import { HttpService } from 'src/http.service';
 export class AboutComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
-    private HttpService: HttpService,
+    private CategoryService: CategoryService,
+    private ProductService: ProductService,
   ) { }
 
   listProduct: any[] = [];
@@ -27,19 +29,19 @@ export class AboutComponent implements OnInit {
     this.getProductByIdCategory();
   }
   getListProduct() {
-    this.HttpService.getAllProduct().subscribe(data => {
+    this.ProductService.getAllProduct().subscribe(data => {
       this.listProduct = data;
     });
   }
 
   getListCategory() {
-    this.HttpService.getAllCategory().subscribe(dataCate => {
+    this.CategoryService.getAllCategory().subscribe(dataCate => {
       this.listCategory = dataCate;
     });
   }
 
   getProductByIdCategory() {
-    this.HttpService.getAllProduct().subscribe(dataId => {
+    this.ProductService.getAllProduct().subscribe(dataId => {
       this.listIdCategory = dataId;
     });
   }

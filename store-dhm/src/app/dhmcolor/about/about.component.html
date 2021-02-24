@@ -8,7 +8,8 @@
                         <div class="panel-group category-products" id="accordian">
                             <!--category-productsr-->
                             <div class="panel panel-default">
-                                <div class="panel-heading" style="color: #696763;" type="button" routerLink="/about">
+                                <div class="panel-heading" style="color: #696763; text-transform: uppercase;"
+                                    type="button" routerLink="/about">
                                     <h4 class="panel-title">Tất cả</h4>
                                 </div>
                                 <div class="panel-heading" *ngFor="let item of listCategory">
@@ -29,7 +30,8 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
                         <h2 class="title text-center">Sản phẩm</h2>
-                        <div class="col-sm-3" *ngFor="let item of listProduct">
+                        <div class="col-sm-3"
+                            *ngFor="let item of listProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
@@ -47,6 +49,8 @@
                             </div>
                         </div>
                     </div>
+                    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize"
+                        [collectionSize]="listProduct.length"></ngb-pagination>
                 </div>
             </div>
         </div>

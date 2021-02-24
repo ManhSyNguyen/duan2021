@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
 
   listProductDetail: any[] = [];
   listProduct: any[] = [];
+  page = 1;
+  pageSize = 9;
 
   ngOnInit(): void {
     this.getListProductDetail();

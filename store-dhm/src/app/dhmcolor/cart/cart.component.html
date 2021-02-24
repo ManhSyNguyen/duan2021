@@ -65,9 +65,14 @@
                     </div>
                     <label>
                         <h4 class="mb-3">Payment</h4>
-                        <input type="radio" checked name="sameadr"> Thanh toán khi nhận hàng<br />
-                        <input type="radio" name="sameadr"> Thanh toán chuyển khoản
+                        <div>
+                            <input type="radio" checked name="sameadr" /> Thanh toán khi nhận hàng<br />
+                            <input type="radio" name="sameadr" /> Thanh toán chuyển khoản
+                        </div>
                     </label>
+                    <!-- <div>
+                        <img class="imageATM" src="assets/images/1.png" />
+                    </div> -->
                     <input type="submit" value="Đặt hàng" class="btn_cart">
                 </form>
             </div>
@@ -77,8 +82,9 @@
                 <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
                         <b></b></span>
                 </h4>
-                <p><a href="#">PURPLE COTTON JERSEY</a> <span class="price">899.000 vnđ</span></p>
-                <p><a href="#">PURPLE COTTON JERSEY</a> <span class="price">899.000 vnđ</span></p>
+                <div *ngFor="let item of listDataCart">
+                    <p><a>{{item.nameproduct}}</a> <span class="price">{{item.price | number}} vnđ</span></p>
+                </div>
                 <hr>
                 <p>Tổng: <span class="price" style="color:black"><b>1.798.000 vnđ</b></span></p>
             </div>

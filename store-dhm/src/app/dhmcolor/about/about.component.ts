@@ -19,9 +19,8 @@ export class AboutComponent implements OnInit {
   listProductCart: any = {};
   listCategory: any[] = [];
   listIdCategory: any[] = [];
-  thePageNumber: number = 1;
-  thePageSize: number = 5;
-  theTotalElements: number = 0;
+  page = 1;
+  pageSize = 8;
 
   ngOnInit(): void {
     this.getListProduct();
@@ -54,11 +53,5 @@ export class AboutComponent implements OnInit {
       cart = [listProduct];
     }
     localStorage.setItem("Cart", JSON.stringify(cart));
-  }
-
-  updatePageSize(pageSize: number) {
-    this.thePageSize = pageSize;
-    this.thePageNumber = 1;
-    this.getListProduct();
   }
 }

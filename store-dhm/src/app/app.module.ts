@@ -18,6 +18,7 @@ import { ContactComponent } from './dhmcolor/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

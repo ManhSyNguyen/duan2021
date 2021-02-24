@@ -6,7 +6,8 @@
                 <!-- Sản phẩm mới nhất -->
                 <div class="features_items">
                     <h2 class="title text-center">Sản phẩm mới nhất</h2>
-                    <div class="col-sm-4" *ngFor="let item of listProduct">
+                    <div class="col-sm-4"
+                        *ngFor="let item of listProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +13,7 @@ import { ProductService } from 'src/app/service/product.service';
 export class CartComponent implements OnInit {
   listProduct: any[] = [];
   listDataCart: any[] = [];
-
+  tabSelected: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private ProductService: ProductService,
@@ -31,5 +34,9 @@ export class CartComponent implements OnInit {
     this.ProductService.getAllProduct().subscribe(data => {
       this.listProduct = data;
     });
+  }
+  onTabChange(event: any) {
+    this.tabSelected = event;
+    console.log(event);
   }
 }

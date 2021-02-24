@@ -19,6 +19,8 @@ export class AboutCategoryComponent implements OnInit {
   listProduct: any[] = [];
   listCategory: any[] = [];
   listProductByIdCate: any[] = [];
+  page = 1;
+  pageSize = 8;
 
   ngOnInit(): void {
     this.getListProduct();

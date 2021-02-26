@@ -39,6 +39,7 @@ public class Product {
     @Column(name = "decription",columnDefinition = "VARCHAR(255)  NULL")
     private String decription;
     private Integer purchase;
+    private Integer count;
     @CreatedDate
     private Date createdate;
     @Column(name = "createby",columnDefinition = "VARCHAR(30)  NULL")
@@ -70,6 +71,7 @@ public class Product {
                 ", image='" + image + '\'' +
                 ", decription='" + decription + '\'' +
                 ", purchase=" + purchase +
+                ", count=" + count +
                 ", createdate=" + createdate +
                 ", createby='" + createby + '\'' +
                 ", productDetail=" + productDetail +

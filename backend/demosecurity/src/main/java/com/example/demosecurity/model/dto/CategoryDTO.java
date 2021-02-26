@@ -20,7 +20,7 @@ public class CategoryDTO {
     private String name;
     private String decription;
     private boolean status;
-    private String createdate;
-    private Date createby;
+    private Date createdate;
+    private String createby;
 
 }

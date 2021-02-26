@@ -14,7 +14,11 @@ public class CartConvert {
     public Cart toEntity(CartDTO dto) {
         Cart entity = new Cart();
         entity.setPhone(dto.getPhone());
+        entity.setNamecustom(dto.getNamecustom());
+        entity.setEmail(dto.getEmail());
         entity.setAddress(dto.getAddress());
+        entity.setPaymentmethod(dto.getPaymentmethod());
+        entity.setDecription(dto.getDecription());
         entity.setStatus(dto.getStatus());
         return entity;
     }
@@ -33,7 +37,11 @@ public class CartConvert {
 
     public Cart toEntity(CartDTO dto, Cart entity) {
         entity.setPhone(dto.getPhone());
+        entity.setNamecustom(dto.getNamecustom());
+        entity.setEmail(dto.getEmail());
         entity.setAddress(dto.getAddress());
+        entity.setPaymentmethod(dto.getPaymentmethod());
+        entity.setDecription(dto.getDecription());
         entity.setStatus(dto.getStatus());
         return entity;
     }

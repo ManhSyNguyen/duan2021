@@ -30,6 +30,7 @@ public class ProductDTO {
     private String image;
     private String decription;
     private Integer purchase;
+    private Integer count;
     private Date createdate;
     private String createby;
 

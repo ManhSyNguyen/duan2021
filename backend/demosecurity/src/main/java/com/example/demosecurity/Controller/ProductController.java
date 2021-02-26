@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("v1/api")
 public class ProductController {
     @Autowired
@@ -22,11 +22,11 @@ public class ProductController {
     @GetMapping("/products")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public List<ProductDTO> getAllProduct() {
+    public List<ProductDTO> getAll() {
         return productService.findAll();
     }
 
-    @GetMapping("/products/categorys/{id}")
+    @GetMapping("/products/{id}/categorys")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public List<ProductDTO> getProductByCategory(@PathVariable(value ="id") long id) {

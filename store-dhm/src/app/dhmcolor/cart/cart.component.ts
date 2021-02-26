@@ -28,6 +28,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.getProductCart();
   }
+
   getProductCart() {
     // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     // console.log(this.listDataCart);
@@ -54,5 +55,12 @@ export class CartComponent implements OnInit {
       this.listProduct = data;
     });
   }
-
+  // getProductCart() {
+  //   this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+  //   console.log(this.listDataCart);
+  // }
+  // delete(index: any) {
+  //   this.listDataCart.splice(index);
+  //   localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+  // }
 }

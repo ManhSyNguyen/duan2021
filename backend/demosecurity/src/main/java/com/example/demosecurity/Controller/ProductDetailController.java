@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("v1/api")
 public class ProductDetailController {
     @Autowired
@@ -25,7 +25,7 @@ public class ProductDetailController {
     @GetMapping("/productdetails/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public List<ProductDetailDTO> getProductById(@PathVariable(name = "id") long id) {
+    public List<ProductDetailDTO> getAllProduct(@PathVariable(name = "id") long id) {
         return productDetailService.findAllIdProduct(id);
     }
 

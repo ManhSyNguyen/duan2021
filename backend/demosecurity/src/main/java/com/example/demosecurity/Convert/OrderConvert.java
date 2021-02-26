@@ -13,9 +13,11 @@ import java.util.List;
 public class OrderConvert {
     public Order toEntity(OrderDTO dto) {
         Order entity = new Order();
-        List<ProductDetail> list = new ArrayList<>();
         entity.setPhone(dto.getPhone());
+        entity.setNamecustom(dto.getNamecustom());
+        entity.setEmail(dto.getEmail());
         entity.setAddress(dto.getAddress());
+        entity.setPaymentmethod(dto.getPaymentmethod());
         entity.setStatus(dto.getStatus());
         return entity;
     }
@@ -36,7 +38,10 @@ public class OrderConvert {
 
     public Order toEntity(OrderDTO dto, Order entity) {
         entity.setPhone(dto.getPhone());
+        entity.setNamecustom(dto.getNamecustom());
+        entity.setEmail(dto.getEmail());
         entity.setAddress(dto.getAddress());
+        entity.setPaymentmethod(dto.getPaymentmethod());
         entity.setStatus(dto.getStatus());
         return entity;
     }

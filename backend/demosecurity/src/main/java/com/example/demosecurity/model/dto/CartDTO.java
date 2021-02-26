@@ -22,13 +22,17 @@ public class CartDTO {
     private Long id;
     private Long idcustomer;
     private Customer customer;
+    private String namecustom;
+    private String email;
     private String phone;
     private String address;
     private String paymentmethod;
+    private String decription;
     @CreatedDate
     private Date createdate;
     @CreatedBy
     private String createby;
     private Integer status;
     private Set<ProductDetailDTO> ProductDetails;
+
 }

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pink } from '@material-ui/core/colors';
+<<<<<<< HEAD
 import { ProductService } from 'src/app/service/product.service';
+=======
+import { HttpService } from 'src/http.service';
+>>>>>>> hai
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -10,7 +14,11 @@ import { ProductService } from 'src/app/service/product.service';
 export class ProductDetailComponent implements OnInit {
 
   constructor(
+<<<<<<< HEAD
     private ProductService: ProductService,
+=======
+    private HttpService: HttpService,
+>>>>>>> hai
     private route: ActivatedRoute,
     private activateRoute: ActivatedRoute,
   ) { }
@@ -22,7 +30,11 @@ export class ProductDetailComponent implements OnInit {
   getProductDetail() {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
+<<<<<<< HEAD
       this.ProductService.getProductById(productId).subscribe(data => {
+=======
+      this.HttpService.getProductById(productId).subscribe(data => {
+>>>>>>> hai
         console.log(data)
         this.productDetail = data;
       })

@@ -1,12 +1,12 @@
 <section>
     <div class="product_details variable_product mt-30">
-        <div class="container">
+        <div class="container" *ngFor="let item of productDetail">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="layout_img product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" src="../../../assets/images/product/dior_10.jpg" alt="big-1" />
+                                <img id="zoom1" src="{{item.product.image}}" alt="big-1" />
                             </a>
                         </div>
                     </div>
@@ -14,7 +14,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
                         <form action="#">
-                            <h1>Easy Polo Black Edition</h1>
+                            <h1>{{item.product.nameproduct}}</h1>
                             <div class="product_ratting">
                                 <ul>
                                     <li>
@@ -35,7 +35,7 @@
                                 </ul>
                             </div>
                             <div class="price_box">
-                                <span class="current_price">1.999.999 vnđ</span><br />
+                                <span class="current_price">{{item.product.price | number}} vnđ</span><br />
                                 <span class="old_price">999.999.999 vnđ</span>
                             </div>
                             <div class="product_desc">
@@ -49,13 +49,17 @@
                             </div>
 
                             <div class="product_variant quantity">
-                                <label>Số lượng</label>
-                                <input min="1" max="100" value="1" type="number" />
+                                <label>Số lượng :</label>
+                                <input min="1" max="100" value="{{item.quantity}}" type="number" disabled />
+                                &nbsp;&nbsp;&nbsp;
+                                <label>Màu : </label>
+                                <span>{{item.color.namecolor}}</span>
+                                &nbsp;&nbsp;&nbsp;
+                                <label>Size : </label>
+                                <span>{{item.size.namesize}}</span>
                             </div>
-
-                            <button class="button" type="submit">Thêm giỏ hàng</button>
                         </form>
-
+                        <button class="button" type="submit" (click)="addToCart(item.product)">Thêm giỏ hàng</button>
                         <div class="product_d_meta">
                             <span>Thương hiệu: <a href="#"></a></span>
                             <!-- <span

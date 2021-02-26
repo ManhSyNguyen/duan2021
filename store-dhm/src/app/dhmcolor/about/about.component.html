@@ -7,191 +7,40 @@
                         <h2>Danh mục</h2>
                         <div class="panel-group category-products" id="accordian">
                             <!--category-productsr-->
-                            <div class="panel panel-default">
+                            <div class="panel panel-default" *ngFor="let item of listCategory">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Dior</a></h4>
+                                    <h4 class="panel-title" routerLink="{{item.id}}">
+                                        <a>{{item.name}}</a>
+                                    </h4>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Versace</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Gucci</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Chanel</a></h4>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Louis Vuitton</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Dolce & gabbana</a></h4>
-                                </div>
-                            </div>
-
                         </div>
                         <!--/category-products-->
-
                         <div class="shipping text-center">
                             <!--shipping-->
                             <img src="../../../assets/images/1.png" alt="" />
                         </div>
                         <!--/shipping-->
-
                     </div>
                 </div>
-
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
-                        <!--features_items-->
                         <h2 class="title text-center">Sản phẩm</h2>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3" *ngFor="let item of listProduct">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <div class="product-at ">
                                             <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
+                                                <span class="buy-in" (click)="addToCart(item)">Mua
+                                                    ngay</span>
                                             </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
+                                            <img src="{{item.image}}" alt="" routerLink="cart" />
                                         </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
+                                        <h2>{{item.price | number}} Vnđ</h2>
+                                        <p>{{item.nameproduct}}</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in">Mua ngay</span>
-                                            </div>
-                                            <img src="../../../assets/images/product/dior_9.jpg" alt="" />
-                                        </div>
-                                        <h2>1.999.999 vnđ</h2>
-                                        <p>Easy Polo Black Edition</p>
-                                    </div>
-
-                                </div>
-
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,48 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="about">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Danh mục</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <div class="panel panel-default" *ngFor="let item of listCategory">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title" routerLink="/about/{{item.id}}">
+                                        <a>{{item.name}}</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shipping text-center">
+                            <img src="../../../assets/images/1.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 padding-right">
+                    <div class="features_items">
+                        <h2 class="title text-center">Sản phẩm</h2>
+                        <div class="col-sm-3" *ngFor="let item of listProductByIdCate">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <div class="product-at ">
+                                            <div class="pro-grid">
+                                                <span class="buy-in" (click)="addToCart(item)" to="/cart">Mua
+                                                    ngay</span>
+                                            </div>
+                                            <img src="{{item.image}}" alt="" />
+                                        </div>
+                                        <h2>{{item.price | number}} Vnđ</h2>
+                                        <p>{{item.nameproduct}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

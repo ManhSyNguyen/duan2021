@@ -35,8 +35,9 @@
                                 </ul>
                             </div>
                             <div class="price_box">
-                                <span class="current_price">{{item.product.price | number}} vnđ</span><br />
-                                <span class="old_price">999.999.999 vnđ</span>
+                                <span class="old_price">999.999.999<sup>₫</sup></span>
+                                <span class="current_price">{{item.product.price | number}}<sup>₫</sup></span><br />
+
                             </div>
                             <div class="product_desc">
                                 <p>
@@ -47,27 +48,24 @@
                                     jeans or track pants for an elevated look.
                                 </p>
                             </div>
-
                             <div class="product_variant quantity">
-                                <label>Số lượng :</label>
-                                <input min="1" max="100" value="{{item.quantity}}" type="number" disabled />
-                                &nbsp;&nbsp;&nbsp;
-                                <label>Màu : </label>
-                                <span>{{item.color.namecolor}}</span>
-                                &nbsp;&nbsp;&nbsp;
-                                <label>Size : </label>
-                                <span>{{item.size.namesize}}</span>
+                                <label>Màu </label>
+                                <a type="submit" class="color">{{item.color.namecolor}}</a>
+                            </div>
+                            <div class="product_variant quantity">
+                                <label>Size </label>
+                                <a type="submit" class="size">{{item.size.namesize}}</a>
+                            </div>
+                            <div class="product_variant quantity">
+                                <label>Số lượng </label>&nbsp;
+                                <input min="1" max="100" type="number" />
                             </div>
                         </form>
-                        <button class="button" type="submit" (click)="addToCart(item.product)">Thêm giỏ hàng</button>
-                        <div class="product_d_meta">
+                        <button class="button " type="submit" (click)="addToCart(item.product)">
+                            <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp; Thêm giỏ hàng</button>
+                        <!-- <div class="product_d_meta">
                             <span>Thương hiệu: <a href="#"></a></span>
-                            <!-- <span
-                  >Tags:
-                  <a href="#">Creams</a>
-                  <a href="#">Lotions</a>
-                </span> -->
-                        </div>
+                        </div> -->
                         <div class="priduct_social" style="margin-left: 10px">
                             <ul>
                                 <li>

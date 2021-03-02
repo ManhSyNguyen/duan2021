@@ -6,16 +6,12 @@
                     <div class="left-sidebar">
                         <h2>Danh mục</h2>
                         <div class="panel-group category-products" id="accordian">
-<<<<<<< HEAD
                             <div class="panel panel-default">
                                 <div class="panel-heading" style="color: #696763;" type="button" routerLink="/about">
                                     <h4 class="panel-title">Tất cả</h4>
                                 </div>
                                 <div class="panel-heading" *ngFor="let item of listCategory">
-=======
-                            <div class="panel panel-default" *ngFor="let item of listCategory">
-                                <div class="panel-heading">
->>>>>>> hai
+
                                     <h4 class="panel-title" routerLink="/about/{{item.id}}">
                                         <a>{{item.name}}</a>
                                     </h4>

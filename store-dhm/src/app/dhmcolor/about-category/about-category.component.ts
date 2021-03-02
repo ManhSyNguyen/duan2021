@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
+
 import { CategoryService } from 'src/app/service/categorys.service';
 import { ProductService } from 'src/app/service/product.service';
-=======
-import { HttpService } from 'src/http.service';
->>>>>>> hai
+
 
 @Component({
   selector: 'app-about-category',
@@ -16,12 +14,9 @@ export class AboutCategoryComponent implements OnInit {
 
   constructor(
     private activeRoute: ActivatedRoute,
-<<<<<<< HEAD
     private CategoryService: CategoryService,
     private ProductService: ProductService,
-=======
-    private HttpService: HttpService,
->>>>>>> hai
+
   ) { }
   idProduct: any;
   listProduct: any[] = [];
@@ -34,20 +29,16 @@ export class AboutCategoryComponent implements OnInit {
     this.getProductByIDCategory();
   }
   getListProduct() {
-<<<<<<< HEAD
+
     this.ProductService.getAll().subscribe(data => {
-=======
-    this.HttpService.getAll().subscribe(data => {
->>>>>>> hai
+
       this.listProduct = data;
     });
   }
   getListCategory() {
-<<<<<<< HEAD
+
     this.CategoryService.getAllCategory().subscribe(dataCate => {
-=======
-    this.HttpService.getAllCategory().subscribe(dataCate => {
->>>>>>> hai
+
       this.listCategory = dataCate;
     });
   }
@@ -55,11 +46,9 @@ export class AboutCategoryComponent implements OnInit {
   getProductByIDCategory() {
     this.activeRoute.paramMap.subscribe(params => {
       let id = params.get("id");
-<<<<<<< HEAD
+
       this.CategoryService.getProductByCategory(id).subscribe(dataId => {
-=======
-      this.HttpService.getProductByCategory(id).subscribe(dataId => {
->>>>>>> hai
+
         this.listProductByIdCate = dataId;
       });
     });

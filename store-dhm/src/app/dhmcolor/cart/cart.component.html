@@ -30,7 +30,7 @@
                             </td>
                             <td>{{item.price * 1 | number}} đ</td>
                             <td>
-                                <button class="btn btn-danger " (click)="delete(item)">
+                                <button class="btn btn-danger " (click)="delete(index)">
                                     Xóa
                                 </button>
                             </td>
@@ -51,23 +51,24 @@
                             <h3>Thông tin khách hàng</h3>
                             <div class="form-group">
                                 <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
-                                <input class="inp_checkout" type="text" name="fullname" placeholder="Full Name">
+                                <input class="inp_checkout" type="text" name="fullname" value="Nguyễn Đình Dương">
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                <input class="inp_checkout" type="text" name="email" placeholder="abc.@gmail.com">
+                                <input class="inp_checkout" type="text" name="email" value="ndduong2000@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
-                                <input class="inp_checkout" type="text" name="address" placeholder="Số nhà,Quận/Huyện">
+                                <input class="inp_checkout" type="text" name="address"
+                                    value="SN19/14, ngõ 406 Hồ Tùng Mậu, Cầu Diễn,Nam Từ Niêm, Hà Nội">
                             </div>
                             <div class="form-group">
                                 <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
-                                <input class="inp_checkout" type="text" name="sdt">
+                                <input class="inp_checkout" type="text" value="0982743840">
                             </div>
                             <div class="form-group">
                                 <label for="city"><i class="fa fa-building-o"></i> Thành phố</label>
-                                <input class="inp_checkout" type="text" name="city">
+                                <input class="inp_checkout" type="text" value="Hà Nội">
                             </div>
                         </div>
                     </div>
@@ -85,7 +86,7 @@
                         <label for="image"><i class="fa fa-picture-o"></i> Ảnh chuyển khoản</label>
                         <input class="inp_checkout" type="file" name="image" />
                     </div>
-                    <input type="submit" value="Đặt hàng" class="btn_cart">
+                    <input type="submit" value="Đặt hàng" class="btn_cart" (click)="buyNow()">
                 </form>
             </div>
         </div>

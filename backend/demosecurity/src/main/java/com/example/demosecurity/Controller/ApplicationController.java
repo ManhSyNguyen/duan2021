@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/rest/auth") //đây là đường dẫn của đăng nhập mọi đối user đều có thể
 // request tới đây để đăng nhập và sinh ra token , khi đăng nhập cần phải kèm theo token
 // do đó frontend lưu token vào local để dùng khi làm chức năng đăng nhập
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ApplicationController {
 
     @Autowired

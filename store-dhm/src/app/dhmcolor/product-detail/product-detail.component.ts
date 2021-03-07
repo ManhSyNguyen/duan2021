@@ -40,20 +40,19 @@ export class ProductDetailComponent implements OnInit {
       this.listProduct = data;
     });
   }
-  // *ngFor="let item of productDetail"
-  // addToCart(productDetail: any) {
-  //   let cart = [];
-  //   if (localStorage.getItem('Cart')) {
-  //     cart = JSON.parse(localStorage.getItem('Cart')!);
-  //     cart = [productDetail, ...cart];
-  //   } else {
-  //     cart = [productDetail];
-  //   }
-  //   localStorage.setItem("Cart", JSON.stringify(cart));
-  // }
-  addToCart(theProduct: Product) {
-    console.log(`Adding to cart: ${theProduct.nameproduct}, ${theProduct.price}`);
-    const theCartItem = new CartItem(theProduct);
-    this.CartService.addToCart(theCartItem);
+  addToCart(productDetail: any) {
+    let cart = [];
+    if (localStorage.getItem('Cart')) {
+      cart = JSON.parse(localStorage.getItem('Cart')!);
+      cart = [productDetail, ...cart];
+    } else {
+      cart = [productDetail];
+    }
+    localStorage.setItem("Cart", JSON.stringify(cart));
   }
+  // addToCart(theProduct: Product) {
+  //   console.log(`Adding to cart: ${theProduct.nameproduct}, ${theProduct.price}`);
+  //   const theCartItem = new CartItem(theProduct);
+  //   this.CartService.addToCart(theCartItem);
+  // }
 }

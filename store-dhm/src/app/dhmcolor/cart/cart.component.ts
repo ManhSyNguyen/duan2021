@@ -29,14 +29,14 @@ export class CartComponent implements OnInit {
     this.getProductCart();
   }
 
-  getProductCart() {
-    // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-    // console.log(this.listDataCart);
-    this.cartItem = this.cartService.cartItems;
-    this.cartService.totalPrice.subscribe(data => this.totalPrice = data);
-    this.cartService.totalQty.subscribe(data => this.totalQty = data);
-    this.cartService.CartTotal();
-  }
+  // getProductCart() {
+  //   // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+  //   // console.log(this.listDataCart);
+  //   this.cartItem = this.cartService.cartItems;
+  //   this.cartService.totalPrice.subscribe(data => this.totalPrice = data);
+  //   this.cartService.totalQty.subscribe(data => this.totalQty = data);
+  //   this.cartService.CartTotal();
+  // }
   // tang so luong
   incrementQuantity(theCartItem: CartItem) {
     this.cartService.addToCart(theCartItem)
@@ -45,22 +45,26 @@ export class CartComponent implements OnInit {
   decrementQuantity(theCartItem: CartItem) {
     this.cartService.decrementQuantity(theCartItem);
   }
-  delete(theCartItem: CartItem) {
-    // this.listDataCart.splice(index);
-    // localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
-    this.cartService.remove(theCartItem);
-  }
+  // delete(theCartItem: CartItem) {
+  //   // this.listDataCart.splice(index);
+  //   // localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+  //   this.cartService.remove(theCartItem);
+  // }
   getListAllProduct() {
     this.ProductService.getAllProduct().subscribe(data => {
       this.listProduct = data;
     });
   }
-  // getProductCart() {
-  //   this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-  //   console.log(this.listDataCart);
-  // }
-  // delete(index: any) {
-  //   this.listDataCart.splice(index);
-  //   localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
-  // }
+  getProductCart() {
+    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+    console.log(this.listDataCart);
+  }
+  delete(index: any) {
+    this.listDataCart.filter(index);
+    localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+    window.alert("Xóa thành công");
+  }
+  buyNow() {
+    localStorage.clear();
+  }
 }

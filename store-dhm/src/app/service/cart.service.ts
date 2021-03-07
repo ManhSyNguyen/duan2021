@@ -26,7 +26,7 @@ export class CartService {
         // } else {
         //     this.cartItems.push(theCartItem);
         // }
-        this.CartTotal();
+        // this.CartTotal();
     }
     //tinh tong va so luong
     CartTotal() {

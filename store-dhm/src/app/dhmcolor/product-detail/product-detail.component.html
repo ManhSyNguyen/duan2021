@@ -5,7 +5,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="layout_img product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
-                            <a href="#">
+                            <a>
                                 <img id="zoom1" src="{{item.product.image}}" alt="big-1" />
                             </a>
                         </div>
@@ -14,8 +14,19 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
                         <form action="#">
-                            <h1>{{item.product.nameproduct}}</h1>
-                            <div class="product_ratting">
+                            <div class="d-flex">
+                                <a
+                                    style="border-style: none;background-color:rgb(208, 1, 27); width: 45px;height: 25px; font-size: 18px; font-family:Cursive; color: white;text-align: center;">
+                                    New
+                                </a>
+                                &nbsp;
+                                <h1 style="font-family: Times New Roman;">
+                                    {{item.product.nameproduct}}
+                                </h1>
+                            </div>
+                            <div class="d-flex product_ratting">
+                                <a style="text-decoration: underline; color:#fdb813;">5.0</a>
+                                &nbsp;
                                 <ul>
                                     <li>
                                         <a href="#"><i class="fa fa-star"></i></a>

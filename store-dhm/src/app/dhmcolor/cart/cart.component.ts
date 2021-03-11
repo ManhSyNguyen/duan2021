@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
-import { ProductService } from 'src/app/service/product.service';
+// <<<<<<< HEAD
+// import { ProductService } from 'src/app/service/product.service';
 
-=======
+// =======
 import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
 declare var $: any;
->>>>>>> duong
+// >>>>>>> duong
 
 @Component({
   selector: 'app-cart',
@@ -60,9 +60,9 @@ export class CartComponent implements OnInit {
       this.listProduct = data;
     });
   }
-<<<<<<< HEAD
+  // <<<<<<< HEAD
 
-=======
+  // =======
   getProductCart() {
     this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     console.log(this.listDataCart);
@@ -75,5 +75,5 @@ export class CartComponent implements OnInit {
   buyNow() {
     localStorage.clear();
   }
->>>>>>> duong
+
 }

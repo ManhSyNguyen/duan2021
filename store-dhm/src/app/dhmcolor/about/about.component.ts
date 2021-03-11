@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
+// import { CategoryService } from 'src/app/service/categorys.service';
+// import { ProductService } from 'src/app/service/product.service';
+
+// =======
 import { CategoryService } from 'src/app/service/categorys.service';
 import { ProductService } from 'src/app/service/product.service';
-
-=======
-import { CategoryService } from 'src/app/service/categorys.service';
-import { ProductService } from 'src/app/service/product.service';
->>>>>>> duong
+// >>>>>>> duong
 
 @Component({
   selector: 'app-about',
@@ -18,15 +18,15 @@ import { ProductService } from 'src/app/service/product.service';
 export class AboutComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
+    //     private CategoryService: CategoryService,
+    //     private ProductService: ProductService,
+
+    // =======
     private CategoryService: CategoryService,
     private ProductService: ProductService,
-
-=======
-    private CategoryService: CategoryService,
-    private ProductService: ProductService,
->>>>>>> duong
+    // >>>>>>> duong
   ) { }
 
   listProduct: any[] = [];
@@ -42,37 +42,37 @@ export class AboutComponent implements OnInit {
     this.getProductByIdCategory();
   }
   getListProduct() {
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    this.ProductService.getAllProduct().subscribe(data => {
+    //     this.ProductService.getAllProduct().subscribe(data => {
 
-=======
+    // =======
     this.ProductService.getAllProduct().subscribe(data => {
->>>>>>> duong
+      // >>>>>>> duong
       this.listProduct = data;
     });
   }
 
   getListCategory() {
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    this.CategoryService.getAllCategory().subscribe(dataCate => {
+    //     this.CategoryService.getAllCategory().subscribe(dataCate => {
 
-=======
+    // =======
     this.CategoryService.getAllCategory().subscribe(dataCate => {
->>>>>>> duong
+      // >>>>>>> duong
       this.listCategory = dataCate;
     });
   }
 
   getProductByIdCategory() {
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    this.ProductService.getAllProduct().subscribe(dataId => {
+    //     this.ProductService.getAllProduct().subscribe(dataId => {
 
-=======
+    // =======
     this.ProductService.getAllProduct().subscribe(dataId => {
->>>>>>> duong
+      // >>>>>>> duong
       this.listIdCategory = dataId;
     });
   }

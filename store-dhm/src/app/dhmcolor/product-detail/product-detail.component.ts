@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pink } from '@material-ui/core/colors';
-<<<<<<< HEAD
 
-=======
 import { CartItem } from 'src/app/model/cart-item';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
->>>>>>> duong
+
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -18,14 +16,14 @@ import { ProductService } from 'src/app/service/product.service';
 export class ProductDetailComponent implements OnInit {
 
   constructor(
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    private ProductService: ProductService,
+    //     private ProductService: ProductService,
 
-=======
+    // =======
     private ProductService: ProductService,
     private CartService: CartService,
->>>>>>> duong
+    // >>>>>>> duong
     private route: ActivatedRoute,
     private activateRoute: ActivatedRoute,
   ) { }
@@ -39,13 +37,13 @@ export class ProductDetailComponent implements OnInit {
   getProductDetail() {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
-<<<<<<< HEAD
+      // <<<<<<< HEAD
 
-      this.ProductService.getProductById(productId).subscribe(data => {
+      //       this.ProductService.getProductById(productId).subscribe(data => {
 
-=======
+      // =======
       this.ProductService.getProductById(productId).subscribe(data => {
->>>>>>> duong
+        // >>>>>>> duong
         console.log(data)
         this.productDetail = data;
       })

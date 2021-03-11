@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
+// import { ProductService } from 'src/app/service/product.service';
+
+
+// =======
 import { ProductService } from 'src/app/service/product.service';
-
-
-=======
-import { ProductService } from 'src/app/service/product.service';
->>>>>>> duong
+// >>>>>>> duong
 
 @Component({
   selector: 'app-home',
@@ -16,13 +16,13 @@ import { ProductService } from 'src/app/service/product.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    private ProductService: ProductService,
+    //     private ProductService: ProductService,
 
-=======
+    // =======
     private ProductService: ProductService,
->>>>>>> duong
+    // >>>>>>> duong
   ) { }
 
   listProductDetail: any[] = [];
@@ -36,24 +36,24 @@ export class HomeComponent implements OnInit {
   }
 
   getListProductDetail() {
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    this.ProductService.getAll().subscribe(data => {
+    //     this.ProductService.getAll().subscribe(data => {
 
-=======
+    // =======
     this.ProductService.getAll().subscribe(data => {
->>>>>>> duong
+      // >>>>>>> duong
       this.listProductDetail = data;
     });
   }
   getListAllProduct() {
-<<<<<<< HEAD
+    // <<<<<<< HEAD
 
-    this.ProductService.getAllProduct().subscribe(data => {
+    //     this.ProductService.getAllProduct().subscribe(data => {
 
-=======
+    // =======
     this.ProductService.getAllProduct().subscribe(data => {
->>>>>>> duong
+      // >>>>>>> duong
       this.listProduct = data;
     });
   }

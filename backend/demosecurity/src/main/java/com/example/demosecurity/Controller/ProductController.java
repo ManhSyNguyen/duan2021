@@ -26,12 +26,12 @@ public class ProductController {
         return productService.findAll();
     }
 
-    @GetMapping("/products/{id}/categorys")
+    @GetMapping("/products/categorys/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public List<ProductDTO> getProductByCategory(@PathVariable(value ="id") long id) {
         return productService.getProductByCategory(id);
-    }
+    } 
 
     @PostMapping("/product")
     @ResponseStatus(HttpStatus.CREATED)

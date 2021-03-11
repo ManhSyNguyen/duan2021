@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
 
 import { CategoryService } from 'src/app/service/categorys.service';
 import { ProductService } from 'src/app/service/product.service';
 
+=======
+import { CategoryService } from 'src/app/service/categorys.service';
+import { ProductService } from 'src/app/service/product.service';
+>>>>>>> duong
 
 @Component({
   selector: 'app-about',
@@ -13,19 +18,23 @@ import { ProductService } from 'src/app/service/product.service';
 export class AboutComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
+<<<<<<< HEAD
 
     private CategoryService: CategoryService,
     private ProductService: ProductService,
 
+=======
+    private CategoryService: CategoryService,
+    private ProductService: ProductService,
+>>>>>>> duong
   ) { }
 
   listProduct: any[] = [];
   listProductCart: any = {};
   listCategory: any[] = [];
   listIdCategory: any[] = [];
-  thePageNumber: number = 1;
-  thePageSize: number = 5;
-  theTotalElements: number = 0;
+  page = 1;
+  pageSize = 8;
 
   ngOnInit(): void {
     this.getListProduct();
@@ -33,25 +42,37 @@ export class AboutComponent implements OnInit {
     this.getProductByIdCategory();
   }
   getListProduct() {
+<<<<<<< HEAD
 
     this.ProductService.getAllProduct().subscribe(data => {
 
+=======
+    this.ProductService.getAllProduct().subscribe(data => {
+>>>>>>> duong
       this.listProduct = data;
     });
   }
 
   getListCategory() {
+<<<<<<< HEAD
 
     this.CategoryService.getAllCategory().subscribe(dataCate => {
 
+=======
+    this.CategoryService.getAllCategory().subscribe(dataCate => {
+>>>>>>> duong
       this.listCategory = dataCate;
     });
   }
 
   getProductByIdCategory() {
+<<<<<<< HEAD
 
     this.ProductService.getAllProduct().subscribe(dataId => {
 
+=======
+    this.ProductService.getAllProduct().subscribe(dataId => {
+>>>>>>> duong
       this.listIdCategory = dataId;
     });
   }
@@ -64,11 +85,5 @@ export class AboutComponent implements OnInit {
       cart = [listProduct];
     }
     localStorage.setItem("Cart", JSON.stringify(cart));
-  }
-
-  updatePageSize(pageSize: number) {
-    this.thePageSize = pageSize;
-    this.thePageNumber = 1;
-    this.getListProduct();
   }
 }

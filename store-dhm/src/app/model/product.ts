@@ -6,4 +6,5 @@ export class Product {
     status!: number;
     decription!: string;
 
+    constructor() { }
 }

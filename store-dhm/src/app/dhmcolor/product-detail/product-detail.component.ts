@@ -27,8 +27,10 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private activateRoute: ActivatedRoute,
   ) { }
-  productDetail: any[] = [];
+  productDetail: any = [];
   listProduct: any[] = [];
+  colorSizeDetail: any[] = [];
+
   ngOnInit(): void {
     this.getProductDetail();
     this.getListAllProduct();
@@ -43,9 +45,15 @@ export class ProductDetailComponent implements OnInit {
 
       // =======
       this.ProductService.getProductById(productId).subscribe(data => {
+<<<<<<< HEAD
         // >>>>>>> duong
         console.log(data)
         this.productDetail = data;
+=======
+        this.colorSizeDetail = data;
+        this.productDetail = data[0].product;
+        console.log(this.productDetail);
+>>>>>>> duong
       })
     });
   }

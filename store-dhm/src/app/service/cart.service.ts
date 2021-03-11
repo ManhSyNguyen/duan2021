@@ -12,21 +12,30 @@ export class CartService {
 
     constructor() { }
 
-    //them vao gio hang
-    addToCart(theCartItem: CartItem) {
-        // let alreadyExitstsIncart: boolean = false;
-        // let existingCartItem: CartItem = undefined;
+    // addToCart(theCartItem: CartItem) {
+    //     // let alreadyExitstsIncart: boolean = false;
+    //     // let existingCartItem: CartItem;
 
-        // if (this.cartItems.length > 0) {
-        //     existingCartItem = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
-        //     alreadyExitstsIncart = (existingCartItem != undefined);
-        // }
-        // if (alreadyExitstsIncart) {
-        //     existingCartItem.qty++;
-        // } else {
-        //     this.cartItems.push(theCartItem);
-        // }
-        // this.CartTotal();
+    //     // if (this.cartItems.length > 0) {
+    //     //     existingCartItem = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
+    //     //     alreadyExitstsIncart = (existingCartItem != undefined);
+    //     // }
+    //     // if (alreadyExitstsIncart) {
+    //     //     existingCartItem.qty++;
+    //     // } else {
+    //     //     this.cartItems.push(theCartItem);
+    //     // }
+    //     // this.CartTotal();
+    // }
+    addToCart(productDetail: any) {
+        let cart = [];
+        if (localStorage.getItem('Cart')) {
+            cart = JSON.parse(localStorage.getItem('Cart')!);
+            cart = [productDetail, ...cart];
+        } else {
+            cart = [productDetail];
+        }
+        localStorage.setItem("Cart", JSON.stringify(cart));
     }
     //tinh tong va so luong
     CartTotal() {

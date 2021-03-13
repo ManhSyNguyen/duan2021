@@ -6,25 +6,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './dhmcolor/layout/navbar/navbar.component';
-import { SidebarComponent } from './dhmcolor/layout/sidebar/sidebar.component';
-import { FooterComponent } from './dhmcolor/layout/footer/footer.component';
-import { LoginComponent } from './dhmcolor/login/login.component';
-import { LayoutComponent } from './dhmcolor/layout/layout.component';
-import { DashboardComponent } from './dhmcolor/dashboard/dashboard.component';
-import { ProductComponent } from './dhmcolor/products/product/product.component';
-import { ProductTypeComponent } from './dhmcolor/types/product-type/product-type.component';
-import { CustomerComponent } from './dhmcolor/customers/customer/customer.component';
-import { MemberComponent } from './dhmcolor/members/member/member.component';
-import { Page404Component } from './dhmcolor/page404/page404.component';
-import { AddProductComponent } from './dhmcolor/products/add-product/add-product.component';
-import { EditProductComponent } from './dhmcolor/products/edit-product/edit-product.component';
-import { AddCustomerComponent } from './dhmcolor/customers/add-customer/add-customer.component';
-import { EditCustomerComponent } from './dhmcolor/customers/edit-customer/edit-customer.component';
-import { AddMemberComponent } from './dhmcolor/members/add-member/add-member.component';
-import { EditMemberComponent } from './dhmcolor/members/edit-member/edit-member.component';
-import { OderSusscesComponent } from './dhmcolor/oders/oder-sussces/oder-sussces.component';
-import { OderWaitingComponent } from './dhmcolor/oders/oder-waiting/oder-waiting.component';
+import { NavbarComponent } from './cmsdhm/layout/navbar/navbar.component';
+import { SidebarComponent } from './cmsdhm/layout/sidebar/sidebar.component';
+import { FooterComponent } from './cmsdhm/layout/footer/footer.component';
+import { LoginComponent } from './cmsdhm/login/login.component';
+import { LayoutComponent } from './cmsdhm/layout/layout.component';
+import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
+import { ProductComponent } from './cmsdhm/products/product/product.component';
+import { ProductTypeComponent } from './cmsdhm/types/product-type/product-type.component';
+import { CustomerComponent } from './cmsdhm/customers/customer/customer.component';
+import { MemberComponent } from './cmsdhm/members/member/member.component';
+import { Page404Component } from './cmsdhm/page404/page404.component';
+import { AddProductComponent } from './cmsdhm/products/add-product/add-product.component';
+import { EditProductComponent } from './cmsdhm/products/edit-product/edit-product.component';
+import { AddCustomerComponent } from './cmsdhm/customers/add-customer/add-customer.component';
+import { EditCustomerComponent } from './cmsdhm/customers/edit-customer/edit-customer.component';
+import { AddMemberComponent } from './cmsdhm/members/add-member/add-member.component';
+import { EditMemberComponent } from './cmsdhm/members/edit-member/edit-member.component';
+import { OderSusscesComponent } from './cmsdhm/oders/oder-sussces/oder-sussces.component';
+import { OderWaitingComponent } from './cmsdhm/oders/oder-waiting/oder-waiting.component';
 
 
 @NgModule({

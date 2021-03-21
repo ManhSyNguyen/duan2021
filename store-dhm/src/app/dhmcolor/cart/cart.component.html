@@ -7,30 +7,36 @@
             <div class="col">
                 <table class="table table-borderd table-striped" style="font-size: 14px">
                     <thead>
-                        <th>STT</th>
-                        <th>Ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                        <th>#</th>
+                        <th scope="col" style="width: 100px;">STT</th>
+                        <th scope="col" style="width: 250px;">Ảnh</th>
+                        <th scope="col" style="width: 400px;">Tên sản phẩm</th>
+                        <th scope="col" style="width: 150px;">Size</th>
+                        <th scope="col" style="width: 250px;">Giá</th>
+                        <th scope="col" style="width: 300px;">Số lượng</th>
+                        <th scope="col" style="width: 250px;">Thành tiền</th>
+                        <th scope="col" style="width: 150px;">#</th>
                     </thead>
-                    <tbody *ngFor="let item of listDataCart; let index = index">
+                    <tbody *ngFor="let item of cartItem; let index = index">
                         <tr>
                             <td>{{index+1}}</td>
                             <td>
                                 <img src="{{item.image}}" width="100" alt="" />
                             </td>
                             <td>{{item.nameproduct}}</td>
+                            <td>{{item.size}}</td>
                             <td>{{item.price | number}} Vnđ</td>
                             <td class="buttons_added">
-                                <input class="minus is-form" type="button" value="-">
-                                <input aria-label="quantity" class="input-qty" type="number" value="1" disabled>
-                                <input class="plus is-form" type="button" value="+">
+                                <button class="minus is-form mr-2 mt-2 fa fa-minus"
+                                    (click)="decrementQuantity(item)"></button>
+
+                                <input class="input-qty" type="text" value="{{item.quantity}}" disabled />
+
+                                <button class="plus is-form ml-2 mt-2 fa fa-plus"
+                                    (click)="incrementQuantity(item)"></button>
                             </td>
-                            <td>{{item.price * 1 | number}} đ</td>
+                            <td>{{item.price * item.quantity | number}} đ</td>
                             <td>
-                                <button class="btn btn-danger " (click)="delete(index)">
+                                <button class="btn btn-danger" (click)="delete(item)">
                                     Xóa
                                 </button>
                             </td>
@@ -95,11 +101,14 @@
                 <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
                         <b></b></span>
                 </h4>
-                <div *ngFor="let item of listDataCart">
-                    <p><a>{{item.nameproduct}}</a> <span class="price">{{item.price | number}} vnđ</span></p>
+                <div *ngFor="let item of cartItem" class="d-flex">
+                    <p>
+                        <a>{{item.nameproduct}}</a> <span class="price">{{item.price * item.quantity | number}}
+                            vnđ</span>
+                    </p>
                 </div>
                 <hr>
-                <p>Tổng: <span class="price" style="color:black"><b>1.798.000 vnđ</b></span></p>
+                <p>Tổng: <span class="price" style="color:black"><b>{{totalPrice | number}} VNĐ</b></span></p>
             </div>
             <hr />
         </div>

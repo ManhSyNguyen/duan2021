@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 import { Subject } from "rxjs";
 import { CartItem } from "../model/cart-item";
 
@@ -10,40 +11,32 @@ export class CartService {
     totalPrice: Subject<number> = new Subject<number>();
     totalQty: Subject<number> = new Subject<number>();
 
-    constructor() { }
+    constructor(
+        public toastService: ToastrService,
+    ) { }
 
-    // addToCart(theCartItem: CartItem) {
-    //     // let alreadyExitstsIncart: boolean = false;
-    //     // let existingCartItem: CartItem;
-
-    //     // if (this.cartItems.length > 0) {
-    //     //     existingCartItem = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
-    //     //     alreadyExitstsIncart = (existingCartItem != undefined);
-    //     // }
-    //     // if (alreadyExitstsIncart) {
-    //     //     existingCartItem.qty++;
-    //     // } else {
-    //     //     this.cartItems.push(theCartItem);
-    //     // }
-    //     // this.CartTotal();
-    // }
-    addToCart(productDetail: any) {
-        let cart = [];
-        if (localStorage.getItem('Cart')) {
-            cart = JSON.parse(localStorage.getItem('Cart')!);
-            cart = [productDetail, ...cart];
+    addToCart(theCartItem: CartItem) {
+        let cart = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
+        if (cart) {
+            // if (theCartItem.size != cart.size) {
+            //     this.cartItems.push(theCartItem);
+            // } else if (theCartItem.size == cart.size) {
+            //     cart.quantity++;
+            // }
+            cart.quantity++;
         } else {
-            cart = [productDetail];
+            this.cartItems.push(theCartItem);
+            localStorage.setItem("Cart", JSON.stringify(theCartItem));
         }
-        localStorage.setItem("Cart", JSON.stringify(cart));
+        this.CartTotal();
     }
     //tinh tong va so luong
     CartTotal() {
         let totalPriceValue: number = 0;
         let totalQtyValue: number = 0;
         for (let currentCartItem of this.cartItems) {
-            totalPriceValue += currentCartItem.qty * currentCartItem.price;
-            totalQtyValue += currentCartItem.qty;
+            totalPriceValue += currentCartItem.quantity * currentCartItem.price;
+            totalQtyValue += currentCartItem.quantity;
         }
         this.totalQty.next(totalQtyValue);
         this.totalPrice.next(totalPriceValue);
@@ -51,15 +44,15 @@ export class CartService {
     }
     logCartData(totalPriceValue: number, totalQuantityValue: number) {
         for (let listCartItem of this.cartItems) {
-            const subTotalPrice = listCartItem.qty * listCartItem.price;
-            console.log(`name: ${listCartItem.nameproduct}, quantity=${listCartItem.qty}, unnitPrice=${listCartItem.price} , subTotalPrice=${subTotalPrice}`);
+            const subTotalPrice = listCartItem.quantity * listCartItem.price;
+            console.log(`name: ${listCartItem.nameproduct}, quantity=${listCartItem.quantity}, unnitPrice=${listCartItem.price} , subTotalPrice=${subTotalPrice}`);
         }
         console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
         console.log('-----------')
     }
     decrementQuantity(theCartItem: CartItem) {
-        theCartItem.qty--;
-        if (theCartItem.qty == 0) {
+        theCartItem.quantity--;
+        if (theCartItem.quantity == 0) {
             this.remove(theCartItem)
         }
     }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-item';
+import { Product } from 'src/app/model/product';
+import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/categorys.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -14,6 +17,7 @@ export class AboutCategoryComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private CategoryService: CategoryService,
     private ProductService: ProductService,
+    private CartService: CartService,
   ) { }
   idProduct: any;
   listProduct: any[] = [];
@@ -46,14 +50,18 @@ export class AboutCategoryComponent implements OnInit {
       });
     });
   }
-  addToCart(listProductByIdCate: any) {
-    let cart = [];
-    if (localStorage.getItem('Cart')) {
-      cart = JSON.parse(localStorage.getItem('Cart')!);
-      cart = [listProductByIdCate, ...cart];
-    } else {
-      cart = [listProductByIdCate];
-    }
-    localStorage.setItem("Cart", JSON.stringify(cart));
+  // addToCart(listProductByIdCate: any) {
+  //   let cart = [];
+  //   if (localStorage.getItem('Cart')) {
+  //     cart = JSON.parse(localStorage.getItem('Cart')!);
+  //     cart = [listProductByIdCate, ...cart];
+  //   } else {
+  //     cart = [listProductByIdCate];
+  //   }
+  //   localStorage.setItem("Cart", JSON.stringify(cart));
+  // }
+  addToCart(theProduct: Product) {
+    const theCartItem = new CartItem(theProduct);
+    this.CartService.addToCart(theCartItem);
   }
 }

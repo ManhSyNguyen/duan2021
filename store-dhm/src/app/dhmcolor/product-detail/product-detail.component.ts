@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pink } from '@material-ui/core/colors';
+import { ToastrService } from 'ngx-toastr';
 import { CartItem } from 'src/app/model/cart-item';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
@@ -12,29 +13,33 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+  products: Product[] = [];
+  productDetail: any = [];
+  listProduct: any[] = [];
+  colorSizeDetail: any[] = [];
+  sizeSelect: any;
 
   constructor(
     private ProductService: ProductService,
     private CartService: CartService,
     private route: ActivatedRoute,
     private activateRoute: ActivatedRoute,
+    public toastService: ToastrService,
   ) { }
-  productDetail: any = [];
-  listProduct: any[] = [];
-  colorSizeDetail: any[] = [];
 
   ngOnInit(): void {
     this.getProductDetail();
     this.getListAllProduct();
   }
-
+  selectSize(iz: any) {
+    this.sizeSelect = iz.size.namesize;
+  }
   getProductDetail() {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
       this.ProductService.getProductById(productId).subscribe(data => {
         this.colorSizeDetail = data;
         this.productDetail = data[0].product;
-        console.log(this.productDetail);
       })
     });
   }
@@ -43,19 +48,9 @@ export class ProductDetailComponent implements OnInit {
       this.listProduct = data;
     });
   }
-  addToCart(productDetail: any) {
-    let cart = [];
-    if (localStorage.getItem('Cart')) {
-      cart = JSON.parse(localStorage.getItem('Cart')!);
-      cart = [productDetail, ...cart];
-    } else {
-      cart = [productDetail];
-    }
-    localStorage.setItem("Cart", JSON.stringify(cart));
+  addToCart(theProduct: Product) {
+    theProduct.size = this.sizeSelect;
+    const theCartItem = new CartItem(theProduct);
+    this.CartService.addToCart(theCartItem);
   }
-  // addToCart(theProduct: Product) {
-  //   console.log(`Adding to cart: ${theProduct.nameproduct}, ${theProduct.price}`);
-  //   const theCartItem = new CartItem(theProduct);
-  //   this.CartService.addToCart(theCartItem);
-  // }
 }

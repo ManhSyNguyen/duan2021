@@ -59,13 +59,55 @@
                                     jeans or track pants for an elevated look.
                                 </p>
                             </div>
-                            <div>
-                                <div class="product_variant quantity">
-                                    <label>Size </label>
-                                    <ul class="size" *ngFor="let iz of colorSizeDetail">
+                            <div class="product_desc">
+                                <label>Bảng Size</label>
+                                <table class="table">
+                                    <thead class="table">
+                                        <tr style="background-color: lightblue;">
+                                            <th scope="col">SIZE</th>
+                                            <th scope="col">S</th>
+                                            <th scope="col">M</th>
+                                            <th scope="col">L</th>
+                                            <th scope="col">XL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cao</td>
+                                            <td>
+                                                < 1,63m</td>
+                                            <td>
+                                                < 1,68m</td>
+                                            <td>
+                                                < 1,73m</td>
+                                            <td>
+                                                < 1,8m</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nặng</td>
+                                            <td>
+                                                < 45Kg</td>
+                                            <td>
+                                                < 55Kg</td>
+                                            <td>
+                                                < 75Kg</td>
+                                            <td>
+                                                < 100Kg</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="product_variant quantity">
+                                <label>Size </label>
+                                <div *ngFor="let iz of colorSizeDetail">
+                                    <ul class="size" (click)="selectSize(iz)">
                                         <li>{{iz.size.namesize}}</li>
                                     </ul>
                                 </div>
+                                <span class="d-flex ml-5">
+                                    <a>Size chọn :</a> &nbsp;
+                                    <a style="color: rgb(208, 1, 27);">{{sizeSelect}}</a>
+                                </span>
                             </div>
                             <div class="product_variant quantity">
                                 <label>Số lượng </label>&nbsp;

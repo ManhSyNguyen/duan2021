@@ -26,9 +26,18 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProductCart();
+    this.listCartProduct();
   }
-
+  listCartProduct() {
+    this.cartItem = this.cartService.cartItems;
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    );
+    this.cartService.totalQty.subscribe(
+      data => this.totalQty = data
+    );
+    this.cartService.CartTotal();
+  }
   // getProductCart() {
   //   // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
   //   // console.log(this.listDataCart);
@@ -41,15 +50,15 @@ export class CartComponent implements OnInit {
   incrementQuantity(theCartItem: CartItem) {
     this.cartService.addToCart(theCartItem)
   }
-  //giam so luong
+  // giam so luong
   decrementQuantity(theCartItem: CartItem) {
     this.cartService.decrementQuantity(theCartItem);
   }
-  // delete(theCartItem: CartItem) {
-  //   // this.listDataCart.splice(index);
-  //   // localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
-  //   this.cartService.remove(theCartItem);
-  // }
+  delete(theCartItem: CartItem) {
+    // this.listDataCart.splice(index);
+    // localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+    this.cartService.remove(theCartItem);
+  }
   getListAllProduct() {
     this.ProductService.getAllProduct().subscribe(data => {
       this.listProduct = data;
@@ -59,12 +68,9 @@ export class CartComponent implements OnInit {
     this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     console.log(this.listDataCart);
   }
-  delete(index: any) {
-    this.listDataCart.filter(index);
-    localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
-    window.alert("Xóa thành công");
-  }
   buyNow() {
     localStorage.clear();
+    window.location.reload();
   }
+
 }

@@ -10,8 +10,8 @@
     overflow:hidden;
     position:relative;
     background-color:#f9f9f9;
-    height:2.2rem;
-    width:1.9rem;
+    height:2rem;
+    width:2rem;
     padding:0;
     text-shadow:1px 1px 1px #fff;
     border:1px solid #ddd;
@@ -20,16 +20,16 @@
     outline:none;
 }
 .is-form.minus {
-    border-radius:4px 0 0 4px;
+    border-radius:10px;
 }
 .is-form.plus {
-    border-radius:0 4px 4px 0;
+    border-radius:10px;
 }
 .input-qty {
     background-color:#fff;
-    height:2.2rem;
+    height:3rem;
     text-align:center;
-    font-size:1rem;
+    font-size:2rem;
     display:inline-block;
     vertical-align:top;
     margin:0;
@@ -38,7 +38,7 @@
     border-left:0;
     border-right:0;
     padding:0;
-    width: 30px;
+    width: 60px;
 }
 .input-qty::-webkit-outer-spin-button,.input-qty::-webkit-inner-spin-button {
     -webkit-appearance:none;

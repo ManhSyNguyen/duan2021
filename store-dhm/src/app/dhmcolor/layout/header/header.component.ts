@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-item';
+import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -9,16 +11,17 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class HeaderComponent implements OnInit {
   listDataCart: any[] = [];
+  cartItem: CartItem[] = [];
   constructor(
     private activeRoute: ActivatedRoute,
     private ProductService: ProductService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
     this.getProductCart();
   }
   getProductCart() {
-    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-    console.log(this.listDataCart);
+    this.cartItem = this.cartService.cartItems;
   }
 }

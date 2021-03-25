@@ -1,8 +1,5 @@
 package com.example.demosecurity.model.dto;
 
-import com.example.demosecurity.model.entity.CartProductDetail;
-import com.example.demosecurity.model.entity.Customer;
-import com.example.demosecurity.model.entity.ProductDetail;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +18,6 @@ import java.util.Set;
 public class CartDTO {
     private Long id;
     private Long idcustomer;
-    private Customer customer;
     private String namecustom;
     private String email;
     private String phone;
@@ -33,6 +29,5 @@ public class CartDTO {
     @CreatedBy
     private String createby;
     private Integer status;
-    private Set<ProductDetailDTO> ProductDetails;
-
+    private Set<ProductDetailDTO> productDetails;
 }

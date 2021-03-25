@@ -1,16 +1,15 @@
 package com.example.demosecurity.Config;
 
 
-import com.example.demosecurity.Repository.UsersRepository;
-import com.example.demosecurity.Service.auth.CustomUserDetailsService;
+import com.example.demosecurity.Config.jwt.CustomAccessDeniedHandler;
+import com.example.demosecurity.Config.service.CustomUserDetailsService;
 
-import com.example.demosecurity.filter.JwtAuthenticationEntryPoint;
-import com.example.demosecurity.filter.JwtFilter;
+import com.example.demosecurity.Config.jwt.JwtAuthenticationEntryPoint;
+import com.example.demosecurity.Config.jwt.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,77 +18,72 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@EnableJpaRepositories(basePackageClasses = UsersRepository.class)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(
+//        securedEnabled = true,
+//        jsr250Enabled = true,
+        prePostEnabled = true
+)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
     @Autowired
-    private JwtFilter jwtFilter;
-
-    @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // configure AuthenticationManager so that it knows from where to load
-        // user for matching credentials
-        // Use BCryptPasswordEncoder
-
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    //sử dụng để thiết lập cơ chế xác thực bằng cách cho phép dễ dàng thêm AuthenticationProviders
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+    @Bean
+    public JwtFilter jwtAuthenticationFilter() {return  new JwtFilter();}
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+    @Bean
+    public CustomAccessDeniedHandler customAccessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.cors().and().csrf().disable().authorizeRequests()
-//                .antMatchers("/rest/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/rest/**").permitAll()
-                .antMatchers("/secure/**").permitAll()
-                .antMatchers("/v1/api/**").permitAll()
-                .anyRequest().authenticated().and()
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and()
+        http.cors().and().csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .headers().frameOptions().sameOrigin() //To enable H2 Database
+                .and()
+                .authorizeRequests()
+                .antMatchers(
+                        "/",
+                        "/favicon.ico",
+                        "/**/*.png",
+                        "/**/*.gif",
+                        "/**/*.svg",
+                        "/**/*.jpg",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js"
+                ).permitAll()//cho phép tất cả các user đều được phép truy cập
+                .antMatchers(SecurityConstants.SIGN_UP_URLS).permitAll() //khai báo đường dẫn được phép của request
+//                .antMatchers(H2_URL).permitAll() //khai báo đường dẫn Database của request
+                .anyRequest().authenticated();
+// phải có cái này thì token mới xác thực
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());;
     }
-
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(Arrays.asList("*"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS"));
-//        configuration.setAllowedHeaders(Arrays.asList("*"));
-//        configuration.setAllowCredentials(true);
-//        configuration.addAllowedHeader("*");
-//        configuration.addAllowedOrigin("*");
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-
 }

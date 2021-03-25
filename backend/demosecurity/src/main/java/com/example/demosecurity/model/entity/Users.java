@@ -1,6 +1,9 @@
 package com.example.demosecurity.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
@@ -19,20 +22,36 @@ public class Users {
     @Column(name = "IdUser")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "username",columnDefinition = "VARCHAR(50)  NULL")
+
+    @Column(unique=true,name = "username",columnDefinition = "VARCHAR(20)  NULL")
     private String username;
+
     @Column(name = "password",columnDefinition = "VARCHAR(100)  NULL")
     private String password;
-    @Column(name = "email",columnDefinition = "VARCHAR(40)  NULL")
+
+    @Column(unique=true,name = "email",columnDefinition = "VARCHAR(35)  NULL")
     private String email;
+
+    @Column(unique=true,name = "sodienthoai",columnDefinition = "VARCHAR(10)  NULL")
+    private String sodienthoai;
+
     @CreatedDate
     private Date createdate;
+
     @CreatedBy
     private String createby;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "IdUser"), inverseJoinColumns = @JoinColumn(name = "IdRole"))
     private Set<Role> roles;
 
+    public Users() {
+    }
 
-
+    public Users(String username, String password, String email,String sodienthoai) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.sodienthoai=sodienthoai;
+    }
 }

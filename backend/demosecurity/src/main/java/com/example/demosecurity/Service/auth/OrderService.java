@@ -23,8 +23,6 @@ public class OrderService {
     @Autowired
     private OrderConvert orderConvert;
     @Autowired
-    private CustomerRepo customerRepo;
-    @Autowired
     private UsersRepository usersRepository;
     @Autowired
     private ProductDetailRepo productDetailRepo;
@@ -38,9 +36,7 @@ public class OrderService {
     public OrderDTO save(OrderDTO orderDTO) {
         Order  neworder = new Order();
         neworder = orderConvert.toEntity(orderDTO);
-        Customer customer = customerRepo.findCustomersById(orderDTO.getIdcustomer());
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
-        neworder.setCustomer(customer);
         neworder.setUsers(users);
         orderRepo.save(neworder);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
@@ -78,9 +74,7 @@ public class OrderService {
         Order newOrder = new Order() ;
         Order oldOrder = orderRepo.findOrdersById(orderDTO.getId());
         newOrder = orderConvert.toEntity(orderDTO,oldOrder);
-        Customer customer = customerRepo.findCustomersById(orderDTO.getIdcustomer());
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
-        newOrder.setCustomer(customer);
         newOrder.setUsers(users);
         orderRepo.save(newOrder);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
@@ -100,7 +94,6 @@ public class OrderService {
                 orderProductDetail.setId(orderProductDetaildto.getId());
                 orderProductDetail.setQuantity(orderProductDetaildto.getQuantity());
                 orderProductDetail.setPrice(orderProductDetaildto.getPrice());
-
                 orderProductDetail.setStatus(1);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
@@ -165,6 +158,16 @@ public class OrderService {
         List<Order> entities = orderRepo.findAll();
         for (Order item: entities) {
             OrderDTO newDTO = orderConvert.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
+    }
+    public List<OrderDTO> findStatus() {
+        List<OrderDTO> results = new ArrayList<>();
+        List<Order> entities = orderRepo.getByStatus();
+        for (Order item: entities) {
+           OrderDTO newDTO = new OrderDTO();
+            newDTO.setStatus(item.getStatus());
             results.add(newDTO);
         }
         return results;

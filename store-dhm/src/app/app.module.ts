@@ -17,6 +17,7 @@ import { SlideProductComponent } from './dhmcolor/slide-product/slide-product.co
 import { ContactComponent } from './dhmcolor/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -45,7 +46,14 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: false,
+      progressBar: false
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

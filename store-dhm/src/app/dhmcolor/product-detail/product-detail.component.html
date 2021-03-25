@@ -100,7 +100,7 @@
                             <div class="product_variant quantity">
                                 <label>Size </label>
                                 <div *ngFor="let iz of colorSizeDetail">
-                                    <ul class="size" (click)="selectSize(iz)">
+                                    <ul class="size" (click)="selectSize(iz)" style="cursor: pointer;">
                                         <li>{{iz.size.namesize}}</li>
                                     </ul>
                                 </div>
@@ -109,13 +109,14 @@
                                     <a style="color: rgb(208, 1, 27);">{{sizeSelect}}</a>
                                 </span>
                             </div>
-                            <div class="product_variant quantity">
+                            <br>
+                            <!-- <div class="product_variant quantity">
                                 <label>Số lượng </label>&nbsp;
                                 <input min="1" max="100" type="number" value="1" />
-                            </div>
+                            </div> -->
                         </form>
                         <button class="button " type="submit" (click)="addToCart(productDetail)">
-                            <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp; Thêm giỏ hàng</button>
+                            <i class="fa fa-shopping-cart"></i><span class="ml-3">Thêm giỏ hàng</span></button>
                         <div class="priduct_social" style="margin-left: 10px">
                             <ul>
                                 <li>

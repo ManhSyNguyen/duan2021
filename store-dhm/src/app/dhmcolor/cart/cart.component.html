@@ -24,7 +24,7 @@
                             </td>
                             <td>{{item.nameproduct}}</td>
                             <td>{{item.size}}</td>
-                            <td>{{item.price | number}} Vnđ</td>
+                            <td>{{item.price | number}} <sup>₫</sup></td>
                             <td class="buttons_added">
                                 <button class="minus is-form mr-2 mt-2 fa fa-minus"
                                     (click)="decrementQuantity(item)"></button>
@@ -34,7 +34,7 @@
                                 <button class="plus is-form ml-2 mt-2 fa fa-plus"
                                     (click)="incrementQuantity(item)"></button>
                             </td>
-                            <td>{{item.price * item.quantity | number}} đ</td>
+                            <td>{{item.price * item.quantity | number}} <sup>₫</sup></td>
                             <td>
                                 <button class="btn btn-danger" (click)="delete(item)">
                                     Xóa
@@ -104,11 +104,11 @@
                 <div *ngFor="let item of cartItem" class="d-flex">
                     <p>
                         <a>{{item.nameproduct}}</a> <span class="price">{{item.price * item.quantity | number}}
-                            vnđ</span>
+                            <sup>₫</sup></span>
                     </p>
                 </div>
                 <hr>
-                <p>Tổng: <span class="price" style="color:black"><b>{{totalPrice | number}} VNĐ</b></span></p>
+                <p>Tổng: <span class="price" style="color:black"><b>{{totalPrice | number}} <sup>₫</sup></b></span></p>
             </div>
             <hr />
         </div>

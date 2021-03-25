@@ -12,18 +12,16 @@ export class CartService {
     totalQty: Subject<number> = new Subject<number>();
 
     constructor(
-        public toastService: ToastrService,
     ) { }
 
     addToCart(theCartItem: CartItem) {
         let cart = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
         if (cart) {
-            // if (theCartItem.size != cart.size) {
-            //     this.cartItems.push(theCartItem);
-            // } else if (theCartItem.size == cart.size) {
-            //     cart.quantity++;
-            // }
-            cart.quantity++;
+            if (theCartItem.size != cart.size) {
+                this.cartItems.push(theCartItem);
+            } else {
+                cart.quantity++;
+            }
         } else {
             this.cartItems.push(theCartItem);
             localStorage.setItem("Cart", JSON.stringify(theCartItem));
@@ -49,6 +47,9 @@ export class CartService {
         }
         console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
         console.log('-----------')
+    }
+    addQuantity(theCartItem: CartItem) {
+        theCartItem.quantity++;
     }
     decrementQuantity(theCartItem: CartItem) {
         theCartItem.quantity--;

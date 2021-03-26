@@ -25,14 +25,15 @@
                             <td>{{item.nameproduct}}</td>
                             <td>{{item.size}}</td>
                             <td>{{item.price | number}} Vnđ</td>
-                            <td class="buttons_added">
-                                <button class="minus is-form mr-2 mt-2 fa fa-minus"
-                                    (click)="decrementQuantity(item)"></button>
-
-                                <input class="input-qty" type="text" value="{{item.quantity}}" disabled />
-
-                                <button class="plus is-form ml-2 mt-2 fa fa-plus"
-                                    (click)="incrementQuantity(item)"></button>
+                            <td>
+                                <div class="buttons_added">
+                                    <input class="minus is-form" type="button" value="-"
+                                        (click)="decrementQuantity(item)">
+                                    <input aria-label="quantity" class="input-qty" max="Số tối đa" min="Số tối thiểu"
+                                        name="" type="number" value="{{item.quantity}}" disabled>
+                                    <input class="plus is-form" type="button" value="+"
+                                        (click)="incrementQuantity(item)">
+                                </div>
                             </td>
                             <td>{{item.price * item.quantity | number}} đ</td>
                             <td>

@@ -20,33 +20,20 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdCart")
     private Long id;
-
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "IdCustomer")
-    private Customer customer;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name ="IdCart")
-    private Set<CartProductDetail>  cartProductDetails;
-
+    @OneToOne
+    @JoinColumn(name = "IdUser")
+    private Users users;
+    @Column(length = 150)
+    private String tensanpham;
     @Column(length = 50)
-    private String namecustom;
+    private String mau;
     @Column(length = 25)
-    private String email;
-    @Column(length = 15)
-    private String phone;
-    @Column(length = 20)
-    private String paymentmethod;
-    @Column(length = 200)
-    private String address;
-    @Column(length = 255)
-    private String decription;
-
+    private String size;
+    private Integer Soluong;
+    private String thanhtien;
     @CreatedDate
     private Date createdate;
     @Column(length = 50)
     @CreatedBy
     private String createby;
-    private Integer status;
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -10,18 +11,25 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  listDataCart: any[] = [];
-  cartItem: CartItem[] = [];
-  constructor(
-    private activeRoute: ActivatedRoute,
-    private ProductService: ProductService,
-    private cartService: CartService
-  ) { }
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
+  constructor(private token: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.getProductCart();
+    this.isLoggedIn = !!this.token.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.token.getUser();
+      this.roles = user.roles;
+      this.username = user.username;
+    }
   }
-  getProductCart() {
-    this.cartItem = this.cartService.cartItems;
+
+  logOut(): void {
+    this.token.signOut();
+    window.location.reload();
   }
 }

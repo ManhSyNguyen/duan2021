@@ -23,8 +23,8 @@ public class Transaction {
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "IdCustomer")
-    private Customer customer;
+    @JoinColumn(name = "IdUser")
+    private Users users;
     private Date gio;
     @Column(name = "cardNumber",columnDefinition = "VARCHAR(15)  NULL")
     private String cardNumber;

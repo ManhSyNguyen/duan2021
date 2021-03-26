@@ -15,12 +15,14 @@ import { Page404Component } from './dhmcolor/page404/page404.component';
 import { CartComponent } from './dhmcolor/cart/cart.component';
 import { SlideProductComponent } from './dhmcolor/slide-product/slide-product.component';
 import { ContactComponent } from './dhmcolor/contact/contact.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
+import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: false
     }),
   ],
-  providers: [],
+  providers: [authInterceptorProviders,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

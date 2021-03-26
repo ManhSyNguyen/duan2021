@@ -26,7 +26,19 @@ public class ProductController {
         return productService.findAll();
     }
 
+<<<<<<< HEAD
     @GetMapping("/products/categorys/{id}")
+=======
+    @GetMapping("/product/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public ProductDTO getProductById(@PathVariable(value ="id") long id)
+    {
+        return productService.findProductById(id);
+    }
+
+    @GetMapping("/products/{id}/categorys")
+>>>>>>> hai
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public List<ProductDTO> getProductByCategory(@PathVariable(value ="id") long id) {

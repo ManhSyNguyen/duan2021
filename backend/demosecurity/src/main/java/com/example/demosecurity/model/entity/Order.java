@@ -28,13 +28,9 @@ public class Order {
     @JoinColumn(name = "IdUser")
     private Users users;
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "IdCustomer")
-    private Customer customer;
     @Column(length = 50)
     private String namecustom;
-    @Column(length = 25)
+    @Column(length = 50)
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)

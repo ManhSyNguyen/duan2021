@@ -93,6 +93,11 @@ public class ProductService {
         }
         return results;
     }
+
+    public ProductDTO findProductById(long id){
+      Product product =  productRepo.findProductById(id);
+        return productConvert.toDTO(product);
+    }
     public List<ProductDTO> getProductByCategory(long id) {
         List<ProductDTO> results = new ArrayList<>();
         List<Product> entities = productRepo.findByCategoryId(id);

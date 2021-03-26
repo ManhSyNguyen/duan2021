@@ -11,9 +11,5 @@ import java.util.List;
 
 @Repository
 public interface CartRepo extends JpaRepository<Cart,Long> {
-    @Query("select o FROM cart o where o.id = :id")
-    Cart findCartById(@Param("id") Long id);
-
-    @Query("select c.status FROM cart c")
-    List<Cart> findCartByStatus();
+    Iterable<Cart> findAllByUsers(String name);
 }

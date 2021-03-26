@@ -16,7 +16,6 @@ import java.util.*;
 public class OrderDTO {
     private Long Id;
     private Users user;
-    private Customer customer;
     private Long idUser;
     private Long idcustomer;
     private String namecustom;
@@ -25,7 +24,7 @@ public class OrderDTO {
     private String address;
     private String paymentmethod;
     private String decription;
-    private int status;
+    private Integer status;
     private Date createdate;
     private String createby;
     private Set<ProductDetailDTO> productDetailList ;

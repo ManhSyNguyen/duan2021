@@ -1,5 +1,6 @@
 package com.example.demosecurity.model.entity;
 
+import com.example.demosecurity.model.dto.ERole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,18 +12,27 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@Entity(name = "role")
+@Entity(name = "roles")
 @Getter
 @Setter
-@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Role {
     @Id
     @Column(name = "idRole")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     @Column(name = "namerole",columnDefinition = "VARCHAR(20)  NULL")
-    private String namerole;
+    private ERole namerole;
+
+    public Role() {
+
+    }
+
+    public Role(ERole namerole) {
+        this.namerole = namerole;
+    }
+
     @CreatedDate
     private Date createdate;
 

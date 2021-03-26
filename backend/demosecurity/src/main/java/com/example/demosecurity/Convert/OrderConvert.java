@@ -26,7 +26,6 @@ public class OrderConvert {
         OrderDTO dto = new OrderDTO();
         dto.setId(entity.getId());
         dto.setUser(entity.getUsers());
-        dto.setCustomer(entity.getCustomer());
         dto.setPhone(entity.getPhone());
         dto.setAddress(entity.getAddress());
         dto.setStatus(entity.getStatus());

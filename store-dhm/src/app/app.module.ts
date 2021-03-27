@@ -20,19 +20,9 @@ import { AboutCategoryComponent } from './dhmcolor/about-category/about-category
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
-import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-=======
-import { ToastrModule } from 'ngx-toastr';
->>>>>>> 21a4fa5fcb96ff71dd743660a07b8ad2c26a1c5e
-=======
 import { ToastrModule } from 'ngx-toastr';
 import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
 import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
->>>>>>> duong
 
 @NgModule({
   declarations: [
@@ -58,15 +48,6 @@ import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    HttpClientModule,
-    BrowserAnimationsModule,
-
-=======
-    ToastrModule.forRoot(),
->>>>>>> 21a4fa5fcb96ff71dd743660a07b8ad2c26a1c5e
-=======
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
@@ -75,7 +56,6 @@ import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
       closeButton: false,
       progressBar: false
     }),
->>>>>>> duong
   ],
   providers: [authInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],

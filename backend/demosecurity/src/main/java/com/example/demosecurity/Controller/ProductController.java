@@ -27,6 +27,11 @@ public class ProductController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    @GetMapping("/products/categorys/{id}")
+=======
+>>>>>>> duong
     @GetMapping("/product/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -36,9 +41,13 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}/categorys")
+<<<<<<< HEAD
 =======
     @GetMapping("/products/categorys/{id}")
 >>>>>>> 21a4fa5fcb96ff71dd743660a07b8ad2c26a1c5e
+=======
+>>>>>>> hai
+>>>>>>> duong
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public List<ProductDTO> getProductByCategory(@PathVariable(value ="id") long id) {

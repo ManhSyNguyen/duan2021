@@ -12,9 +12,11 @@
                                     type="button" routerLink="/about">
                                     <h4 class="panel-title">Tất cả</h4>
                                 </div>
+                                <hr>
                                 <div class="panel-heading" *ngFor="let item of listCategory">
                                     <h4 class="panel-title" routerLink="{{item.id}}">
                                         <a>{{item.name}}</a>
+                                        <hr>
                                     </h4>
                                 </div>
                             </div>

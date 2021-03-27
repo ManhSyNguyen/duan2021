@@ -30,6 +30,7 @@ export class CartComponent implements OnInit {
   }
   listCartProduct() {
     this.cartItem = this.cartService.cartItems;
+    // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!)
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     );
@@ -48,15 +49,13 @@ export class CartComponent implements OnInit {
   // }
   // tang so luong
   incrementQuantity(theCartItem: CartItem) {
-    this.cartService.addToCart(theCartItem)
+    this.cartService.addQuantity(theCartItem);
   }
   // giam so luong
   decrementQuantity(theCartItem: CartItem) {
     this.cartService.decrementQuantity(theCartItem);
   }
   delete(theCartItem: CartItem) {
-    // this.listDataCart.splice(index);
-    // localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
     this.cartService.remove(theCartItem);
   }
   getListAllProduct() {

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7df4617f-d1ed-48a7-9a9f-ca9bc1adcc23" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Chuc nang.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Chuc_nang_DHM.xmind" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DHM Color.xmind" beforeDir="false" afterPath="$PROJECT_DIR$/../../DHM Color.xmind" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Tai lieu/DuAn.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Tai lieu/DuAn.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Tai lieu/SRS_DHM_COLOR.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/about/about.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/about/about.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/cart/cart.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/contact/contact.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/contact/contact.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/contact/contact.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/contact/contact.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/home/home.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/home/home.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/footer/footer.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/footer/footer.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/footer/footer.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/footer/footer.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/header/header.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/header/header.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/layout.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/layout.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/layout.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/layout/layout.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/login/login.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/login/login.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/page404/page404.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/page404/page404.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/page404/page404.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/page404/page404.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/product-detail/product-detail.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/product-detail/product-detail.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/register/register.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/register/register.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/register/register.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/register/register.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slide-product/slide-product.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slide-product/slide-product.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slide-product/slide-product.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slide-product/slide-product.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slider/slider.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slider/slider.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slider/slider.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/app/dhmcolor/slider/slider.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/css/animate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/css/prettyPhoto.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/css/price-range.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/404/404.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/b1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/b2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/b3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/b4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/blog-one.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/blog-three.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/blog-two.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/man-four.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/man-one.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/man-three.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/man-two.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/blog/socials.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/cart/one.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/cart/three.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/cart/two.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/dhm_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/bg_border.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/gallery1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/gallery2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/gallery3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/gallery4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/girl1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/girl2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/girl3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/iframe1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/iframe2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/iframe3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/iframe4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/new.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/partner1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/partner2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/partner3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/partner4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/pricing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/product1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/product2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/product3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/product4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/product5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/product6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/recommend1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/recommend2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/recommend3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/sale.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/searchicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/home/shipping.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/lo10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/lo11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/lo12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/lo7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/lo8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/lo9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/logo1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/new.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/rating.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/share.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/similar1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/similar2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product-details/similar3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/d&amp;g_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/d&amp;g_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/d&amp;g_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/d&amp;g_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/d&amp;g_5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/d&amp;g_6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/dior_9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/versace_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/versace_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/versace_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/versace_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/versace_5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/product/versace_6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/advertisement.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/product10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/product11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/product12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/product7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/product8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/shop/product9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/slide/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/slide/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/slide/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/slide/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/images/truy-tim-nguyen-nhan-va-cach-sua-chua-loi-tra-cuu-404-not-found-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/contact.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/gmaps.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/html5shiv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/jquery.prettyPhoto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/jquery.scrollUp.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/assets/js/price-range.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store-dhm/tslint.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\dell\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1qJ23S0RwpOGRKZcpJaKEPlrgm8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in demosecurity" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="demosecurity" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7df4617f-d1ed-48a7-9a9f-ca9bc1adcc23" name="Default Changelist" comment="" />
+      <created>1616783176603</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616783176603</updated>
+      <workItem from="1616783178484" duration="222000" />
+      <workItem from="1616831003828" duration="25000" />
+      <workItem from="1616833149601" duration="201000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="163" y="0" key="#Project_Structure" timestamp="1616783396204">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1616783396203" />
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1616783353995">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616783353995" />
+    <state width="1323" height="227" key="GridCell.Tab.0.bottom" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.0.center" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.0.left" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.0.right" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1616833353275">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1616833353275" />
+  </component>
+</project>

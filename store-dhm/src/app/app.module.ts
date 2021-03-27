@@ -19,9 +19,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
 import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+=======
+import { ToastrModule } from 'ngx-toastr';
+>>>>>>> 21a4fa5fcb96ff71dd743660a07b8ad2c26a1c5e
 
 @NgModule({
   declarations: [
@@ -47,9 +51,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+<<<<<<< HEAD
     HttpClientModule,
     BrowserAnimationsModule,
 
+=======
+    ToastrModule.forRoot(),
+>>>>>>> 21a4fa5fcb96ff71dd743660a07b8ad2c26a1c5e
   ],
   providers: [authInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],

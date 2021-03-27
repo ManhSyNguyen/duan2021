@@ -1,0 +1,42 @@
+<h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+<a routerLink="/add-product"><button class="btn btn-dark">Thêm sản phẩm</button></a>
+<div class="card shadow mb-4" style="margin-top: 15px;">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">Danh sách sản phẩm</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Ảnh</th>
+                        <th>Giá</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PURPLE COTTON JERSEY</td>
+                        <td><img src="../../../assets/images/product/dior_5.jpg" width="80" alt=""></td>
+                        <td>1.999.999 vnđ</td>
+                        <td>Còn hàng</td>
+                        <td>2021/01/20</td>
+                        <td>
+                            <a routerLink="/edit-product">
+                                <button class="btn btn-dark btn-sm" type="button">
+                                    <i class="fas fa-edit"></i></button></a>
+                            &nbsp;
+                            <button class="btn btn-danger btn-sm" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

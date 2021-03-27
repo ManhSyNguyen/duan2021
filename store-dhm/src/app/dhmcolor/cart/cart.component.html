@@ -7,31 +7,38 @@
             <div class="col">
                 <table class="table table-borderd table-striped" style="font-size: 14px">
                     <thead>
-                        <th>STT</th>
-                        <th>Ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                        <th>#</th>
+                        <th scope="col" style="width: 100px;">STT</th>
+                        <th scope="col" style="width: 250px;">Ảnh</th>
+                        <th scope="col" style="width: 400px;">Tên sản phẩm</th>
+                        <th scope="col" style="width: 150px;">Size</th>
+                        <th scope="col" style="width: 250px;">Giá</th>
+                        <th scope="col" style="width: 300px;">Số lượng</th>
+                        <th scope="col" style="width: 250px;">Thành tiền</th>
+                        <th scope="col" style="width: 150px;">#</th>
                     </thead>
-                    <tbody *ngFor="let item of listDataCart; let index = index">
+                    <tbody *ngFor="let item of cartItem; let index = index">
                         <tr>
                             <td>{{index+1}}</td>
                             <td>
                                 <img src="{{item.image}}" width="100" alt="" />
                             </td>
                             <td>{{item.nameproduct}}</td>
+                            <td>{{item.size}}</td>
                             <td>{{item.price | number}} Vnđ</td>
-                            <td class="buttons_added">
-                                <input class="minus is-form" type="button" (click)="giamSL()" value="-">
-                                <input aria-label="quantity" class="input-qty" type="number" value="1" disabled>
-                                <input class="plus is-form" type="button" (click)="tangSL()" value="+">
-                            </td>
-                            <td>{{item.price * 1 | number}} đ</td>
                             <td>
-                                <button class="btn btn-danger" (click)="delete(index)">
-                                    <i class="fas fa-trash-alt"></i>&nbsp;Xóa
+                                <div class="buttons_added">
+                                    <input class="minus is-form" type="button" value="-"
+                                        (click)="decrementQuantity(item)">
+                                    <input aria-label="quantity" class="input-qty" max="Số tối đa" min="Số tối thiểu"
+                                        name="" type="number" value="{{item.quantity}}" disabled>
+                                    <input class="plus is-form" type="button" value="+"
+                                        (click)="incrementQuantity(item)">
+                                </div>
+                            </td>
+                            <td>{{item.price * item.quantity | number}} đ</td>
+                            <td>
+                                <button class="btn btn-danger" (click)="delete(item)">
+                                    Xóa
                                 </button>
                             </td>
                         </tr>
@@ -49,26 +56,44 @@
                     <div class="row">
                         <div class="col-50">
                             <h3>Thông tin khách hàng</h3>
-                            <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
-                            <input class="inp_checkout" type="text" id="fname" name="fullname" placeholder="Full Name">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input class="inp_checkout" type="text" id="email" name="email"
-                                placeholder="abc.@gmail.com">
-                            <label for="adr"><i class="fa fa-address-card-o"></i>Địa chỉ</label>
-                            <input class="inp_checkout" type="text" id="adr" name="address"
-                                placeholder="Số nhà,Quận/Huyện">
-                            <label for="adr"><i class="fa fa-address-card-o"></i>Số điện thoại</label>
-                            <input class="inp_checkout" type="text" id="sdt" name="sdt">
-                            <label for="city"><i class="fa fa-institution"></i> Thành phố</label>
-                            <input class="inp_checkout" type="text" id="city" name="city">
+                            <div class="form-group">
+                                <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
+                                <input class="inp_checkout" type="text" name="fullname" value="Nguyễn Đình Dương">
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input class="inp_checkout" type="text" name="email" value="ndduong2000@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
+                                <input class="inp_checkout" type="text" name="address"
+                                    value="SN19/14, ngõ 406 Hồ Tùng Mậu, Cầu Diễn,Nam Từ Niêm, Hà Nội">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
+                                <input class="inp_checkout" type="text" value="0982743840">
+                            </div>
+                            <div class="form-group">
+                                <label for="city"><i class="fa fa-building-o"></i> Thành phố</label>
+                                <input class="inp_checkout" type="text" value="Hà Nội">
+                            </div>
                         </div>
                     </div>
-                    <label>
-                        <h4 class="mb-3">Payment</h4>
-                        <input type="radio" checked name="sameadr"> Thanh toán khi nhận hàng<br />
-                        <input type="radio" name="sameadr"> Thanh toán chuyển khoản
+                    <label class="form-group">
+                        <label for="payment"><i class="fa fa-credit-card"></i> Thanh toán</label>
+                        <div>
+                            <input name="type" [(ngModel)]="type" type="radio" [value]="0" checked /> Thanh toán khi
+                            nhận hàng <br>
+                            <input name="type" [(ngModel)]="type" type="radio" [value]="1" /> Thanh toán qua chuyển
+                            khoản
+                            <label *ngIf="type == 1">(STK : 0123456789 - NGUYEN DINH DUONG - TECHCOMBANK)</label>
+                        </div>
                     </label>
-                    <input type="submit" value="Đặt hàng" class="btn_cart">
+                    <div class="form-group" *ngIf="type == 1">
+                        <label for="image"><i class="fa fa-picture-o"></i> Ảnh chuyển khoản</label>
+                        <input class="inp_checkout" type="file" name="image" />
+                    </div>
+                    <input type="submit" value="Đặt hàng" class="btn_cart" (click)="buyNow()">
                 </form>
             </div>
         </div>
@@ -77,10 +102,14 @@
                 <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
                         <b></b></span>
                 </h4>
-                <p><a href="#">PURPLE COTTON JERSEY</a> <span class="price">899.000 vnđ</span></p>
-                <p><a href="#">PURPLE COTTON JERSEY</a> <span class="price">899.000 vnđ</span></p>
+                <div *ngFor="let item of cartItem" class="d-flex">
+                    <p>
+                        <a>{{item.nameproduct}}</a> <span class="price">{{item.price * item.quantity | number}}
+                            vnđ</span>
+                    </p>
+                </div>
                 <hr>
-                <p>Tổng: <span class="price" style="color:black"><b>1.798.000 vnđ</b></span></p>
+                <p>Tổng: <span class="price" style="color:black"><b>{{totalPrice | number}} VNĐ</b></span></p>
             </div>
             <hr />
         </div>

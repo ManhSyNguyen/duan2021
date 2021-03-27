@@ -1174,7 +1174,7 @@ h2.title {
   float: left;
   line-height: 1.42857;
   margin-left: -1px;
-  padding: 6px 12px;
+  /* padding: 6px 12px; */
   position: relative;
   text-decoration: none;
   margin-right: 5px;
@@ -2769,4 +2769,23 @@ span.price {
     .col-25 {
         margin-bottom: 20px;
     }
+}
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #838181;
+}
+
+.svg-icon circle {
+  stroke: #838181;
+  stroke-width: 1;
 }

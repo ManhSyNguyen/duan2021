@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/http.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,13 @@ import { HttpService } from 'src/http.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private HttpService: HttpService,
+    private ProductService: ProductService,
   ) { }
 
   listProductDetail: any[] = [];
   listProduct: any[] = [];
+  page = 1;
+  pageSize = 9;
 
   ngOnInit(): void {
     this.getListProductDetail();
@@ -21,12 +23,12 @@ export class HomeComponent implements OnInit {
   }
 
   getListProductDetail() {
-    this.HttpService.getAll().subscribe(data => {
+    this.ProductService.getAll().subscribe(data => {
       this.listProductDetail = data;
     });
   }
   getListAllProduct() {
-    this.HttpService.getAllProduct().subscribe(data => {
+    this.ProductService.getAllProduct().subscribe(data => {
       this.listProduct = data;
     });
   }

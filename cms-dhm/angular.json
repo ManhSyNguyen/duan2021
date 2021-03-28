@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "cms-dhm"
+  "defaultProject": "cms-dhm",
+  "cli": {
+    "analytics": "286ad718-5238-46d6-bf39-1e40c0025f8b"
+  }
 }

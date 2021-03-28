@@ -1,0 +1,147 @@
+<app-slider></app-slider>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                <!-- Sản phẩm mới nhất -->
+                <div class="features_items">
+                    <h2 class="title text-center">Sản phẩm mới nhất</h2>
+                    <div class="col-sm-4"
+                        *ngFor="let item of listProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                        <div class="product-image-wrapper">
+                            <div class="single-products" routerLink="product-detail/{{item.id}}">
+                                <div class="productinfo text-center">
+                                    <img src="{{item.image}}" alt="" />
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <p>
+                                            {{item.nameproduct}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sản phẩm  -->
+                <div class="recommended_items">
+                    <h2 class="title text-center">Sản phẩm</h2>
+
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="../../../assets/images/product/dior_2.jpg" alt="" />
+                                                <h2>1.999.999 vnđ</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button class="btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Thêm
+                                                    giỏ
+                                                    hàng</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="../../../assets/images/product/dior_2.jpg" alt="" />
+                                                <h2>1.999.999 vnđ</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button class="btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Thêm
+                                                    giỏ
+                                                    hàng</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="../../../assets/images/product/dior_2.jpg" alt="" />
+                                                <h2>1.999.999 vnđ</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button class="btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Thêm
+                                                    giỏ
+                                                    hàng</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="../../../assets/images/product/dior_2.jpg" alt="" />
+                                                <h2>1.999.999 vnđ</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button class="btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Thêm
+                                                    giỏ
+                                                    hàng</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="../../../assets/images/product/dior_2.jpg" alt="" />
+                                                <h2>1.999.999 vnđ</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button class="btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Thêm
+                                                    giỏ
+                                                    hàng</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="../../../assets/images/product/dior_2.jpg" alt="" />
+                                                <h2>1.999.999 vnđ</h2>
+                                                <p>Easy Polo Black Edition</p>
+                                                <button class="btn-default add-to-cart"><i
+                                                        class="fa fa-shopping-cart"></i>Thêm
+                                                    giỏ
+                                                    hàng</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--/recommended_items-->
+
+            </div>
+        </div>
+    </div>
+</section>

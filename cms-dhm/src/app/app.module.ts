@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {MatIconModule} from '@angular/material/icon'
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,16 +16,23 @@ import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
 import { ProductComponent } from './cmsdhm/products/product/product.component';
 import { ProductTypeComponent } from './cmsdhm/types/product-type/product-type.component';
 import { CustomerComponent } from './cmsdhm/customers/customer/customer.component';
-import { MemberComponent } from './cmsdhm/members/member/member.component';
 import { Page404Component } from './cmsdhm/page404/page404.component';
 import { AddProductComponent } from './cmsdhm/products/add-product/add-product.component';
 import { EditProductComponent } from './cmsdhm/products/edit-product/edit-product.component';
 import { AddCustomerComponent } from './cmsdhm/customers/add-customer/add-customer.component';
 import { EditCustomerComponent } from './cmsdhm/customers/edit-customer/edit-customer.component';
-import { AddMemberComponent } from './cmsdhm/members/add-member/add-member.component';
-import { EditMemberComponent } from './cmsdhm/members/edit-member/edit-member.component';
-import { OderSusscesComponent } from './cmsdhm/oders/oder-sussces/oder-sussces.component';
-import { OderWaitingComponent } from './cmsdhm/oders/oder-waiting/oder-waiting.component';
+import { AccountsComponent } from './cmsdhm/account/accounts/accounts.component';
+import { EditAccountComponent } from './cmsdhm/account/edit-account/edit-account.component';
+import { AddAccountComponent } from './cmsdhm/account/add-account/add-account.component';
+import { BoomsComponent } from './cmsdhm/boom/booms/booms.component';
+import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
+import { FooterMemberComponent } from './cms-member/layout-member/footer-member/footer-member.component';
+import { NavbarMemberComponent } from './cms-member/layout-member/navbar-member/navbar-member.component';
+import { SidebarMemberComponent } from './cms-member/layout-member/sidebar-member/sidebar-member.component';
+import { BillsComponent } from './cms-member/bill/bills/bills.component';
+import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -39,25 +47,32 @@ import { OderWaitingComponent } from './cmsdhm/oders/oder-waiting/oder-waiting.c
     ProductComponent,
     ProductTypeComponent,
     CustomerComponent,
-    MemberComponent,
     Page404Component,
     AddProductComponent,
     EditProductComponent,
     AddCustomerComponent,
     EditCustomerComponent,
-    AddMemberComponent,
-    EditMemberComponent,
-    OderSusscesComponent,
-    OderWaitingComponent,
+    AccountsComponent,
+    EditAccountComponent,
+    AddAccountComponent,
+    BoomsComponent,
+    LayoutMemberComponent,
+    FooterMemberComponent,
+    NavbarMemberComponent,
+    SidebarMemberComponent,
+    BillsComponent,
+    OdersComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     NgbPaginationModule,
-    NgbAlertModule
-
-
+    NgbAlertModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

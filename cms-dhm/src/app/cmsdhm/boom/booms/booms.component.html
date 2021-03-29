@@ -1,31 +1,32 @@
-<h1 class="h3 mb-2 text-gray-800">Khách hàng</h1>
-<a routerLink="/add-customer"><button class="btn btn-dark">Thêm tài khoản</button></a>
-
+<h1 class="h3 mb-2 text-gray-800">Danh sách đen </h1>
+<!-- <a routerLink="/add-account"><button class="btn btn-dark">Thêm tài khoản</button></a> -->
 
 <div class="card shadow mb-4" style="margin-top: 15px;">
     <div class="card-header py-3">
-        <h3 class="m-0 font-weight-bold text-dark">Danh sách khách hàng</h3>
+        <h3 class="m-0 font-weight-bold text-dark">Danh sách khách hàng hủy đơn</h3>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Tên tài khoản</th>
                         <th>Tên khách hàng</th>
+                        <th>Số điện thoại</th>
                         <th>Email</th>
-                        <th>Ngày tạo</th>
+                        <th>Địa chỉ</th>
+                        <th>Số lần hủy đơn</th>
                         <th>Tùy chọn</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>manhns15</td>
                         <td>Nguyen Sy Manh</td>
+                        <td>066383838</td>
                         <td>manhns15@gmail.com</td>
-                        <td>2021/01/20</td>
+                        <td>Hà Nội</td>
+                        <td><span class="badge badge-danger">10</span></td>
                         <td>
-                            <a routerLink="/edit-customer">
+                            <a routerLink="/edit-account">
                                 <button class="btn btn-dark btn-sm" type="button">
                                     <i class="fas fa-edit"></i></button></a>
                             &nbsp;

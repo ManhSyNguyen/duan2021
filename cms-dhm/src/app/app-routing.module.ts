@@ -4,7 +4,6 @@ import { CustomerComponent } from './cmsdhm/customers/customer/customer.componen
 import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
 import { LayoutComponent } from './cmsdhm/layout/layout.component';
 import { LoginComponent } from './cmsdhm/login/login.component';
-import { MemberComponent } from './cmsdhm/members/member/member.component';
 import { Page404Component } from './cmsdhm/page404/page404.component';
 import { ProductTypeComponent } from './cmsdhm/types/product-type/product-type.component';
 import { ProductComponent } from './cmsdhm/products/product/product.component';
@@ -12,15 +11,24 @@ import { AddProductComponent } from './cmsdhm/products/add-product/add-product.c
 import { EditProductComponent } from './cmsdhm/products/edit-product/edit-product.component';
 import { AddCustomerComponent } from './cmsdhm/customers/add-customer/add-customer.component';
 import { EditCustomerComponent } from './cmsdhm/customers/edit-customer/edit-customer.component';
-import { AddMemberComponent } from './cmsdhm/members/add-member/add-member.component';
-import { EditMemberComponent } from './cmsdhm/members/edit-member/edit-member.component';
-import { OderSusscesComponent } from './cmsdhm/oders/oder-sussces/oder-sussces.component';
-import { OderWaitingComponent } from './cmsdhm/oders/oder-waiting/oder-waiting.component';
+import { AccountsComponent } from './cmsdhm/account/accounts/accounts.component';
+import { AddAccountComponent } from './cmsdhm/account/add-account/add-account.component';
+import { EditAccountComponent } from './cmsdhm/account/edit-account/edit-account.component';
+import { BoomsComponent } from './cmsdhm/boom/booms/booms.component';
+import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
+import { BillsComponent } from './cms-member/bill/bills/bills.component';
+import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
+    path:'member', component: LayoutMemberComponent,
+    children:[
+      {path:'bills', component:BillsComponent}
+    ]
+  },
+  { 
     path: '', component: LayoutComponent,
     children: [
       // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -35,18 +43,20 @@ const routes: Routes = [
       { path: 'customer', component: CustomerComponent },
       { path: 'add-customer', component: AddCustomerComponent },
       { path: 'edit-customer', component: EditCustomerComponent },
-      //member
-      { path: 'member', component: MemberComponent },
-      { path: 'add-member', component: AddMemberComponent },
-      { path: 'edit-member', component: EditMemberComponent },
+      //account
+      { path: 'accounts', component: AccountsComponent },
+      { path: 'add-account', component: AddAccountComponent },
+      { path: 'edit-account', component: EditAccountComponent },
       //oder
-      { path: 'oder-sussces', component: OderSusscesComponent },
-      { path: 'oder-waiting', component: OderWaitingComponent },
-
+      {path: 'oders', component:OdersComponent},
+      //boom
+      { path: 'booms', component: BoomsComponent },
+      
       { path: 'khong-tim-thay-duong-dan', component: Page404Component },
       { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
     ]
   },
+  
 
 ];
 

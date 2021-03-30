@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
 import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
+import { InforUserComponent } from './dhmcolor/infor-user/infor-user.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
     SlideProductComponent,
     ContactComponent,
     AboutCategoryComponent,
+    InforUserComponent,
   ],
   imports: [
     BrowserModule,

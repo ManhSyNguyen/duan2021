@@ -16,10 +16,15 @@ export class HeaderComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
-  constructor(private token: TokenStorageService) { }
+  cartItem: CartItem[] = [];
+  constructor(
+    private token: TokenStorageService,
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();
+    this.getProductCart();
 
     if (this.isLoggedIn) {
       const user = this.token.getUser();
@@ -31,5 +36,8 @@ export class HeaderComponent implements OnInit {
   logOut(): void {
     this.token.signOut();
     window.location.reload();
+  }
+  getProductCart() {
+    this.cartItem = this.cartService.cartItems;
   }
 }

@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-     private tokenStorage: TokenStorageService,
-     private route : Router
-     ) { }
+    private tokenStorage: TokenStorageService,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -53,6 +53,6 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     // window.location.reload();
-    this.route.navigate(["/about"])
+    this.route.navigate([""])
   }
 }

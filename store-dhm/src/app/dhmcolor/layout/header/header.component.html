@@ -39,16 +39,41 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav" style="display: flow-root;" *ngIf="!isLoggedIn">
-                            <!-- <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li> -->
+                        <div class="d-flex" *ngIf="!isLoggedIn">
+                            <div>
+                                <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                            </div>
+                            <div class="inforCus ml-5">
+                                <a routerLink="login">
+                                    <i class="fa fa-lock"></i> Đăng nhập
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex" *ngIf="isLoggedIn">
+                            <div>
+                                <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                <i class="cartLength" *ngIf="cartItem.length">{{cartItem.length}}</i>
+                            </div>
+                            <div class="inforCus ml-5">
+                                <a><img src="assets/images/1.png"
+                                        style="width: 30px; height:30px;border-radius: 20px" /> &nbsp;{{ username }}</a>
+                                <div class="dropdown-content">
+                                    <a routerLink="inforUser">Thông tin cá nhân</a>
+                                    <a>Hóa đơn</a>
+                                    <a (click)="logOut()">Đăng xuất</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <ul class="nav navbar-nav" style="display: flow-root;" *ngIf="!isLoggedIn">
                             <li><a routerLink="cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
                             <li><a routerLink="login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
                         </ul>
                         <ul class="nav navbar-nav" style="display: flow-root;" *ngIf="isLoggedIn">
-                            <!-- <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li> -->
                             <li><a routerLink="cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                            <li><a (click)="logOut()"><i class="fa fa-unlock"></i>{{ username }}</a></li>
-                        </ul>
+                            <li>
+                                <a (click)="logOut()"><i class="fa fa-unlock"></i>{{ username }}</a>
+                            </li>
+                        </ul> -->
                     </div>
                 </div>
             </div>

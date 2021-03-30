@@ -26,7 +26,13 @@
             <h4>Fashion Color <span>DHM</span></h4>
             <p>Chào mừng trở lại! Mời đăng nhập vào tài khoản của bạn!</p>
             <div class="floating-label">
-                <input placeholder="Username" type="text" name="username" id="username" autocomplete="off">
+                <input placeholder="Username" type="text"  name="username" [(ngModel)]="form.username" required
+                #username="ngModel"  autocomplete="off">
+                <div class="alert alert-danger"
+                    role="alert"
+                    *ngIf="username.errors && f.submitted">
+                    Username is required!
+                </div>
                 <label for="username">Tên tài khoản:</label>
                 <div class="icon">
                     <svg class="svg-icon" viewBox="0 0 20 20">

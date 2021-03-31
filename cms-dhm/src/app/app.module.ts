@@ -4,13 +4,15 @@ import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from '@angular/material/icon'
 import {MatStepperModule} from '@angular/material/stepper';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './cmsdhm/layout/navbar/navbar.component';
 import { SidebarComponent } from './cmsdhm/layout/sidebar/sidebar.component';
 import { FooterComponent } from './cmsdhm/layout/footer/footer.component';
-import { LoginComponent } from './cmsdhm/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './cmsdhm/layout/layout.component';
 import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
 import { ProductComponent } from './cmsdhm/products/product/product.component';
@@ -72,7 +74,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbAlertModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatStepperModule
+    MatStepperModule,
+    HttpClientModule,
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

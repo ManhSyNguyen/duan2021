@@ -6207,3 +6207,23 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/* material */
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.btn-option {
+  display: flex;
+}

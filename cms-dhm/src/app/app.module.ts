@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from '@angular/material/icon'
 import {MatStepperModule} from '@angular/material/stepper';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +34,8 @@ import { SidebarMemberComponent } from './cms-member/layout-member/sidebar-membe
 import { BillsComponent } from './cms-member/bill/bills/bills.component';
 import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { authInterceptorProviders } from './interceptor/basic-auth-intercepter';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
 
 
 
@@ -78,7 +80,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     HttpModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

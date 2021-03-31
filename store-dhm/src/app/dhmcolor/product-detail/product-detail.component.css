@@ -1,17 +1,17 @@
 .color {
-  border-style: solid;
+  border: 2px solid;
   width: 50px;
   text-align: center;
   margin-left: 20px;
-  border-radius: 2px;
+  border-radius: 20px;
 }
 .size:active {
-  color: #ff0000;
+  border-color: #ff0000;
 }
 .size {
-  border-style: solid;
+  border: 2px solid rgb(70, 70, 70);
   width: 30px;
   text-align: center;
   margin-left: 20px;
-  border-radius: 20px;
+  border-radius: 30px;
 }

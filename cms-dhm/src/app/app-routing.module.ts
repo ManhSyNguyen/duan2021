@@ -1,28 +1,62 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CustomerComponent } from './dhmcolor/customers/customer/customer.component';
-import { DashboardComponent } from './dhmcolor/dashboard/dashboard.component';
-import { LayoutComponent } from './dhmcolor/layout/layout.component';
-import { LoginComponent } from './dhmcolor/login/login.component';
-import { MemberComponent } from './dhmcolor/members/member/member.component';
-import { Page404Component } from './dhmcolor/page404/page404.component';
-import { ProductTypeComponent } from './dhmcolor/types/product-type/product-type.component';
-import { ProductComponent } from './dhmcolor/products/product/product.component';
+import { CustomerComponent } from './cmsdhm/customers/customer/customer.component';
+import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
+import { LayoutComponent } from './cmsdhm/layout/layout.component';
+import { LoginComponent } from './cmsdhm/login/login.component';
+import { Page404Component } from './cmsdhm/page404/page404.component';
+import { ProductTypeComponent } from './cmsdhm/types/product-type/product-type.component';
+import { ProductComponent } from './cmsdhm/products/product/product.component';
+import { AddProductComponent } from './cmsdhm/products/add-product/add-product.component';
+import { EditProductComponent } from './cmsdhm/products/edit-product/edit-product.component';
+import { AddCustomerComponent } from './cmsdhm/customers/add-customer/add-customer.component';
+import { EditCustomerComponent } from './cmsdhm/customers/edit-customer/edit-customer.component';
+import { AccountsComponent } from './cmsdhm/account/accounts/accounts.component';
+import { AddAccountComponent } from './cmsdhm/account/add-account/add-account.component';
+import { EditAccountComponent } from './cmsdhm/account/edit-account/edit-account.component';
+import { BoomsComponent } from './cmsdhm/boom/booms/booms.component';
+import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
+import { BillsComponent } from './cms-member/bill/bills/bills.component';
+import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
+    path:'member', component: LayoutMemberComponent,
+    children:[
+      {path:'bills', component:BillsComponent}
+    ]
+  },
+  { 
     path: '', component: LayoutComponent,
     children: [
       // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '', component: DashboardComponent },
+      //product
       { path: 'products', component: ProductComponent },
+      { path: 'add-product', component: AddProductComponent },
+      { path: 'edit-product', component: EditProductComponent },
+      //type
       { path: 'type', component: ProductTypeComponent },
+      //customer
       { path: 'customer', component: CustomerComponent },
-      { path: 'member', component: MemberComponent },
+      { path: 'add-customer', component: AddCustomerComponent },
+      { path: 'edit-customer', component: EditCustomerComponent },
+      //account
+      { path: 'accounts', component: AccountsComponent },
+      { path: 'add-account', component: AddAccountComponent },
+      { path: 'edit-account', component: EditAccountComponent },
+      //oder
+      {path: 'oders', component:OdersComponent},
+      //boom
+      { path: 'booms', component: BoomsComponent },
+      
       { path: 'khong-tim-thay-duong-dan', component: Page404Component },
       { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
     ]
   },
+  
 
 ];
 

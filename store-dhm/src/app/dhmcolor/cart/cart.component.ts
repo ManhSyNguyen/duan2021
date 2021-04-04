@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
-
 declare var $: any;
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  inputForm!: FormGroup;
   listProduct: any[] = [];
   listDataCart: any[] = [];
   type = 0;
@@ -23,14 +23,23 @@ export class CartComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private ProductService: ProductService,
     private cartService: CartService,
+    public formBuilder: FormBuilder,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.listCartProduct();
+    this.inputForm = this.formBuilder.group({
+      hoten: [''],
+      email: [''],
+      addr: [''],
+      phone: [''],
+      type: [0],
+    });
   }
   listCartProduct() {
-    this.cartItem = this.cartService.cartItems;
-    // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!)
+    // this.cartItem = this.cartService.cartItems;
+    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     );
@@ -39,6 +48,10 @@ export class CartComponent implements OnInit {
     );
     this.cartService.CartTotal();
   }
+  get iF(): any {
+    return this.inputForm.controls;
+  }
+
   // getProductCart() {
   //   // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
   //   // console.log(this.listDataCart);
@@ -58,18 +71,22 @@ export class CartComponent implements OnInit {
   delete(theCartItem: CartItem) {
     this.cartService.remove(theCartItem);
   }
-  getListAllProduct() {
-    this.ProductService.getAllProduct().subscribe(data => {
-      this.listProduct = data;
-    });
-  }
-  getProductCart() {
-    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-    console.log(this.listDataCart);
-  }
+  // getListAllProduct() {
+  //   this.ProductService.getAllProduct().subscribe(data => {
+  //     this.listProduct = data;
+  //   });
+  // }
+  // getProductCart() {
+  //   this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+  //   console.log(this.listDataCart);
+  // }
   buyNow() {
-    localStorage.clear();
-    window.location.reload();
+    let obj = {
+      namecustom: this.iF.hoten.value,
+      email: this.iF.email.value,
+      address: this.iF.addr.value,
+      phone: this.iF.phone.value,
+      product : this.listDataCart,
+    }
   }
-
 }

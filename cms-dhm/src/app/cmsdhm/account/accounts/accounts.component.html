@@ -1,0 +1,46 @@
+<h1 class="h3 mb-2 text-gray-800">Tài khoản</h1>
+<a routerLink="/add-account"><button class="btn btn-dark">Thêm tài khoản</button></a>
+
+
+<div class="card shadow mb-4" style="margin-top: 15px;">
+    <div class="card-header py-3">
+        <h3 class="m-0 font-weight-bold text-dark">Danh sách khách hàng</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên nhân viên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Chức vụ</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>manhns15</td>
+                        <td>Nguyen Sy Manh</td>
+                        <td>manhns15@gmail.com</td>
+                        <td>Nhân viên</td>
+                        <td><span class="badge badge-warning">On</span></td>
+                        <td>2021/01/20</td>
+                        <td>
+                            <a routerLink="/edit-account">
+                                <button class="btn btn-dark btn-sm" type="button">
+                                    <i class="fas fa-edit"></i></button></a>
+                            &nbsp;
+                            <button class="btn btn-danger btn-sm" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

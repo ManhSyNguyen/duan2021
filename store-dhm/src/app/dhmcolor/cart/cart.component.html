@@ -16,7 +16,7 @@
                         <th scope="col" style="width: 250px;">Thành tiền</th>
                         <th scope="col" style="width: 150px;">#</th>
                     </thead>
-                    <tbody *ngFor="let item of cartItem; let index = index">
+                    <tbody *ngFor="let item of listDataCart; let index = index">
                         <tr>
                             <td>{{index+1}}</td>
                             <td>
@@ -25,14 +25,16 @@
                             <td>{{item.nameproduct}}</td>
                             <td>{{item.size}}</td>
                             <td>{{item.price | number}} <sup>₫</sup></td>
-                            <td class="buttons_added">
-                                <button class="minus is-form mr-2 mt-2 fa fa-minus"
-                                    (click)="decrementQuantity(item)"></button>
+                            <td>
+                                <div class="buttons_added">
+                                    <input class="minus is-form" (click)="decrementQuantity(item)" type="button"
+                                        value="-">
+                                    <input aria-label="quantity" class="input-qty" min="1" value="{{item.quantity}}"
+                                        disabled name="" type="number">
+                                    <input class="plus is-form" (click)="incrementQuantity(item)" type="button"
+                                        value="+">
+                                </div>
 
-                                <input class="input-qty" type="text" value="{{item.quantity}}" disabled />
-
-                                <button class="plus is-form ml-2 mt-2 fa fa-plus"
-                                    (click)="incrementQuantity(item)"></button>
                             </td>
                             <td>{{item.price * item.quantity | number}} <sup>₫</sup></td>
                             <td>
@@ -51,48 +53,43 @@
     <div class="row">
         <div class="col-75">
             <div class="container_cart">
-                <form id="validate" action="/action_page.php">
-                    <div class="row">
-                        <div class="col-50">
-                            <h3>Thông tin khách hàng</h3>
-                            <div class="form-group">
-                                <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
-                                <input class="inp_checkout" type="text" name="fullname" value="Nguyễn Đình Dương">
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                <input class="inp_checkout" type="text" name="email" value="ndduong2000@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
-                                <input class="inp_checkout" type="text" name="address"
-                                    value="SN19/14, ngõ 406 Hồ Tùng Mậu, Cầu Diễn,Nam Từ Niêm, Hà Nội">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
-                                <input class="inp_checkout" type="text" value="0982743840">
-                            </div>
-                            <div class="form-group">
-                                <label for="city"><i class="fa fa-building-o"></i> Thành phố</label>
-                                <input class="inp_checkout" type="text" value="Hà Nội">
+                <form id="validate" action="/action_page.php" [formGroup]="inputForm">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>Thông tin khách hàng</h3>
+                                <div class="form-group">
+                                    <label ><i class="fa fa-user"></i>Họ và tên</label>
+                                    <input class="inp_checkout form-control" type="text" name="fullname"
+                                        formControlName="hoten">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                    <input class="inp_checkout form-control" type="text" name="email"
+                                        formControlName="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
+                                    <input class="inp_checkout form-control" type="text" name="address"
+                                        formControlName="addr">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
+                                    <input class="inp_checkout form-control" type="text" formControlName="phone">
+                                </div>
                             </div>
                         </div>
+                        <label class="form-group">
+                            <label for="payment"><i class="fa fa-credit-card"></i> Thanh toán</label>
+                            <div>
+                                <input name="type"  type="radio" value="0"  formControlName="type" /> Thanh toán khi
+                                nhận hàng <br>
+                                <input name="type" type="radio" value="1" formControlName="type" /> Thanh toán qua chuyển
+                                khoản
+                            </div>
+                        </label>
+                        <input type="submit" value="Đặt hàng" class="btn_cart" (click)="buyNow()">
                     </div>
-                    <label class="form-group">
-                        <label for="payment"><i class="fa fa-credit-card"></i> Thanh toán</label>
-                        <div>
-                            <input name="type" [(ngModel)]="type" type="radio" [value]="0" checked /> Thanh toán khi
-                            nhận hàng <br>
-                            <input name="type" [(ngModel)]="type" type="radio" [value]="1" /> Thanh toán qua chuyển
-                            khoản
-                            <label *ngIf="type == 1">(STK : 0123456789 - NGUYEN DINH DUONG - TECHCOMBANK)</label>
-                        </div>
-                    </label>
-                    <div class="form-group" *ngIf="type == 1">
-                        <label for="image"><i class="fa fa-picture-o"></i> Ảnh chuyển khoản</label>
-                        <input class="inp_checkout" type="file" name="image" />
-                    </div>
-                    <input type="submit" value="Đặt hàng" class="btn_cart" (click)="buyNow()">
                 </form>
             </div>
         </div>
@@ -114,3 +111,24 @@
         </div>
     </div>
 </div>
+
+<!-- <ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+            Close
+        </button>
+    </div>
+</ng-template> -->

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -11,6 +10,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;

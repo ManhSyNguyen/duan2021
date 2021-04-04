@@ -5,7 +5,6 @@ import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/categorys.service';
 import { ProductService } from 'src/app/service/product.service';
-
 @Component({
   selector: 'app-about-category',
   templateUrl: './about-category.component.html',
@@ -13,8 +12,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class AboutCategoryComponent implements OnInit {
 
-  constructor(
-    private activeRoute: ActivatedRoute,
+  constructor(private activeRoute: ActivatedRoute,
     private CategoryService: CategoryService,
     private ProductService: ProductService,
     private CartService: CartService,

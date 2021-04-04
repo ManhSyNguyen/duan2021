@@ -30,7 +30,7 @@ body {
   text-align: right;
 }
 h1 {
-   font-weight: 700;
+  font-weight: 700;
   font-size: 40px;
 }
 a {
@@ -50,20 +50,22 @@ a:hover {
   animation: blinkblink 7s linear infinite;
 }
 
-@keyframes blinkblink {  
-  50% { opacity: 0.1; }
+@keyframes blinkblink {
+  50% {
+    opacity: 0.1;
+  }
 }
 .moon {
 }
-input[type=text] {
+input[type="text"] {
   color: #fff;
   background-color: #0a1821;
-  padding:5px; 
-  border: none; 
-  border-bottom:2px solid #ccc; 
+  padding: 5px;
+  border: none;
+  border-bottom: 2px solid #ccc;
   font-size: 18px;
 }
-input[type=text]:focus {
-  border-color:none; 
-  border-bottom:2px solid #ccc;
+input[type="text"]:focus {
+  border-color: none;
+  border-bottom: 2px solid #ccc;
 }

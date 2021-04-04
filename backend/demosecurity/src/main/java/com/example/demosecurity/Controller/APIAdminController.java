@@ -21,9 +21,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-@CrossOrigin(origins = "http://localhost:4200")
-=======
 
 import javax.validation.Valid;
 import java.util.HashSet;
@@ -31,7 +28,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
->>>>>>> hai
 @RestController
 @RequestMapping("/secure/auth")
 public class APIAdminController {
@@ -52,6 +48,17 @@ public class APIAdminController {
 
     @Autowired
     private MapValidationService mapValidationService;
+    /*@PreAuthorize("hasAnyRole('ADMIN')")*/
+    // hàm đó viết đi
+    //chức năng đăng ký truyền xuống username,password viết như hàn thêm
+//    @PostMapping("/admin/add")
+//    public String addUserByAdmin(@RequestBody Users user) {
+//        String pwd = user.getPassword();
+//        String encryptPwd = bCryptPasswordEncoder.encode(pwd);
+//        user.setPassword(encryptPwd);
+//        usersRepository.save(user);
+//        return "user added successfully...";
+//    }
 
 
     @PostMapping("/signin")

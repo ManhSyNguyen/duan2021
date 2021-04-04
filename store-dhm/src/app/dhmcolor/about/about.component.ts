@@ -5,27 +5,24 @@ import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { CategoryService } from 'src/app/service/categorys.service';
 import { ProductService } from 'src/app/service/product.service';
-
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  constructor(
-    private activeRoute: ActivatedRoute,
+
+  constructor(private activeRoute: ActivatedRoute,
     private CategoryService: CategoryService,
     private ProductService: ProductService,
     private CartService: CartService,
-  ) { }
-
-  listProduct: any[] = [];
-  listProductCart: any = {};
-  listCategory: any[] = [];
-  listIdCategory: any[] = [];
-  page = 1;
-  pageSize = 8;
-
+    ) { }
+    listProduct: any[] = [];
+    listProductCart: any = {};
+    listCategory: any[] = [];
+    listIdCategory: any[] = [];
+    page = 1;
+    pageSize = 8;
   ngOnInit(): void {
     this.getListProduct();
     this.getListCategory();

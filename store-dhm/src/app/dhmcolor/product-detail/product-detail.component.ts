@@ -51,7 +51,6 @@ export class ProductDetailComponent implements OnInit {
   addToCart(theProduct: Product) {
     if (this.sizeSelect == null) {
       this.toastService.error('Vui lòng chọn size quần áo');
-      // window.alert('Vui lòng chọn size áo');
       return;
     }
     theProduct.size = this.sizeSelect;

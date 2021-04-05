@@ -67,18 +67,14 @@ export class CartService {
     }
     decrementQuantity(theCartItem: CartItem) {
         theCartItem.quantity--;
-        if (theCartItem.quantity == 1) {
-            this.remove(theCartItem)
-        }
     }
-    remove(theCartItem: CartItem) {
-        // lay id trong mang cartItem
-      let listData = JSON.parse(localStorage.getItem("Cart")!);
-        const itemIndex = this.cartItems.findIndex(listCartItem => theCartItem.id === theCartItem.id);
-        // xoa du lieu theo index da chon
-        if (itemIndex == -1) {
-            this.cartItems.splice(itemIndex, 1);
-            this.CartTotal();
-        }
-    }
+  // remove(id: string) {
+  //   const listData = JSON.parse(localStorage.getItem("Cart")!);
+  //   //   const itemIndex = this.cartItems.findIndex(listCartItem => theCartItem.id === theCartItem.id);
+  //   //   this.cartItems.splice(itemIndex, 1);
+  //   //   this.CartTotal();
+  //   let index = listData.findIndex((i) => i.id === id);
+  //   listData.splice(index, 1);
+  //   localStorage.setItem("Cart", JSON.stringify(listData));
+  // }
 }

@@ -61,28 +61,40 @@
                                 <div class="form-group">
                                     <label ><i class="fa fa-user"></i>Họ và tên</label>
                                     <input class="inp_checkout form-control" type="text" name="fullname"
-                                        formControlName="hoten">
+                                        formControlName="hoten" [ngClass]="{ 'is-invalid': iF.hoten.touched && iF.hoten.errors }">
+                                  <div *ngIf="iF.hoten.touched && iF.hoten.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.hoten.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Tên khách hàng không được để trống</span></div>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                     <input class="inp_checkout form-control" type="text" name="email"
-                                        formControlName="email">
+                                        formControlName="email" [ngClass]="{ 'is-invalid': iF.email.touched && iF.email.errors }">
+                                  <div *ngIf="iF.email.touched && iF.email.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.email.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Email khách hàng không được để trống</span></div>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
                                     <input class="inp_checkout form-control" type="text" name="address"
-                                        formControlName="addr">
+                                        formControlName="addr" [ngClass]="{ 'is-invalid': iF.addr.touched && iF.addr.errors }">
+                                  <div *ngIf="iF.addr.touched && iF.addr.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.addr.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Địa chỉ khách hàng không được để trống</span></div>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
-                                    <input class="inp_checkout form-control" type="text" formControlName="phone">
+                                    <input class="inp_checkout form-control" type="text" formControlName="phone" [ngClass]="{ 'is-invalid': iF.phone.touched && iF.phone.errors }">
+                                  <div *ngIf="iF.phone.touched && iF.phone.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.phone.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Số điện thoại khách hàng không được để trống</span></div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
                         <label class="form-group">
                             <label for="payment"><i class="fa fa-credit-card"></i> Thanh toán</label>
                             <div>
-                                <input name="type"  type="radio" value="0"  formControlName="type" /> Thanh toán khi
+                                <input name="type"  type="radio" value="0" formControlName="type" /> Thanh toán khi
                                 nhận hàng <br>
                                 <input name="type" type="radio" value="1" formControlName="type" /> Thanh toán qua chuyển
                                 khoản
@@ -98,7 +110,7 @@
                 <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
                         <b></b></span>
                 </h4>
-                <div *ngFor="let item of cartItem" class="d-flex">
+                <div *ngFor="let item of listDataCart" class="d-flex">
                     <p>
                         <a>{{item.nameproduct}}</a> <span class="price">{{item.price * item.quantity | number}}
                             <sup>₫</sup></span>
@@ -111,24 +123,3 @@
         </div>
     </div>
 </div>
-
-<!-- <ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
-        </p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-            Close
-        </button>
-    </div>
-</ng-template> -->

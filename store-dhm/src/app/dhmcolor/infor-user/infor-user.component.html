@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="modal-header">
         <h2>Thông tin của tôi</h2>
     </div>
@@ -29,4 +29,94 @@
         </div>
     </div>
 </div>
-<br>
+<br> -->
+
+<div class="container">
+    <h2 class="title text-center">Thông tin cá nhân</h2>
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar ">
+                    <div class="profile-userpic"> <img src="assets/images/1.png" class="img-responsive"
+                            alt="Thông tin cá nhân">
+                    </div>
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">Tên đăng nhập: {{username}}</div>
+                        <div class="profile-usertitle-job"> Khách hàng</div>
+                    </div>
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-success btn-sm" routerLink="/">Trang chủ</button>
+                        <button type="button" class="btn btn-danger btn-sm" routerLink="/">Thoát ra</button>
+                    </div>
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-info-sign"></i>
+                                    Cập nhật thông tin cá nhân </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="glyphicon glyphicon-lock"></i>
+                                    Đổi mật khẩu </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 profile-sidebar">
+                <div class="my-account-section__header">
+                    <div class="my-account-section__header-left">
+                        <div class="my-account-section__header-title">Hồ sơ của tôi</div>
+                        <div class="my-account-section__header-subtitle">Quản lý thông tin hồ sơ để bảo mật tài khoản
+                        </div>
+                    </div>
+                </div>
+                <div class="my-account-profile__left">
+                    <div class="input-with-label">
+                        <div class="input-with-label__wrapper">
+                            <div class="input-with-label__label">
+                                <span>Tên đăng nhập: </span>
+                            </div>
+                            <div class="input-with-label__content">
+                                <div class="my-account__inline-container">
+                                    <div class="my-account__input-text">{{username}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-with-label">
+                        <div class="input-with-label__wrapper">
+                            <div class="input-with-label__label">
+                                <span>Email: </span>
+                            </div>
+                            <div class="input-with-label__content">
+                                <div class="my-account__inline-container">
+                                    <div class="my-account__input-text">{{email}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-with-label">
+                        <div class="input-with-label__wrapper">
+                            <div class="input-with-label__label">
+                                <span>Số điện thoại: </span>
+                            </div>
+                            <div class="input-with-label__content">
+                                <div class="my-account__inline-container">
+                                    <div class="my-account__input-text">*********24</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
+import {ToastrService} from 'ngx-toastr';
+declare var $: any;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  inputForm!: FormGroup;
   listProduct: any[] = [];
   listDataCart: any[] = [];
   type = 0;
@@ -21,14 +24,24 @@ export class CartComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private ProductService: ProductService,
     private cartService: CartService,
+    public formBuilder: FormBuilder,
+    private modalService: NgbModal,
+    public toastService: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.listCartProduct();
+    this.inputForm = this.formBuilder.group({
+      hoten: ['',[Validators.required]],
+      email: ['',[Validators.required]],
+      addr: ['',[Validators.required]],
+      phone: ['',[Validators.required]],
+      type: [0],
+    });
   }
   listCartProduct() {
-    this.cartItem = this.cartService.cartItems;
-    // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!)
+    // this.cartItem = this.cartService.cartItems;
+    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data
     );
@@ -37,14 +50,9 @@ export class CartComponent implements OnInit {
     );
     this.cartService.CartTotal();
   }
-  // getProductCart() {
-  //   // this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-  //   // console.log(this.listDataCart);
-  //   this.cartItem = this.cartService.cartItems;
-  //   this.cartService.totalPrice.subscribe(data => this.totalPrice = data);
-  //   this.cartService.totalQty.subscribe(data => this.totalQty = data);
-  //   this.cartService.CartTotal();
-  // }
+  get iF(): any {
+    return this.inputForm.controls;
+  }
   // tang so luong
   incrementQuantity(theCartItem: CartItem) {
     this.cartService.addQuantity(theCartItem);
@@ -53,22 +61,27 @@ export class CartComponent implements OnInit {
   decrementQuantity(theCartItem: CartItem) {
     this.cartService.decrementQuantity(theCartItem);
   }
-  delete(theCartItem: CartItem) {
-    this.cartService.remove(theCartItem);
+
+  delete(id: string) {
+    let index = this.listDataCart.findIndex((i: any) => i.id === id);
+    this.listDataCart.splice(index, 1);
+    localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+    this.toastService.success('Vui lòng chọn size quần áo');
   }
-  getListAllProduct() {
-    this.ProductService.getAllProduct().subscribe(data => {
-      this.listProduct = data;
-    });
-  }
-  getProductCart() {
-    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-    console.log(this.listDataCart);
-  }
+
   buyNow() {
-    localStorage.clear();
-    window.location.reload();
+    if (this.inputForm.invalid) {
+      this.toastService.error("Vui lòng điền đẩy đủ thông tin");
+      return;
+    }
+    let obj = {
+      namecustom: this.iF.hoten.value,
+      email: this.iF.email.value,
+      address: this.iF.addr.value,
+      phone: this.iF.phone.value,
+      paymentmethod: this.iF.type.value,
+      product : this.listDataCart,
+    }
+    this.toastService.error("Chưa có api nên không đặt được hàng !!!")
   }
-
-
 }

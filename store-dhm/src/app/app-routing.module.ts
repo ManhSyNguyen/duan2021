@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutCategoryComponent } from './dhmcolor/about-category/about-category.component';
 import { AboutComponent } from './dhmcolor/about/about.component';
+import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-product.component';
 import { CartComponent } from './dhmcolor/cart/cart.component';
 import { ContactComponent } from './dhmcolor/contact/contact.component';
 import { HomeComponent } from './dhmcolor/home/home.component';
+import { InforUserComponent } from './dhmcolor/infor-user/infor-user.component';
 import { LayoutComponent } from './dhmcolor/layout/layout.component';
 import { LoginComponent } from './dhmcolor/login/login.component';
 import { Page404Component } from './dhmcolor/page404/page404.component';
@@ -21,7 +23,9 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'product-detail/:id', component: ProductDetailComponent },
       { path: 'about/product-detail/:id', component: ProductDetailComponent },
-      { path: 'contact', component: ContactComponent }
+      { path: 'contact', component: ContactComponent },
+      { path: 'inforUser', component: InforUserComponent },
+      { path: 'billproduct', component: BillOfProductComponent }
     ]
   },
   { path: 'login', component: LoginComponent },

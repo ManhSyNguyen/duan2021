@@ -7,6 +7,7 @@ export class CartItem {
     quantity: number;
     price: number;
     size: any;
+    forEach: any;
 
     constructor(product: Product) {
         this.id = product.id;

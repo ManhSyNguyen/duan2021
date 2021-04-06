@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './dhmcolor/layout/layout.component';
@@ -17,13 +16,15 @@ import { ProductDetailComponent } from './dhmcolor/product-detail/product-detail
 import { RegisterComponent } from './dhmcolor/register/register.component';
 import { SlideProductComponent } from './dhmcolor/slide-product/slide-product.component';
 import { SliderComponent } from './dhmcolor/slider/slider.component';
-import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
-import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
+import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
+import { InforUserComponent } from './dhmcolor/infor-user/infor-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SlideProductComponent,
     ContactComponent,
     AboutCategoryComponent,
+    InforUserComponent,
+    BillOfProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 5000,

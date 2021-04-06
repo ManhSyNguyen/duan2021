@@ -16,7 +16,7 @@
                         <th scope="col" style="width: 250px;">Thành tiền</th>
                         <th scope="col" style="width: 150px;">#</th>
                     </thead>
-                    <tbody *ngFor="let item of cartItem; let index = index">
+                    <tbody *ngFor="let item of listDataCart; let index = index">
                         <tr>
                             <td>{{index+1}}</td>
                             <td>
@@ -27,11 +27,14 @@
                             <td>{{item.price | number}} <sup>₫</sup></td>
                             <td>
                                 <div class="buttons_added">
-                                    <input class="minus is-form" (click)="decrementQuantity(item)" type="button" value="-">
-                                    <input aria-label="quantity" class="input-qty" min="1" value="{{item.quantity}}" disabled name="" type="number">
-                                    <input class="plus is-form"  (click)="incrementQuantity(item)" type="button" value="+">
+                                    <input class="minus is-form" (click)="decrementQuantity(item)" type="button"
+                                        value="-">
+                                    <input aria-label="quantity" class="input-qty" min="1" value="{{item.quantity}}"
+                                        disabled name="" type="number">
+                                    <input class="plus is-form" (click)="incrementQuantity(item)" type="button"
+                                        value="+">
                                 </div>
-    
+
                             </td>
                             <td>{{item.price * item.quantity | number}} <sup>₫</sup></td>
                             <td>
@@ -50,48 +53,55 @@
     <div class="row">
         <div class="col-75">
             <div class="container_cart">
-                <form id="validate" action="/action_page.php">
-                    <div class="row">
-                        <div class="col-50">
-                            <h3>Thông tin khách hàng</h3>
-                            <div class="form-group">
-                                <label for="fname"><i class="fa fa-user"></i>Họ và tên</label>
-                                <input class="inp_checkout" type="text" name="fullname" value="Nguyễn Đình Dương">
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                <input class="inp_checkout" type="text" name="email" value="ndduong2000@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
-                                <input class="inp_checkout" type="text" name="address"
-                                    value="SN19/14, ngõ 406 Hồ Tùng Mậu, Cầu Diễn,Nam Từ Niêm, Hà Nội">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
-                                <input class="inp_checkout" type="text" value="0982743840">
-                            </div>
-                            <div class="form-group">
-                                <label for="city"><i class="fa fa-building-o"></i> Thành phố</label>
-                                <input class="inp_checkout" type="text" value="Hà Nội">
+                <form id="validate" action="/action_page.php" [formGroup]="inputForm">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>Thông tin khách hàng</h3>
+                                <div class="form-group">
+                                    <label ><i class="fa fa-user"></i>Họ và tên</label>
+                                    <input class="inp_checkout form-control" type="text" name="fullname"
+                                        formControlName="hoten" [ngClass]="{ 'is-invalid': iF.hoten.touched && iF.hoten.errors }">
+                                  <div *ngIf="iF.hoten.touched && iF.hoten.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.hoten.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Tên khách hàng không được để trống</span></div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                    <input class="inp_checkout form-control" type="text" name="email"
+                                        formControlName="email" [ngClass]="{ 'is-invalid': iF.email.touched && iF.email.errors }">
+                                  <div *ngIf="iF.email.touched && iF.email.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.email.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Email khách hàng không được để trống</span></div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adr"><i class="fa fa-map-marker"></i> Địa chỉ</label>
+                                    <input class="inp_checkout form-control" type="text" name="address"
+                                        formControlName="addr" [ngClass]="{ 'is-invalid': iF.addr.touched && iF.addr.errors }">
+                                  <div *ngIf="iF.addr.touched && iF.addr.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.addr.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Địa chỉ khách hàng không được để trống</span></div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
+                                    <input class="inp_checkout form-control" type="text" formControlName="phone" [ngClass]="{ 'is-invalid': iF.phone.touched && iF.phone.errors }">
+                                  <div *ngIf="iF.phone.touched && iF.phone.errors" class="invalid-feedback" style="margin-top: -15px;">
+                                    <div *ngIf="iF.phone.errors.required" class="fa fa-exclamation-triangle"><span class="ml-1">Số điện thoại khách hàng không được để trống</span></div>
+                                  </div>
+                                </div>
                             </div>
                         </div>
+                        <label class="form-group">
+                            <label for="payment"><i class="fa fa-credit-card"></i> Thanh toán</label>
+                            <div>
+                                <input name="type"  type="radio" value="0" formControlName="type" /> Thanh toán khi
+                                nhận hàng <br>
+                                <input name="type" type="radio" value="1" formControlName="type" /> Thanh toán qua chuyển
+                                khoản
+                            </div>
+                        </label>
+                        <input type="submit" value="Đặt hàng" class="btn_cart" (click)="buyNow()">
                     </div>
-                    <label class="form-group">
-                        <label for="payment"><i class="fa fa-credit-card"></i> Thanh toán</label>
-                        <div>
-                            <input name="type" [(ngModel)]="type" type="radio" [value]="0" checked /> Thanh toán khi
-                            nhận hàng <br>
-                            <input name="type" [(ngModel)]="type" type="radio" [value]="1" /> Thanh toán qua chuyển
-                            khoản
-                            <label *ngIf="type == 1">(STK : 0123456789 - NGUYEN DINH DUONG - TECHCOMBANK)</label>
-                        </div>
-                    </label>
-                    <div class="form-group" *ngIf="type == 1">
-                        <label for="image"><i class="fa fa-picture-o"></i> Ảnh chuyển khoản</label>
-                        <input class="inp_checkout" type="file" name="image" />
-                    </div>
-                    <input type="submit" value="Đặt hàng" class="btn_cart" (click)="buyNow()">
                 </form>
             </div>
         </div>
@@ -100,7 +110,7 @@
                 <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
                         <b></b></span>
                 </h4>
-                <div *ngFor="let item of cartItem" class="d-flex">
+                <div *ngFor="let item of listDataCart" class="d-flex">
                     <p>
                         <a>{{item.nameproduct}}</a> <span class="price">{{item.price * item.quantity | number}}
                             <sup>₫</sup></span>

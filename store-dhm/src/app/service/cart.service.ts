@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
+import { element } from "protractor";
 import { Subject } from "rxjs";
 import { CartItem } from "../model/cart-item";
 
@@ -15,16 +16,29 @@ export class CartService {
     ) { }
 
     addToCart(theCartItem: CartItem) {
-        let cart = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
+        const cart = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
         if (cart) {
-            if (theCartItem.size != cart.size) {
-                this.cartItems.push(theCartItem);
+            if (this.cartItems.length > 1) {
+                this.cartItems.forEach((element: any) => {
+                    if (theCartItem.size == element.size) {
+                        if (theCartItem.id != element.id) {
+                            this.cartItems.push(element);
+                            localStorage.setItem("Cart", JSON.stringify(this.cartItems));
+                        }
+                    }
+                    if (this.cartItems.length > 2) {
+                    } else {
+                        this.cartItems.push(theCartItem);
+                        localStorage.setItem("Cart", JSON.stringify(this.cartItems));
+                    }
+                });
             } else {
-                cart.quantity++;
+                this.cartItems.push(theCartItem);
+                localStorage.setItem("Cart", JSON.stringify(this.cartItems));
             }
         } else {
             this.cartItems.push(theCartItem);
-            localStorage.setItem("Cart", JSON.stringify(theCartItem));
+            localStorage.setItem("Cart", JSON.stringify(this.cartItems));
         }
         this.CartTotal();
     }
@@ -53,17 +67,14 @@ export class CartService {
     }
     decrementQuantity(theCartItem: CartItem) {
         theCartItem.quantity--;
-        if (theCartItem.quantity == 0) {
-            this.remove(theCartItem)
-        }
     }
-    remove(theCartItem: CartItem) {
-        // lay id trong mang cartItem
-        const itemIndex = this.cartItems.findIndex(listCartItem => theCartItem.id === theCartItem.id);
-        // xoa du lieu theo index da chon
-        if (itemIndex > -1) {
-            this.cartItems.splice(itemIndex, 1);
-            this.CartTotal()
-        }
-    }
+  // remove(id: string) {
+  //   const listData = JSON.parse(localStorage.getItem("Cart")!);
+  //   //   const itemIndex = this.cartItems.findIndex(listCartItem => theCartItem.id === theCartItem.id);
+  //   //   this.cartItems.splice(itemIndex, 1);
+  //   //   this.CartTotal();
+  //   let index = listData.findIndex((i) => i.id === id);
+  //   listData.splice(index, 1);
+  //   localStorage.setItem("Cart", JSON.stringify(listData));
+  // }
 }

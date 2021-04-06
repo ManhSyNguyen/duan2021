@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CustomerComponent } from './cmsdhm/customers/customer/customer.component';
 import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
 import { LayoutComponent } from './cmsdhm/layout/layout.component';
-import { LoginComponent } from './cmsdhm/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { Page404Component } from './cmsdhm/page404/page404.component';
 import { ProductTypeComponent } from './cmsdhm/types/product-type/product-type.component';
 import { ProductComponent } from './cmsdhm/products/product/product.component';
@@ -22,6 +22,7 @@ import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path:'member', component: LayoutMemberComponent,
     children:[
@@ -52,10 +53,11 @@ const routes: Routes = [
       //boom
       { path: 'booms', component: BoomsComponent },
       
-      { path: 'khong-tim-thay-duong-dan', component: Page404Component },
-      { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
+     
     ]
   },
+  { path: 'khong-tim-thay-duong-dan', component: Page404Component },
+  { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
   
 
 ];

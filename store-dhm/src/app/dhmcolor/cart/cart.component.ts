@@ -66,7 +66,7 @@ export class CartComponent implements OnInit {
     let index = this.listDataCart.findIndex((i: any) => i.id === id);
     this.listDataCart.splice(index, 1);
     localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
-    this.toastService.success('Vui lòng chọn size quần áo');
+    this.toastService.success('Xóa sản phẩm thành công');
   }
 
   buyNow() {

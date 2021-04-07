@@ -16,4 +16,7 @@ public interface OrderRepo extends JpaRepository<Order,Long> {
     List<Order> getByStatus();
     @Query("select o FROM orders o where o.users.username = :username")
     List<Order> findOrdersByUsers(@Param("username") String name);
+
+    @Query("select  o.status from orders o")
+    List<Object> getOrdersStatus();
 }

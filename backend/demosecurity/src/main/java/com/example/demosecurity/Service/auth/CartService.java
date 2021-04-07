@@ -22,27 +22,45 @@ public class CartService {
     @Autowired
     private UsersRepository usersRepository;
     private static final Logger logger = LogManager.getLogger(CartService.class);
-    public Cart saveOrUpdateCart(Cart cart,String name) {
+
+    public Cart saveOrUpdateCart(Cart cart, String name) {
         // logic
-//        try {
-//            if (cart.getId() != null) {
-//                cart.setBacklog(backlogrepository.findByProjectIdentifier(project.getProjectIdentifier().toUpperCase()));
-//            }
-//           Users us = usersRepository.findUsersById()
-//            cart.setUsers(us);
-//            cart.setMau();
-//
-//            return projectRepo.save(project);
-//        } catch (Exception e) {
-//            throw new ProjectIdException("Project ID '" + project.getProjectIdentifier().toUpperCase() + "' already exists");
-//        }
-return null;
+        try {
+            Users us = usersRepository.findUserByUsername(name);
+            if (cart.getId() != null) {
+                Cart cart1 = new Cart();
+                cart1.setTensanpham(cart.getTensanpham());
+                cart1.setMau(cart.getMau());
+                cart1.setSize(cart.getSize());
+                cart1.setSoluong(cart.getSoluong());
+                cart1.setThanhtien(cart.getThanhtien());
+            }
+            cart.setUsers(us);
+            return cartRepo.save(cart);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
     public Cart save(Cart cart) {
         return cartRepo.save(cart);
     }
-    public Iterable<Cart> findAllCartByUser(String name){
-return cartRepo.findAllByUsers(name);
+
+    public List<Cart> findAllCartByUser(String name) {
+        return cartRepo.findAllByUsers(name);
+    }
+    public Cart deleteCart(Long id,String name){
+        List<Cart> list = cartRepo.findAllByUsers(name);
+        for (Cart c:list) {
+            if(c.getId().equals(id)){
+                Cart cart = cartRepo.getOne(id);
+                if(cart !=null){
+                    cartRepo.delete(cart);
+                }
+            }
+        }
+        return null;
     }
 
 }

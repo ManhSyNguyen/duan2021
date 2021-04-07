@@ -21,6 +21,7 @@ public class Cart {
     @Column(name = "IdCart")
     private Long id;
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "IdUser")
     private Users users;
     @Column(length = 150)

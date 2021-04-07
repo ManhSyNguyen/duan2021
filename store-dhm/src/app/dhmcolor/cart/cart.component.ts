@@ -6,6 +6,7 @@ import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 import {ToastrService} from 'ngx-toastr';
+import {OrderService} from '../../service/order.service';
 declare var $: any;
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,8 @@ export class CartComponent implements OnInit {
   cartItem: CartItem[] = [];
   totalPrice: number = 0;
   totalQty: number = 0;
+  quantity: number = 1;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private ProductService: ProductService,
@@ -27,6 +30,7 @@ export class CartComponent implements OnInit {
     public formBuilder: FormBuilder,
     private modalService: NgbModal,
     public toastService: ToastrService,
+    public OrderService: OrderService,
   ) { }
 
   ngOnInit(): void {
@@ -54,11 +58,11 @@ export class CartComponent implements OnInit {
     return this.inputForm.controls;
   }
   // tang so luong
-  incrementQuantity(theCartItem: CartItem) {
+  incrementQuantity(theCartItem: any) {
     this.cartService.addQuantity(theCartItem);
   }
   // giam so luong
-  decrementQuantity(theCartItem: CartItem) {
+  decrementQuantity(theCartItem: any) {
     this.cartService.decrementQuantity(theCartItem);
   }
 
@@ -80,8 +84,13 @@ export class CartComponent implements OnInit {
       address: this.iF.addr.value,
       phone: this.iF.phone.value,
       paymentmethod: this.iF.type.value,
-      product : this.listDataCart,
-    }
-    this.toastService.error("Chưa có api nên không đặt được hàng !!!")
+      productDetailList: this.listDataCart,
+    };
+    console.log(obj);
+    this.OrderService.createOrder(obj).subscribe(data => {
+      if (data) {
+        this.toastService.error("Chưa có api nên không đặt được hàng !!!");
+      }
+    });
   }
 }

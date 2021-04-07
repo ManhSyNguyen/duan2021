@@ -35,11 +35,10 @@
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <div class="product-at ">
-<!--                                            <div class="pro-grid">-->
-<!--                                                <span class="buy-in" (click)="addToCart(item)" to="/cart">Mua-->
-<!--                                                    ngay</span>-->
-<!--                                            </div>-->
-                                            <img src="{{item.image}}" alt="" />
+                                          <div class="pro-grid">
+                                            <span class="buy-in" routerLink="/about/product-detail/{{item.id}}">Xem chi tiết</span>
+                                          </div>
+                                          <img src="{{item.image}}" alt="" />
                                         </div>
                                         <div routerLink="/about/product-detail/{{item.id}}">
                                             <h2>{{item.price | number}} <sup>₫</sup></h2>

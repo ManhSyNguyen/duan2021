@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   cartItem: CartItem[] = [];
+  listDataCart: any[] = [];
   constructor(
     private token: TokenStorageService,
     private cartService: CartService
@@ -38,6 +39,6 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
   getProductCart() {
-    this.cartItem = this.cartService.cartItems;
+      this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
   }
 }

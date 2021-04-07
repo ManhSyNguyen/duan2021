@@ -25,15 +25,20 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
-//
-//    @PostMapping
-//    public HttpEntity<?> create (@RequestBody Cart cart,Principal pc){
-//        Cart project1 = cartService.saveOrUpdateProject(cartService,pc.getName());
-//        return  new ResponseEntity<Cart>(project1, HttpStatus.CREATED);
-//    }
 
-    @GetMapping("/cart/all")
-    public HttpEntity<Iterable<Cart>> findAll(Principal pc){
+    @PostMapping("cart")
+    public HttpEntity<?> create (@RequestBody Cart cart,Principal pc){
+        Cart cart1 = cartService.saveOrUpdateCart(cart,pc.getName());
+        return  new ResponseEntity<Cart>(cart1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/carts/all")
+    public HttpEntity<List<Cart>> findAll(Principal pc){
         return  new ResponseEntity<>(cartService.findAllCartByUser(pc.getName()), HttpStatus.OK);
+    }
+
+    @DeleteMapping("cart/{id}")
+    public HttpEntity<?> delete (@PathVariable("id") Long id,Principal pc){
+        return  new ResponseEntity<Cart>(cartService.deleteCart(id,pc.getName()), HttpStatus.CREATED);
     }
 }

@@ -36,8 +36,17 @@ import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './interceptor/basic-auth-intercepter';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
+<<<<<<< HEAD
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
+=======
+import { DetailOderComponent } from './cmsdhm/oder/detail-oder/detail-oder.component';
+import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
+import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.component';
+
+
+
+>>>>>>> manh
 
 @NgModule({
   declarations: [
@@ -66,6 +75,9 @@ import { ToastrModule } from 'ngx-toastr';
     SidebarMemberComponent,
     BillsComponent,
     OdersComponent,
+    DetailOderComponent,
+    AddBillComponent,
+    DetailBillComponent,
 
   ],
     imports: [

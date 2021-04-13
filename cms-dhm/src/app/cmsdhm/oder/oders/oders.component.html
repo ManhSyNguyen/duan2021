@@ -1,29 +1,30 @@
-<h1 class="h3 mb-2 text-gray-800">Danh sách đơn hàng </h1>
+<h1 class="h3 mb-2 text-gray-800">Trạng thái </h1>
 
-<mat-horizontal-stepper class="card shadow mb-4">
-    <mat-step label="Chờ xác nhận" state="cf">
-    </mat-step>
-    <mat-step label="Chờ lấy hàng" state="card">
-    </mat-step>
-    <mat-step label="Đang giao"state="local">
-    </mat-step>
-    <mat-step label="Thành công"state="succs">
-    </mat-step>
-  
-    <ng-template matStepperIcon="cf">
-        <mat-icon>confirmation_number</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="card">
-        <mat-icon>card_giftcard</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="local">
-        <mat-icon> local_shipping</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="succs">
-        <mat-icon>check</mat-icon>
-    </ng-template> 
-</mat-horizontal-stepper>
+<form>
+    <div class="row">
+        <div class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Tìm kiếm theo số điện thoại">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex">
+            <select class="form-control">
+                <option selected>Lọc theo trạng thái</option>
+                <option>Chờ xác nhận</option>
+                <option>Chờ lấy hàng</option>
+                <option>Đang giao</option>
+                <option>Thành công </option>
+                <option>Hủy</option>
+            </select>
+        </div>
 
+    </div>
+</form>
 <div class="card shadow mb-4" style="margin-top: 15px;">
     <div class="card-header py-3">
         <h3 class="m-0 font-weight-bold text-dark">Danh sách đơn hàng</h3>
@@ -36,39 +37,20 @@
                     <tr>
                         <th>Mã đơn hàng</th>
                         <th>Tên khách hàng</th>
-                        <th>Email</th>
                         <th>Số điện thoại</th>
-                        <th>Phương thức thanh toán</th>
                         <th>Địa chỉ</th>
-                        <th>Mô tả</th>
                         <th>Trạng thái</th>
-                        <th>Ngày tạo</th>
-                        <th>Tùy chọn</th>
+                        <th>Tổng tiền</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>NS8292929</td>
+                        <td> <a class="text-decoration-none" routerLink='/detail-order'>NS8292929</a></td>
                         <td>Nguyen Sy Manh</td>
-                        <td>manhns@gmail.com</td>
                         <td>03344934393</td>
-                        <td>Thanh toán khi nhận hàng</td>
                         <td>Thanh Hóa</td>
-                        <td>Không có</td>
-                        <td>Đang chờ</td>
-                        
-                        <td>2021/03/12</td>
-                        <td>
-                            <div class="btn-option">
-
-                            <button class="btn btn-dark btn-sm" type="button">
-                                <i class="fas fa-edit"></i></button>
-                            &nbsp;
-                            <button class="btn btn-danger btn-sm" type="button">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                        </td>
+                        <td><span class="badge badge-danger">Đang chờ</span></td>
+                        <td>2.000.000 vnđ</td>
                     </tr>
 
                 </tbody>

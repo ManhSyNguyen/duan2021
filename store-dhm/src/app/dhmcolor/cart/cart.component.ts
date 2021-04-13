@@ -86,11 +86,12 @@ export class CartComponent implements OnInit {
       phone: this.iF.phone.value,
       paymentmethod: this.iF.type.value,
       productDetailList: this.listDataCart,
-      status: 1,
+      status: 0,
     };
     this.OrderService.createOrder(obj).subscribe(data => {
       if (data) {
         this.toastService.success("Mua hàng thành công !!!");
+        window.localStorage.removeItem("Cart");
         window.location.reload();
       } else {
         this.toastService.error("Lỗi mua hàng không thành công !!!");

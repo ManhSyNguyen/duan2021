@@ -52,11 +52,11 @@
                         <div class="d-flex" *ngIf="isLoggedIn">
                             <div>
                                 <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
-                              <span *ngIf="listDataCart" class="header__cart-notice">{{listDataCart.length}}</span>
+                                <span *ngIf="listDataCart" class="header__cart-notice">{{listDataCart.length}}</span>
                             </div>
                             <div class="inforCus ml-5">
-                                <a><img src="assets/images/1.png"
-                                        style="width: 30px; height:30px;border-radius: 20px" /> &nbsp;{{ username }}</a>
+                                <a><img src="assets/images/51f6fb256629fc755b8870c801092942.png" alt="">{{
+                                    username }}</a>
                                 <div class="dropdown-content">
                                     <a routerLink="inforUser">Thông tin cá nhân</a>
                                     <a routerLink="billproduct">Đơn hàng của tôi</a>
@@ -64,25 +64,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <ul class="nav navbar-nav" style="display: flow-root;" *ngIf="!isLoggedIn">
-                            <li><a routerLink="cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                            <li><a routerLink="login"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav" style="display: flow-root;" *ngIf="isLoggedIn">
-                            <li><a routerLink="cart"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                            <li>
-                                <a (click)="logOut()"><i class="fa fa-unlock"></i>{{ username }}</a>
-                            </li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--/header-middle-->
-
     <div class="header-bottom">
-        <!--header-bottom-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
@@ -112,6 +99,3 @@
             </div>
         </div>
     </div>
-    <!--/header-bottom-->
-</header>
-<!--/header-->

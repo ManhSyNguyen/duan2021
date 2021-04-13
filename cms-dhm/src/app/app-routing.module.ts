@@ -18,17 +18,15 @@ import { BoomsComponent } from './cmsdhm/boom/booms/booms.component';
 import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
 import { BillsComponent } from './cms-member/bill/bills/bills.component';
 import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
+import { DetailOderComponent} from './cmsdhm/oder/detail-oder/detail-oder.component'
+import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
+import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.component';
+
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path:'member', component: LayoutMemberComponent,
-    children:[
-      {path:'bills', component:BillsComponent}
-    ]
-  },
   { 
     path: '', component: LayoutComponent,
     children: [
@@ -50,12 +48,27 @@ const routes: Routes = [
       { path: 'edit-account', component: EditAccountComponent },
       //oder
       {path: 'oders', component:OdersComponent},
+      {path:'detail-order', component:DetailOderComponent},
       //boom
       { path: 'booms', component: BoomsComponent },
       
      
     ]
   },
+  // Member
+  {
+    path:'member', component: LayoutMemberComponent,
+    children:[
+      {path:'bills', component:BillsComponent,
+    children:[
+      {path:'detail-bill', component:DetailBillComponent},
+    ]
+    },
+      {path:'add-bill', component:AddBillComponent},
+    ]
+  },
+
+
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },
   { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
   

@@ -48,6 +48,7 @@ public class OrderService {
                 opdi.setIdProductDetail(pd.getId());
 
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
+                System.out.println(pd.getQuantity());
                 orderProductDetaildto.setId(opdi);
                 orderProductDetaildto.setQuantity(pd.getQuantity());
                 orderProductDetaildto.setPrice(pd.getPrice());
@@ -142,26 +143,24 @@ public class OrderService {
         }
         return results;
     }
-
-
-    public int totalItem() {
-        try {
-            return (int) orderRepo.count();
-        }catch (Exception e){
-            logger.error(e.getMessage());
-        }
-        return 1;
-    }
-
-    public List<OrderDTO> findAll() {
+    public List<OrderDTO> findAllByUser(String name) {
         List<OrderDTO> results = new ArrayList<>();
-        List<Order> entities = orderRepo.findAll();
-        for (Order item: entities) {
-            OrderDTO newDTO = orderConvert.toDTO(item);
-            results.add(newDTO);
+        try {
+            List<Order> entities = orderRepo.findOrdersByUsers(name);
+            for (Order item: entities) {
+                OrderDTO productDetailDTO = orderConvert.toDTO(item);
+                results.add(productDetailDTO);
+            }
+            return results;
+        }catch (Exception e) {
+            logger.error(e.getMessage());
         }
         return results;
     }
+
+    
+
+
     public List<OrderDTO> findStatus() {
         List<OrderDTO> results = new ArrayList<>();
         List<Order> entities = orderRepo.getByStatus();

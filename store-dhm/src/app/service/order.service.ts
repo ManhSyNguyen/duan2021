@@ -12,10 +12,10 @@ export class OrderService {
   constructor(
     private http: HttpClient
   ) { }
+  getAll(): Observable<any> {
+      return this.http.get<any>(this.api + '/orders');
+  }
   createOrder(obj: any): Observable<any> {
     return this.http.post<any>(this.api + '/order',obj, httpOptions);
   }
-  // getProductByCategory(id: any): Observable<any> {
-  //   return this.http.get<any>(`${this.api + '/products'}/${id}/categorys`);
-  // }
 }

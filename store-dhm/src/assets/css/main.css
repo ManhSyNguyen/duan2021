@@ -1,7 +1,7 @@
 ﻿@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
-
+@import "~animate.css/animate.min";
 body {
   font-family: "Roboto", sans-serif;
   position: relative;
@@ -1257,6 +1257,53 @@ span.price {
   height: 80px;
   box-sizing: border-box;
 }
+.cartlength {
+  position: absolute;
+  background-color: #696763;
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  padding-left: 5px;
+  margin-left: 70px;
+  margin-top: -30px;
+  z-index: 10px;
+}
+.inforCus {
+  padding-top: 4px;
+  overflow: hidden;
+}
+.inforCus img {
+  width: 25px;
+  border-radius: 25px;
+  margin-right: 3px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.inforCus:hover .dropdown-content {
+  display: block;
+}
+
 .my-account-section__header-left {
   flex: 1;
 }
@@ -1270,4 +1317,57 @@ span.price {
   font-size: 15px;
   color: #555;
   margin-top: 3px;
+}
+
+.tabs-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.tabs-wrapper label {
+  cursor: pointer;
+  display: inline-block;
+  text-align: left;
+  background: white;
+  color: rgb(49, 49, 49);
+  padding: 10px 60px;
+  font-weight: 400;
+}
+.dn {
+  display: none;
+}
+input[id="tab-1"]:checked ~ .tabs-wrapper .label-tab-1,
+input[id="tab-2"]:checked ~ .tabs-wrapper .label-tab-2,
+input[id="tab-3"]:checked ~ .tabs-wrapper .label-tab-3,
+input[id="tab-4"]:checked ~ .tabs-wrapper .label-tab-4,
+input[id="tab-5"]:checked ~ .tabs-wrapper .label-tab-5,
+input[id="tab-6"]:checked ~ .tabs-wrapper .label-tab-6 {
+  background: #424242;
+  color: #fefefe;
+}
+
+.tab {
+  display: none;
+  width: 100%;
+  background: white;
+  color: rgb(49, 49, 49);
+  padding: 40px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.29);
+}
+.tab p {
+  text-align: left;
+  padding: 0;
+}
+input[id="tab-1"]:checked ~ .tab-1,
+input[id="tab-2"]:checked ~ .tab-2,
+input[id="tab-3"]:checked ~ .tab-3,
+input[id="tab-4"]:checked ~ .tab-4,
+input[id="tab-5"]:checked ~ .tab-5,
+input[id="tab-6"]:checked ~ .tab-6 {
+  display: block;
 }

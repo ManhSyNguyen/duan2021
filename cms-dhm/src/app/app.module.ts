@@ -36,8 +36,8 @@ import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './interceptor/basic-auth-intercepter';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
-
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -68,18 +68,26 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
     OdersComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    NgbPaginationModule,
-    NgbAlertModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatStepperModule,
-    HttpClientModule,
-    HttpModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        NgbPaginationModule,
+        NgbAlertModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatStepperModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        ToastrModule.forRoot({
+          timeOut: 5000,
+          positionClass: 'toast-top-right',
+          preventDuplicates: true,
+          closeButton: false,
+          progressBar: false
+        }),
+    ],
   providers: [authInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]

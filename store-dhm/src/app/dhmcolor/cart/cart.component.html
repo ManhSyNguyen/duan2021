@@ -111,7 +111,7 @@
                 </h4>
                 <div *ngFor="let item of listDataCart" class="d-flex">
                     <p>
-                        <a>{{item.nameproduct}}</a> <span class="price">{{item.price * item.quantity | number}}
+                        <a>{{item.product.nameproduct}}</a> <span class="price">{{item.product.price * item.quantity | number}}
                             <sup>₫</sup></span>
                     </p>
                 </div>

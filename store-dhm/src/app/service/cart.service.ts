@@ -11,7 +11,6 @@ export class CartService {
     cartItems: CartItem[] = [];
     totalPrice: Subject<number> = new Subject<number>();
     totalQty: Subject<number> = new Subject<number>();
-
     constructor(
     ) { }
     addToCart(theCartItem: CartItem) {
@@ -48,20 +47,25 @@ export class CartService {
     }
     //tinh tong va so luong
     CartTotal() {
-        const listData = JSON.parse(localStorage.getItem("Cart")!);
+        const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
         let totalPriceValue: number = 0;
         let totalQtyValue: number = 0;
-        for (let currentCartItem of this.cartItems) {
-            totalPriceValue += currentCartItem.quantity * currentCartItem.price;
-            totalQtyValue += currentCartItem.quantity;
+        // for (let currentCartItem of this.cartItems) {
+        //     totalPriceValue += currentCartItem.quantity * currentCartItem.price;
+        //     totalQtyValue += currentCartItem.quantity;
+        // }
+        for( const item of listDataCart) {
+          totalPriceValue += item.quantity * item.product.price;
+          totalQtyValue += item.quantity;
         }
         this.totalQty.next(totalQtyValue);
         this.totalPrice.next(totalPriceValue);
         this.logCartData(totalPriceValue, totalQtyValue);
     }
     logCartData(totalPriceValue: number, totalQuantityValue: number) {
-        for (let listCartItem of this.cartItems) {
-            const subTotalPrice = listCartItem.quantity * listCartItem.price;
+      const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+        for (let items of listDataCart) {
+            const subTotalPrice = items.quantity * items.product.price;
         }
     }
     addQuantity(theCartItem: any) {

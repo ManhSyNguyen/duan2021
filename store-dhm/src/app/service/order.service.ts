@@ -13,9 +13,7 @@ export class OrderService {
     private http: HttpClient
   ) { }
   createOrder(obj: any): Observable<any> {
-    return this.http.post<any>(this.api + '/order', {
-      obj
-    }, httpOptions);
+    return this.http.post<any>(this.api + '/order',obj, httpOptions);
   }
   // getProductByCategory(id: any): Observable<any> {
   //   return this.http.get<any>(`${this.api + '/products'}/${id}/categorys`);

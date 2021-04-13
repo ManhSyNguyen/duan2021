@@ -32,6 +32,7 @@ export class ProductDetailComponent implements OnInit {
   }
   selectSize(iz: any) {
     this.sizeSelect = iz.size.namesize;
+    console.log(iz);
   }
   getProductDetail() {
     this.activateRoute.paramMap.subscribe(params => {
@@ -48,15 +49,23 @@ export class ProductDetailComponent implements OnInit {
       this.listProduct = data;
     });
   }
-  addToCart(theProduct: Product) {
-    if (this.sizeSelect == null) {
-      this.toastService.error('Vui lòng chọn size quần áo');
-      return;
-    }
-    theProduct.size = this.sizeSelect;
-    const theCartItem = new CartItem(theProduct);
-    this.CartService.addToCart(theCartItem);
-    this.toastService.success('Thêm vào giỏ hàng thành công');
-  }
+  // addToCart(theProduct: Product) {
+  //   if (this.sizeSelect == null) {
+  //     this.toastService.error('Vui lòng chọn size quần áo');
+  //     return;
+  //   }
+  //   theProduct.size = this.sizeSelect;
+  //   const theCartItem = new CartItem(theProduct);
+  //   this.CartService.addToCart(theCartItem);
+  //   this.toastService.success('Thêm vào giỏ hàng thành công');
+  // }
 
+  addToCart(iz: any) {
+    this.colorSizeDetail.forEach(i => {
+      if (this.sizeSelect === i.size.namesize) {
+        i.quantity++ ;
+        this.CartService.addCart(i);
+      }
+    });
+  }
 }

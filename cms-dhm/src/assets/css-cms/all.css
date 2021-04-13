@@ -6223,3 +6223,6 @@ input:checked + .slider:before {
 .btn-option {
   display: flex;
 }
+.qty-inp {
+  width: 80px !important;
+}

@@ -16,7 +16,7 @@ import { AddAccountComponent } from './cmsdhm/account/add-account/add-account.co
 import { EditAccountComponent } from './cmsdhm/account/edit-account/edit-account.component';
 import { BoomsComponent } from './cmsdhm/boom/booms/booms.component';
 import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
-import { BillsComponent } from './cms-member/bill/bills/bills.component';
+import { BillsComponent } from './cms-member/bills/bills.component';
 import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 import { DetailOderComponent} from './cmsdhm/oder/detail-oder/detail-oder.component'
 import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
@@ -59,11 +59,8 @@ const routes: Routes = [
   {
     path:'member', component: LayoutMemberComponent,
     children:[
-      {path:'bills', component:BillsComponent,
-    children:[
+      {path:'bills', component:BillsComponent},
       {path:'detail-bill', component:DetailBillComponent},
-    ]
-    },
       {path:'add-bill', component:AddBillComponent},
     ]
   },

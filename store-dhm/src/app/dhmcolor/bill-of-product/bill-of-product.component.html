@@ -18,7 +18,26 @@
     </div>
 
     <div class="tab tab-1">
-        <p>Manh</p>
+        <div class="col-md-12 d-flex" *ngFor="let item of listOrder">
+          <div class="col-md-1">
+            <img style="width: 30px; height: 30px" src="{{item.productDetail.product.image}}"/>
+          </div>
+          <div class="col-md-3">
+            {{item.productDetail.product.nameproduct}}
+          </div>
+          <div class="col-md-2">
+            {{item.productDetail.product.price | number}} vnđ
+          </div>
+          <div class="col-md-1">
+            {{item.productDetail.size.namesize}}
+          </div>
+          <div class="col-md-2">
+            {{item.quantity}}
+          </div>
+          <div class="col-md-2">
+            {{item.quantity * item.productDetail.product.price | number}} vnđ
+          </div>
+        </div>
     </div>
     <div class="tab tab-2">
         <p>Duong</p>

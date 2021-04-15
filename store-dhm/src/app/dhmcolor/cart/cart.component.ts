@@ -60,6 +60,7 @@ export class CartComponent implements OnInit {
   // tang so luong
   incrementQuantity(theCartItem: any) {
     this.cartService.addQuantity(theCartItem);
+    // this.cartService.CartTotal();
   }
   // giam so luong
   decrementQuantity(theCartItem: any) {
@@ -85,13 +86,15 @@ export class CartComponent implements OnInit {
       phone: this.iF.phone.value,
       paymentmethod: this.iF.type.value,
       productDetailList: this.listDataCart,
+      status: 0,
     };
-    console.log(obj);
     this.OrderService.createOrder(obj).subscribe(data => {
       if (data) {
-        this.toastService.success("Mua hàng thành công");
+        this.toastService.success("Mua hàng thành công !!!");
         window.localStorage.removeItem("Cart");
         window.location.reload();
+      } else {
+        this.toastService.error("Lỗi mua hàng không thành công !!!");
       }
     });
   }

@@ -4,12 +4,24 @@
             <img src="./../../../assets/dhm_logo.png" width="200" alt="">
         </div>
         <h2>Log in</h2>
-        <form action="" method="post" class="form">
+        <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
             <div class="form__field">
-                <input type="text" placeholder="User Name">
+              <input placeholder="Username" type="text" name="username" [(ngModel)]="form.username" required
+                     #username="ngModel" autocomplete="off">
+              <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+                Username is required!
+              </div>
             </div>
             <div class="form__field">
-                <input type="password" placeholder="Password">
+              <input placeholder="Password" type="password" name="password" id="password" autocomplete="off"
+                     [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+              <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+            </div>
+
             </div>
             <div class="form__field">
                 <input type="submit" value="Log in">

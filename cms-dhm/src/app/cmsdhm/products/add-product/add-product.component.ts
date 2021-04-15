@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SizeService} from "../../../service/size.service";
 
 @Component({
   selector: 'app-add-product',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-
-  constructor() { }
+  listSize : any[] = [];
+  constructor(
+    private sizeService : SizeService
+  ) { }
 
   ngOnInit(): void {
+    this.getSize();
   }
-
+  getSize() {
+    this.sizeService.getAll().subscribe(res => {
+      if (res) {
+       this.listSize = res;
+      }
+    })
+  }
 }

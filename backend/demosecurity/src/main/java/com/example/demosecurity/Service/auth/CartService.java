@@ -43,24 +43,22 @@ public class CartService {
         return null;
     }
 
-    public Cart save(Cart cart) {
-        return cartRepo.save(cart);
-    }
-
     public List<Cart> findAllCartByUser(String name) {
         return cartRepo.findAllByUsers(name);
     }
-    public Cart deleteCart(Long id,String name){
+
+    public Cart deleteCart(Long id, String name) {
         List<Cart> list = cartRepo.findAllByUsers(name);
-        for (Cart c:list) {
-            if(c.getId().equals(id)){
+        for (Cart c : list) {
+            if (c.getId().equals(id)) {
                 Cart cart = cartRepo.getOne(id);
-                if(cart !=null){
+                if (cart != null) {
                     cartRepo.delete(cart);
                 }
             }
         }
         return null;
     }
+
 
 }

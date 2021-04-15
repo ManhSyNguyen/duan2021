@@ -28,6 +28,7 @@ public class ProductDTO {
     private Float price;
     private Integer status;
     private String image;
+    private String sku;
     private String decription;
     private Integer purchase;
     private Integer count;

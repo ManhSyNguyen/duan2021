@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -28,7 +27,6 @@ public class Users {
     private String username;
 
     @Column(name = "password",columnDefinition = "VARCHAR(100)  NULL")
-    @JsonIgnore
     private String password;
 
     @Column(unique=true,name = "email",columnDefinition = "VARCHAR(35)  NULL")
@@ -44,7 +42,6 @@ public class Users {
     private String createby;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "IdUser"), inverseJoinColumns = @JoinColumn(name = "IdRole"))
     private Set<Role> roles;
 

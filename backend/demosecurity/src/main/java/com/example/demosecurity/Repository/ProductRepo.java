@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product,Long> {
-    @Query("SELECT c FROM product c WHERE c.id = :id ")
+    @Query("SELECT c FROM product c WHERE c.id =:id order by c.createdate desc")
     Product findProductById(@Param("id") Long id);
-    List<Product> findByCategoryId(Long idcategory);
+    List<Product> findByCategoryIdOrderByCreatedateDesc(Long idcategory);
 }

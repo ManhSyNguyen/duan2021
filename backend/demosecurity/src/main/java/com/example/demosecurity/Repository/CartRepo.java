@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface CartRepo extends JpaRepository<Cart,Long> {
-    @Query("SELECT u FROM cart u WHERE u.users.username= :username")
     List<Cart> findAllByUsers(@Param("username") String username);
 }

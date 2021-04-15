@@ -12,7 +12,10 @@ import java.util.List;
 
 @Repository
 public interface ProductDetailRepo extends JpaRepository<ProductDetail,Long> {
-    @Query("SELECT c FROM productdetail c WHERE c.id = :id ")
+    @Query("SELECT c FROM productdetail c order by c.createdate desc")
+    List<ProductDetail> findAll();
+    @Query("SELECT c FROM productdetail c WHERE c.id = :id order by c.createdate desc")
     ProductDetail findProductDetailById(@Param("id") Long id);
-    List<ProductDetail> findByProductId(long productid);
+    @Query("SELECT c FROM productdetail c WHERE c.product.id = :productid order by c.createdate desc")
+    List<ProductDetail> findByProductId(@Param("productid")  Long productid);
 }

@@ -81,6 +81,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 ).permitAll()//cho phép tất cả các user đều được phép truy cập
                 .antMatchers(SecurityConstants.SIGN_UP_URLS).permitAll() //khai báo đường dẫn được phép của request
 //                .antMatchers(H2_URL).permitAll() //khai báo đường dẫn Database của request
+                .antMatchers(SecurityConstants.API_PRODUCTS).permitAll()
+                .antMatchers(SecurityConstants.API_PRODUCTDETAIL).permitAll()
+                .antMatchers(SecurityConstants.API_COLOR).permitAll()
+                .antMatchers(SecurityConstants.API_CART).permitAll()
+                .antMatchers(SecurityConstants.API_SIZES).permitAll()
+                .antMatchers(SecurityConstants.API_CATEGORY).permitAll()
+                .antMatchers(SecurityConstants.API_ORDER).permitAll()
                 .anyRequest().authenticated();
 // phải có cái này thì token mới xác thực
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

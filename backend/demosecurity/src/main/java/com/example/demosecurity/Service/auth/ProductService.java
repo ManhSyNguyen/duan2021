@@ -98,10 +98,9 @@ public class ProductService {
       Product product =  productRepo.findProductById(id);
         return productConvert.toDTO(product);
     }
-    public List<ProductDTO> getProductByCategory(long id) {
+    public List<ProductDTO> getProductByCategory(Long id) {
         List<ProductDTO> results = new ArrayList<>();
-        List<Product> entities = productRepo.findByCategoryId(id);
-        System.out.println(entities);
+        List<Product> entities = productRepo.findByCategoryIdOrderByCreatedateDesc(id);
         for (Product item: entities) {
             ProductDTO newDTO = productConvert.toDTO(item);
             results.add(newDTO);

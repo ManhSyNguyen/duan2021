@@ -158,17 +158,17 @@ public class OrderService {
         return results;
     }
 
-    
 
 
-    public List<OrderDTO> findStatus() {
-        List<OrderDTO> results = new ArrayList<>();
-        List<Order> entities = orderRepo.getByStatus();
-        for (Order item: entities) {
-           OrderDTO newDTO = new OrderDTO();
-            newDTO.setStatus(item.getStatus());
-            results.add(newDTO);
-        }
-        return results;
-    }
+
+//    public List<OrderDTO> findStatus() {
+//        List<OrderDTO> results = new ArrayList<>();
+//        List<Object> entities = orderRepo.getOrdersStatus();
+//        for (Object item: entities) {
+//           OrderDTO newDTO = new OrderDTO();
+//            newDTO.setStatus(item.());
+//            results.add(newDTO);
+//        }
+//        return results;
+//    }
 }

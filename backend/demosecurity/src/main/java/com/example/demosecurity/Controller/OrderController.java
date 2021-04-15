@@ -71,11 +71,11 @@ public class OrderController {
     public void deleteNew(@PathVariable("id") Long id) {
         orderService.delete(id);
     }
-    @GetMapping("/status")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public List<OrderDTO> getStatus() {
-
-        return orderService.findStatus();
-    }
+//    @GetMapping("/status")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @ResponseBody
+//    public List<OrderDTO> getStatus() {
+//
+//        return orderService.findStatus();
+//    }
 }

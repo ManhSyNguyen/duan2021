@@ -5,15 +5,18 @@ import com.example.demosecurity.model.dto.CategoryDTO;
 import com.example.demosecurity.model.dto.ProductDTO;
 import com.example.demosecurity.model.entity.Category;
 import com.example.demosecurity.model.entity.Product;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("v1/api")
 public class ProductController {
     @Autowired
@@ -26,7 +29,7 @@ public class ProductController {
         return productService.findAll();
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public ProductDTO getProductById(@PathVariable(value ="id") long id)
@@ -34,7 +37,7 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @GetMapping("/products/{id}/categorys")
+    @GetMapping("/products/categorys/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public List<ProductDTO> getProductByCategory(@PathVariable(value ="id") long id) {

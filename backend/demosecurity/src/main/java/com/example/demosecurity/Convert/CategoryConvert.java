@@ -28,6 +28,7 @@ public class CategoryConvert {
 
     public Category toEntity(CategoryDTO dto, Category entity) {
         entity.setName(dto.getName());
+        entity.setDecription(dto.getDecription());
         entity.setStatus(dto.isStatus());
         return entity;
     }

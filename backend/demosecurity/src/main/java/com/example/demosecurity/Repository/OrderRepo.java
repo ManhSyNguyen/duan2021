@@ -12,11 +12,10 @@ import java.util.List;
 public interface OrderRepo extends JpaRepository<Order,Long> {
     @Query("select o FROM orders o where o.Id = :id")
     Order findOrdersById(@Param("id") Long id);
-    @Query("select o.status FROM orders o ")
-    List<Order> getByStatus();
-    @Query("select o FROM orders o where o.users.username = :username")
-    List<Order> findOrdersByUsers(@Param("username") String name);
 
-    @Query("select  o.status from orders o")
-    List<Object> getOrdersStatus();
+    @Query("select DISTINCT o.status FROM orders o ")
+    List<Integer> getByStatus();
+
+    @Query("select o FROM orders o where o.status = :status")
+    List<Order> findAllByStatus(@Param("status") Integer status);
 }

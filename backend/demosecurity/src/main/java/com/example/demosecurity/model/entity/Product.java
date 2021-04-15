@@ -34,6 +34,7 @@ public class Product {
     private String nameproduct;
     private Float price;
     private Integer status;
+    private String sku;
     @Column(name = "image",columnDefinition = "VARCHAR(255)  NULL")
     private String image;
     @Column(name = "decription",columnDefinition = "VARCHAR(255)  NULL")
@@ -42,6 +43,7 @@ public class Product {
     private Integer count;
     @CreatedDate
     private Date createdate;
+
     @Column(name = "createby",columnDefinition = "VARCHAR(30)  NULL")
     @CreatedBy
     private String createby;

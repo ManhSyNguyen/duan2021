@@ -34,21 +34,20 @@ public class OrderService {
     private static final Logger logger = LogManager.getLogger(OrderService.class);
 
     public OrderDTO save(OrderDTO orderDTO) {
-        Order  neworder = new Order();
+        Order neworder = new Order();
         neworder = orderConvert.toEntity(orderDTO);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
         neworder.setUsers(users);
         orderRepo.save(neworder);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
-        if(orderRepo.save(neworder)!=null){
-            for (ProductDetailDTO pd : productDetailList){
+        if (orderRepo.save(neworder) != null) {
+            for (ProductDetailDTO pd : productDetailList) {
 
                 OrderProductDetailId opdi = new OrderProductDetailId();
                 opdi.setIdOrder(neworder.getId());
                 opdi.setIdProductDetail(pd.getId());
 
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
-                System.out.println(pd.getQuantity());
                 orderProductDetaildto.setId(opdi);
                 orderProductDetaildto.setQuantity(pd.getQuantity());
                 orderProductDetaildto.setPrice(pd.getPrice());
@@ -72,15 +71,15 @@ public class OrderService {
     }
 
     public OrderDTO update(OrderDTO orderDTO) {
-        Order newOrder = new Order() ;
+        Order newOrder = new Order();
         Order oldOrder = orderRepo.findOrdersById(orderDTO.getId());
-        newOrder = orderConvert.toEntity(orderDTO,oldOrder);
+        newOrder = orderConvert.toEntity(orderDTO, oldOrder);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
         newOrder.setUsers(users);
         orderRepo.save(newOrder);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
-        if(orderRepo.save(newOrder)!=null){
-            for (ProductDetailDTO pd : productDetailList){
+        if (orderRepo.save(newOrder) != null) {
+            for (ProductDetailDTO pd : productDetailList) {
 
                 OrderProductDetailId opdi = new OrderProductDetailId();
                 opdi.setIdOrder(newOrder.getId());
@@ -95,12 +94,24 @@ public class OrderService {
                 orderProductDetail.setId(orderProductDetaildto.getId());
                 orderProductDetail.setQuantity(orderProductDetaildto.getQuantity());
                 orderProductDetail.setPrice(orderProductDetaildto.getPrice());
-                orderProductDetail.setStatus(1);
+                orderProductDetail.setStatus(orderProductDetaildto.getStatus());
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
+                if (orderDTO.getStatus().equals(4) && productDetail.getQuantity()>0) {
+                    productDetail.setId(pd.getId());
+                    int total = productDetail.getQuantity()-pd.getQuantity();
+                    productDetail.setQuantity(total);
+                    System.out.println(total);
+                    if(total==0){
+                        productDetail.setStatus(0);
+                    }
+                    productDetail.setProduct(pd.getProduct());
+                    productDetail.setColor(pd.getColor());
+                    productDetail.setSize(pd.getSize());
+                    productDetailRepo.save(productDetail);
+                }
                 orderProductDetail.setOrder(order);
                 orderProductDetail.setProductDetail(productDetail);
-
                 orderProductDetailRepo.save(orderProductDetail);
             }
         }
@@ -111,19 +122,19 @@ public class OrderService {
     public void delete(Long id) {
         try {
             Optional<Order> order = orderRepo.findById(id);
-            if(order!=null){
+            if (order != null) {
 
                 List<OrderProductDetail> dt = orderProductDetailRepo.findOrderProductDetailBys(id);
-                        if(dt!=null){
-                            for (OrderProductDetail xoa : dt){
-                                orderProductDetailRepo.delete(xoa);
-                            }
-                            orderRepo.deleteById(id);
-                        }else{
-                            logger.error("Không được phép xóa");
-                        }
+                if (dt != null) {
+                    for (OrderProductDetail xoa : dt) {
+                        orderProductDetailRepo.delete(xoa);
+                    }
+                    orderRepo.deleteById(id);
+                } else {
+                    logger.error("Không được phép xóa");
+                }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }
@@ -133,42 +144,44 @@ public class OrderService {
         List<OrderDTO> results = new ArrayList<>();
         try {
             List<Order> entities = orderRepo.findAll(pageable).getContent();
-            for (Order item: entities) {
+            for (Order item : entities) {
                 OrderDTO productDetailDTO = orderConvert.toDTO(item);
                 results.add(productDetailDTO);
             }
             return results;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
         return results;
     }
-    public List<OrderDTO> findAllByUser(String name) {
-        List<OrderDTO> results = new ArrayList<>();
+
+
+    public int totalItem() {
         try {
-            List<Order> entities = orderRepo.findOrdersByUsers(name);
-            for (Order item: entities) {
-                OrderDTO productDetailDTO = orderConvert.toDTO(item);
-                results.add(productDetailDTO);
-            }
-            return results;
-        }catch (Exception e) {
+            return (int) orderRepo.count();
+        } catch (Exception e) {
             logger.error(e.getMessage());
+        }
+        return 1;
+    }
+
+    public List<OrderDTO> findAll() {
+        List<OrderDTO> results = new ArrayList<>();
+        List<Order> entities = orderRepo.findAll();
+        for (Order item : entities) {
+            OrderDTO newDTO = orderConvert.toDTO(item);
+            results.add(newDTO);
         }
         return results;
     }
 
+    public List<Integer> findStatus() {
+        List<Integer> entities = orderRepo.getByStatus();
+        return entities;
+    }
 
-
-
-//    public List<OrderDTO> findStatus() {
-//        List<OrderDTO> results = new ArrayList<>();
-//        List<Object> entities = orderRepo.getOrdersStatus();
-//        for (Object item: entities) {
-//           OrderDTO newDTO = new OrderDTO();
-//            newDTO.setStatus(item.());
-//            results.add(newDTO);
-//        }
-//        return results;
-//    }
+    public List<Order> findOrderBySatatus(Integer status) {
+        List<Order> list = orderRepo.findAllByStatus(status);
+        return list;
+    }
 }

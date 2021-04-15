@@ -27,6 +27,14 @@ import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.compon
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path:'member', component: LayoutMemberComponent,
+    children:[
+      {path:'bills', component:BillsComponent},
+      {path:'bills/detail-bill', component:DetailBillComponent},
+      {path:'add-bill', component:AddBillComponent},
+    ]
+  },
   { 
     path: '', component: LayoutComponent,
     children: [
@@ -56,14 +64,7 @@ const routes: Routes = [
     ]
   },
   // Member
-  {
-    path:'member', component: LayoutMemberComponent,
-    children:[
-      {path:'bills', component:BillsComponent},
-      {path:'detail-bill', component:DetailBillComponent},
-      {path:'add-bill', component:AddBillComponent},
-    ]
-  },
+  
 
 
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },

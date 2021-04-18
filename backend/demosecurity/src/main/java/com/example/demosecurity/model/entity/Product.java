@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -48,10 +49,10 @@ public class Product {
     @CreatedBy
     private String createby;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "IdProduct")
-    Set<ProductDetail> productDetail;
+    Set<ProductDetail> productDetail = new HashSet<>();
 
     @ManyToMany
     @JoinTable(

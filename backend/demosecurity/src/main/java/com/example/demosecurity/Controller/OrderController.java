@@ -36,19 +36,19 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public OrderDTO createOrder(@RequestBody OrderDTO orderDTO) {
-        if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
-            MailRequest mailRequest = new MailRequest();
-            mailRequest.setName(orderDTO.getNamecustom());
-            mailRequest.setFrom("dhmcolor11@gmail.com");
-            mailRequest.setTo(orderDTO.getEmail());
-            mailRequest.setSubject("Đơn hàng #208WUMU" + orderDTO.getPhone());
-            Map<String, Object> model = new HashMap<>();
-            model.put("Name", mailRequest.getName());
-            model.put("location", "Can Lộc , Hà Tĩnh");
-            model.put("Email", mailRequest.getTo());
-            model.put("Don", "Đơn hàng #208WUMU" + orderDTO.getPhone());
-            emailService.sendEmail(mailRequest, model);
-        }
+//        if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
+//            MailRequest mailRequest = new MailRequest();
+//            mailRequest.setName(orderDTO.getNamecustom());
+//            mailRequest.setFrom("dhmcolor11@gmail.com");
+//            mailRequest.setTo(orderDTO.getEmail());
+//            mailRequest.setSubject("Đơn hàng #208WUMU" + orderDTO.getPhone());
+//            Map<String, Object> model = new HashMap<>();
+//            model.put("Name", mailRequest.getName());
+//            model.put("location", "Can Lộc , Hà Tĩnh");
+//            model.put("Email", mailRequest.getTo());
+//            model.put("Don", "Đơn hàng #208WUMU" + orderDTO.getPhone());
+//            emailService.sendEmail(mailRequest, model);
+//        }
         return orderService.save(orderDTO);
     }
 

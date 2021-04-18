@@ -58,6 +58,17 @@ public class ProductService {
         Product oldproduct = productRepo.findProductById(productDTO.getId());
         newroduct = productConvert.toEntity(productDTO,oldproduct);
         Category category = categoryRep.findCategoryById(productDTO.getIdcategory());
+        Set<ProductDetail> listpt = new HashSet<>();
+        for (ProductDetailDTO pt: productDTO.getProductDetails()) {
+            ProductDetail productDetail = new ProductDetail();
+            Size size = sizeRepo.findSizeById(pt.getIdsize());
+            Color color = colorRepo.findColorById(pt.getIdcolor());
+            productDetail.setColor(color);
+            productDetail.setSize(size);
+            productDetail.setQuantity(pt.getQuantity());
+            listpt.add(productDetail);
+        }
+        newroduct.setProductDetail(listpt);
         newroduct.setCategory(category);
         productRepo.save(newroduct);
         return productConvert.toDTO(newroduct);

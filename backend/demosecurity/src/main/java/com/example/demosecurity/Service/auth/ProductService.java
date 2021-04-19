@@ -1,20 +1,21 @@
 package com.example.demosecurity.Service.auth;
 
 import com.example.demosecurity.Convert.ProductConvert;
+import com.example.demosecurity.Convert.ProductDetailConvert;
 import com.example.demosecurity.Repository.CategoryRep;
+import com.example.demosecurity.Repository.ColorRepo;
 import com.example.demosecurity.Repository.ProductRepo;
+import com.example.demosecurity.Repository.SizeRepo;
 import com.example.demosecurity.model.dto.ProductDTO;
-import com.example.demosecurity.model.entity.Category;
-import com.example.demosecurity.model.entity.Product;
+import com.example.demosecurity.model.dto.ProductDetailDTO;
+import com.example.demosecurity.model.entity.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -25,12 +26,28 @@ public class ProductService {
     @Autowired
     private ProductConvert productConvert;
 
+    @Autowired
+    private ColorRepo colorRepo;
+    @Autowired
+    private SizeRepo sizeRepo;
+
     private static final Logger logger = LogManager.getLogger(ProductService.class);
 
     public ProductDTO save(ProductDTO productDTO) {
         Product product= new Product();
         Category category = categoryRep.findCategoryById(productDTO.getIdcategory());
         product = productConvert.toEntity(productDTO);
+        Set<ProductDetail> listpt = new HashSet<>();
+        for (ProductDetailDTO pt: productDTO.getProductDetails()) {
+            ProductDetail productDetail = new ProductDetail();
+            Size size = sizeRepo.findSizeById(pt.getIdsize());
+            Color color = colorRepo.findColorById(pt.getIdcolor());
+            productDetail.setColor(color);
+            productDetail.setSize(size);
+            productDetail.setQuantity(pt.getQuantity());
+            listpt.add(productDetail);
+        }
+        product.setProductDetail(listpt);
         product.setCategory(category);
         productRepo.save(product);
         return productConvert.toDTO(product);
@@ -41,6 +58,17 @@ public class ProductService {
         Product oldproduct = productRepo.findProductById(productDTO.getId());
         newroduct = productConvert.toEntity(productDTO,oldproduct);
         Category category = categoryRep.findCategoryById(productDTO.getIdcategory());
+        Set<ProductDetail> listpt = new HashSet<>();
+        for (ProductDetailDTO pt: productDTO.getProductDetails()) {
+            ProductDetail productDetail = new ProductDetail();
+            Size size = sizeRepo.findSizeById(pt.getIdsize());
+            Color color = colorRepo.findColorById(pt.getIdcolor());
+            productDetail.setColor(color);
+            productDetail.setSize(size);
+            productDetail.setQuantity(pt.getQuantity());
+            listpt.add(productDetail);
+        }
+        newroduct.setProductDetail(listpt);
         newroduct.setCategory(category);
         productRepo.save(newroduct);
         return productConvert.toDTO(newroduct);

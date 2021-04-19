@@ -25,6 +25,7 @@ public class ProductDTO {
     private Long idcategory;
     private Category category;
     private String nameproduct;
+    private Set<ProductDetailDTO> productDetails;
     private Float price;
     private Integer status;
     private String image;

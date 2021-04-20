@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit {
     listCategory: any[] = [];
     listIdCategory: any[] = [];
     page = 1;
-    pageSize = 8;
+    pageSize = 9;
   ngOnInit(): void {
     this.getListProduct();
     this.getListCategory();

@@ -12,4 +12,7 @@ export class OrderService {
   getAll(): Observable<any> {
     return this.http.get<any>(this.api + '/orders');
   }
+  getOrderByStatus(status: any): Observable<any> {
+    return this.http.get<any>(`${this.api + '/orders/bystatus'}/${status}`);
+  }
 }

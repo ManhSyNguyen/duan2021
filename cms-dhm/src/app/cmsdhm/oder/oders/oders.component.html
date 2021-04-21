@@ -1,10 +1,10 @@
 <h1 class="h3 mb-2 text-gray-800">Trạng thái </h1>
 
-<form>
+<form [formGroup]="searchForm">
     <div class="row">
         <div class="col-8">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Tìm kiếm theo số điện thoại">
+                <input type="text" class="form-control" formControlName="search" placeholder="Tìm kiếm theo số điện thoại">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="button">
                         <i class="fa fa-search"></i>
@@ -13,13 +13,13 @@
             </div>
         </div>
         <div class="col d-flex">
-            <select class="form-control">
-                <option selected>Lọc theo trạng thái</option>
-                <option>Chờ xác nhận</option>
-                <option>Chờ lấy hàng</option>
-                <option>Đang giao</option>
-                <option>Thành công </option>
-                <option>Hủy</option>
+            <select class="form-control" formControlName="status" (change)="getOrderByStatus($event)">
+                <option value="" selected>Lọc theo trạng thái</option>
+                <option value="0">Chờ xác nhận</option>
+                <option value="1">Chờ lấy hàng</option>
+                <option value="2">Đang giao</option>
+                <option value="3">Thành công </option>
+                <option value="4">Hủy</option>
             </select>
         </div>
 
@@ -44,13 +44,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td> <a class="text-decoration-none" routerLink='/detail-order'>NS8292929</a></td>
-                        <td>Nguyen Sy Manh</td>
-                        <td>03344934393</td>
-                        <td>Thanh Hóa</td>
-                        <td><span class="badge badge-danger">Đang chờ</span></td>
-                        <td>2.000.000 vnđ</td>
+                    <tr *ngFor="let item of listOrder">
+                        <td> <a class="text-decoration-none" routerLink='/detail-order'>{{item.id}}</a></td>
+                        <td>{{item.createby}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.address}}</td>
+                        <td><span class="badge badge-danger">{{getText(item.status)}}</span></td>
+                        <td>{{item.price | number}} vnđ</td>
                     </tr>
                 </tbody>
             </table>

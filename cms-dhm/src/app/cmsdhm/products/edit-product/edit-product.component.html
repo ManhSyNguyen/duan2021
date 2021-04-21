@@ -12,6 +12,10 @@
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
                                 <input type="text" class="form-control" formControlName="nameproduct"/>
                             </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Sku</label>
+                            <input type="text" class="form-control" formControlName="sku"/>
+                          </div>
                             <div class="row">
                                 <label class="col-sm-4 col-lg-2 col-form-label">Hình ảnh</label>
                                 <div class="col-md-3">
@@ -47,52 +51,96 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="mb-20">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Số lượng</label>
-                                    <input type="number" class="form-control" formControlName="quantity"/>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1">Màu sắc</label>
-                                      <div class="form-group">
-                                        <select class="form-select" formControlName="idcolor" aria-label="Default select example">
-                                          <option value="">Lựa chọn màu</option>
-                                          <option *ngFor="let item of listColor" value="{{item.id}}">{{item.namecolor}}</option>
-                                        </select>
-                                      </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="mb-20">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="exampleInputEmail1">Màu sắc</label>
+                                                <div class="form-group">
+                                                  <select class="form-select" aria-label="Default select example" formControlName="idcolor">
+                                                    <option value="">Chọn màu</option>
+                                                    <option *ngFor="let item of listColor" value="{{item.id}}">{{item.namecolor}}</option>
+                                                  </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="exampleInputEmail1">Size</label>
+                                                <div class="form-group">
+                                                  <select class="form-select" aria-label="Default select example" formControlName="idsize">
+                                                    <option value="">Chọn size</option>
+                                                    <option *ngFor="let item of listSize" value="{{item.id}}">{{item.namesize}}
+                                                  </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="exampleInputEmail1">Số lượng</label>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" formControlName="quantity"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="dataTable" width="100%"
+                                                        cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Màu</th>
+                                                                <th>Size</th>
+                                                                <th>Số lượng</th>
+                                                                <th>Tùy chọn</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of listColorSize">
+                                                                <td>{{item[0].namecolor}}</td>
+                                                                <td>{{item[1].namesize}}</td>
+                                                                <td>{{item.quantity}}</td>
+                                                                <td>
+                                                                  <button type="submit" class="btn btn-danger btn-sm" (click)="xoa()">Xóa</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success btn-sm" (click)="addColor()">Tạo</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1">Size</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 pt-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="mb-20">
+                                        <div class="form-group pt-2">
+                                            <label for="exampleInputEmail1">Trạng thái</label>
+                                            <div class="col p-1">
+                                                <label class="switch">
+                                                    <input type="checkbox" formControlName="status">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
-                                            <select class="form-select" formControlName="idsize" aria-label="Default select example">
-                                              <option value="">Lựa chọn size</option>
-                                              <option *ngFor="let item of listSize" value="{{item.id}}">{{item.namesize}}</option>
+                                            <label for="">Thương hiệu</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                              <option value="">Lựa chọn thương hiệu</option>
+                                              <option *ngFor="let items of listCategory" value="{{items.id}}">{{items.name}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group p-2">
-                                    <label for="exampleInputEmail1">Trạng thái</label>
-                                    <div class="col p-1">
-                                        <label class="switch">
-                                            <input type="checkbox" formControlName="status">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Thương hiệu</label>
-                                    <select class="form-select" aria-label="Default select example" formControlName="idcategory">
-                                        <option value="">Lựa chọn thương hiệu</option>
-                                        <option *ngFor="let items of listCategory" value="{{items.id}}">{{items.name}}</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="form-group" style="padding-top: 20px;">

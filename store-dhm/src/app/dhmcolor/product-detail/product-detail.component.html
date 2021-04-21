@@ -24,6 +24,9 @@
                                     {{productDetail.nameproduct}}
                                 </h1>
                             </div>
+                            <div class="product_ratting">
+                              <h4 class="font-italic">SKU: {{productDetail.sku}}</h4>
+                            </div>
                             <div class="d-flex product_ratting">
                                 <a style="text-decoration: underline; color:#fdb813;">5.0</a>
                                 &nbsp;
@@ -45,6 +48,7 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="price_box">
                                 <span class="old_price">999.999.999<sup>₫</sup></span>
                                 <span class="current_price">{{productDetail.price | number}}<sup>₫</sup></span><br />

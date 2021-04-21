@@ -17,6 +17,7 @@ export class AddProductComponent implements OnInit {
   listSize : any[] = [];
   listCategory: any[] = [];
   listColor: any[] = [];
+  listColorandSize: any[] = [];
 
   constructor(
     private sizeService: SizeService,
@@ -73,12 +74,9 @@ export class AddProductComponent implements OnInit {
       idcategory : this.if.idcategory.value,
       nameproduct : this.if.nameproduct.value,
       price : this.if.price.value,
+      image: this.if.image.value,
       decription : this.if.decription.value,
-      productDetails: [{
-        idcolor: this.if.idcolor.value,
-        idsize: this.if.idsize.value,
-        quantity: this.if.quantity.value,
-      }],
+      productDetails: this.listColorandSize,
       status: this.if.status.value ? 1 : 0,
     };
     this.productService.createProduct(obj).subscribe(res => {
@@ -87,5 +85,44 @@ export class AddProductComponent implements OnInit {
         this.router.navigate(['/products']);
       }
     });
+  }
+  addColor() {
+    let params = {
+      idcolor: this.if.idcolor.value,
+      idsize: this.if.idsize.value,
+      quantity: this.if.quantity.value,
+    };
+    this.listColorandSize.push(params);
+  }
+  getColor(text) {
+    if (text == '1') {
+      return 'Pink';
+    }
+    if (text == '2') {
+      return 'Red';
+    }
+    if (text == '3') {
+      return 'Black';
+    }
+    if (text == '4') {
+      return 'White';
+    }
+    if (text == '5') {
+      return 'Green';
+    }
+  }
+  getSize(text) {
+    if (text == '1') {
+      return 'XX';
+    }
+    if (text == '2') {
+      return 'XL';
+    }
+    if (text == '3') {
+      return 'M';
+    }
+    if (text == '4') {
+      return 'S';
+    }
   }
 }

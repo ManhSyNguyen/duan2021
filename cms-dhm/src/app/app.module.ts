@@ -31,7 +31,7 @@ import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.
 import { FooterMemberComponent } from './cms-member/layout-member/footer-member/footer-member.component';
 import { NavbarMemberComponent } from './cms-member/layout-member/navbar-member/navbar-member.component';
 import { SidebarMemberComponent } from './cms-member/layout-member/sidebar-member/sidebar-member.component';
-import { BillsComponent } from './cms-member/bill/bills/bills.component';
+import { BillsComponent } from './cms-member/bills/bills.component';
 import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './interceptor/basic-auth-intercepter';

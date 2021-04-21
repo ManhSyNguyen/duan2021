@@ -1,24 +1,24 @@
 <div class="container pb-5">
-    <h2 class="title text-center">Đơn Mua</h2>
+  <h2 class="title text-center">Đơn Mua</h2>
 
-    <input class="dn" type="radio" name="tab" id="tab-1" checked>
-    <input class="dn" type="radio" name="tab" id="tab-2">
-    <input class="dn" type="radio" name="tab" id="tab-3">
-    <input class="dn" type="radio" name="tab" id="tab-4">
-    <input class="dn" type="radio" name="tab" id="tab-5">
-    <input class="dn" type="radio" name="tab" id="tab-6">
+  <input class="dn" type="radio" name="tab" id="tab-1" checked>
+  <input class="dn" type="radio" name="tab" id="tab-2">
+  <input class="dn" type="radio" name="tab" id="tab-3">
+  <input class="dn" type="radio" name="tab" id="tab-4">
+  <input class="dn" type="radio" name="tab" id="tab-5">
+  <input class="dn" type="radio" name="tab" id="tab-6">
 
-    <div class="tabs-wrapper">
-        <label for="tab-1" class="label-tab-1"> Tất cả</label>
-        <label for="tab-2" class="label-tab-2"> Chờ xác nhận </label>
-        <label for="tab-3" class="label-tab-3">Chờ lấy hàng</label>
-        <label for="tab-4" class="label-tab-4"> Đang giao</label>
-        <label for="tab-5" class="label-tab-5">Thành công</label>
-        <label for="tab-6" class="label-tab-6">Đã hủy</label>
-    </div>
+  <div class="tabs-wrapper">
+    <label for="tab-1" class="label-tab-1"> Tất cả</label>
+    <label for="tab-2" class="label-tab-2"> Chờ xác nhận </label>
+    <label for="tab-3" class="label-tab-3">Chờ lấy hàng</label>
+    <label for="tab-4" class="label-tab-4"> Đang giao</label>
+    <label for="tab-5" class="label-tab-5">Thành công</label>
+    <label for="tab-6" class="label-tab-6">Đã hủy</label>
+  </div>
 
-    <div class="tab tab-1">
-        <div class="col-md-12 d-flex" *ngFor="let item of listOrder">
+  <div class="tab tab-1">
+    <!-- <div class="col-md-12 d-flex" *ngFor="let item of listOrder">
           <div class="col-md-1">
             <img style="width: 30px; height: 30px" src="{{item.productDetail.product.image}}"/>
           </div>
@@ -37,21 +37,74 @@
           <div class="col-md-2">
             {{item.quantity * item.productDetail.product.price | number}} vnđ
           </div>
+        </div> -->
+    <div class="container">
+      <div class="detail-shop">
+        <div class=" order-content__header">
+          <div class="order-content__header__seller">
+            <div class="dhm-avatar">
+              <div class="dhm-avatar__placeholder">
+              </div>
+              <img class="dhm-avatar__img" src="/assets/images/dhm_logo.png">
+            </div><span class="order-content__header__seller__name">DHM Color</span>
+            <div class="order-content__header__seller__chat-btn"></div>
+            <div class="order-content__header__seller__view-shop-btn"></div>
+          </div>
+          <div class="order-content__header__flex-placeholder"></div>
+          <div class="order-delivery-status__wrapper"></div>
+          <div class="order-content-status">Đã Mua</div>
         </div>
+      </div>
+      <div class="order-content__item-list" *ngFor="let item of listOrder">
+        <a class="order-content__item-wrapper" href="/user/purchase/order/70858473404093/?shopid=40246675">
+          <div class="order-content__item order-content__item--last">
+            <div class="order-content__item__col order-content__item__detail">
+              <div class="order-content__item__product">
+                <div class="order-content__item__image">
+                  <div class="dhm-image__wrapper">
+                    <div class="dhm-image__place-holder">
+                    </div>
+                    <div class="dhm-image__content">
+                      <div class="dhm-image__content--blur">
+                        <img src="{{item.productDetail.product.image}}" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-content__item__detail-content">
+                  <div class="order-content__item__name">{{item.productDetail.product.nameproduct}}</div>
+                  <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}</div>
+                  <div class="order-content__item__quantity">x {{item.quantity}}</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="order-content__item__price order-content__item__col order-content__item__col--small order-content__item__col--last">
+              <div class="order-content__item__price-text">
+                <div class="">₫{{item.quantity * item.productDetail.product.price | number}}</div>
+
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
     </div>
-    <div class="tab tab-2">
-        <p>Duong</p>
-    </div>
-    <div class="tab tab-3">
-        <p>Hai</p>
-    </div>
-    <div class="tab tab-4">
-        <p>Minh</p>
-    </div>
-    <div class="tab tab-5">
-        <p>Ok</p>
-    </div>
-    <div class="tab tab-6">
-        <p>Alo</p>
-    </div>
+  </div>
+  <div class="tab tab-2">
+    <p>Duong</p>
+  </div>
+  <div class="tab tab-3">
+    <p>Hai</p>
+  </div>
+  <div class="tab tab-4">
+    <p>Minh</p>
+  </div>
+  <div class="tab tab-5">
+    <p>Ok</p>
+  </div>
+  <div class="tab tab-6">
+    <p>Alo</p>
+  </div>
 </div>

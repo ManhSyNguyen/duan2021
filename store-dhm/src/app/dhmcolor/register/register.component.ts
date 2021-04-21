@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
       username: this.rf.username.value,
       sodienthoai: this.rf.sodienthoai.value,
       password: this.rf.password.value,
+      role: [''],
     };
     this.authService.register(obj).subscribe(res => {
       if (res) {

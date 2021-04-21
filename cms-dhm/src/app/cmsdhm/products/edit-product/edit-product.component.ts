@@ -17,8 +17,9 @@ export class EditProductComponent implements OnInit {
   listSize: any[] = [];
   listCategory: any[] = [];
   listColor: any[] = [];
-  colorSizeDetail: any[] = [];
+  listColorSize: any[] = [];
   productDetail: any = [];
+
   constructor(
     private sizeService : SizeService,
     private colorService : ColorService,
@@ -35,13 +36,14 @@ export class EditProductComponent implements OnInit {
     this.getCategory();
     this.inputForm = this.formBuild.group({
       nameproduct : [''],
+      sku: [''],
       image : [''],
       price : [''],
       decription : [''],
       quantity: [''],
       idcolor: [''],
       idsize: [''],
-      status: [1],
+      status: [],
       idcategory: ['']
     });
   }
@@ -69,17 +71,31 @@ export class EditProductComponent implements OnInit {
   get if(): any {
     return this.inputForm.controls;
   }
+  xoa() {
+    let index = 0;
+    this.listColorSize.splice(index, 1);
+  }
+  addColor() {
+    let params = {
+      idcolor: this.if.idcolor.value,
+      idsize: this.if.idsize.value,
+      quantity: this.if.quantity.value,
+    };
+    this.listColorSize.push(params);
+  }
   getProductById() {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
       this.productService.getProductById(productId).subscribe(data => {
-        this.productDetail = data;
-        console.log(`object`, this.productDetail);
+          this.productDetail = data;
+        this.productDetail.forEach((i: any) => {
+          this.listColorSize.push([i.color, i.size]);
+        });
+          console.log("size", this.listColorSize);
         this.if.nameproduct.setValue(data[0].product.nameproduct);
+        this.if.sku.setValue(data[0].product.sku);
         this.if.price.setValue(data[0].product.price);
         this.if.decription.setValue(data[0].product.decription);
-        this.if.idcolor.setValue(data[0].color.id);
-        this.if.idsize.setValue(data[0].size.id);
         this.if.status.setValue(data[0].status);
       });
     });

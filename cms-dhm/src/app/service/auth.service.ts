@@ -10,7 +10,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-  export class AuthService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,12 @@ const httpOptions = {
     }, httpOptions);
   }
 
-  register(obj: any): Observable<any> {
-    return this.http.post(AUTH_API + 'signup',obj, httpOptions);
+  register(username: string, email: string, password: string, sodienthoai: string): Observable<any> {
+    return this.http.post(AUTH_API + 'signup', {
+      username,
+      password,
+      email,
+      sodienthoai
+    }, httpOptions);
   }
 }

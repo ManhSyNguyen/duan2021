@@ -32,7 +32,7 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @PostMapping("/orders")
+    @PostMapping("/order")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public OrderDTO createOrder(@RequestBody OrderDTO orderDTO) {

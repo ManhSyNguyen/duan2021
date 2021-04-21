@@ -22,6 +22,7 @@ public class ProductConvert {
         entity.setPrice(dto.getPrice());
         entity.setStatus(dto.getStatus());
         entity.setImage(dto.getImage());
+        entity.setSku("DHM"+generatedString.toUpperCase());
         entity.setDecription(dto.getDecription());
        entity.setPurchase(dto.getPurchase());
         entity.setCount(dto.getCount());
@@ -36,6 +37,7 @@ public class ProductConvert {
         dto.setPrice(entity.getPrice());
         dto.setStatus(entity.getStatus());
         dto.setImage(entity.getImage());
+        dto.setSku(entity.getSku());
         dto.setPurchase(entity.getPurchase());
         dto.setCount(entity.getCount());
         dto.setCreatedate(entity.getCreatedate());
@@ -53,6 +55,14 @@ public class ProductConvert {
         entity.setCount(dto.getCount());
 
         return entity;
+    }
+    public String genaratecode(){
+        byte[] array = new byte[7]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
+
+        System.out.println(generatedString);
+        return generatedString;
     }
 
 }

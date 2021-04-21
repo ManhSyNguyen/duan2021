@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../../service/product.service";
+import {ToastrService} from "ngx-toastr";
 
 
 
@@ -11,7 +12,8 @@ import {ProductService} from "../../../service/product.service";
 export class ProductComponent implements OnInit {
   listProduct : any[] = [];
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private toastService: ToastrService,
   ) { }
   ngOnInit(): void {
     this.getProduct();
@@ -29,5 +31,17 @@ export class ProductComponent implements OnInit {
     }else {
       return 'Còn hàng';
     }
+  }
+  delete(item: any) {
+    let conf = confirm("Bạn có muốn xóa sản phẩm này không ?????");
+    if (conf) {
+      this.productService.deleteProduct(item.id).subscribe(res => {
+          this.toastService.success("Xóa thành công");
+          this.getProduct();
+      });
+    }
+  }
+  update(item: any) {
+
   }
 }

@@ -41,7 +41,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { DetailOderComponent } from './cmsdhm/oder/detail-oder/detail-oder.component';
 import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
 import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.component';
-import * as MatModule from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -86,7 +85,6 @@ import * as MatModule from '@angular/material';
         MatStepperModule,
         FormsModule,
         HttpClientModule,
-        MatModule.MatCheckboxModule,
         ReactiveFormsModule,
         ToastrModule.forRoot({
           timeOut: 5000,

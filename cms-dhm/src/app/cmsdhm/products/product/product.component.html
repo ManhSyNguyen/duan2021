@@ -27,11 +27,11 @@
                         <td>{{item.createdate}}</td>
                         <td>
                             <div class="btn-option">
-                                <a routerLink="/edit-product">
-                                    <button class="btn btn-dark btn-sm" type="button">
-                                        <i class="fas fa-edit"></i></button></a>
+                                <button class="btn btn-dark btn-sm" type="button" [routerLink]="['/edit-product',item.id]">
+                                        <i class="fas fa-edit"></i>
+                                </button>
                                 &nbsp;
-                                <button class="btn btn-danger btn-sm" type="button">
+                                <button class="btn btn-danger btn-sm" type="button" (click)="delete(item)">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>

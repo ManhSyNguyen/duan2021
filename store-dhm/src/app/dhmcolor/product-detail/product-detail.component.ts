@@ -61,11 +61,15 @@ export class ProductDetailComponent implements OnInit {
   // }
 
   addToCart(iz: any) {
-    this.colorSizeDetail.forEach(i => {
-      if (this.sizeSelect === i.size.namesize) {
-        i.quantity++ ;
-        this.CartService.addCart(i);
-      }
-    });
+    const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
+    if (conf) {
+      this.colorSizeDetail.forEach(i => {
+        if (this.sizeSelect === i.size.namesize) {
+          i.quantity++ ;
+          this.CartService.addCart(i);
+          this.toastService.success("Thêm giỏ hàng thành công");
+        }
+      });
+    }
   }
 }

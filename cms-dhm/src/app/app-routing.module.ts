@@ -35,7 +35,7 @@ const routes: Routes = [
       //product
       { path: 'products', component: ProductComponent },
       { path: 'add-product', component: AddProductComponent },
-      { path: 'edit-product', component: EditProductComponent },
+      { path: 'edit-product/:id', component: EditProductComponent },
       //type
       { path: 'type', component: ProductTypeComponent },
       //customer

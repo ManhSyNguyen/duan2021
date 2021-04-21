@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import {OrderService} from "../../../service/order.service";
 
 @Component({
   selector: 'app-oders',
   templateUrl: './oders.component.html',
   styleUrls: ['./oders.component.css'],
-  
+
 })
 export class OdersComponent implements OnInit {
-  // firstFormGroup: FormGroup;
-  // secondFormGroup: FormGroup;
-
-  constructor() {}
+  listOrder: any[] = [];
+  constructor(
+    private orderService: OrderService
+  ) {}
 
   ngOnInit() {
-    // this.firstFormGroup = this._formBuilder.group({
-    //   firstCtrl: ['', Validators.required]
-    // });
-    // this.secondFormGroup = this._formBuilder.group({
-    //   secondCtrl: ['', Validators.required]
-    // });
+    this.getAll();
+  }
+  getAll() {
+    this.orderService.getAll().subscribe(res => {
+      if (res) {
+        this.listOrder = res;
+      }
+    });
   }
 }

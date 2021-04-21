@@ -47,11 +47,11 @@ const routes: Routes = [
       //customer
       { path: 'customer', component: CustomerComponent, canActivate: [AdminGuard] },
       { path: 'add-customer', component: AddCustomerComponent, canActivate: [AdminGuard] },
-      { path: 'edit-customer', component: EditCustomerComponent, canActivate: [AdminGuard] },
+      { path: 'edit-customer/:id', component: EditCustomerComponent, canActivate: [AdminGuard] },
       //account
       { path: 'accounts', component: AccountsComponent, canActivate: [AdminGuard] },
       { path: 'add-account', component: AddAccountComponent, canActivate: [AdminGuard] },
-      { path: 'edit-account', component: EditAccountComponent, canActivate: [AdminGuard] },
+      { path: 'edit-account/:id', component: EditAccountComponent, canActivate: [AdminGuard] },
       //oder
       {path: 'oders', component:OdersComponent, canActivate: [AdminGuard]},
       {path:'detail-order', component:DetailOderComponent, canActivate: [AdminGuard]},

@@ -30,23 +30,23 @@ export class OdersComponent implements OnInit {
       }
     });
   }
-  getText(text: any) {
-    if (text == '0'){
-      return 'Chờ xác nhận';
-    }
-    if (text == '1'){
-      return 'Chờ lấy hàng';
-    }
-    if (text == '2'){
-      return 'Đang giao';
-    }
-    if (text == '3'){
-      return 'Thành công';
-    }
-    if (text == '4'){
-      return 'Hủy';
-    }
-  }
+  // getText(text: any) {
+  //   if (text == '0'){
+  //     return 'Chờ xác nhận';
+  //   }
+  //   if (text == '1'){
+  //     return 'Chờ lấy hàng';
+  //   }
+  //   if (text == '2'){
+  //     return 'Đang giao';
+  //   }
+  //   if (text == '3'){
+  //     return 'Thành công';
+  //   }
+  //   if (text == '4'){
+  //     return 'Hủy';
+  //   }
+  // }
   get sf(): any {
     return this.searchForm.controls;
   }
@@ -59,6 +59,6 @@ export class OdersComponent implements OnInit {
       });
     }else{
       this.getAll();
-    };
+    }
   }
 }

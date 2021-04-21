@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SizeService} from "../../../service/size.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
 import {CategoryService} from "../../../service/categorys.service";
@@ -34,15 +34,15 @@ export class AddProductComponent implements OnInit {
     this.getCategory();
     this.getColor();
     this.inputForm = this.formBuild.group({
-      nameproduct : [''],
-      image : [''],
-      price : [''],
-      decription : [''],
-      quantity: [''],
-      idcolor: [''],
-      idsize: [''],
+      nameproduct : ['', [Validators.required]],
+      image : ['', [Validators.required]],
+      price : ['', [Validators.required]],
+      decription : ['', [Validators.required]],
+      quantity: [1],
+      idcolor: ['', [Validators.required]],
+      idsize: ['', [Validators.required]],
       status: [1],
-      idcategory: ['']
+      idcategory: ['',[Validators.required]]
     });
   }
   get if(): any {
@@ -70,6 +70,10 @@ export class AddProductComponent implements OnInit {
     });
   }
   add() {
+    if (this.inputForm.invalid){
+      this.toastService.error('Vui lòng nhập đầy đủ thông tin !!');
+      return;
+    }
     let obj = {
       idcategory : this.if.idcategory.value,
       nameproduct : this.if.nameproduct.value,

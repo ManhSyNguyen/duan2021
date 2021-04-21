@@ -56,6 +56,7 @@
                                                 <label for="exampleInputEmail1">Màu sắc</label>
                                                 <div class="form-group">
                                                     <select class="form-select" aria-label="Default select example" formControlName="idcolor">
+                                                      <option value="">Chọn màu</option>
                                                       <option *ngFor="let item of listColor" value="{{item.id}}">{{item.namecolor}}</option>
                                                     </select>
                                                 </div>
@@ -64,6 +65,7 @@
                                                 <label for="exampleInputEmail1">Size</label>
                                                 <div class="form-group">
                                                     <select class="form-select" aria-label="Default select example" formControlName="idsize">
+                                                      <option value="">Chọn size</option>
                                                       <option *ngFor="let item of listSize" value="{{item.id}}">{{item.namesize}}
                                                     </select>
                                                 </div>

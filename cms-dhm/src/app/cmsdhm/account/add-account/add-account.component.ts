@@ -23,6 +23,7 @@ export class AddAccountComponent implements OnInit {
       sodienthoai: [''],
       email: [''],
       password: [''],
+      status: [true],
       role: [''],
     });
   }
@@ -35,12 +36,13 @@ export class AddAccountComponent implements OnInit {
       sodienthoai: this.if.sodienthoai.value,
       email: this.if.email.value,
       password: this.if.password.value,
+      status: this.if.status.value ? true : false,
       role: [this.if.role.value],
-    }
+    };
     this.authService.register(obj).subscribe(res => {
       if (res) {
         this.toastService.success("Thêm  thành công !!!");
       }
-    })
+    });
   }
 }

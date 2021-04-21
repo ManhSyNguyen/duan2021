@@ -30,21 +30,20 @@
                                 <select class="form-control" id="exampleFormControlSelect1" formControlName="role">
                                     <option value="">---Chọn chức vụ---</option>
                                     <option value="mod">Nhân viên</option>
-                                    <option value="admin">Admin</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Trạng thái</label>
                                 <div class="col p-1">
                                     <label class="switch">
-                                        <input type="checkbox">
+                                        <input type="checkbox" formControlName="status">
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mật khẩu </label>
-                                <input type="text" class="form-control" formControlName="password"/>
+                                <input type="password" class="form-control" formControlName="password"/>
                             </div>
                         </div>
                     </div>

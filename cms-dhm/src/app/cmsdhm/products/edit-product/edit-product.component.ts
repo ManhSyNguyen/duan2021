@@ -91,7 +91,6 @@ export class EditProductComponent implements OnInit {
         this.productDetail.forEach((i: any) => {
           this.listColorSize.push([i.color, i.size]);
         });
-          console.log("size", this.listColorSize);
         this.if.nameproduct.setValue(data[0].product.nameproduct);
         this.if.sku.setValue(data[0].product.sku);
         this.if.price.setValue(data[0].product.price);

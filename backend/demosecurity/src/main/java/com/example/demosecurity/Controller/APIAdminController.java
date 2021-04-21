@@ -88,6 +88,7 @@ public class APIAdminController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        System.out.println("hihi"+usersRepository.existsByUsername(signUpRequest.getUsername()));
         if (usersRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -109,14 +110,13 @@ public class APIAdminController {
         Users user = new Users(signUpRequest.getUsername(),
                 encode.encode(signUpRequest.getPassword()),
                 signUpRequest.getEmail(),signUpRequest.getSodienthoai()
-                );
+        );
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
-        System.out.println(strRoles);
-        if (strRoles.isEmpty()) {
+        System.out.println("role"+strRoles);
+        if (strRoles==null) {
             Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            System.out.println(userRole);
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {

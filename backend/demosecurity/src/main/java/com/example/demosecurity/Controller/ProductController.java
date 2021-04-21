@@ -32,7 +32,7 @@ public class ProductController {
     @GetMapping("/products/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public ProductDTO getProductById(@PathVariable(value ="id") long id)
+    public Product getProductById(@PathVariable(value ="id") long id)
     {
         return productService.findProductById(id);
     }

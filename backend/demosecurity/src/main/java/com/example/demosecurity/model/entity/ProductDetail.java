@@ -29,6 +29,7 @@ public class ProductDetail implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IdColor")
     private Color color;
+    private String sku;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IdSize")
     private Size size;

@@ -33,7 +33,10 @@ export class TokenStorageService {
     if (user) {
       return JSON.parse(user);
     }
-
     return {};
+  }
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem(USER_KEY);
+    return !(user === null)
   }
 }

@@ -18,4 +18,6 @@ public interface ProductDetailRepo extends JpaRepository<ProductDetail,Long> {
     ProductDetail findProductDetailById(@Param("id") Long id);
     @Query("SELECT c FROM productdetail c WHERE c.product.id = :productid order by c.createdate desc")
     List<ProductDetail> findByProductId(@Param("productid")  Long productid);
+
+    ProductDetail findBySku(String sku);
 }

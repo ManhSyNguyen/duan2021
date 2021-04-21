@@ -42,15 +42,14 @@ public class OrderService {
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
         if (orderRepo.save(neworder) != null) {
             for (ProductDetailDTO pd : productDetailList) {
-
                 OrderProductDetailId opdi = new OrderProductDetailId();
                 opdi.setIdOrder(neworder.getId());
                 opdi.setIdProductDetail(pd.getId());
-
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
                 orderProductDetaildto.setQuantity(pd.getQuantityProduct());
                 orderProductDetaildto.setPrice(pd.getPriceProductDetail());
+
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();
                 orderProductDetail.setId(orderProductDetaildto.getId());
@@ -59,6 +58,8 @@ public class OrderService {
 
                 orderProductDetail.setStatus(1);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
+                float total = orderProductDetaildto.getQuantity() * pd.getQuantityProduct();
+                order.setTotalMonenyOrder(total);
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
                 orderProductDetail.setOrder(order);
                 orderProductDetail.setProductDetail(productDetail);

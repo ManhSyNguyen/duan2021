@@ -116,4 +116,9 @@ public class ProductDetailService {
         }
         return results;
     }
+    public ProductDetailDTO findBySku(String sku){
+        ProductDetailDTO rs = new ProductDetailDTO();
+        ProductDetail pd = productDetailRepo.findBySku(sku);
+        return productDetailConvert.toDTO(pd);
+    }
 }

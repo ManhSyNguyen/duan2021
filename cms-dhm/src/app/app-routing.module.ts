@@ -21,55 +21,56 @@ import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
 import { DetailOderComponent} from './cmsdhm/oder/detail-oder/detail-oder.component'
 import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
 import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.component';
+import {AdminGuard} from './cmsdhm/admin/admin.guard';
 
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: 'login', redirectTo: 'login', pathMatch: 'full' },
   {
-    path:'member', component: LayoutMemberComponent,
-    children:[
-      {path:'bills', component:BillsComponent},
-      {path:'bills/detail-bill', component:DetailBillComponent},
-      {path:'add-bill', component:AddBillComponent},
-    ]
-  },
-  { 
-    path: '', component: LayoutComponent,
+    path: '', component: LayoutComponent, canActivate: [AdminGuard],
     children: [
-      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: '', component: DashboardComponent },
+      { path: '',
+        component: DashboardComponent,
+        canActivate: [AdminGuard],
+      },
       //product
-      { path: 'products', component: ProductComponent },
-      { path: 'add-product', component: AddProductComponent },
-      { path: 'edit-product', component: EditProductComponent },
+      { path: 'products',
+        component: ProductComponent,
+        canActivate: [AdminGuard]
+      },
+      { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
+      { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AdminGuard] },
       //type
-      { path: 'type', component: ProductTypeComponent },
+      { path: 'type', component: ProductTypeComponent, canActivate: [AdminGuard] },
       //customer
-      { path: 'customer', component: CustomerComponent },
-      { path: 'add-customer', component: AddCustomerComponent },
-      { path: 'edit-customer', component: EditCustomerComponent },
+      { path: 'customer', component: CustomerComponent, canActivate: [AdminGuard] },
+      { path: 'add-customer', component: AddCustomerComponent, canActivate: [AdminGuard] },
+      { path: 'edit-customer', component: EditCustomerComponent, canActivate: [AdminGuard] },
       //account
-      { path: 'accounts', component: AccountsComponent },
-      { path: 'add-account', component: AddAccountComponent },
-      { path: 'edit-account', component: EditAccountComponent },
+      { path: 'accounts', component: AccountsComponent, canActivate: [AdminGuard] },
+      { path: 'add-account', component: AddAccountComponent, canActivate: [AdminGuard] },
+      { path: 'edit-account', component: EditAccountComponent, canActivate: [AdminGuard] },
       //oder
-      {path: 'oders', component:OdersComponent},
-      {path:'detail-order', component:DetailOderComponent},
+      {path: 'oders', component:OdersComponent, canActivate: [AdminGuard]},
+      {path:'detail-order', component:DetailOderComponent, canActivate: [AdminGuard]},
       //boom
-      { path: 'booms', component: BoomsComponent },
-      
-     
+      { path: 'booms', component: BoomsComponent, canActivate: [AdminGuard] },
     ]
   },
   // Member
-  
-
-
+  {
+    path:'member', component: LayoutMemberComponent, canActivate: [AdminGuard],
+    children:[
+      {path:'bills', component:BillsComponent, canActivate: [AdminGuard]},
+      {path:'bills/detail-bill', component:DetailBillComponent, canActivate: [AdminGuard]},
+      {path:'add-bill', component:AddBillComponent, canActivate: [AdminGuard]},
+    ]
+  },
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },
   { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
-  
+
 
 ];
 

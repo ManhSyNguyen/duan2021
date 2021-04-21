@@ -68,10 +68,13 @@ export class CartComponent implements OnInit {
   }
 
   delete(id: string) {
-    let index = this.listDataCart.findIndex((i: any) => i.id === id);
-    this.listDataCart.splice(index, 1);
-    localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
-    this.toastService.success('Xóa sản phẩm thành công');
+    const conf = confirm("Bạn có chắc chắn muốn xóa sản phẩm khỏi giỏ hàng ??");
+    if (conf) {
+      let index = this.listDataCart.findIndex((i: any) => i.id === id);
+      this.listDataCart.splice(index, 1);
+      localStorage.setItem("Cart", JSON.stringify(this.listDataCart));
+      this.toastService.success('Xóa sản phẩm thành công');
+    }
   }
 
   buyNow() {

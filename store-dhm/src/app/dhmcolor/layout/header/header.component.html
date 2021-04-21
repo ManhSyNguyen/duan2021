@@ -1,4 +1,4 @@
-<header id="header">
+  <header id="header">
     <!--header-->
     <div class="header_top">
         <!--header_top-->
@@ -41,7 +41,8 @@
                     <div class="shop-menu pull-right">
                         <div class="d-flex" *ngIf="!isLoggedIn">
                             <div>
-                                <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                              <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                              <span *ngIf="listDataCart" class="header__cart-notice">{{listDataCart.length}}</span>
                             </div>
                             <div class="inforCus ml-5">
                                 <a routerLink="login">

@@ -42,7 +42,6 @@ import { DetailOderComponent } from './cmsdhm/oder/detail-oder/detail-oder.compo
 import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
 import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +93,7 @@ import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.compon
           closeButton: false,
           progressBar: false
         }),
+
     ],
   providers: [authInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],

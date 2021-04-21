@@ -29,6 +29,12 @@ public class ProductDetailController {
         return productDetailService.findAllIdProduct(id);
     }
 
+    @GetMapping("/productdetails/{sku}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public  ProductDetailDTO getAllProduct(@PathVariable(name = "sku") String sku) {
+        return productDetailService.findBySku(sku);
+    }
+
     @PostMapping("/productdetail")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

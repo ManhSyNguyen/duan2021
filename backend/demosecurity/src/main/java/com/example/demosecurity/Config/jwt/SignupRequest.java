@@ -24,6 +24,8 @@ public class SignupRequest {
     @NotBlank
     @Size(max = 10)
     private String sodienthoai;
-
+    private String fullname;
+    private Boolean status;
+    private String address;
     private Set<String> role;
 }

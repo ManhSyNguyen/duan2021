@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class ProductDetailConvert {
     public ProductDetail toEntity(ProductDetailDTO dto) {
         ProductDetail entity = new ProductDetail();
-        entity.setQuantity(dto.getQuantity());
+        entity.setQuantityProduct(dto.getQuantityProduct());
         entity.setStatus(dto.getStatus());
         return entity;
     }
@@ -20,13 +20,22 @@ public class ProductDetailConvert {
         dto.setColor(entity.getColor());
         dto.setSize(entity.getSize());
         dto.setStatus(entity.getStatus());
+<<<<<<< HEAD
+=======
+        dto.setSku(entity.getSku());
+>>>>>>> hai
         dto.setCreatedate(entity.getCreatedate());
         dto.setCreateby(entity.getCreateby());
         return dto;
     }
 
     public ProductDetail toEntity(ProductDetailDTO dto, ProductDetail entity) {
+<<<<<<< HEAD
         entity.setQuantity(dto.getQuantity());
+=======
+        String generatedString = RandomStringUtils.randomAlphanumeric(7);
+        entity.setQuantityProduct(dto.getQuantityProduct());
+>>>>>>> hai
         entity.setStatus(dto.getStatus());
         return entity;
     }

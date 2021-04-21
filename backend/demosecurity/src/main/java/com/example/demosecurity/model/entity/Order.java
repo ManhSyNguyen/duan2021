@@ -42,9 +42,13 @@ public class Order {
     @Column(length = 200)
     private String address;
     @Column(length = 20)
+    private String sku;
+    private String quantityOrder;
+    @Column(length = 20)
     private String paymentmethod;
     @Column(length = 255)
     private String decription;
+    private Float totalMonenyOrder;
     @CreatedDate
     private Date createdate;
     @Column(length = 50)

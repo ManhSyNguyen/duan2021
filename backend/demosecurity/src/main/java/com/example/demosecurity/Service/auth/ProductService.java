@@ -33,55 +33,82 @@ public class ProductService {
 
     private static final Logger logger = LogManager.getLogger(ProductService.class);
 
-    public ProductDTO save(ProductDTO productDTO) {
-        Product product= new Product();
-        Category category = categoryRep.findCategoryById(productDTO.getIdcategory());
-        product = productConvert.toEntity(productDTO);
-        Set<ProductDetail> listpt = new HashSet<>();
-        for (ProductDetailDTO pt: productDTO.getProductDetails()) {
-            ProductDetail productDetail = new ProductDetail();
-            Size size = sizeRepo.findSizeById(pt.getIdsize());
-            Color color = colorRepo.findColorById(pt.getIdcolor());
-            productDetail.setColor(color);
-            productDetail.setSize(size);
-            productDetail.setQuantity(pt.getQuantity());
-            listpt.add(productDetail);
+    public String getAlphaNumericString(int n) {
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int) (AlphaNumericString.length()
+                    * Math.random());
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
         }
-        product.setProductDetail(listpt);
-        product.setCategory(category);
-        productRepo.save(product);
-        return productConvert.toDTO(product);
+        return sb.toString();
+    }
+
+    public ProductDTO save(ProductDTO productDTO) {
+        Category category = categoryRep.findCategoryById(productDTO.getIdcategory());
+        if (category != null) {
+            Product product = productConvert.toEntity(productDTO);
+            product.setCategory(category);
+            Set<ProductDetail> listpt = new HashSet<>();
+            for (ProductDetailDTO pt : productDTO.getProductDetails()) {
+                ProductDetail productDetail = new ProductDetail();
+                Size size = sizeRepo.findSizeById(pt.getIdsize());
+                Color color = colorRepo.findColorById(pt.getIdcolor());
+                productDetail.setColor(color);
+                productDetail.setSize(size);
+                productDetail.setSku("DHM" + getAlphaNumericString(5));
+                productDetail.setQuantityProduct(pt.getQuantityProduct());
+                listpt.add(productDetail);
+            }
+            product.setProductDetail(listpt);
+
+            productRepo.save(product);
+            return productConvert.toDTO(product);
+        }
+        return null;
     }
 
     public ProductDTO update(ProductDTO productDTO) {
-        Product newroduct= new Product() ;
         Product oldproduct = productRepo.findProductById(productDTO.getId());
-        newroduct = productConvert.toEntity(productDTO,oldproduct);
+        Product newroduct = productConvert.toEntity(productDTO, oldproduct);
         Category category = categoryRep.findCategoryById(productDTO.getIdcategory());
-        Set<ProductDetail> listpt = new HashSet<>();
-        for (ProductDetailDTO pt: productDTO.getProductDetails()) {
-            ProductDetail productDetail = new ProductDetail();
-            Size size = sizeRepo.findSizeById(pt.getIdsize());
-            Color color = colorRepo.findColorById(pt.getIdcolor());
-            productDetail.setColor(color);
-            productDetail.setSize(size);
-            productDetail.setQuantity(pt.getQuantity());
-            listpt.add(productDetail);
+        if (category != null) {
+            Set<ProductDetail> listpt = new HashSet<>();
+            for (ProductDetailDTO pt : productDTO.getProductDetails()) {
+                ProductDetail productDetail = new ProductDetail();
+                Size size = sizeRepo.findSizeById(pt.getIdsize());
+                Color color = colorRepo.findColorById(pt.getIdcolor());
+                productDetail.setColor(color);
+                productDetail.setSize(size);
+                productDetail.setSku("DHM" + getAlphaNumericString(5));
+                productDetail.setQuantityProduct(pt.getQuantityProduct());
+                listpt.add(productDetail);
+            }
+            newroduct.setProductDetail(listpt);
+            newroduct.setCategory(category);
+            productRepo.save(newroduct);
+            return productConvert.toDTO(newroduct);
         }
-        newroduct.setProductDetail(listpt);
-        newroduct.setCategory(category);
-        productRepo.save(newroduct);
-        return productConvert.toDTO(newroduct);
-
+        return null;
     }
 
     public void delete(Long id) {
         try {
             Optional<Product> product = productRepo.findById(id);
-            if(product!=null){
+            if (product != null) {
                 productRepo.deleteById(id);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }
@@ -91,12 +118,12 @@ public class ProductService {
         List<ProductDTO> results = new ArrayList<>();
         try {
             List<Product> entities = productRepo.findAll(pageable).getContent();
-            for (Product item: entities) {
+            for (Product item : entities) {
                 ProductDTO productDTO = productConvert.toDTO(item);
                 results.add(productDTO);
             }
             return results;
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
         return results;
@@ -106,7 +133,7 @@ public class ProductService {
     public int totalItem() {
         try {
             return (int) productRepo.count();
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
         return 1;
@@ -115,21 +142,22 @@ public class ProductService {
     public List<ProductDTO> findAll() {
         List<ProductDTO> results = new ArrayList<>();
         List<Product> entities = productRepo.findAll();
-        for (Product item: entities) {
+        for (Product item : entities) {
             ProductDTO newDTO = productConvert.toDTO(item);
             results.add(newDTO);
         }
         return results;
     }
 
-    public ProductDTO findProductById(long id){
-      Product product =  productRepo.findProductById(id);
+    public ProductDTO findProductById(long id) {
+        Product product = productRepo.findProductById(id);
         return productConvert.toDTO(product);
     }
+
     public List<ProductDTO> getProductByCategory(Long id) {
         List<ProductDTO> results = new ArrayList<>();
         List<Product> entities = productRepo.findByCategoryIdOrderByCreatedateDesc(id);
-        for (Product item: entities) {
+        for (Product item : entities) {
             ProductDTO newDTO = productConvert.toDTO(item);
             results.add(newDTO);
         }

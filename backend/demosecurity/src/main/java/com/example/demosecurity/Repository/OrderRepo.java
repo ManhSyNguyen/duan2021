@@ -18,4 +18,11 @@ public interface OrderRepo extends JpaRepository<Order,Long> {
 
     @Query("select o FROM orders o where o.status = :status")
     List<Order> findAllByStatus(@Param("status") Integer status);
+
+    @Query("select o FROM orders o where o.users.username = :username")
+    List<Order> findAllByUsername(@Param("username") String username);
+
+    @Query("select o FROM orders o where o.users.username = :username and o.status = :status")
+    List<Order> findAllByUsernameAndStatus(@Param("status") Integer status,@Param("username") String username);
+
 }

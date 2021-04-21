@@ -30,7 +30,7 @@ export class OdersComponent implements OnInit {
       }
     });
   }
-  getText(text) {
+  getText(text: any) {
     if (text == '0'){
       return 'Chờ xác nhận';
     }

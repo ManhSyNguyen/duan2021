@@ -113,7 +113,6 @@ public class APIAdminController {
         );
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
-        System.out.println("role"+strRoles);
         if (strRoles==null) {
             Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

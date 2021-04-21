@@ -47,6 +47,7 @@ public class ProductDetailConvert {
         dto.setColor(entity.getColor());
         dto.setSize(entity.getSize());
         dto.setStatus(entity.getStatus());
+
         dto.setCreatedate(entity.getCreatedate());
         dto.setCreateby(entity.getCreateby());
         return dto;

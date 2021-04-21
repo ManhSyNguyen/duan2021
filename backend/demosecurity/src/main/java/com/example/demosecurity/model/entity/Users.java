@@ -25,6 +25,9 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "fullname",columnDefinition = "VARCHAR(100)")
+    private String fullname;
+
     @Column(unique=true,name = "username",columnDefinition = "VARCHAR(20)  NULL")
     private String username;
 
@@ -37,6 +40,11 @@ public class Users {
 
     @Column(unique=true,name = "sodienthoai",columnDefinition = "VARCHAR(10)  NULL")
     private String sodienthoai;
+
+    private Boolean Status;
+
+    @Column(name = "address",columnDefinition = "VARCHAR(200)")
+    private String address;
 
     @CreatedDate
     private Date createdate;

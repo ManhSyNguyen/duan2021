@@ -21,4 +21,10 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Boolean existsByEmail(String email);
     Boolean existsBySodienthoai(String sodienthoai);
+
+
+//    @Query("Select u from  users u left join users b on u.id= b.idUser where b.namerole = 'ROLE_USER'")
+//    List<Users> findUserByRoleAdmin(@Param("username") String username);
+//    List<Users> findUserByRoleAdmin(@Param("username") String username);
+
 }

@@ -33,14 +33,13 @@ public class Product {
 
     @Column(name = "nameproduct",columnDefinition = "VARCHAR(100)  NULL")
     private String nameproduct;
-    private Float price;
+    private Float priceProduct;
     private Integer status;
     @Column(name = "image",columnDefinition = "VARCHAR(255)  NULL")
     private String image;
     @Column(name = "decription",columnDefinition = "VARCHAR(255)  NULL")
     private String decription;
     private Integer purchase;
-    private Integer count;
     @CreatedDate
     private Date createdate;
 
@@ -68,12 +67,11 @@ public class Product {
                 "id=" + id +
                 ", category=" + category +
                 ", nameproduct='" + nameproduct + '\'' +
-                ", price=" + price +
+                ", priceProduct=" + priceProduct +
                 ", status=" + status +
                 ", image='" + image + '\'' +
                 ", decription='" + decription + '\'' +
                 ", purchase=" + purchase +
-                ", count=" + count +
                 ", createdate=" + createdate +
                 ", createby='" + createby + '\'' +
                 ", productDetail=" + productDetail +

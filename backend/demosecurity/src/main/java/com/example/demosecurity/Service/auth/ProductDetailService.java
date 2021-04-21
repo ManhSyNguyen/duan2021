@@ -33,7 +33,7 @@ public class ProductDetailService {
     private static final Logger logger = LogManager.getLogger(ProductDetailService.class);
 
     public ProductDetailDTO save(ProductDetailDTO productDetailDTO) {
-        ProductDetail productDetail= new ProductDetail();
+        ProductDetail productDetail;
         Product product = productRepo.findProductById(productDetailDTO.getIdproduct());
         Color color = colorRepo.findColorById(productDetailDTO.getIdcolor());
         Size size = sizeRepo.findSizeById(productDetailDTO.getIdcolor());

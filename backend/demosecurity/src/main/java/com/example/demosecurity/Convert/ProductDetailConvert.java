@@ -35,7 +35,7 @@ public class ProductDetailConvert {
 
     public ProductDetail toEntity(ProductDetailDTO dto) {
         ProductDetail entity = new ProductDetail();
-        entity.setQuantity(dto.getQuantity());
+        entity.setQuantityProduct(dto.getQuantityProduct());
         entity.setStatus(dto.getStatus());
         return entity;
     }
@@ -55,7 +55,7 @@ public class ProductDetailConvert {
 
     public ProductDetail toEntity(ProductDetailDTO dto, ProductDetail entity) {
         String generatedString = RandomStringUtils.randomAlphanumeric(7);
-        entity.setQuantity(dto.getQuantity());
+        entity.setQuantityProduct(dto.getQuantityProduct());
         entity.setStatus(dto.getStatus());
         entity.setSku("DHM"+ getAlphaNumericString(5));
         return entity;

@@ -15,6 +15,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UsersRepository usersRepository;
+
     public List<Users> findAllUser(Integer pageNo,Integer sizeNo){
         Pageable page = PageRequest.of(pageNo,sizeNo);
         Page<Users> result = usersRepository.findAll(page);
@@ -24,8 +25,31 @@ public class UserService {
             return new ArrayList<Users>();
         }
     }
-    public Users findUserById(Long id,Users users){
+    public List<Users> findAllUserByRoleAdmin(Integer pageNo,Integer sizeNo){
+        Pageable page = PageRequest.of(pageNo,sizeNo);
+        Page<Users> result = usersRepository.findAll(page);
+        if(result.hasContent()){
+            return result.getContent();
+        }else{
+            return new ArrayList<Users>();
+        }
+    }
+
+    public List<Users> findAllUserRoleMod(Integer pageNo,Integer sizeNo){
+        Pageable page = PageRequest.of(pageNo,sizeNo);
+        Page<Users> result = usersRepository.findAll(page);
+        if(result.hasContent()){
+            return result.getContent();
+        }else{
+            return new ArrayList<Users>();
+        }
+    }
+    public Users findUserById(Long id){
        return usersRepository.findUsersById(id);
+    }
+
+    public Users findUserUsername(String username){
+        return usersRepository.findUserByUsername(username);
     }
 
 

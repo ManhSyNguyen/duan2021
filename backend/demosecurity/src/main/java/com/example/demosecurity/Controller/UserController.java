@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +41,18 @@ public class UserController {
         List<Users> list = userService.findAllUser(pageNo, sizeNo);
         return new ResponseEntity<List<Users>>(list, HttpStatus.OK);
     }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> findUserById(@PathVariable("id") Long id){
+        Users us = userService.findUserById(id);
+        return new ResponseEntity<Users>(us, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/username")
+    public ResponseEntity<?> findUserUsername(Principal pc){
+        Users us = userService.findUserUsername(pc.getName());
+        return new ResponseEntity<Users>(us, HttpStatus.OK);
+    }
+
 
     @PutMapping("user/{id}")
     public ResponseEntity<?> updateUser(@Valid @PathVariable("id") Long id, @RequestBody SignupRequest signUpRequest) {
@@ -74,8 +87,10 @@ public class UserController {
         }else{
             newUser.setSodienthoai(signUpRequest.getSodienthoai());
         }
-
-        newUser.setPassword(encode.encode(signUpRequest.getPassword()));
+        newUser.setFullname(signUpRequest.getFullname());
+        newUser.setSodienthoai(signUpRequest.getSodienthoai());
+        newUser.setStatus(signUpRequest.getStatus());
+        newUser.setAddress(signUpRequest.getAddress());
        //  Create new user's account
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();

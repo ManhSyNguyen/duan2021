@@ -33,9 +33,6 @@ public class OrderController {
         return orderService.findAll();
     }
 
-<<<<<<< HEAD
-    @PostMapping("/order")
-=======
     @GetMapping("/orders/status")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Integer> getStatus() {
@@ -61,7 +58,6 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
->>>>>>> hai
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public OrderDTO createOrder(@RequestBody OrderDTO orderDTO) {

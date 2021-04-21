@@ -36,7 +36,6 @@ public class ProductConvert {
         dto.setPriceProduct(entity.getPriceProduct());
         dto.setStatus(entity.getStatus());
         dto.setImage(entity.getImage());
-        dto.setSku(entity.getSku());
         dto.setPurchase(entity.getPurchase());
         dto.setCreatedate(entity.getCreatedate());
         dto.setCreateby(entity.getCreateby());

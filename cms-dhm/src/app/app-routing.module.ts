@@ -9,6 +9,7 @@ import { AddCustomerComponent } from './cms-dhm/customers/add-customer/add-custo
 import { CustomerComponent } from './cms-dhm/customers/customer/customer.component';
 import { EditCustomerComponent } from './cms-dhm/customers/edit-customer/edit-customer.component';
 import { DashboardComponent } from './cms-dhm/dashboard/dashboard.component';
+import { LayoutComponent } from './cms-dhm/layout/layout.component';
 import { DetailOderComponent } from './cms-dhm/oder/detail-oder/detail-oder.component';
 import { OdersComponent } from './cms-dhm/oder/oders/oders.component';
 import { Page404Component } from './cms-dhm/page404/page404.component';
@@ -26,7 +27,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: 'login', redirectTo: 'login', pathMatch: 'full' },
   {
-    path: '', component: LayoutMemberComponent, canActivate: [AdminGuard],
+    path: '', component: LayoutComponent, canActivate: [AdminGuard],
     children: [
       { path: '',
         component: DashboardComponent,

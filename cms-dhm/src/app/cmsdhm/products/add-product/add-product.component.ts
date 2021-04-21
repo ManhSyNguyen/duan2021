@@ -94,35 +94,35 @@ export class AddProductComponent implements OnInit {
     };
     this.listColorandSize.push(params);
   }
-  getColor(text) {
-    if (text == '1') {
-      return 'Pink';
-    }
-    if (text == '2') {
-      return 'Red';
-    }
-    if (text == '3') {
-      return 'Black';
-    }
-    if (text == '4') {
-      return 'White';
-    }
-    if (text == '5') {
-      return 'Green';
-    }
-  }
-  getSize(text) {
-    if (text == '1') {
-      return 'XX';
-    }
-    if (text == '2') {
-      return 'XL';
-    }
-    if (text == '3') {
-      return 'M';
-    }
-    if (text == '4') {
-      return 'S';
-    }
-  }
+  // getColor(text) {
+  //   if (text == '1') {
+  //     return 'Pink';
+  //   }
+  //   if (text == '2') {
+  //     return 'Red';
+  //   }
+  //   if (text == '3') {
+  //     return 'Black';
+  //   }
+  //   if (text == '4') {
+  //     return 'White';
+  //   }
+  //   if (text == '5') {
+  //     return 'Green';
+  //   }
+  // }
+  // getSize(text) {
+  //   if (text == '1') {
+  //     return 'XX';
+  //   }
+  //   if (text == '2') {
+  //     return 'XL';
+  //   }
+  //   if (text == '3') {
+  //     return 'M';
+  //   }
+  //   if (text == '4') {
+  //     return 'S';
+  //   }
+  // }
 }

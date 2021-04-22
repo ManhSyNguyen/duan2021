@@ -777,8 +777,8 @@ h2.title {
   font-size: 1.2rem;
   line-height: 1.4rem;
   border-radius: 10px;
-  top: 0;
-  right: 108px;
+  margin-top: -30px;
+  margin-left: 65px;
 }
 .product-overlay p {
   font-family: "Roboto", sans-serif;

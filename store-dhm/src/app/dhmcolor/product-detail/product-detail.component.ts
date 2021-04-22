@@ -40,8 +40,7 @@ export class ProductDetailComponent implements OnInit {
       this.ProductService.getProductById(productId).subscribe(data => {
         this.colorSizeDetail = data;
         this.productDetail = data[0].product;
-        console.log(`object`, this.productDetail)
-      })
+      });
     });
   }
   getListAllProduct() {

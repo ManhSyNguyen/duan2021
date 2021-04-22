@@ -47,13 +47,15 @@ const routes: Routes = [
       //type
       { path: 'type', component: ProductTypeComponent },
       //customer
-      { path: 'customer', component: CustomerComponent },
-      { path: 'add-customer', component: AddCustomerComponent },
-      { path: 'edit-customer', component: EditCustomerComponent },
+
+      { path: 'customer', component: CustomerComponent, canActivate: [AdminGuard] },
+      { path: 'add-customer', component: AddCustomerComponent, canActivate: [AdminGuard] },
+      { path: 'edit-customer/:id', component: EditCustomerComponent, canActivate: [AdminGuard] },
       //account
-      { path: 'accounts', component: AccountsComponent },
-      { path: 'add-account', component: AddAccountComponent },
-      { path: 'edit-account', component: EditAccountComponent },
+      { path: 'accounts', component: AccountsComponent, canActivate: [AdminGuard] },
+      { path: 'add-account', component: AddAccountComponent, canActivate: [AdminGuard] },
+      { path: 'edit-account/:id', component: EditAccountComponent, canActivate: [AdminGuard] },
+
       //oder
       {path: 'oders', component:OdersComponent},
       {path:'detail-order', component:DetailOderComponent},

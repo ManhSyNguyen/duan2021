@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-accounts',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-
-  constructor() { }
+  listUser: any[] = [];
+  constructor(
+    private userService: UserService,
+  ) { }
 
   ngOnInit(): void {
+    this.getUser();
   }
-
+  getUser() {
+    this.userService.findAllUser().subscribe(res => {
+      if (res) {
+        res.map((x: any) => {
+            x.roles.map((o: any) => {
+              if (o.namerole === 'ROLE_MODERATOR')
+              {
+                this.listUser.push(x);
+              }
+            });
+          });
+        console.log(this.listUser);
+      }
+    });
+  }
 }

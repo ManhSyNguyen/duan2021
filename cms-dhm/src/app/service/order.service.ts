@@ -15,4 +15,8 @@ export class OrderService {
   getOrderByStatus(status: any): Observable<any> {
     return this.http.get<any>(`${this.api + '/orders/bystatus'}/${status}`);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> duong

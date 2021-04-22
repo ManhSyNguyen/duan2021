@@ -14,8 +14,13 @@
             </div>
         </div>
         <div class="col d-flex">
+<<<<<<< HEAD:cms-dhm/src/app/cms-dhm/oder/oders/oders.component.html
             <select class="form-control" formControlName="status" (change)="getOrderByStatus($event)">
                 <option value="" selected>Lọc theo trạng thái</option>
+=======
+            <select class="form-control">
+                <option value="">Lọc theo trạng thái</option>
+>>>>>>> duong:cms-dhm/src/app/cmsdhm/oder/oders/oders.component.html
                 <option value="0">Chờ xác nhận</option>
                 <option value="1">Chờ lấy hàng</option>
                 <option value="2">Đang giao</option>
@@ -45,12 +50,20 @@
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD:cms-dhm/src/app/cms-dhm/oder/oders/oders.component.html
+=======
+
+>>>>>>> duong:cms-dhm/src/app/cmsdhm/oder/oders/oders.component.html
                     <tr *ngFor="let item of listOrder">
                         <td> <a class="text-decoration-none" routerLink='/detail-order'>{{item.id}}</a></td>
                         <td>{{item.createby}}</td>
                         <td>{{item.phone}}</td>
                         <td>{{item.address}}</td>
+<<<<<<< HEAD:cms-dhm/src/app/cms-dhm/oder/oders/oders.component.html
                         <td><span class="badge badge-danger">{{(item.status)}}</span></td>
+=======
+                        <td><span class="badge badge-danger">{{item.status}}</span></td>
+>>>>>>> duong:cms-dhm/src/app/cmsdhm/oder/oders/oders.component.html
                         <td>{{item.price | number}} vnđ</td>
                     </tr>
                 </tbody>

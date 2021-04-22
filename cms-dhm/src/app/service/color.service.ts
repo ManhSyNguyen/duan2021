@@ -13,4 +13,8 @@ export class ColorService {
   getAll(): Observable<any> {
     return this.http.get<any>(this.api + '/colors');
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> duong

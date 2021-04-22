@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../service/user.service";
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../../service/user.service';
 
 @Component({
-  selector: 'app-accounts',
-  templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  selector: 'app-customer',
+  templateUrl: './customer.component.html',
+  styleUrls: ['./customer.component.css']
 })
-export class AccountsComponent implements OnInit {
+export class CustomerComponent implements OnInit {
   listUser: any[] = [];
+
   constructor(
     private userService: UserService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.getUser();
   }
+
   getUser() {
     this.userService.findAllUser().subscribe(res => {
       if (res) {
         res.map((x: any) => {
             x.roles.map((o: any) => {
-              if (o.namerole === 'ROLE_MODERATOR')
+              if (o.namerole === 'ROLE_USER')
               {
                 this.listUser.push(x);
               }
@@ -29,5 +32,8 @@ export class AccountsComponent implements OnInit {
         console.log(this.listUser);
       }
     });
+  }
+  delete(item: any) {
+
   }
 }

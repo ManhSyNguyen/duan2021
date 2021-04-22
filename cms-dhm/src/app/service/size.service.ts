@@ -13,4 +13,8 @@ export class SizeService {
   getAll(): Observable<any> {
     return this.http.get<any>(this.api + '/sizes');
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> duong

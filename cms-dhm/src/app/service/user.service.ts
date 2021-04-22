@@ -13,4 +13,10 @@ export class UserService {
   findAllUser(): Observable<any> {
     return this.http.get<any>(this.api + '/users');
   }
+<<<<<<< HEAD
+=======
+  findUserById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.api + '/user'}/${id}`);
+  }
+>>>>>>> duong
 }

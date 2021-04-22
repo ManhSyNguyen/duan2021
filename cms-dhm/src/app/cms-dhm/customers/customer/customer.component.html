@@ -17,26 +17,19 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of listUser">
-<<<<<<< HEAD:cms-dhm/src/app/cms-dhm/customers/customer/customer.component.html
-                        <td>manhns15</td>
-                        <td>Nguyen Sy Manh</td>
-                        <td>manhns15@gmail.com</td>
-                        <td>2021/01/20</td>
-=======
                         <td>{{item.username}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.sodienthoai}}</td>
                         <td>{{item.createdate | date:'dd/MM/yyyy'}}</td>
->>>>>>> duong:cms-dhm/src/app/cmsdhm/customers/customer/customer.component.html
                         <td>
                             <div class="btn-option">
                                 <a routerLink="/edit-customer">
                                     <button class="btn btn-dark btn-sm" type="button">
                                         <i class="fas fa-edit"></i></button></a>
                                 &nbsp;
-                                <button class="btn btn-danger btn-sm" type="button" (click)="delete(item)">
+                                <!-- <button class="btn btn-danger btn-sm" type="button" (click)="delete(item)">
                                     <i class="fas fa-trash-alt"></i>
-                                </button>
+                                </button> -->
                             </div>
                         </td>
                     </tr>

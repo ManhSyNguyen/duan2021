@@ -21,9 +21,19 @@ export class CustomerComponent implements OnInit {
   getUser() {
     this.userService.findAllUser().subscribe(res => {
       if (res) {
-        console.log(res);
+        res.map((x: any) => {
+            x.roles.map((o: any) => {
+              if (o.namerole === 'ROLE_USER')
+              {
+                this.listUser.push(x);
+              }
+            });
+          });
+        console.log(this.listUser);
       }
     });
   }
+  delete(item: any) {
 
+  }
 }

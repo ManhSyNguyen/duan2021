@@ -94,38 +94,99 @@ public class UserController {
        //  Create new user's account
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
-        if(us.getRoles().isEmpty()){
-            if (strRoles.isEmpty()) {
-                Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                        .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                roles.add(userRole);
-            } else {
-                strRoles.forEach(role -> {
-                    switch (role) {
-                        case "admin":
-                            Role adminRole = roleRepository.findByNamerole(ERole.ROLE_ADMIN)
-                                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                            roles.add(adminRole);
+        if (strRoles==null) {
+            Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByNamerole(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
 
-                            break;
-                        case "mod":
-                            Role modRole = roleRepository.findByNamerole(ERole.ROLE_MODERATOR)
-                                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                            roles.add(modRole);
+                        break;
+                    case "mod":
+                        Role modRole = roleRepository.findByNamerole(ERole.ROLE_MODERATOR)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(modRole);
 
-                            break;
-                        default:
-                            Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                            roles.add(userRole);
-                    }
-                });
-            }
-            newUser.setRoles(roles);
+                        break;
+                    default:
+                        Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                }
+            });
         }
-        newUser.setRoles(us.getRoles());
+
+        newUser.setRoles(roles);
         usersRepository.save(newUser);
         return ResponseEntity.ok(new MessageResponse("User update successfully!"));
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (usersRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Lỗi: Tên người dùng đã được sử dụng!"));
+        }
+
+        if (usersRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Lỗi: Email đã được sử dụng!"));
+        }
+        if (usersRepository.existsBySodienthoai(signUpRequest.getSodienthoai())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Lỗi: Số điện thoại đã được sử dụng!"));
+        }
+
+        // Create new user's account
+        Users user = new Users(signUpRequest.getUsername(),
+                encode.encode(signUpRequest.getPassword()),
+                signUpRequest.getEmail(),signUpRequest.getSodienthoai()
+        );
+        user.setFullname(signUpRequest.getFullname());
+        user.setSodienthoai(signUpRequest.getSodienthoai());
+        user.setStatus(signUpRequest.getStatus());
+        user.setAddress(signUpRequest.getAddress());
+        Set<String> strRoles = signUpRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+        if (strRoles==null) {
+            Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByNamerole(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+
+                        break;
+                    case "mod":
+                        Role modRole = roleRepository.findByNamerole(ERole.ROLE_MODERATOR)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(modRole);
+
+                        break;
+                    default:
+                        Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                }
+            });
+        }
+
+        user.setRoles(roles);
+        usersRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
 }

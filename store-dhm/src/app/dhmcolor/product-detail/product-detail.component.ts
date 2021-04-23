@@ -54,7 +54,7 @@ export class ProductDetailComponent implements OnInit {
     if (conf) {
       this.colorSizeDetail.forEach(i => {
         if (this.sizeSelect === i.size.namesize) {
-          i.quantity++ ;
+          i.quantityProduct++ ;
           this.CartService.addCart(i);
           this.toastService.success("Thêm giỏ hàng thành công");
         }

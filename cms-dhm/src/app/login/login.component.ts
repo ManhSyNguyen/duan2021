@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
         if (e === "ROLE_ADMIN"){
           this.reloadPage();
         }else{
-          this.toastService.error("Bạn không có quyền vào");
+          sessionStorage.clear();
+          window.location.reload();
         }
         });
     },err => {

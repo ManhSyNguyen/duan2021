@@ -50,13 +50,9 @@ export class CartService {
         const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
         let totalPriceValue: number = 0;
         let totalQtyValue: number = 0;
-        // for (let currentCartItem of this.cartItems) {
-        //     totalPriceValue += currentCartItem.quantity * currentCartItem.price;
-        //     totalQtyValue += currentCartItem.quantity;
-        // }
         for( const item of listDataCart) {
-          totalPriceValue += item.quantity * item.product.price;
-          totalQtyValue += item.quantity;
+          totalPriceValue += item.quantityProduct * item.product.priceProduct;
+          totalQtyValue += item.quantityProduct;
         }
         this.totalQty.next(totalQtyValue);
         this.totalPrice.next(totalPriceValue);
@@ -65,15 +61,15 @@ export class CartService {
     logCartData(totalPriceValue: number, totalQuantityValue: number) {
       const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
         for (let items of listDataCart) {
-            const subTotalPrice = items.quantity * items.product.price;
+            const subTotalPrice = items.quantityProduct * items.product.priceProduct;
         }
     }
     addQuantity(theCartItem: any) {
-      theCartItem.quantity++;
+      theCartItem.quantityProduct++;
       localStorage.setItem("Cart", JSON.stringify(theCartItem));
     }
     decrementQuantity(theCartItem: any) {
-      theCartItem.quantity--;
+      theCartItem.quantityProduct--;
       localStorage.setItem("Cart", JSON.stringify(theCartItem));
     }
 }

@@ -38,7 +38,7 @@ export class AddProductComponent implements OnInit {
       image : [''],
       price : [''],
       decription : [''],
-      quantity: [''],
+      quantityProduct: [''],
       idcolor: [''],
       idsize: [''],
       status: [1],
@@ -73,7 +73,7 @@ export class AddProductComponent implements OnInit {
     let obj = {
       idcategory : this.if.idcategory.value,
       nameproduct : this.if.nameproduct.value,
-      price : this.if.price.value,
+      priceProduct : this.if.price.value,
       image: this.if.image.value,
       decription : this.if.decription.value,
       productDetails: this.listColorandSize,
@@ -90,39 +90,8 @@ export class AddProductComponent implements OnInit {
     let params = {
       idcolor: this.if.idcolor.value,
       idsize: this.if.idsize.value,
-      quantity: this.if.quantity.value,
+      quantityProduct: this.if.quantityProduct.value,
     };
     this.listColorandSize.push(params);
   }
-  // getColor(text) {
-  //   if (text == '1') {
-  //     return 'Pink';
-  //   }
-  //   if (text == '2') {
-  //     return 'Red';
-  //   }
-  //   if (text == '3') {
-  //     return 'Black';
-  //   }
-  //   if (text == '4') {
-  //     return 'White';
-  //   }
-  //   if (text == '5') {
-  //     return 'Green';
-  //   }
-  // }
-  // getSize(text) {
-  //   if (text == '1') {
-  //     return 'XX';
-  //   }
-  //   if (text == '2') {
-  //     return 'XL';
-  //   }
-  //   if (text == '3') {
-  //     return 'M';
-  //   }
-  //   if (text == '4') {
-  //     return 'S';
-  //   }
-  // }
 }

@@ -4,8 +4,17 @@
         <div class="row profile">
             <div class="col-md-3">
                 <div class="profile-sidebar ">
-                    <div class="profile-userpic"> <img src="assets/images/51f6fb256629fc755b8870c801092942.png"
-                            class="img-responsive" alt="Thông tin cá nhân">
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload"></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="imagePreview">
+                                <img src="assets/images/51f6fb256629fc755b8870c801092942.png" class="img-responsive"
+                                    alt="Thông tin cá nhân">
+                            </div>
+                        </div>
                     </div>
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">Tên đăng nhập: {{username}}</div>
@@ -22,11 +31,6 @@
                                     <i class="glyphicon glyphicon-info-sign"></i>
                                     Cập nhật thông tin cá nhân </a>
                             </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                    <i class="glyphicon glyphicon-lock"></i>
-                                    Đổi mật khẩu </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -40,43 +44,26 @@
                     </div>
                 </div>
                 <div class="my-account-profile__left">
-                    <div class="input-with-label">
-                        <div class="input-with-label__wrapper">
-                            <div class="input-with-label__label">
-                                <span>Tên đăng nhập: </span>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Họ và tên</label>
+                                <input type="text" class="inp_checkout form-control" value="{{username}}" disabled>
+                                <label for="">Số điện thoại</label>
+                                <input type="text" class="inp_checkout form-control" disabled>
                             </div>
-                            <div class="input-with-label__content">
-                                <div class="my-account__inline-container">
-                                    <div class="my-account__input-text">{{username}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-with-label">
-                        <div class="input-with-label__wrapper">
-                            <div class="input-with-label__label">
-                                <span>Email: </span>
-                            </div>
-                            <div class="input-with-label__content">
-                                <div class="my-account__inline-container">
-                                    <div class="my-account__input-text">{{email}}</div>
-                                </div>
+                            <div class="col">
+                                <label for="">Email</label>
+                                <input type="text" class="inp_checkout form-control" disabled value="{{email}}">
+                                <label for="">Mật khẩu</label>
+                                <input type="password" class="inp_checkout form-control" disabled>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="input-with-label">
-                        <div class="input-with-label__wrapper">
-                            <div class="input-with-label__label">
-                                <span>Số điện thoại: </span>
-                            </div>
-                            <div class="input-with-label__content">
-                                <div class="my-account__inline-container">
-                                    <div class="my-account__input-text">*********24</div>
-                                </div>
-                            </div>
+                        <div class="profile-sm">
+                            <button type="submit" class="btn btn-success btn-sm">Thay đổi</button>
+                            <button type="submit" class="btn btn-danger btn-sm" disabled>Hủy</button>
                         </div>
-                    </div>
+                    </form>
 
                 </div>
 

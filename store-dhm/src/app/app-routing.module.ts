@@ -5,6 +5,7 @@ import { AboutComponent } from './dhmcolor/about/about.component';
 import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-product.component';
 import { CartComponent } from './dhmcolor/cart/cart.component';
 import { ContactComponent } from './dhmcolor/contact/contact.component';
+import { ForgotPassComponent } from './dhmcolor/forgot-pass/forgot-pass.component';
 import { HomeComponent } from './dhmcolor/home/home.component';
 import { InforUserComponent } from './dhmcolor/infor-user/infor-user.component';
 import { LayoutComponent } from './dhmcolor/layout/layout.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {path:'forgot-pass' ,component: ForgotPassComponent},
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },
   { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
 ];

@@ -41,7 +41,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá</label>
-                                <input type="text" class="form-control" formControlName="price"/>
+                                <input type="text" class="form-control" formControlName="priceProduct"/>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Mô tả</label>
@@ -78,7 +78,7 @@
                                             <div class="col-md-4">
                                                 <label for="exampleInputEmail1">Số lượng</label>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" formControlName="quantity"/>
+                                                    <input type="number" class="form-control" min = 1 formControlName="quantityProduct"/>
                                                 </div>
                                             </div>
 
@@ -96,9 +96,9 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let item of listColorSize">
-                                                                <td>{{item[0].namecolor}}</td>
-                                                                <td>{{item[1].namesize}}</td>
-                                                                <td>{{item.quantity}}</td>
+                                                                <td>{{item.idcolor}}</td>
+                                                                <td>{{item.idsize}}</td>
+                                                                <td>{{item.quantityProduct}}</td>
                                                                 <td>
                                                                   <button type="submit" class="btn btn-danger btn-sm" (click)="xoa()">Xóa</button>
                                                                 </td>
@@ -130,7 +130,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Thương hiệu</label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" formControlName="idcategory">
                                               <option value="">Lựa chọn thương hiệu</option>
                                               <option *ngFor="let items of listCategory" value="{{items.id}}">{{items.name}}</option>
                                             </select>
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="form-group" style="padding-top: 20px;">
-                <button type="submit" class="btn btn-primary btn-sm">Lưu</button>&nbsp;
+                <button type="submit" class="btn btn-primary btn-sm" (click)="update()">Lưu</button>&nbsp;
                 <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
             </div>
         </form>

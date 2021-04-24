@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {CategoryService} from "../../../service/categorys.service";
 import {ColorService} from "../../../service/color.service";
 import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-product',
@@ -25,7 +26,6 @@ export class AddProductComponent implements OnInit {
     private categoryService: CategoryService,
     private formBuild: FormBuilder,
     private productService: ProductService,
-    private toastService: ToastrService,
     private router: Router
   ) { }
 
@@ -36,7 +36,7 @@ export class AddProductComponent implements OnInit {
     this.inputForm = this.formBuild.group({
       nameproduct : [''],
       image : [''],
-      price : [''],
+      priceProduct : [''],
       decription : [''],
       quantityProduct: [''],
       idcolor: [''],
@@ -73,7 +73,7 @@ export class AddProductComponent implements OnInit {
     let obj = {
       idcategory : this.if.idcategory.value,
       nameproduct : this.if.nameproduct.value,
-      priceProduct : this.if.price.value,
+      priceProduct : this.if.priceProduct.value,
       image: this.if.image.value,
       decription : this.if.decription.value,
       productDetails: this.listColorandSize,
@@ -81,7 +81,7 @@ export class AddProductComponent implements OnInit {
     };
     this.productService.createProduct(obj).subscribe(res => {
       if (res) {
-        this.toastService.success("Thêm sản phẩm thành công");
+        Swal.fire('Success!', 'Thêm sản phẩm thành công!', 'success')
         this.router.navigate(['/products']);
       }
     });
@@ -93,5 +93,60 @@ export class AddProductComponent implements OnInit {
       quantityProduct: this.if.quantityProduct.value,
     };
     this.listColorandSize.push(params);
+  }
+  // tslint:disable-next-line:typedef
+  // @ts-ignore
+  // tslint:disable-next-line:typedef
+  getTextColor(text: any) {
+    if (text === '1') {
+      return "Pink";
+    }
+    if (text === '2') {
+      return "Red";
+    }
+    if (text === '3') {
+      return "Black";
+    }
+    if (text === '4') {
+      return "White";
+    }
+    if (text === '5') {
+      return "Green";
+    }
+  }
+  // tslint:disable-next-line:typedef
+  // @ts-ignore
+  // tslint:disable-next-line:typedef
+  getTextSize(text: any) {
+    if (text === '1') {
+      return "XX";
+    }
+    if (text === '2') {
+      return "XL";
+    }
+    if (text === '3') {
+      return "M";
+    }
+    if (text === '4') {
+      return "S";
+    }
+    if (text === '5') {
+      return "L";
+    }
+  }
+  xoa() {
+    Swal.fire({
+      title: 'Chắc chắn chưa bạn êii ?',
+      text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Xóa hộ cái bạn êii !',
+      cancelButtonText: 'Bỏ ra bạn êii !',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let index = 0;
+        this.listColorandSize.splice(index, 1);
+      }
+    });
   }
 }

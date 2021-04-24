@@ -41,15 +41,20 @@ export class LoginComponent implements OnInit {
       this.isLoginFailed = false;
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      console.log(this.roles);
-      this.roles.map(e=>{
-        if (e === "ROLE_ADMIN"){
-          this.reloadPage();
-        }else{
-          sessionStorage.clear();
-          window.location.reload();
-        }
+      if (this.roles.length !== 0){
+        this.roles.map(e => {
+          if (e === "ROLE_ADMIN"){
+            this.reloadPage();
+          }else{
+            this.tokenStorage.signOut();
+            window.location.reload();
+          }
         });
+      }else{
+        this.tokenStorage.signOut();
+        window.location.reload();
+      }
+
     },err => {
       this.errorMessage = err.error.message;
       this.isLoginFailed = true;

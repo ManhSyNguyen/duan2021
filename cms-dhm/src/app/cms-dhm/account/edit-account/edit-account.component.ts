@@ -5,7 +5,7 @@ import {CategoryService} from "../../../service/categorys.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../service/user.service";
 
 @Component({
@@ -20,7 +20,8 @@ export class EditAccountComponent implements OnInit {
     private formBuild: FormBuilder,
     private toastService: ToastrService,
     private activateRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class EditAccountComponent implements OnInit {
       sodienthoai: [''],
       email: [''],
       status: [],
-      password: []
+      role: [],
     });
   }
   get if(): any {
@@ -43,12 +44,31 @@ export class EditAccountComponent implements OnInit {
       this.userService.findUserById(userId).subscribe(data => {
         this.userDetail = data;
         this.if.username.setValue(data.username);
-        // tslint:disable-next-line:no-unused-expression
-        this.if.username.disable;
         this.if.sodienthoai.setValue(data.sodienthoai);
         this.if.email.setValue(data.email);
         this.if.status.setValue(data.status);
-        this.if.password.setValue(data.createdate);
+        data.roles.map( (e: any) => {
+          this.if.role.setValue(e.namerole);
+        });
+      });
+    });
+  }
+  update() {
+    this.activateRoute.paramMap.subscribe(params => {
+      let userId = params.get('id');
+      let param = {
+        id: userId,
+        username: this.if.username.value,
+        sodienthoai: this.if.sodienthoai.value,
+        email: this.if.email.value,
+        role: [this.if.role.value],
+        status: this.if.status.value,
+      };
+      console.log("hehe",param);
+      this.userService.update(param, userId).subscribe(res => {
+        if (res){
+          this.router.navigate(['/accounts']);
+        }
       });
     });
   }

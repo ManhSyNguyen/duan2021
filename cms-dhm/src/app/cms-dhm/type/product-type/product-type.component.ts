@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CategoryService} from "../../../service/categorys.service";
 import {ToastrService} from "ngx-toastr";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-product-type',
@@ -47,16 +48,40 @@ export class ProductTypeComponent implements OnInit {
     };
     this.Category.createCategory(obj).subscribe(res => {
       if (res) {
-        this.toastService.success("Thêm thương hiệu thành công !!!");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Thêm thành công rồi bạn êiii !!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.clear();
         this.getCategory();
       }
     });
   }
   delete(id: any) {
-      this.Category.deleteNew(id).subscribe(res => {
-          this.toastService.success("Xóa thành công !!!");
+    Swal.fire({
+      title: 'Chắc chắn chưa bạn êii ?',
+      text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Xóa hộ cái bạn êii !',
+      cancelButtonText: 'Bỏ ra bạn êii !',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.Category.deleteNew(id).subscribe(res => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Xóa thành công rồi bạn êiii !!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.getCategory();
-      });
+        });
+      }
+    });
   }
   update(item: any) {
     this.itemSelected = item;
@@ -71,9 +96,20 @@ export class ProductTypeComponent implements OnInit {
     };
     this.Category.updateNew(obj, this.itemSelected.id).subscribe(res => {
       if (res) {
-        this.toastService.success("Sủa thương hiệu thành công !!!");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Sửa thành công rồi bạn êiii !!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.clear();
         this.getCategory();
       }
     });
+  }
+  clear() {
+    this.iF.name.setValue('');
+    this.iF.decription.setValue('');
   }
 }

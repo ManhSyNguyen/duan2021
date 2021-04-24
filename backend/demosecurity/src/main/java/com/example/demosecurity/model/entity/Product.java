@@ -33,7 +33,9 @@ public class Product {
 
     @Column(name = "nameproduct",columnDefinition = "VARCHAR(100)  NULL")
     private String nameproduct;
+
     private Float priceProduct;
+
     private Integer status;
     @Column(name = "image",columnDefinition = "VARCHAR(255)  NULL")
     private String image;

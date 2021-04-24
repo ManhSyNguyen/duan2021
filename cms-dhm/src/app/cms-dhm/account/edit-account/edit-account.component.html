@@ -9,7 +9,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên tài khoản</label>
-                                <input type="text" class="form-control" formControlName="username"/>
+                                <input type="text" class="form-control" formControlName="username" [disabled]="true"/>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số điện thoại</label>
@@ -25,24 +25,20 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Trạng thái</label>
+                            <div class="col p-1">
+                              <label class="switch">
+                                <input type="checkbox" formControlName="status" >
+                                <span class="slider round"></span>
+                              </label>
+                            </div>
+                          </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Chức vụ</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option value="">Nhân viên</option>
+                                <select class="form-control" id="exampleFormControlSelect1" formControlName="role">
+                                    <option value="mod">Nhân viên</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Trạng thái</label>
-                                <div class="col p-1">
-                                    <label class="switch">
-                                        <input type="checkbox" formControlName="status" >
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mật khẩu </label>
-                                <input type="password" class="form-control" formControlName="password"/>
                             </div>
                         </div>
                     </div>
@@ -51,7 +47,7 @@
         </div>
     </div>
     <div class="form-group" style="padding-top: 20px;">
-        <button type="submit" class="btn btn-primary btn-sm">Lưu</button>&nbsp;
+        <button type="submit" class="btn btn-primary btn-sm"(click)="update()">Lưu</button>&nbsp;
         <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
     </div>
 </form>

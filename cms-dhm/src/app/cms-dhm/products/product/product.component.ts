@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
+import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 
 
@@ -14,6 +16,7 @@ export class ProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private toastService: ToastrService,
+    private router: Router
   ) { }
   ngOnInit(): void {
     this.getProduct();
@@ -33,15 +36,28 @@ export class ProductComponent implements OnInit {
     }
   }
   delete(item: any) {
-    let conf = confirm("Bạn có muốn xóa sản phẩm này không ?????");
-    if (conf) {
-      this.productService.deleteProduct(item.id).subscribe(res => {
-          this.toastService.success("Xóa thành công");
+    Swal.fire({
+      title: 'Chắc chắn chưa bạn êii ?',
+      text: 'Bạn chắc chắn muốn xóa khỏi danh sách!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Xóa hộ cái bạn êii !',
+      cancelButtonText: 'Bỏ ra bạn êii !',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(item.id).subscribe(res => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Xóa thành công rồi bạn êiii !!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.getProduct();
-      });
-    }
-  }
-  update(item: any) {
-
+        });
+      } else if (result.isDismissed) {
+        this.router.navigate(['/products']);
+      }
+    });
   }
 }

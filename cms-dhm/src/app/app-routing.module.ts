@@ -61,24 +61,12 @@ const routes: Routes = [
     ]
   },
   // Member
-  // {
-  //   path:'member', component: LayoutMemberComponent, canActivate: [AdminGuard],
-  //   children:[
-  //     {path:'bills', component:BillsComponent, canActivate: [AdminGuard]},
-  //     {path:'bills/detail-bill', component:DetailBillsComponent, canActivate: [AdminGuard]},
-  //     {path:'add-bill', component:AddBillComponent, canActivate: [AdminGuard]},
-  //   ]
-  // },
-
-   {
-    path:'member', component: LayoutMemberComponent, 
-        children:[
-      {path:'bills', component:BillsComponent, },
-
-      {path:'bills/detail-bill', component:DetailBillsComponent, },
-
-      {path:'add-bill', component:AddBillComponent, }
-
+  {
+    path:'member', component: LayoutMemberComponent, canActivate: [AdminGuard],
+    children:[
+      {path:'bills', component:BillsComponent, canActivate: [AdminGuard]},
+      {path:'bills/detail-bill', component:DetailBillsComponent, canActivate: [AdminGuard]},
+      {path:'add-bill', component:AddBillComponent, canActivate: [AdminGuard]},
     ]
   },
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },

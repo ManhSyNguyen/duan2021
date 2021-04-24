@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../../service/auth.service";
 import {ToastrService} from "ngx-toastr";
+import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-account',
@@ -14,7 +16,7 @@ export class AddAccountComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuild : FormBuilder,
-    private toastService: ToastrService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class AddAccountComponent implements OnInit {
       email: [''],
       password: [''],
       role: [''],
+      status: [],
     });
   }
   get if(): any {
@@ -36,11 +39,19 @@ export class AddAccountComponent implements OnInit {
       email: this.if.email.value,
       password: this.if.password.value,
       role: [this.if.role.value],
-    }
+      status: this.if.status.value,
+    };
     this.authService.register(obj).subscribe(res => {
       if (res) {
-        this.toastService.success("Thêm  thành công !!!");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Thêm thành công rồi bạn êiii !!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.router.navigate(['/accounts']);
       }
-    })
+    });
   }
 }

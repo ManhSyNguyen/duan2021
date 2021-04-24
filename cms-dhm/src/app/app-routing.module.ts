@@ -69,6 +69,8 @@ const routes: Routes = [
       {path:'add-bill', component:AddBillComponent, canActivate: [AdminGuard]},
     ]
   },
+
+ 
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },
   { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
 

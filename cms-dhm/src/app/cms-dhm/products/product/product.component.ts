@@ -13,6 +13,8 @@ import {Router} from "@angular/router";
 })
 export class ProductComponent implements OnInit {
   listProduct : any[] = [];
+  page = 1;
+  pageSize = 6;
   constructor(
     private productService: ProductService,
     private toastService: ToastrService,

@@ -15,8 +15,7 @@ public class OrderConvert {
     {
         // chose a Character random from this String
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789"
-                + "abcdefghijklmnopqrstuvxyz";
+                + "0123456789";
 
         // create StringBuffer size of AlphaNumericString
         StringBuilder sb = new StringBuilder(n);
@@ -51,6 +50,7 @@ public class OrderConvert {
         dto.setNamecustom(entity.getNamecustom());
         dto.setUser(entity.getUsers());
         dto.setPhone(entity.getPhone());
+        dto.setSku(entity.getSku());
         dto.setAddress(entity.getAddress());
         dto.setStatus(entity.getStatus());
         dto.setCreatedate(entity.getCreatedate());

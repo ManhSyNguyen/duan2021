@@ -16,7 +16,7 @@
         <div class="col d-flex">
 
             <select class="form-control" formControlName="status" (change)="getOrderByStatus($event)">
-                <option value="">Lọc theo trạng thái</option>
+                <option value="">Tất cả</option>
                 <option value="0">Chờ xác nhận</option>
                 <option value="1">Chờ lấy hàng</option>
                 <option value="2">Đang giao</option>
@@ -52,10 +52,10 @@
                         <td>{{item.namecustom}}</td>
                         <td>{{item.phone}}</td>
                         <td>{{item.address}}</td>
-                        <td *ngIf="item.status == 0"><span class="badge badge-danger">Chờ xác nhận</span></td>
-                        <td *ngIf="item.status == 1"><span class="badge badge-danger">Chờ lấy hàng</span></td>
-                        <td *ngIf="item.status == 2"><span class="badge badge-danger">Đang giao</span></td>
-                        <td *ngIf="item.status == 3"><span class="badge badge-danger">Thành công</span></td>
+                        <td *ngIf="item.status == 0"><span class="badge badge-primary">Chờ xác nhận</span></td>
+                        <td *ngIf="item.status == 1"><span class="badge badge-warning">Chờ lấy hàng</span></td>
+                        <td *ngIf="item.status == 2"><span class="badge badge-dark">Đang giao</span></td>
+                        <td *ngIf="item.status == 3"><span class="badge badge-success">Thành công</span></td>
                         <td *ngIf="item.status == 4"><span class="badge badge-danger">Hủy</span></td>
                         <td>{{item.totalMonenyOrder | number}} vnđ</td>
                     </tr>

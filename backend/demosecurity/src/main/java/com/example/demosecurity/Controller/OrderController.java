@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,31 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @PostMapping("/order")
+    @GetMapping("/orders/status")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Integer> getStatus() {
+        return orderService.findStatus();
+    }
+
+    @GetMapping("/orders/bystatus/{status}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Order> getOrderAllByStatus(@PathVariable Integer status)  {
+        return orderService.findOrderBySatatus(status);
+    }
+
+    @GetMapping("/orders/user")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Order> findOrderByUser(Principal pc)  {
+        return orderService.findOrderByUsername(pc.getName());
+    }
+
+    @GetMapping("/orders/user/{status}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Order> findOrderByUserAndStatus(@PathVariable("status") Integer status, Principal pc)  {
+        return orderService.findOrderByUsernameAndStatus(status,pc.getName());
+    }
+
+    @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public OrderDTO createOrder(@RequestBody OrderDTO orderDTO) {
@@ -58,22 +83,11 @@ public class OrderController {
         return orderService.update(orderDTO);
     }
 
+
     @DeleteMapping(value = "/orders/{id}")
     public void deleteNew(@PathVariable("id") Long id) {
         orderService.delete(id);
     }
 
-    @GetMapping("/orders/status")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public List<Integer> getStatus() {
-        return orderService.findStatus();
-    }
 
-    @GetMapping("/orders/bystatus/{status}")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public List<Order> getOrderAllByStatus(@PathVariable Integer status)  {
-        return orderService.findOrderBySatatus(status);
-    }
 }

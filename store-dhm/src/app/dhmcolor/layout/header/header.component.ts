@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   username?: string;
   cartItem: CartItem[] = [];
   listDataCart: any[] = [];
+  totalQuantity = 0;
   constructor(
     private token: TokenStorageService,
     private cartService: CartService,
@@ -25,9 +26,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+    this.updateCartStatus();
     this.isLoggedIn = !!this.token.getToken();
-    this.getProductCart();
-
     if (this.isLoggedIn) {
       const user = this.token.getUser();
       this.roles = user.roles;
@@ -39,7 +40,8 @@ export class HeaderComponent implements OnInit {
     this.token.signOut();
     window.location.reload();
   }
-  getProductCart() {
-      this.listDataCart = JSON.parse(localStorage.getItem("Cart")!);
+  updateCartStatus() {
+    // subscribe to the cart totalQuantity
+    this.cartService.totalQty.subscribe(data => this.totalQuantity = data);
   }
 }

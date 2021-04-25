@@ -13,33 +13,6 @@ export class CartService {
     totalQty: Subject<number> = new Subject<number>();
     constructor(
     ) { }
-    addToCart(theCartItem: CartItem) {
-        const cart = this.cartItems.find(listCartItem => listCartItem.id === theCartItem.id);
-        if (cart) {
-            if (this.cartItems.length > 1) {
-                this.cartItems.forEach((element: any) => {
-                    if (theCartItem.size == element.size) {
-                        if (theCartItem.id != element.id) {
-                            this.cartItems.push(element);
-                            localStorage.setItem("Cart", JSON.stringify(this.cartItems));
-                        }
-                    }
-                    if (this.cartItems.length > 2) {
-                    } else {
-                        this.cartItems.push(theCartItem);
-                        localStorage.setItem("Cart", JSON.stringify(this.cartItems));
-                    }
-                });
-            } else {
-                this.cartItems.push(theCartItem);
-                localStorage.setItem("Cart", JSON.stringify(this.cartItems));
-            }
-        } else {
-            this.cartItems.push(theCartItem);
-            localStorage.setItem("Cart", JSON.stringify(this.cartItems));
-        }
-        this.CartTotal();
-    }
     addCart(obj: any) {
       this.cartItems.push(obj);
       localStorage.setItem("Cart", JSON.stringify(this.cartItems));
@@ -47,33 +20,32 @@ export class CartService {
     }
     //tinh tong va so luong
     CartTotal() {
-        const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-        let totalPriceValue: number = 0;
-        let totalQtyValue: number = 0;
-        // for (let currentCartItem of this.cartItems) {
-        //     totalPriceValue += currentCartItem.quantity * currentCartItem.price;
-        //     totalQtyValue += currentCartItem.quantity;
-        // }
-        for( const item of listDataCart) {
-          totalPriceValue += item.quantity * item.product.price;
-          totalQtyValue += item.quantity;
+        const listDataCart = JSON.parse(localStorage.getItem("Cart") || '{}');
+        let totalPriceValue = 0;
+        let totalQtyValue = 0;
+        if (listDataCart) {
+          for (const item of listDataCart) {
+            totalPriceValue += item.quantityProduct * item.product.priceProduct;
+            totalQtyValue += item.quantityProduct;
+          }
+          this.totalQty.next(totalQtyValue);
+          this.totalPrice.next(totalPriceValue);
+          this.logCartData(totalPriceValue, totalQtyValue);
         }
-        this.totalQty.next(totalQtyValue);
-        this.totalPrice.next(totalPriceValue);
-        this.logCartData(totalPriceValue, totalQtyValue);
     }
     logCartData(totalPriceValue: number, totalQuantityValue: number) {
       const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-        for (let items of listDataCart) {
-            const subTotalPrice = items.quantity * items.product.price;
+        for(let items of listDataCart) {
+            const subTotalPrice = items.quantityProduct * items.product.priceProduct;
         }
     }
     addQuantity(theCartItem: any) {
-      theCartItem.quantity++;
+      theCartItem.priceProductDetail++;
       localStorage.setItem("Cart", JSON.stringify(theCartItem));
     }
     decrementQuantity(theCartItem: any) {
-      theCartItem.quantity--;
+      theCartItem.priceProductDetail--;
       localStorage.setItem("Cart", JSON.stringify(theCartItem));
     }
+
 }

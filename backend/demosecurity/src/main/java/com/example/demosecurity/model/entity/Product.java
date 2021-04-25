@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -32,15 +33,15 @@ public class Product {
 
     @Column(name = "nameproduct",columnDefinition = "VARCHAR(100)  NULL")
     private String nameproduct;
-    private Float price;
+
+    private Float priceProduct;
+
     private Integer status;
-    private String sku;
     @Column(name = "image",columnDefinition = "VARCHAR(255)  NULL")
     private String image;
     @Column(name = "decription",columnDefinition = "VARCHAR(255)  NULL")
     private String decription;
     private Integer purchase;
-    private Integer count;
     @CreatedDate
     private Date createdate;
 
@@ -48,10 +49,10 @@ public class Product {
     @CreatedBy
     private String createby;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "IdProduct")
-    Set<ProductDetail> productDetail;
+    Set<ProductDetail> productDetail = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -68,12 +69,11 @@ public class Product {
                 "id=" + id +
                 ", category=" + category +
                 ", nameproduct='" + nameproduct + '\'' +
-                ", price=" + price +
+                ", priceProduct=" + priceProduct +
                 ", status=" + status +
                 ", image='" + image + '\'' +
                 ", decription='" + decription + '\'' +
                 ", purchase=" + purchase +
-                ", count=" + count +
                 ", createdate=" + createdate +
                 ", createby='" + createby + '\'' +
                 ", productDetail=" + productDetail +

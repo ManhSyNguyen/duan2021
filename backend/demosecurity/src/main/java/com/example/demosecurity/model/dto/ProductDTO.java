@@ -25,13 +25,13 @@ public class ProductDTO {
     private Long idcategory;
     private Category category;
     private String nameproduct;
-    private Float price;
+    private Set<ProductDetailDTO> productDetails;
+    private Set<ProductDetail> list;
+    private Float priceProduct;
     private Integer status;
     private String image;
-    private String sku;
     private String decription;
     private Integer purchase;
-    private Integer count;
     private Date createdate;
     private String createby;
 

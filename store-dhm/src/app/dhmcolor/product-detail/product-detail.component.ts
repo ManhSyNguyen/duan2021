@@ -40,8 +40,8 @@ export class ProductDetailComponent implements OnInit {
       this.ProductService.getProductById(productId).subscribe(data => {
         this.colorSizeDetail = data;
         this.productDetail = data[0].product;
-        console.log(`object`, this.productDetail)
-      })
+        console.log(this.productDetail);
+      });
     });
   }
   getListAllProduct() {
@@ -49,23 +49,18 @@ export class ProductDetailComponent implements OnInit {
       this.listProduct = data;
     });
   }
-  // addToCart(theProduct: Product) {
-  //   if (this.sizeSelect == null) {
-  //     this.toastService.error('Vui lòng chọn size quần áo');
-  //     return;
-  //   }
-  //   theProduct.size = this.sizeSelect;
-  //   const theCartItem = new CartItem(theProduct);
-  //   this.CartService.addToCart(theCartItem);
-  //   this.toastService.success('Thêm vào giỏ hàng thành công');
-  // }
 
   addToCart(iz: any) {
-    this.colorSizeDetail.forEach(i => {
-      if (this.sizeSelect === i.size.namesize) {
-        i.quantity++ ;
-        this.CartService.addCart(i);
-      }
-    });
+    const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
+    if (conf) {
+      this.colorSizeDetail.forEach(i   => {
+        console.log(i);
+        if (this.sizeSelect === i.size.namesize) {
+          i.quantityProduct++ ;
+          this.CartService.addCart(i);
+          this.toastService.success("Thêm giỏ hàng thành công");
+        }
+      });
+    }
   }
 }

@@ -47,7 +47,7 @@ public class ProductController {
     @PostMapping("/product")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public ProductDTO createCategory(@RequestBody ProductDTO productDTO) {
+    public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
         return productService.save(productDTO);
     }
 

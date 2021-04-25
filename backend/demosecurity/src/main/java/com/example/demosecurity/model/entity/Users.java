@@ -5,8 +5,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -23,10 +25,14 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "fullname",columnDefinition = "VARCHAR(100)")
+    private String fullname;
+
     @Column(unique=true,name = "username",columnDefinition = "VARCHAR(20)  NULL")
     private String username;
 
     @Column(name = "password",columnDefinition = "VARCHAR(100)  NULL")
+    @JsonIgnore
     private String password;
 
     @Column(unique=true,name = "email",columnDefinition = "VARCHAR(35)  NULL")
@@ -35,15 +41,21 @@ public class Users {
     @Column(unique=true,name = "sodienthoai",columnDefinition = "VARCHAR(10)  NULL")
     private String sodienthoai;
 
+    private Boolean Status;
+
+    @Column(name = "address",columnDefinition = "VARCHAR(200)")
+    private String address;
+
     @CreatedDate
     private Date createdate;
 
     @CreatedBy
     private String createby;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "IdUser"), inverseJoinColumns = @JoinColumn(name = "IdRole"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
+
 
     public Users() {
     }

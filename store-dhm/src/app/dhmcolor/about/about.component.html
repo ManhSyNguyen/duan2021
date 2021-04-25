@@ -32,20 +32,24 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
                         <h2 class="title text-center">Sản phẩm</h2>
-                        <div class="col-sm-3"
-                            *ngFor="let item of listProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <div class="product-at ">
-                                            <div class="pro-grid">
-                                                <span class="buy-in" routerLink="/about/product-detail/{{item.id}}">Xem chi tiết</span>
+                        <div class="row">
+                            <div class="col-sm-4"
+                                *ngFor="let item of listProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <div class="product-at ">
+                                                <div class="pro-grid">
+                                                    <span class="buy-in"
+                                                        routerLink="/about/product-detail/{{item.id}}">Xem
+                                                        chi tiết</span>
+                                                </div>
+                                                <img src="{{item.image}}" alt="" routerLink="cart" />
                                             </div>
-                                            <img src="{{item.image}}" alt="" routerLink="cart" />
-                                        </div>
-                                        <div routerLink="/about/product-detail/{{item.id}}">
-                                            <h2>{{item.price | number}} <sup>₫</sup></h2>
-                                            <p>{{item.nameproduct}}</p>
+                                            <div routerLink="/about/product-detail/{{item.id}}">
+                                                <h2>{{item.priceProduct | number}} <sup>₫</sup></h2>
+                                                <p>{{item.nameproduct}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "9d0c4f47-8e59-429f-ab42-dde1f9d08d30"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -29,7 +32,6 @@
             ],
             "styles": [
               "src/custom-theme.scss",
-              "node_modules/ngx-toastr/toastr.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
@@ -127,8 +129,5 @@
       }
     }
   },
-  "defaultProject": "cms-dhm",
-  "cli": {
-    "analytics": "286ad718-5238-46d6-bf39-1e40c0025f8b"
-  }
+  "defaultProject": "cms-dhm"
 }

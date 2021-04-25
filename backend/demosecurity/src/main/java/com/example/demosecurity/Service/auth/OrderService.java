@@ -42,15 +42,14 @@ public class OrderService {
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
         if (orderRepo.save(neworder) != null) {
             for (ProductDetailDTO pd : productDetailList) {
-
                 OrderProductDetailId opdi = new OrderProductDetailId();
                 opdi.setIdOrder(neworder.getId());
                 opdi.setIdProductDetail(pd.getId());
-
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
-                orderProductDetaildto.setQuantity(pd.getQuantity());
-                orderProductDetaildto.setPrice(pd.getPrice());
+                orderProductDetaildto.setQuantity(pd.getQuantityProduct());
+                orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct()*pd.getQuantityProduct());
+
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();
                 orderProductDetail.setId(orderProductDetaildto.getId());
@@ -59,6 +58,8 @@ public class OrderService {
 
                 orderProductDetail.setStatus(1);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
+                float total = orderProductDetaildto.getQuantity() * pd.getQuantityProduct();
+                order.setTotalMonenyOrder(total);
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
                 orderProductDetail.setOrder(order);
                 orderProductDetail.setProductDetail(productDetail);
@@ -87,8 +88,8 @@ public class OrderService {
 
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
-                orderProductDetaildto.setQuantity(pd.getQuantity());
-                orderProductDetaildto.setPrice(pd.getPrice());
+                orderProductDetaildto.setQuantity(pd.getQuantityProduct());
+                orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct()*pd.getQuantityProduct());
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();
                 orderProductDetail.setId(orderProductDetaildto.getId());
@@ -97,10 +98,10 @@ public class OrderService {
                 orderProductDetail.setStatus(orderProductDetaildto.getStatus());
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
-                if (orderDTO.getStatus().equals(4) && productDetail.getQuantity()>0) {
+                if (orderDTO.getStatus().equals(4) && productDetail.getQuantityProduct()>0) {
                     productDetail.setId(pd.getId());
-                    int total = productDetail.getQuantity()-pd.getQuantity();
-                    productDetail.setQuantity(total);
+                    int total = productDetail.getQuantityProduct()-pd.getQuantityProduct();
+                    productDetail.setQuantityProduct(total);
                     System.out.println(total);
                     if(total==0){
                         productDetail.setStatus(0);
@@ -174,6 +175,15 @@ public class OrderService {
         }
         return results;
     }
+    public List<OrderDTO> findAllByUser(String username) {
+        List<OrderDTO> results = new ArrayList<>();
+        List<Order> entities = orderRepo.findAll();
+        for (Order item : entities) {
+            OrderDTO newDTO = orderConvert.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
+    }
 
     public List<Integer> findStatus() {
         List<Integer> entities = orderRepo.getByStatus();
@@ -182,6 +192,16 @@ public class OrderService {
 
     public List<Order> findOrderBySatatus(Integer status) {
         List<Order> list = orderRepo.findAllByStatus(status);
+        return list;
+    }
+
+    public List<Order> findOrderByUsername(String name) {
+        List<Order> list = orderRepo.findAllByUsername(name);
+        return list;
+    }
+
+    public List<Order> findOrderByUsernameAndStatus(Integer status,String name) {
+        List<Order> list = orderRepo.findAllByUsernameAndStatus(status,name);
         return list;
     }
 }

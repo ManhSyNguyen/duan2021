@@ -16,13 +16,13 @@ export class AboutComponent implements OnInit {
     private CategoryService: CategoryService,
     private ProductService: ProductService,
     private CartService: CartService,
-    ) { } 
+    ) { }
     listProduct: any[] = [];
     listProductCart: any = {};
     listCategory: any[] = [];
     listIdCategory: any[] = [];
     page = 1;
-    pageSize = 8;
+    pageSize = 9;
   ngOnInit(): void {
     this.getListProduct();
     this.getListCategory();
@@ -44,9 +44,5 @@ export class AboutComponent implements OnInit {
     this.ProductService.getAllProduct().subscribe(dataId => {
       this.listIdCategory = dataId;
     });
-  }
-  addToCart(theProduct: Product) {
-    const theCartItem = new CartItem(theProduct);
-    this.CartService.addToCart(theCartItem);
   }
 }

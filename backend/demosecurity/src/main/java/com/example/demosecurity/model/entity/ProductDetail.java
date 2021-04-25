@@ -23,13 +23,16 @@ public class ProductDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdProductDetail")
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IdProduct")
     private Product product;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IdColor")
     private Color color;
-    @ManyToOne
+    @Column(length = 50)
+    private String sku;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "IdSize")
     private Size size;
 
@@ -38,7 +41,10 @@ public class ProductDetail implements Serializable {
     @JsonIgnore
     private Collection<OrderProductDetail> sales = new ArrayList<>();
 
-    private Integer quantity;
+    private Integer quantityProduct;
+
+    private Integer priceProductDetail;
+
     private Integer status;
 
     @CreatedDate

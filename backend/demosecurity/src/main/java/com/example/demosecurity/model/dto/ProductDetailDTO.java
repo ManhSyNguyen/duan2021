@@ -21,9 +21,10 @@ public class ProductDetailDTO {
     private Product product;
     private Color color;
     private Size size;
-    private Integer quantity;
+    private String sku;
+    private Integer quantityProduct;
     private Integer status;
-    private Float price;
+    private Integer priceProductDetail;
     private Date createdate;
     private String createby;
 

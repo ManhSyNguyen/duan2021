@@ -24,6 +24,9 @@ public class OrderDTO {
     private String address;
     private String paymentmethod;
     private String decription;
+    private String quantityOrder;
+    private Float totalMonenyOrder;
+    private String sku;
     private Integer status;
     private Date createdate;
     private String createby;

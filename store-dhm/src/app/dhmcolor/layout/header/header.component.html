@@ -40,9 +40,13 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <div class="d-flex" *ngIf="!isLoggedIn">
-                            <div>
+                            <div *ngIf="listDataCart">
                                 <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                                <span class="header__cart-notice">{{listDataCart.length}}</span>
                             </div>
+                          <div *ngIf="!listDataCart">
+                            <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                          </div>
                             <div class="inforCus ml-5">
                                 <a routerLink="login">
                                     <i class="fa fa-lock"></i> Đăng nhập
@@ -60,6 +64,7 @@
                                 <div class="dropdown-content">
                                     <a routerLink="inforUser">Thông tin cá nhân</a>
                                     <a routerLink="billproduct">Đơn hàng của tôi</a>
+                                    <a routerLink="change-pass">Đổi mật khẩu</a>
                                     <a (click)="logOut()">Đăng xuất</a>
                                 </div>
                             </div>

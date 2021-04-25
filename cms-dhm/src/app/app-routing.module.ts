@@ -1,75 +1,79 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CustomerComponent } from './cmsdhm/customers/customer/customer.component';
-import { DashboardComponent } from './cmsdhm/dashboard/dashboard.component';
-import { LayoutComponent } from './cmsdhm/layout/layout.component';
-import { LoginComponent } from './login/login.component';
-import { Page404Component } from './cmsdhm/page404/page404.component';
-import { ProductTypeComponent } from './cmsdhm/types/product-type/product-type.component';
-import { ProductComponent } from './cmsdhm/products/product/product.component';
-import { AddProductComponent } from './cmsdhm/products/add-product/add-product.component';
-import { EditProductComponent } from './cmsdhm/products/edit-product/edit-product.component';
-import { AddCustomerComponent } from './cmsdhm/customers/add-customer/add-customer.component';
-import { EditCustomerComponent } from './cmsdhm/customers/edit-customer/edit-customer.component';
-import { AccountsComponent } from './cmsdhm/account/accounts/accounts.component';
-import { AddAccountComponent } from './cmsdhm/account/add-account/add-account.component';
-import { EditAccountComponent } from './cmsdhm/account/edit-account/edit-account.component';
-import { BoomsComponent } from './cmsdhm/boom/booms/booms.component';
-import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
-import { BillsComponent } from './cms-member/bills/bills.component';
-import { OdersComponent } from './cmsdhm/oder/oders/oders.component';
-import { DetailOderComponent} from './cmsdhm/oder/detail-oder/detail-oder.component'
+import { RouterModule, Routes } from '@angular/router';
+import { AccountsComponent } from './cms-dhm/account/accounts/accounts.component';
+import { AddAccountComponent } from './cms-dhm/account/add-account/add-account.component';
+import { EditAccountComponent } from './cms-dhm/account/edit-account/edit-account.component';
+import { AdminGuard } from './cms-dhm/admin/admin.guard';
+import { BoomsComponent } from './cms-dhm/boom/booms/booms.component';
+import { AddCustomerComponent } from './cms-dhm/customers/add-customer/add-customer.component';
+import { CustomerComponent } from './cms-dhm/customers/customer/customer.component';
+import { EditCustomerComponent } from './cms-dhm/customers/edit-customer/edit-customer.component';
+import { DashboardComponent } from './cms-dhm/dashboard/dashboard.component';
+import { LayoutComponent } from './cms-dhm/layout/layout.component';
+import { DetailOderComponent } from './cms-dhm/oder/detail-oder/detail-oder.component';
+import { OdersComponent } from './cms-dhm/oder/oders/oders.component';
+import { Page404Component } from './cms-dhm/page404/page404.component';
+import { AddProductComponent } from './cms-dhm/products/add-product/add-product.component';
+import { EditProductComponent } from './cms-dhm/products/edit-product/edit-product.component';
+import { ProductComponent } from './cms-dhm/products/product/product.component';
+import { ProductTypeComponent } from './cms-dhm/type/product-type/product-type.component';
 import { AddBillComponent } from './cms-member/add-bill/add-bill.component';
-import { DetailBillComponent } from './cms-member/detail-bill/detail-bill.component';
-
-
+import { BillsComponent } from './cms-member/bills/bills.component';
+import { DetailBillsComponent } from './cms-member/detail-bills/detail-bills.component';
+import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: 'login', redirectTo: 'login', pathMatch: 'full' },
   {
-    path:'member', component: LayoutMemberComponent,
-    children:[
-      {path:'bills', component:BillsComponent},
-      {path:'bills/detail-bill', component:DetailBillComponent},
-      {path:'add-bill', component:AddBillComponent},
-    ]
-  },
-  { 
-    path: '', component: LayoutComponent,
+    path: '', component: LayoutComponent, canActivate: [AdminGuard],
     children: [
-      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: '', component: DashboardComponent },
+      { path: '',
+        component: DashboardComponent,
+        canActivate: [AdminGuard],
+      },
       //product
-      { path: 'products', component: ProductComponent },
-      { path: 'add-product', component: AddProductComponent },
-      { path: 'edit-product', component: EditProductComponent },
+      { path: 'products',
+        component: ProductComponent,
+        canActivate: [AdminGuard]
+      },
+      { path: 'add-product', component: AddProductComponent, canActivate: [AdminGuard] },
+      { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AdminGuard] },
       //type
-      { path: 'type', component: ProductTypeComponent },
+      { path: 'type', component: ProductTypeComponent, canActivate: [AdminGuard] },
       //customer
-      { path: 'customer', component: CustomerComponent },
-      { path: 'add-customer', component: AddCustomerComponent },
-      { path: 'edit-customer', component: EditCustomerComponent },
+
+
+      { path: 'customer', component: CustomerComponent, canActivate: [AdminGuard] },
+      { path: 'add-customer', component: AddCustomerComponent, canActivate: [AdminGuard] },
+      { path: 'edit-customer/:id', component: EditCustomerComponent, canActivate: [AdminGuard] },
       //account
-      { path: 'accounts', component: AccountsComponent },
-      { path: 'add-account', component: AddAccountComponent },
-      { path: 'edit-account', component: EditAccountComponent },
+      { path: 'accounts', component: AccountsComponent, canActivate: [AdminGuard] },
+      { path: 'add-account', component: AddAccountComponent, canActivate: [AdminGuard] },
+      { path: 'edit-account/:id', component: EditAccountComponent, canActivate: [AdminGuard] },
+
       //oder
-      {path: 'oders', component:OdersComponent},
-      {path:'detail-order', component:DetailOderComponent},
+      {path: 'oders', component:OdersComponent, canActivate: [AdminGuard]},
+      {path:'detail-order', component:DetailOderComponent, canActivate: [AdminGuard]},
       //boom
-      { path: 'booms', component: BoomsComponent },
-      
-     
+      { path: 'booms', component: BoomsComponent, canActivate: [AdminGuard] },
     ]
   },
   // Member
-  
+  {
+    path:'member', component: LayoutMemberComponent, canActivate: [AdminGuard],
+    children:[
+      {path:'bills', component:BillsComponent, canActivate: [AdminGuard]},
+      {path:'bills/detail-bill', component:DetailBillsComponent, canActivate: [AdminGuard]},
+      {path:'add-bill', component:AddBillComponent, canActivate: [AdminGuard]},
+    ]
+  },
 
-
+ 
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },
   { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
-  
+
 
 ];
 

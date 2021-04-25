@@ -33,7 +33,7 @@ public class ProductDetailService {
     private static final Logger logger = LogManager.getLogger(ProductDetailService.class);
 
     public ProductDetailDTO save(ProductDetailDTO productDetailDTO) {
-        ProductDetail productDetail= new ProductDetail();
+        ProductDetail productDetail;
         Product product = productRepo.findProductById(productDetailDTO.getIdproduct());
         Color color = colorRepo.findColorById(productDetailDTO.getIdcolor());
         Size size = sizeRepo.findSizeById(productDetailDTO.getIdcolor());
@@ -115,5 +115,10 @@ public class ProductDetailService {
             results.add(newDTO);
         }
         return results;
+    }
+    public ProductDetailDTO findBySku(String sku){
+        ProductDetailDTO rs = new ProductDetailDTO();
+        ProductDetail pd = productDetailRepo.findBySku(sku);
+        return productDetailConvert.toDTO(pd);
     }
 }

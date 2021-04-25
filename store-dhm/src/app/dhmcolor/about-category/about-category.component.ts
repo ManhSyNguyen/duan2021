@@ -48,18 +48,4 @@ export class AboutCategoryComponent implements OnInit {
       });
     });
   }
-  // addToCart(listProductByIdCate: any) {
-  //   let cart = [];
-  //   if (localStorage.getItem('Cart')) {
-  //     cart = JSON.parse(localStorage.getItem('Cart')!);
-  //     cart = [listProductByIdCate, ...cart];
-  //   } else {
-  //     cart = [listProductByIdCate];
-  //   }
-  //   localStorage.setItem("Cart", JSON.stringify(cart));
-  // }
-  addToCart(theProduct: Product) {
-    const theCartItem = new CartItem(theProduct);
-    this.CartService.addToCart(theCartItem);
-  }
 }

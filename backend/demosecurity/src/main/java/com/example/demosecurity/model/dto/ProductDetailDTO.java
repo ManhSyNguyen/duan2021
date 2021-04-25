@@ -24,7 +24,7 @@ public class ProductDetailDTO {
     private String sku;
     private Integer quantityProduct;
     private Integer status;
-    private Float priceProductDetail;
+    private Integer priceProductDetail;
     private Date createdate;
     private String createby;
 

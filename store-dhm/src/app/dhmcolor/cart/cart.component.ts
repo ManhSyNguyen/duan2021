@@ -35,6 +35,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.listCartProduct();
+    this.getCity();
     this.inputForm = this.formBuilder.group({
       hoten: ['',[Validators.required]],
       email: ['',[Validators.required]],
@@ -52,7 +53,9 @@ export class CartComponent implements OnInit {
     this.cartService.totalQty.subscribe(
       data => this.totalQty = data
     );
-    this.cartService.CartTotal();
+    if(this.listDataCart){
+      this.cartService.CartTotal();
+    }
   }
   get iF(): any {
     return this.inputForm.controls;
@@ -98,6 +101,13 @@ export class CartComponent implements OnInit {
         window.location.reload();
       } else {
         this.toastService.error("Lỗi mua hàng không thành công !!!");
+      }
+    });
+  }
+  getCity() {
+    this.ProductService.getCityVietNam().subscribe(res => {
+      if (res) {
+        console.log(res);
       }
     });
   }

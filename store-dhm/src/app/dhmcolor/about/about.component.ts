@@ -16,7 +16,7 @@ export class AboutComponent implements OnInit {
     private CategoryService: CategoryService,
     private ProductService: ProductService,
     private CartService: CartService,
-    ) { } 
+    ) { }
     listProduct: any[] = [];
     listProductCart: any = {};
     listCategory: any[] = [];
@@ -44,9 +44,5 @@ export class AboutComponent implements OnInit {
     this.ProductService.getAllProduct().subscribe(dataId => {
       this.listIdCategory = dataId;
     });
-  }
-  addToCart(theProduct: Product) {
-    const theCartItem = new CartItem(theProduct);
-    this.CartService.addToCart(theCartItem);
   }
 }

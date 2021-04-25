@@ -28,14 +28,14 @@
                             <td>
                                 <div class="buttons_added">
                                     <input class="minus is-form" (click)="decrementQuantity(item)" type="button"
-                                        [disabled]="item.quantity == 1" value="-">
+                                        [disabled]="item.priceProductDetail == 1" value="-">
                                     <input aria-label="quantity" class="input-qty" min="1"
-                                        value="{{item.quantityProduct}}" disabled name="" type="number">
+                                        value="{{item.priceProductDetail}}" disabled name="" type="number">
                                     <input class="plus is-form" (click)="incrementQuantity(item)" type="button"
                                         value="+">
                                 </div>
                             </td>
-                            <td>{{item.quantityProduct * item.product.priceProduct | number}} <sup>₫</sup></td>
+                            <td>{{item.priceProductDetail * item.product.priceProduct | number}} <sup>₫</sup></td>
                             <td>
                                 <button class="btn btn-danger" (click)="delete(item)">
                                     Xóa
@@ -130,15 +130,22 @@
                 <h4>Tóm tắt đơn hàng <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i>
                         <b></b></span>
                 </h4>
-                <div *ngFor="let item of listDataCart" class="d-flex">
+                <div *ngFor="let item of listDataCart">
                     <p>
+<<<<<<< HEAD
                         <a>{{item.product.nameproduct}}</a>
                         <a>Phân loại hàng: {{item.size.namesize}}</a>
                         <span class="price">{{item.product.priceProduct * item.quantityProduct | number}}
                             <sup>₫</sup>
                         </span>
+=======
+                      <a>{{item.product.nameproduct}}</a>
+                      <a>Phân loại hàng: {{item.size.namesize}}</a>
+                      <span class="price">{{item.priceProductDetail * item.product.priceProduct |
+                            number}}
+                            <sup>₫</sup></span>
+>>>>>>> dc8153f29862ceca1a487d7da58165c1abc6c373
                     </p>
-
                 </div>
                 <p>VAT: <span class="price" style="color:black"><b>10<sup>%</sup></b></span>
                 </p>

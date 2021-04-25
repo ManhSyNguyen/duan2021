@@ -18,4 +18,7 @@ export class ProductService {
     getProductById(id: any): Observable<any> {
         return this.http.get<any>(`${this.api + '/productdetails'}/${id}`);
     }
+    getCityVietNam(): Observable<any> {
+      return this.http.get<any>('https://thongtindoanhnghiep.co/api/city');
+    }
 }

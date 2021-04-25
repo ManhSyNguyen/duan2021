@@ -43,7 +43,7 @@ public class ProductDetail implements Serializable {
 
     private Integer quantityProduct;
 
-    private Float priceProductDetail;
+    private Integer priceProductDetail;
 
     private Integer status;
 

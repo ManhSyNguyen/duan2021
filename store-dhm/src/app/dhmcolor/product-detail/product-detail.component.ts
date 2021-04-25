@@ -40,6 +40,7 @@ export class ProductDetailComponent implements OnInit {
       this.ProductService.getProductById(productId).subscribe(data => {
         this.colorSizeDetail = data;
         this.productDetail = data[0].product;
+        console.log(this.productDetail);
       });
     });
   }
@@ -52,7 +53,8 @@ export class ProductDetailComponent implements OnInit {
   addToCart(iz: any) {
     const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
     if (conf) {
-      this.colorSizeDetail.forEach(i => {
+      this.colorSizeDetail.forEach(i   => {
+        console.log(i);
         if (this.sizeSelect === i.size.namesize) {
           i.quantityProduct++ ;
           this.CartService.addCart(i);

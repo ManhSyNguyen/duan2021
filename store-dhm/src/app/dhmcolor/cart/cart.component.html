@@ -132,19 +132,14 @@
                 </h4>
                 <div *ngFor="let item of listDataCart">
                     <p>
-<<<<<<< HEAD
+
+
                         <a>{{item.product.nameproduct}}</a>
                         <a>Phân loại hàng: {{item.size.namesize}}</a>
-                        <span class="price">{{item.product.priceProduct * item.quantityProduct | number}}
-                            <sup>₫</sup>
-                        </span>
-=======
-                      <a>{{item.product.nameproduct}}</a>
-                      <a>Phân loại hàng: {{item.size.namesize}}</a>
-                      <span class="price">{{item.priceProductDetail * item.product.priceProduct |
+                        <span class="price">{{item.priceProductDetail * item.product.priceProduct |
                             number}}
                             <sup>₫</sup></span>
->>>>>>> dc8153f29862ceca1a487d7da58165c1abc6c373
+
                     </p>
                 </div>
                 <p>VAT: <span class="price" style="color:black"><b>10<sup>%</sup></b></span>

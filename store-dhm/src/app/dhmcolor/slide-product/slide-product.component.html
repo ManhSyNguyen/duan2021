@@ -31,14 +31,11 @@
                                 *ngFor="let item of listProduct">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
-                                        <div class="productinfo text-center">
+                                        <div class="productinfo text-center pb-3"
+                                            routerLink="/about/product-detail/{{item.id}}">
                                             <img src={{item.image}} alt="" />
-                                            <h2>{{item.price | number}} vnđ</h2>
+                                            <h2>{{item.priceProduct | number}} vnđ</h2>
                                             <p>{{item.nameproduct}}</p>
-                                            <button class="btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Thêm
-                                                giỏ
-                                                hàng</button>
                                         </div>
                                     </div>
                                 </div>

@@ -44,7 +44,6 @@ const routes: Routes = [
       { path: 'type', component: ProductTypeComponent, canActivate: [AdminGuard] },
       //customer
 
-
       { path: 'customer', component: CustomerComponent, canActivate: [AdminGuard] },
       { path: 'add-customer', component: AddCustomerComponent, canActivate: [AdminGuard] },
       { path: 'edit-customer/:id', component: EditCustomerComponent, canActivate: [AdminGuard] },

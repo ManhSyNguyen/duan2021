@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.listCartProduct();
-    this.getCity();
+    // this.getCity();
     this.inputForm = this.formBuilder.group({
       hoten: ['',[Validators.required]],
       email: ['',[Validators.required]],
@@ -104,11 +104,11 @@ export class CartComponent implements OnInit {
       }
     });
   }
-  getCity() {
-    this.ProductService.getCityVietNam().subscribe(res => {
-      if (res) {
-        console.log(res);
-      }
-    });
-  }
+  // getCity() {
+  //   this.ProductService.getCityVietNam().subscribe(res => {
+  //     if (res) {
+  //       console.log(res);
+  //     }
+  //   });
+  // }
 }

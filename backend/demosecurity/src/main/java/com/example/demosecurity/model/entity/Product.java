@@ -54,14 +54,7 @@ public class Product {
     @JoinColumn(name = "IdProduct")
     Set<ProductDetail> productDetail = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            // ten bang lien ket
-            name = "supplierproduct",
-            joinColumns = {@JoinColumn(name = "IdProduct", referencedColumnName = "IdProduct")},
-            inverseJoinColumns = {@JoinColumn(name = "IdSupplier", referencedColumnName = "IdSupplier")}
-    )
-    Set<Supplier> suppliers;
+
 
     @Override
     public String toString() {
@@ -77,7 +70,6 @@ public class Product {
                 ", createdate=" + createdate +
                 ", createby='" + createby + '\'' +
                 ", productDetail=" + productDetail +
-                ", suppliers=" + suppliers +
                 '}';
     }
 }

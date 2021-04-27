@@ -9,6 +9,7 @@ public class SecurityConstants {
     public static final String API_COLOR = "/v1/api/colors/**";
     public static final String API_CART = "/v1/api/cart";
     public static final String API_ORDER = "/v1/api/orders/**";
+    public static final String API_IMAGE  = "/images/**";
     public static final String H2_URL = "h2-console/**";
     public static final String SECRET ="SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX= "Bearer ";

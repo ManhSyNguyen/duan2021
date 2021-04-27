@@ -111,6 +111,7 @@ public class APIAdminController {
                 encode.encode(signUpRequest.getPassword()),
                 signUpRequest.getEmail(),signUpRequest.getSodienthoai()
         );
+        user.setStatus(true);
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         if (strRoles==null) {

@@ -68,7 +68,8 @@ import { DetailBillComponent } from './dhmcolor/detail-bill/detail-bill.componen
     }),
   ],
   providers: [authInterceptorProviders,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

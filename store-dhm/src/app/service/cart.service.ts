@@ -76,3 +76,4 @@ export class CartService {
       localStorage.setItem('Cart', JSON.stringify(arr));
     }
 }
+

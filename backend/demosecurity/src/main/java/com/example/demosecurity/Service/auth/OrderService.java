@@ -71,13 +71,13 @@ public class OrderService {
     }
 
     public OrderDTO update(OrderDTO orderDTO) {
-        Order newOrder = new Order();
+        Order newOrder;
         Order oldOrder = orderRepo.findOrdersById(orderDTO.getId());
         newOrder = orderConvert.toEntity(orderDTO, oldOrder);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
         newOrder.setUsers(users);
-        orderRepo.save(newOrder);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
+        float totalMoney =0;
         if (orderRepo.save(newOrder) != null) {
             for (ProductDetailDTO pd : productDetailList) {
 
@@ -92,29 +92,32 @@ public class OrderService {
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();
                 orderProductDetail.setId(orderProductDetaildto.getId());
+
                 orderProductDetail.setQuantity(orderProductDetaildto.getQuantity());
-                orderProductDetail.setPrice(orderProductDetaildto.getPrice());
+                Float totalorderdetail = orderProductDetaildto.getQuantity() * pd.getProduct().getPriceProduct();
+                orderProductDetail.setPrice(totalorderdetail);
                 orderProductDetail.setStatus(orderProductDetaildto.getStatus());
+                totalMoney +=totalorderdetail;
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
                 if (orderDTO.getStatus().equals(4) && productDetail.getQuantityProduct()>0) {
                     productDetail.setId(pd.getId());
                     int total = productDetail.getQuantityProduct()-pd.getQuantityProduct();
                     productDetail.setQuantityProduct(total);
-                    System.out.println(total);
-                    if(total==0){
+                    if(total==0) {
                         productDetail.setStatus(0);
                     }
-                    productDetail.setProduct(pd.getProduct());
-                    productDetail.setColor(pd.getColor());
-                    productDetail.setSize(pd.getSize());
-                    productDetailRepo.save(productDetail);
                 }
+                productDetail.setProduct(pd.getProduct());
+                productDetail.setColor(pd.getColor());
+                productDetail.setSize(pd.getSize());
+                productDetailRepo.save(productDetail);
                 orderProductDetail.setOrder(order);
                 orderProductDetail.setProductDetail(productDetail);
                 orderProductDetailRepo.save(orderProductDetail);
             }
         }
+        // dang sửa luồng mua hàng ở chỗ thêm tổng tiền vào hóa đơn
         return orderConvert.toDTO(newOrder);
 
     }

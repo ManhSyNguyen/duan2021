@@ -1,6 +1,10 @@
 package com.example.demosecurity.Controller;
 
+import com.example.demosecurity.Service.auth.ImageService;
+import com.example.demosecurity.model.dto.UploadResponseMessage;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +23,18 @@ import java.nio.file.Paths;
 @RestController
 @RequestMapping("/images")
 public class ImageController {
+    private final ImageService fileService;
+
+    @Autowired
+    public ImageController(ImageService fileService) {
+        this.fileService = fileService;
+    }
 
     @GetMapping("{pid}")
     public void downloadImage(@PathVariable("pid") String pid, HttpServletResponse response)
     {
         try {
-            File fileToDownload = new File("/product-app/uploads/" + pid);
+            File fileToDownload = new File("/Desktop/duan/duan2021/upload/" + pid);
 
             try (InputStream inputStream = new FileInputStream(fileToDownload)) {
                 response.setContentType("application/force-download");
@@ -37,36 +47,23 @@ public class ImageController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<?> uploadImage(
-            @RequestParam("pid") String pid, // photo id
-            @RequestParam("file") MultipartFile file
-    ) {
-        if (file.isEmpty()) {
-            throw new RuntimeException("File given is not valid!");
-        }
 
-        String folder = "/product-app/uploads/";
-
+    @PostMapping("/upload")
+    public ResponseEntity<UploadResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            Path pathFolder = Paths.get(folder);
-            Files.createDirectories(pathFolder);
-
-            Path pathFile = Paths.get(folder + pid);
-            Files.write(pathFile, file.getBytes());
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            fileService.save(file);
+        } catch (FileUploadException e) {
+            e.printStackTrace();
         }
-
-        return new ResponseEntity(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new UploadResponseMessage("Uploaded the file successfully: " + file.getOriginalFilename()));
     }
 
     @DeleteMapping("{pid}")
     public void deleteFile(@PathVariable("pid") String pid)
     {
         try {
-            Path fileToDelete = Paths.get("/product-app/uploads/" + pid);
+            Path fileToDelete = Paths.get("/duan2021/upload/" + pid);
 
             if (Files.exists(fileToDelete)) {
                 Files.delete(fileToDelete);

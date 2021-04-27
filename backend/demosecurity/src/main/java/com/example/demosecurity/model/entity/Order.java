@@ -43,6 +43,7 @@ public class Order {
     private String address;
     @Column(length = 20)
     private String sku;
+    private Integer vat;
     private String quantityOrder;
     @Column(length = 20)
     private String paymentmethod;

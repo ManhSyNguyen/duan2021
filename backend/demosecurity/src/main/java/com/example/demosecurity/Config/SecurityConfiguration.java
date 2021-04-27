@@ -88,6 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(SecurityConstants.API_SIZES).permitAll()
                 .antMatchers(SecurityConstants.API_CATEGORY).permitAll()
                 .antMatchers(SecurityConstants.API_ORDER).permitAll()
+                .antMatchers(SecurityConstants.API_IMAGE).permitAll()
                 .anyRequest().authenticated();
 // phải có cái này thì token mới xác thực
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

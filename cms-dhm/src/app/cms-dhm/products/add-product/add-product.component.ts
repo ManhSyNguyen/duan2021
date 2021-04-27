@@ -19,6 +19,7 @@ export class AddProductComponent implements OnInit {
   listCategory: any[] = [];
   listColor: any[] = [];
   listColorandSize: any[] = [];
+  selectedImage: File | undefined;
 
   constructor(
     private sizeService: SizeService,
@@ -93,7 +94,10 @@ export class AddProductComponent implements OnInit {
       quantityProduct: this.if.quantityProduct.value,
     };
     this.listColorandSize.push(params);
+    
   }
+  
+ 
   // tslint:disable-next-line:typedef
   // @ts-ignore
   // tslint:disable-next-line:typedef
@@ -149,4 +153,6 @@ export class AddProductComponent implements OnInit {
       }
     });
   }
+  
 }
+ 

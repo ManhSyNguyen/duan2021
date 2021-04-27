@@ -23,8 +23,12 @@ import java.nio.file.Paths;
 @RestController
 @RequestMapping("/images")
 public class ImageController {
+    private final ImageService fileService;
+
     @Autowired
-    private ImageService imageService;
+    public ImageController(ImageService fileService) {
+        this.fileService = fileService;
+    }
 
     @GetMapping("{pid}")
     public void downloadImage(@PathVariable("pid") String pid, HttpServletResponse response)
@@ -47,7 +51,7 @@ public class ImageController {
     @PostMapping("/upload")
     public ResponseEntity<UploadResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            imageService.save(file);
+            fileService.save(file);
         } catch (FileUploadException e) {
             e.printStackTrace();
         }

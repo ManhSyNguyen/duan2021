@@ -24,15 +24,4 @@ public class DemosecurityApplication {
         factory.setMaxRequestSize(DataSize.ofKilobytes(512));
         return factory.createMultipartConfig();
     }
-
-    @Bean
-    WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/files")
-                        .allowedOrigins("http://localhost:4200");
-            }
-        };
-    }
 }

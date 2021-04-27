@@ -35,8 +35,8 @@
           <div class="order-content-status">Đã Mua</div>
         </div>
       </div>
-      <div class="order-content__item-list" *ngFor="let item of listOrder">
-        <a class="order-content__item-wrapper" href="/user/purchase/order/70858473404093/?shopid=40246675">
+      <div class="order-content__item-list">
+        <a class="order-content__item-wrapper" routerLink="/detail-bill">
           <div class="order-content__item order-content__item--last">
             <div class="order-content__item__col order-content__item__detail">
               <div class="order-content__item__product">
@@ -46,22 +46,22 @@
                     </div>
                     <div class="dhm-image__content">
                       <div class="dhm-image__content--blur">
-                        <img src="{{item.productDetail.product.image}}" alt="">
+                        <img src="/assets/images/box.svg" alt="">
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="order-content__item__detail-content">
-                  <div class="order-content__item__name">{{item.productDetail.product.nameproduct}}</div>
-                  <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}</div>
-                  <div class="order-content__item__quantity">x {{item.quantity}}</div>
+                  <div class="order-content__item__name">MÃ ĐƠN HÀNG: DHMJSUSJ</div>
+                  <!-- <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}</div>
+                  <div class="order-content__item__quantity">x {{item.quantity}}</div> -->
                 </div>
               </div>
             </div>
             <div
               class="order-content__item__price order-content__item__col order-content__item__col--small order-content__item__col--last">
               <div class="order-content__item__price-text">
-                <div class="">₫{{item.quantity * item.productDetail.product.price | number}}</div>
+                <div class="">₫800.000</div>
 
               </div>
             </div>

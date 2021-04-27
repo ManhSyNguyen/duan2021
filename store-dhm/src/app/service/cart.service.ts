@@ -14,7 +14,6 @@ export class CartService {
     constructor(
     ) { }
     addCart(obj: any) {
-      debugger
       console.log("obj", obj)
       this.cartItems.push(obj);
       localStorage.setItem("Cart", JSON.stringify(this.cartItems));

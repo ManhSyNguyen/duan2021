@@ -1592,7 +1592,7 @@ svg:not(:root) {
 .order-content__item__product {
   display: flex;
   flex-wrap: nowrap;
-  padding: 0.625rem 0;
+  padding: 25px;
 }
 .order-content__item__detail,
 .order-content__item__product {
@@ -1624,7 +1624,6 @@ svg:not(:root) {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: #fafafa;
 }
 
 .dhm-image__content {
@@ -1674,4 +1673,173 @@ svg:not(:root) {
   -moz-box-orient: vertical;
   -moz-box-direction: normal;
   flex-direction: column;
+}
+.order-detail-page__delivery__container-wrapper {
+  margin-bottom: 0.625rem;
+  background: #fff;
+}
+._1AsWWl {
+  height: 0.1875rem;
+  width: 100%;
+  background-position-x: -1.875rem;
+  background-size: 7.25rem 0.1875rem;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #6fa6d6,
+    #6fa6d6 33px,
+    transparent 0,
+    transparent 41px,
+    #f18d9b 0,
+    #f18d9b 74px,
+    transparent 0,
+    transparent 82px
+  );
+}
+.order-detail-page__delivery__container {
+  padding: 1.1875rem 1.5rem 1.625rem;
+}
+.order-detail-page__delivery__header {
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: end;
+  align-items: flex-end;
+  padding-bottom: 0.8125rem;
+}
+.order-detail-page__delivery__header__title {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 18px;
+  line-height: 45px;
+  text-transform: capitalize;
+}
+.order-detail-page__delivery__content {
+  display: flex;
+}
+.order-detail-page__delivery__shipping-address__container:last-child {
+  max-width: 100%;
+}
+.order-detail-page__delivery__shipping-address__container {
+  text-align: start;
+  margin-right: 6%;
+  padding-top: 0.625rem;
+  flex-shrink: 0;
+}
+.order-detail-page__delivery__shipping-address__container {
+  text-align: start;
+}
+.order-detail-page__delivery__shipping-address__shipping-name {
+  line-height: 20px;
+  margin-bottom: 0.4375rem;
+}
+.order-detail-page__delivery__shipping-address__shipping-name {
+  color: rgba(0, 0, 0, 0.8);
+}
+.order-detail-page__delivery__shipping-address__detail {
+  line-height: 30px;
+}
+.order-detail-page__delivery__shipping-address__detail {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+}
+._1LhNIx,
+.Ovq6t9 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+._1LhNIx {
+  background: #ffffff;
+  padding: 0.8125rem 1.5rem 0;
+}
+.order-content__container {
+  color: rgba(0, 0, 0, 0.8);
+}
+.Ovq6t9 {
+  background: #ffffff !important;
+}
+._1LhNIx,
+.Ovq6t9 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+.payment-detail__container {
+  background: #fdfdfd;
+  padding: 0.3125rem 0 0.625rem;
+}
+.payment-detail__item {
+  display: flex;
+  -moz-box-pack: end;
+  justify-content: flex-end;
+  text-align: end;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.09);
+  padding: 0 1.25rem;
+}
+.payment-detail__item__description {
+  border-right: 1px dotted rgba(0, 0, 0, 0.09);
+  padding: 0.8125rem 0.625rem;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.payment-detail__item {
+  text-align: end;
+}
+.payment-detail__item__value {
+  min-width: 12.5rem;
+  color: rgba(0, 0, 0, 0.8);
+  word-wrap: break-word;
+}
+.payment-detail__item__description-inner,
+.payment-detail__item__value {
+  display: flex;
+  -moz-box-pack: end;
+  justify-content: flex-end;
+  -moz-box-align: center;
+  align-items: center;
+}
+.payment-detail__item__value {
+  color: rgba(0, 0, 0, 0.8);
+  word-wrap: break-word;
+}
+.payment-detail__item--last {
+  border-bottom: 0;
+}
+.payment-detail__item__value--highlighted {
+  color: #292929;
+  font-size: 2rem;
+  line-height: 2.125rem;
+}
+._1J7vLy {
+  width: 100%;
+  height: 0;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.09);
+  position: relative;
+}
+.tyOBoQ {
+  left: 0;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.DI-rNr {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+}
+._25igL4 {
+  right: 0;
+  -webkit-transform: translate(50%, -50%);
+  transform: translate(50%, -50%);
+}
+.DI-rNr {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
 }

@@ -20,6 +20,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import {MatIconModule} from '@angular/material/icon'
+import {MatStepperModule} from '@angular/material/stepper';
 import { authInterceptorProviders } from './dhmcolor/interceptor/basic-auth-intercepter';
 import { ErrorInterceptor } from './dhmcolor/interceptor/error.interceptor';
 import { InforUserComponent } from './dhmcolor/infor-user/infor-user.component';
@@ -27,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-product.component';
 import { ForgotPassComponent } from './dhmcolor/forgot-pass/forgot-pass.component';
 import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.component';
+import { DetailBillComponent } from './dhmcolor/detail-bill/detail-bill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,7 @@ import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.componen
     BillOfProductComponent,
     ForgotPassComponent,
     ChangePassComponent,
+    DetailBillComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.componen
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    MatIconModule,
+    MatStepperModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

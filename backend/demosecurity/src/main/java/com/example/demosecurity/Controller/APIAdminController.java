@@ -109,7 +109,8 @@ public class APIAdminController {
         // Create new user's account
         Users user = new Users(signUpRequest.getUsername(),
                 encode.encode(signUpRequest.getPassword()),
-                signUpRequest.getEmail(),signUpRequest.getSodienthoai()
+                signUpRequest.getEmail(),
+                signUpRequest.getSodienthoai()
         );
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();

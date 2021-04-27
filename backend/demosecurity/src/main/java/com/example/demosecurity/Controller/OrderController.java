@@ -57,6 +57,15 @@ public class OrderController {
         return orderService.findOrderByUsernameAndStatus(status,pc.getName());
     }
 
+    @GetMapping("/orders/sku/{sku}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Order findOrderBySku(@PathVariable("sku") String sku)  {
+        return orderService.findOrderBySku(sku);
+    }
+
+
+
+
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

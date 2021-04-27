@@ -10,33 +10,39 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Tìm kiếm SKU sản phẩm" value="">
+                            <div class="input-group mb-3" [formGroup]="searchForm">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm SKU sản phẩm" formControlName="sku">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit"><i
+                                    <button class="btn btn-outline-secondary" type="submit" (click)="searchProductBySku()"><i
                                             class="fas fa-search-plus"></i></button>
                                 </div>
                             </div>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Số lượng</th>
-                                        <th>Giá</th>
-                                        <th>Size</th>
-                                        <th>Thành tiền</th>
+                                        <th scope="col" width="400px">Tên sản phẩm</th>
+                                        <th scope="col" width="100px">Số lượng</th>
+                                        <th scope="col" width="300px">Giá</th>
+                                        <th scope="col" width="100px">Size</th>
+                                        <th scope="col" width="300px">Thành tiền</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>SIGNATURE-PINK</td>
+                                <tbody *ngIf="listProduct">
+                                    <tr *ngFor="let item of listProduct">
+                                        <td>{{item.product.nameproduct}}</td>
                                         <td>
-                                            <input type="number" class="form-control form-control-sm qty-inp"
-                                                placeholder="">
+                                          <div class="buttons_added">
+                                            <input class="minus is-form" (click)="incrementQuantity(item)" type="button"
+                                                   [disabled]="item.priceProductDetail == 1" value="-  ">
+                                            <input aria-label="quantity" class="input-qty" min="1"
+                                                   value="{{item.priceProductDetail}}" disabled name="" type="number">
+                                            <input class="plus is-form" (click)="tangsoluong(item)" type="button"
+                                                   value="+">
+                                          </div>
                                         </td>
-                                        <td>2.000.000đ</td>
-                                        <td>M</td>
-                                        <td>2.000.000đ</td>
+                                        <td>{{item.product.priceProduct | number}} đ</td>
+                                        <td>{{item.size.namesize}}</td>
+                                        <td>{{item.priceProductDetail * item.product.priceProduct | number}} đ</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -51,14 +57,12 @@
                                         <p>Tổng tiền: </p>
                                         <p>VAT: </p>
                                         <p>Đã thanh toán: </p>
-                                        <p>Chưa thanh toán: </p>
                                     </div>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <p>2.000.000đ</p>
+                                    <p>{{totalPrice | number}}</p>
                                     <p>10%</p>
-                                    <p>0đ</p>
-                                    <p>0đ</p>
+                                    <p>{{(totalPrice/10)+totalPrice | number}} đ</p>
                                 </div>
                             </div>
                         </div>
@@ -70,34 +74,32 @@
                     <div class="card-header py-3">
                         <h3 class="m-0 font-weight-bold text-dark">Thông tin khách hàng</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" [formGroup]="inputForm">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên khách hàng</label>
-                            <input type="text" class="form-control" value="Nguyen Sy Manh" />
+                            <input type="text" class="form-control" formControlName="name" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
-                            <input type="text" class="form-control" value="03344934393" />
+                            <input type="text" class="form-control"formControlName="phone" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="text" class="form-control" value="manh15@gmail.com" />
+                            <input type="text" class="form-control" formControlName="email" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa chỉ</label>
-                            <input type="text" class="form-control" value="Thanh Hóa" />
+                            <input type="text" class="form-control" formControlName="addr" />
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"
-                                checked>
-                            <label class="custom-control-label" for="customRadio1">Thanh toán tiền mặt tại cửa
-                                hàng</label>
+                      <label class="form-group">
+                        <label for="payment">Thanh toán</label>
+                        <div>
+                          <input name="type" type="radio" value="0" formControlName="type" />
+                          Thanh toán khi nhận hàng <br>
+                          <input name="type" type="radio" value="1" formControlName="type" />
+                          Thanh toán qua chuyển khoản
                         </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="customRadio2">Thanh toán qua chuyển khoản</label>
-                        </div>
+                      </label>
 
                     </div>
                 </div>
@@ -107,6 +109,6 @@
 </div>
 <hr>
 <div class="form-group pt-2">
-    <button type="submit" class="btn btn-primary btn-sm">Tạo</button>&nbsp;
+    <button type="submit" class="btn btn-primary btn-sm" (click)="addOrder()">Tạo</button>&nbsp;
     <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
 </div>

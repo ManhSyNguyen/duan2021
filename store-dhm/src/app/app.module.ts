@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-product.component';
 import { ForgotPassComponent } from './dhmcolor/forgot-pass/forgot-pass.component';
 import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.component';
+import { DetailBillComponent } from './dhmcolor/detail-bill/detail-bill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.componen
     BillOfProductComponent,
     ForgotPassComponent,
     ChangePassComponent,
+    DetailBillComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { LoginComponent } from './dhmcolor/login/login.component';
 import { Page404Component } from './dhmcolor/page404/page404.component';
 import { ProductDetailComponent } from './dhmcolor/product-detail/product-detail.component';
 import { RegisterComponent } from './dhmcolor/register/register.component';
+import {DetailBillComponent} from './dhmcolor/detail-bill/detail-bill.component';
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path: 'about/product-detail/:id', component: ProductDetailComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'inforUser', component: InforUserComponent },
-      { path: 'billproduct', component: BillOfProductComponent }
+      { path: 'billproduct', component: BillOfProductComponent },
+      { path: 'detail-bill/:sku', component: DetailBillComponent },
     ]
   },
   { path: 'login', component: LoginComponent },

@@ -34,6 +34,7 @@ public class OrderService {
     private static final Logger logger = LogManager.getLogger(OrderService.class);
 
     public OrderDTO save(OrderDTO orderDTO) {
+        System.out.println(orderDTO.getTotalMonenyOrder());
         Order neworder = new Order();
         neworder = orderConvert.toEntity(orderDTO);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
@@ -58,8 +59,6 @@ public class OrderService {
 
                 orderProductDetail.setStatus(1);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
-                float total = orderProductDetaildto.getQuantity() * pd.getQuantityProduct();
-                order.setTotalMonenyOrder(total);
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
                 orderProductDetail.setOrder(order);
                 orderProductDetail.setProductDetail(productDetail);
@@ -203,5 +202,9 @@ public class OrderService {
     public List<Order> findOrderByUsernameAndStatus(Integer status,String name) {
         List<Order> list = orderRepo.findAllByUsernameAndStatus(status,name);
         return list;
+    }
+    public Order findOrderBySku(String sku){
+        Order order = orderRepo.findOrderBySku(sku);
+        return order;
     }
 }

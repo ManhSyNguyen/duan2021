@@ -14,20 +14,12 @@ export class BillOfProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getDataOrder();
+    this.getOrderByUser();
   }
-  getDataOrder() {
-    this.orderService.getAll().subscribe(res => {
-      if (res) {
-        res.map((i: any) => {
-          const data = i.orderProductDetails;
-          data.map((el: any) => {
-            this.productOrder = el;
-            console.log(this.productOrder);
-            this.listOrder.push(this.productOrder);
-          });
-        });
-      }
+
+  getOrderByUser() {
+    this.orderService.getOrderByUser().subscribe(res => {
+      this.listOrder = res;
     });
   }
 }

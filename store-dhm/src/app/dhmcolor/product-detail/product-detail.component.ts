@@ -5,6 +5,7 @@ import { CartItem } from 'src/app/model/cart-item';
 import { Product } from 'src/app/model/product';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -52,7 +53,6 @@ export class ProductDetailComponent implements OnInit {
     });
   }
    kiemtravitri( list: any, obj: CartItem) {
-    debugger
     for (let i = 0 ; i < list.length; i++){
       if (list[i].id === obj.id && list[i].size.id === obj.size.id)
       {
@@ -67,23 +67,46 @@ export class ProductDetailComponent implements OnInit {
     const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
     if (conf) {
           if (listDataCart === null) {
-            this.CartService.addCart(this.detailProduct);
-            this.toastService.success("Thêm giỏ hàng thành công");
+            this.CartService.addCart(this.detailProduct,listDataCart);
+            Swal.fire({
+              text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
           }else {
             const i = this.kiemtravitri(listDataCart, this.detailProduct);
             if (i === -1){
-              this.CartService.addCart(this.detailProduct);
+              this.CartService.addCart(this.detailProduct, listDataCart);
+              Swal.fire({
+                text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
+              });
             }else {
               listDataCart.map((e: any) => {
-                debugger
                 if (e.id === listDataCart[i].id){
                   // tslint:disable-next-line:no-unused-expression label-position
                   priceProductDetail : listDataCart[i].priceProductDetail++;
                 }
               });
-              console.log("listDataCart[i]", listDataCart);
               localStorage.setItem("Cart", JSON.stringify(listDataCart));
-              this.toastService.success("Thêm giỏ hàng thành công");
+              Swal.fire({
+                text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
+              });
             }
       }
     }

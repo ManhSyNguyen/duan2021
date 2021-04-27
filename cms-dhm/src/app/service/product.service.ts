@@ -21,6 +21,9 @@ export class ProductService {
     getProductByIdDetail(id: any): Observable<any> {
         return this.http.get<any>(`${this.api + '/productdetails'}/${id}`);
     }
+    getProductBySku(sku: any): Observable<any>{
+      return this.http.get<any>(`${this.api + '/productdetails/sku'}/${sku}`);
+    }
     createProduct(obj: any): Observable<any> {
       return this.http.post<any>(this.api + '/product', obj, httpOptions);
     }

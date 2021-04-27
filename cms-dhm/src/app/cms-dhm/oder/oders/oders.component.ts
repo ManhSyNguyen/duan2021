@@ -27,26 +27,10 @@ export class OdersComponent implements OnInit {
     this.orderService.getAll().subscribe(res => {
       if (res) {
         this.listOrder = res;
+        console.log(res);
       }
     });
   }
-  // getText(text) {
-  //   if (text == '0'){
-  //     return 'Chờ xác nhận';
-  //   }
-  //   if (text == '1'){
-  //     return 'Chờ lấy hàng';
-  //   }
-  //   if (text == '2'){
-  //     return 'Đang giao';
-  //   }
-  //   if (text == '3'){
-  //     return 'Thành công';
-  //   }
-  //   if (text == '4'){
-  //     return 'Hủy';
-  //   }
-  // }
   get sf(): any {
     return this.searchForm.controls;
   }
@@ -55,10 +39,11 @@ export class OdersComponent implements OnInit {
       this.orderService.getOrderByStatus(this.sf.status.value).subscribe(res => {
         if (res){
           this.listOrder = res;
+          console.log(res);
         }
       });
     }else{
       this.getAll();
-    };
+    }
   }
 }

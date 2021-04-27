@@ -54,7 +54,7 @@ const routes: Routes = [
 
       //oder
       {path: 'oders', component:OdersComponent, canActivate: [AdminGuard]},
-      {path:'detail-order', component:DetailOderComponent, canActivate: [AdminGuard]},
+      {path:'detail-order/:sku', component:DetailOderComponent, canActivate: [AdminGuard]},
       //boom
       { path: 'booms', component: BoomsComponent, canActivate: [AdminGuard] },
     ]
@@ -69,7 +69,7 @@ const routes: Routes = [
     ]
   },
 
- 
+
   { path: 'khong-tim-thay-duong-dan', component: Page404Component },
   { path: '**', redirectTo: '/khong-tim-thay-duong-dan' }
 

@@ -17,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
   listProduct: any[] = [];
   colorSizeDetail: any[] = [];
   sizeSelect: any;
+  detailProduct: any;
 
   constructor(
     private ProductService: ProductService,
@@ -32,7 +33,8 @@ export class ProductDetailComponent implements OnInit {
   }
   selectSize(iz: any) {
     this.sizeSelect = iz.size.namesize;
-    console.log(iz);
+    this.detailProduct = iz;
+    console.log("chọn size",iz);
   }
   getProductDetail() {
     this.activateRoute.paramMap.subscribe(params => {
@@ -49,18 +51,41 @@ export class ProductDetailComponent implements OnInit {
       this.listProduct = data;
     });
   }
-
-  addToCart(iz: any) {
+   kiemtravitri( list: any, obj: CartItem) {
+    debugger
+    for (let i = 0 ; i < list.length; i++){
+      if (list[i].id === obj.id && list[i].size.id === obj.size.id)
+      {
+        return i;
+      }
+    }
+    return -1;
+  }
+  addToCart() {
+    debugger
+    const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
     if (conf) {
-      this.colorSizeDetail.forEach(i   => {
-        console.log(i);
-        if (this.sizeSelect === i.size.namesize) {
-          i.quantityProduct++ ;
-          this.CartService.addCart(i);
-          this.toastService.success("Thêm giỏ hàng thành công");
-        }
-      });
+          if (listDataCart === null) {
+            this.CartService.addCart(this.detailProduct);
+            this.toastService.success("Thêm giỏ hàng thành công");
+          }else {
+            const i = this.kiemtravitri(listDataCart, this.detailProduct);
+            if (i === -1){
+              this.CartService.addCart(this.detailProduct);
+            }else {
+              listDataCart.map((e: any) => {
+                debugger
+                if (e.id === listDataCart[i].id){
+                  // tslint:disable-next-line:no-unused-expression label-position
+                  priceProductDetail : listDataCart[i].priceProductDetail++;
+                }
+              });
+              console.log("listDataCart[i]", listDataCart);
+              localStorage.setItem("Cart", JSON.stringify(listDataCart));
+              this.toastService.success("Thêm giỏ hàng thành công");
+            }
+      }
     }
   }
 }

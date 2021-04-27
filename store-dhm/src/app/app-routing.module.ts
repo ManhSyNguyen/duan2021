@@ -6,6 +6,7 @@ import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-produ
 import { CartComponent } from './dhmcolor/cart/cart.component';
 import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.component';
 import { ContactComponent } from './dhmcolor/contact/contact.component';
+import { DetailBillComponent } from './dhmcolor/detail-bill/detail-bill.component';
 import { ForgotPassComponent } from './dhmcolor/forgot-pass/forgot-pass.component';
 import { HomeComponent } from './dhmcolor/home/home.component';
 import { InforUserComponent } from './dhmcolor/infor-user/infor-user.component';
@@ -27,7 +28,9 @@ const routes: Routes = [
       { path: 'about/product-detail/:id', component: ProductDetailComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'inforUser', component: InforUserComponent },
-      { path: 'billproduct', component: BillOfProductComponent }
+      { path: 'billproduct', component: BillOfProductComponent },
+      { path: 'detail-bill', component: DetailBillComponent },
+
     ]
   },
   { path: 'login', component: LoginComponent },

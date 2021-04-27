@@ -14,13 +14,14 @@ export class CartService {
     constructor(
     ) { }
     addCart(obj: any) {
+      console.log("obj", obj)
       this.cartItems.push(obj);
       localStorage.setItem("Cart", JSON.stringify(this.cartItems));
       this.CartTotal();
     }
     //tinh tong va so luong
     CartTotal() {
-        const listDataCart = JSON.parse(localStorage.getItem("Cart") || '{}');
+        const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
         let totalPriceValue = 0;
         let totalQtyValue = 0;
         if (listDataCart) {

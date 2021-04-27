@@ -58,8 +58,6 @@ public class OrderService {
 
                 orderProductDetail.setStatus(1);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
-                float total = orderProductDetaildto.getPrice();
-                order.setTotalMonenyOrder(total);
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
                 orderProductDetail.setOrder(order);
                 orderProductDetail.setProductDetail(productDetail);

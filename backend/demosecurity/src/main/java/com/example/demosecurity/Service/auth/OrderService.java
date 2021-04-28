@@ -48,7 +48,7 @@ public class OrderService {
                 opdi.setIdProductDetail(pd.getId());
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
-                orderProductDetaildto.setQuantity(pd.getQuantityProduct());
+                orderProductDetaildto.setQuantity(pd.getPriceProductDetail());
                 orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct()*pd.getQuantityProduct());
 
 
@@ -87,7 +87,7 @@ public class OrderService {
 
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
-                orderProductDetaildto.setQuantity(pd.getQuantityProduct());
+                orderProductDetaildto.setQuantity(pd.getPriceProductDetail());
                 orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct()*pd.getQuantityProduct());
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();

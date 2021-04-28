@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <form action="">
             <div class="row" [formGroup]="inputForm">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-body">
                             <!-- Form -->
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -91,6 +91,7 @@
                                                                 <th>Màu</th>
                                                                 <th>Size</th>
                                                                 <th>Số lượng</th>
+                                                                <th>Trạng thái</th>
                                                                 <th>Tùy chọn</th>
                                                             </tr>
                                                         </thead>
@@ -99,6 +100,14 @@
                                                                 <td>{{item.idcolor}}</td>
                                                                 <td>{{item.idsize}}</td>
                                                                 <td>{{item.quantityProduct}}</td>
+                                                                <td>
+                                                                  <div class="col p-1 form-group" [formGroup]="inputForm">
+                                                                    <label class="switch">
+                                                                      <input type="checkbox" formControlName="statussize">
+                                                                      <span class="slider round"></span>
+                                                                    </label>
+                                                                  </div>
+                                                                </td>
                                                                 <td>
                                                                   <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
                                                                 </td>

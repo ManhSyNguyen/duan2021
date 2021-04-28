@@ -44,6 +44,13 @@ public class ProductController {
         return productService.getProductByCategory(id);
     }
 
+    @GetMapping("/products/byName/{name}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public List<ProductDTO> getProductByName(@PathVariable(value ="name") String name) {
+        return productService.getProductByName(name);
+    }
+
     @PostMapping("/product")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

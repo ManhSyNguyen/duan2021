@@ -96,9 +96,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Tìm kiếm" />
+                <div class="col-sm-3" [formGroup]="searchForm">
+                    <div class="search_box pull-right form-group">
+                        <input #seach type="text" placeholder="Tìm kiếm" class="form-control" formControlName="search" />
+                        <i class="fa fa-search" (click)="searchName(seach.value)"></i>
                     </div>
                 </div>
             </div>

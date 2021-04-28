@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
+import {ProductService} from "../../service/product.service";
 
 @Component({
   selector: 'app-infor-user',
@@ -13,8 +14,10 @@ export class InforUserComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   email?: string;
+  sodienthoai?: any;
   constructor(
     private token: TokenStorageService,
+    private productService: ProductService,
   ) { }
 
   ngOnInit(): void {
@@ -22,9 +25,14 @@ export class InforUserComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.token.getUser();
       this.roles = user.roles;
-      this.username = user.username;
-      this.email = user.email;
+      this.productService.getInforUser().subscribe(res => {
+        if (res) {
+          console.log(res);
+          this.username = res.username;
+          this.email = res.email;
+          this.sodienthoai = res.sodienthoai;
+        }
+      });
     }
   }
-
 }

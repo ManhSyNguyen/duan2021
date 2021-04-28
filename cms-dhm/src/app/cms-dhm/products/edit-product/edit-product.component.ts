@@ -48,7 +48,8 @@ export class EditProductComponent implements OnInit {
       idcolor: [''],
       idsize: [''],
       status: [],
-      idcategory: ['']
+      idcategory: [''],
+      statussize: [],
     });
   }
   getSize() {
@@ -115,9 +116,11 @@ export class EditProductComponent implements OnInit {
             let obj = {
               idcolor : i.color.id , idsize : i.size.id , quantityProduct : i.quantityProduct
             };
-          this.listColorSize.push(obj);
+            this.listColorSize.push(obj);
         });
+          console.log(data);
           this.if.sku.setValue(data[0].sku);
+          this.if.statussize.setValue(data[0].size.status);
       });
     });
   }

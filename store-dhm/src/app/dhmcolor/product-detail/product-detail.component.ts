@@ -62,7 +62,6 @@ export class ProductDetailComponent implements OnInit {
     return -1;
   }
   addToCart() {
-    debugger
     const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
     if (conf) {

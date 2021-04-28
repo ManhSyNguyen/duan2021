@@ -1,3 +1,7 @@
+<div class="container">
+  <h2 class="title text-center">Chi tiết đơn hàng</h2>
+
+</div>
 <div class="container p-5">
   <div class="order-detail-page__delivery__container-wrapper">
     <div class="_1AsWWl"></div>
@@ -50,8 +54,7 @@
                           </div>
                           <div class="dhm-image__content">
                             <div class="dhm-image__content--blur">
-                              <img src="{{item.productDetail.product.image}}"
-                                   alt="">
+                              <img src="{{item.productDetail.product.image}}" alt="">
                             </div>
                           </div>
                         </div>
@@ -59,7 +62,8 @@
                       <div class="order-content__item__detail-content">
                         <div class="order-content__item__name">
                           {{item.productDetail.product.nameproduct}}</div>
-                        <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}</div>
+                        <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}
+                        </div>
                         <div class="order-content__item__quantity">x {{item.productDetail.priceProductDetail}}</div>
                       </div>
                     </div>
@@ -67,7 +71,8 @@
                   <div
                     class="order-content__item__price order-content__item__col order-content__item__col--small order-content__item__col--last">
                     <div class="order-content__item__price-text">
-                      <div class="">{{item.productDetail.priceProductDetail * item.productDetail.product.priceProduct | number}}₫
+                      <div class="">{{item.productDetail.priceProductDetail * item.productDetail.product.priceProduct |
+                        number}}₫
                       </div>
 
                     </div>

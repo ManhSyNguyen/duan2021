@@ -41,6 +41,8 @@ export class DetailBillComponent implements OnInit {
           data.map((el: any) => {
             this.productOrder = el;
             this.listOrderBySku.push(this.productOrder);
+            console.log(this.listOrderBySku);
+            
           });
         }
       });

@@ -123,19 +123,19 @@ export class AddProductComponent implements OnInit {
   // tslint:disable-next-line:typedef
   getTextSize(text: any) {
     if (text === '1') {
-      return "XX";
-    }
-    if (text === '2') {
-      return "XL";
-    }
-    if (text === '3') {
-      return "M";
-    }
-    if (text === '4') {
       return "S";
     }
-    if (text === '5') {
+    if (text === '2') {
+      return "M";
+    }
+    if (text === '3') {
       return "L";
+    }
+    if (text === '4') {
+      return "XL";
+    }
+    if (text === '5') {
+      return "XX";
     }
   }
   xoa() {

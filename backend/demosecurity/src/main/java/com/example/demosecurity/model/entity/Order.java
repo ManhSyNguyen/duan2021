@@ -50,6 +50,8 @@ public class Order {
     @Column(length = 255)
     private String decription;
     private Float totalMonenyOrder;
+    private Float deposit;
+    private Integer reason;
     @CreatedDate
     private Date createdate;
     @Column(length = 50)

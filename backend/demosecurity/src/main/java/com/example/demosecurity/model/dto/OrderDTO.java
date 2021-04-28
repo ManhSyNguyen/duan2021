@@ -26,7 +26,9 @@ public class OrderDTO {
     private String decription;
     private String quantityOrder;
     private Float totalMonenyOrder;
+    private Float deposit;
     private String sku;
+    private Integer reason;
     private Integer vat;
     private Integer status;
     private Date createdate;

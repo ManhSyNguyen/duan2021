@@ -23,7 +23,7 @@ public class ProductDetailDTO {
     private Size size;
     private String sku;
     private Integer quantityProduct;
-    private Integer status;
+    private Integer statusDetail;
     private Integer priceProductDetail;
     private Date createdate;
     private String createby;

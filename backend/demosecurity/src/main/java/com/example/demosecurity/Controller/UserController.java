@@ -87,6 +87,9 @@ public class UserController {
         }else{
             newUser.setSodienthoai(signUpRequest.getSodienthoai());
         }
+        newUser.setPassword(us.getPassword());
+        newUser.setCreateby(us.getCreateby());
+        newUser.setCreatedate(us.getCreatedate());
         newUser.setImage(signUpRequest.getImage());
         newUser.setFullname(signUpRequest.getFullname());
         newUser.setSodienthoai(signUpRequest.getSodienthoai());

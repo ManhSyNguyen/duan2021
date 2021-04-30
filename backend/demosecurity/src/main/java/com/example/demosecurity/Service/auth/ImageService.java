@@ -19,6 +19,7 @@ public class ImageService {
     public void save(MultipartFile file) throws FileUploadException {
         try {
             Path root = Paths.get(uploadPath);
+            Files.createDirectories(root);
             Path resolve = root.resolve(file.getOriginalFilename());
             if (resolve.toFile()
                     .exists()) {

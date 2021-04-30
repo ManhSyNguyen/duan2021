@@ -87,6 +87,7 @@ public class UserController {
         }else{
             newUser.setSodienthoai(signUpRequest.getSodienthoai());
         }
+        newUser.setImage(signUpRequest.getImage());
         newUser.setFullname(signUpRequest.getFullname());
         newUser.setSodienthoai(signUpRequest.getSodienthoai());
         newUser.setStatus(signUpRequest.getStatus());
@@ -154,6 +155,7 @@ public class UserController {
         user.setSodienthoai(signUpRequest.getSodienthoai());
         user.setStatus(signUpRequest.getStatus());
         user.setAddress(signUpRequest.getAddress());
+        user.setImage(signUpRequest.getImage());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         if (strRoles==null) {

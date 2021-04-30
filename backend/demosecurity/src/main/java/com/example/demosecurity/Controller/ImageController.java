@@ -2,7 +2,6 @@ package com.example.demosecurity.Controller;
 
 import com.example.demosecurity.Service.auth.ImageService;
 import com.example.demosecurity.model.dto.UploadResponseMessage;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +33,7 @@ public class ImageController {
     public void downloadImage(@PathVariable("pid") String pid, HttpServletResponse response)
     {
         try {
-            File fileToDownload = new File("/Desktop/duan/duan2021/upload/" + pid);
+            File fileToDownload = new File("/duan2021/upload/" + pid);
 
             try (InputStream inputStream = new FileInputStream(fileToDownload)) {
                 response.setContentType("application/force-download");
@@ -50,11 +49,7 @@ public class ImageController {
 
     @PostMapping("/upload")
     public ResponseEntity<UploadResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
-        try {
             fileService.save(file);
-        } catch (FileUploadException e) {
-            e.printStackTrace();
-        }
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new UploadResponseMessage("Uploaded the file successfully: " + file.getOriginalFilename()));
     }

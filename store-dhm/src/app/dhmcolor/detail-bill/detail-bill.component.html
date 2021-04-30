@@ -54,7 +54,7 @@
                           </div>
                           <div class="dhm-image__content">
                             <div class="dhm-image__content--blur">
-                              <img src="{{item.productDetail.product.image}}" alt="">
+                              <img [src]="'http://localhost:5000/images/' + item.productDetail.product.image" alt="">
                             </div>
                           </div>
                         </div>

@@ -26,9 +26,14 @@
                                                     <div class="form-group mb-2 mr-sm-2 mb-sm-0">
                                                         <div class="upload-btn-wrapper">
                                                             <input id="uploadimg" type="file" name="myfile"
+                                                                (change)="onFileChanged($event)"
                                                                 formControlName="image" />
                                                         </div>
                                                     </div>
+                                                    <div *ngIf="message" class="alert alert-success" role="alert">{{
+                                                        message }}</div>
+                                                    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">{{
+                                                        errorMsg }}</div>
                                                 </div>
                                             </div>
                                         </div>

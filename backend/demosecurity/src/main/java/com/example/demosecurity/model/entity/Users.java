@@ -46,6 +46,7 @@ public class Users {
     @Column(name = "address",columnDefinition = "VARCHAR(200)")
     private String address;
 
+    private String image;
     @CreatedDate
     private Date createdate;
 

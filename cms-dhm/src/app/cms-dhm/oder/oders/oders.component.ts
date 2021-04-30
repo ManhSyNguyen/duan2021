@@ -9,19 +9,21 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 
 })
 export class OdersComponent implements OnInit {
-  searchForm! : FormGroup;
+  searchForm!: FormGroup;
   listOrder: any[] = [];
+  page = 1;
+  pageSize = 8;
   constructor(
     private orderService: OrderService,
     private formBuild: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.getAll();
     this.searchForm = this.formBuild.group({
       search: [''],
       status: ['']
     });
+    this.searchSku();
   }
   getAll() {
     this.orderService.getAll().subscribe(res => {
@@ -43,6 +45,18 @@ export class OdersComponent implements OnInit {
         }
       });
     }else{
+      this.getAll();
+    }
+  }
+  searchSku() {
+    if (this.sf.search.value) {
+      this.orderService.getOrderBySku(this.sf.search.value).subscribe(res => {
+        if (res) {
+          console.log(res);
+          this.listOrder = [res];
+        }
+      });
+    } else {
       this.getAll();
     }
   }

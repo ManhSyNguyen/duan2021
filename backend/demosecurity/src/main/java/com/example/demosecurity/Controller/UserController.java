@@ -36,9 +36,8 @@ public class UserController {
     BCryptPasswordEncoder encode;
 
     @GetMapping("/users")
-    public ResponseEntity<?> findAllUser(@RequestParam(defaultValue = "0") Integer pageNo,
-                                         @RequestParam(defaultValue = "10") Integer sizeNo) {
-        List<Users> list = userService.findAllUser(pageNo, sizeNo);
+    public ResponseEntity<?> findAllUser() {
+        List<Users> list = userService.findAllUser();
         return new ResponseEntity<List<Users>>(list, HttpStatus.OK);
     }
     @GetMapping("/user/{id}")
@@ -46,7 +45,7 @@ public class UserController {
         Users us = userService.findUserById(id);
         return new ResponseEntity<Users>(us, HttpStatus.OK);
     }
-
+// đây là api lấy object username đăng nhập
     @GetMapping("/user/username")
     public ResponseEntity<?> findUserUsername(Principal pc){
         Users us = userService.findUserUsername(pc.getName());
@@ -87,6 +86,9 @@ public class UserController {
         }else{
             newUser.setSodienthoai(signUpRequest.getSodienthoai());
         }
+        newUser.setPassword(us.getPassword());
+        newUser.setCreateby(us.getCreateby());
+        newUser.setCreatedate(us.getCreatedate());
         newUser.setFullname(signUpRequest.getFullname());
         newUser.setSodienthoai(signUpRequest.getSodienthoai());
         newUser.setStatus(signUpRequest.getStatus());

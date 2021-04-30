@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
         data.forEach((i: any) => {
           const param = i.status;
           if (param == 1) {
-            console.log(i);
             this.listProduct.push(i);
           }
         });

@@ -13,6 +13,8 @@ export class ProductTypeComponent implements OnInit {
   inputForm!: FormGroup;
   listCategory: any[] = [];
   itemSelected: any;
+  page = 1;
+  pageSize = 8;
   constructor(
     public formBuilder: FormBuilder,
     public Category: CategoryService,
@@ -21,7 +23,7 @@ export class ProductTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputForm = this.formBuilder.group({
-      name : ['', [Validators.required]],
+      name : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       decription: ['', [Validators.required]]
     });
     this.getCategory();
@@ -51,7 +53,7 @@ export class ProductTypeComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Thêm thành công rồi bạn êiii !!',
+          title: 'Thêm thành công !!',
           showConfirmButton: false,
           timer: 1500
         });
@@ -62,19 +64,19 @@ export class ProductTypeComponent implements OnInit {
   }
   delete(id: any) {
     Swal.fire({
-      title: 'Chắc chắn chưa bạn êii ?',
+      title: 'Are you sure ?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Xóa hộ cái bạn êii !',
-      cancelButtonText: 'Bỏ ra bạn êii !',
+      confirmButtonText: 'Chắc chắn',
+      cancelButtonText: 'Không',
     }).then((result) => {
       if (result.isConfirmed) {
         this.Category.deleteNew(id).subscribe(res => {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Xóa thành công rồi bạn êiii !!',
+            title: 'Xóa thành công!!',
             showConfirmButton: false,
             timer: 1500
           });
@@ -99,7 +101,7 @@ export class ProductTypeComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Sửa thành công rồi bạn êiii !!',
+          title: 'Sửa thành công !!',
           showConfirmButton: false,
           timer: 1500
         });

@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
-@Getter
+@Getter;
 @Setter
 @Entity(name = "orders")
 @EntityListeners(AuditingEntityListener.class)
@@ -55,5 +55,5 @@ public class Order {
     @Column(length = 50)
     @CreatedBy
     private String createby;
-    private Integer status;
+    private Integer status;/
 }

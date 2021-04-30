@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {SizeService} from "../../../service/size.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
 import {CategoryService} from "../../../service/categorys.service";
 import {ColorService} from "../../../service/color.service";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import { v4 as uuid } from 'uuid' ;
 
 @Component({
   selector: 'app-add-product',
@@ -19,7 +20,7 @@ export class AddProductComponent implements OnInit {
   listCategory: any[] = [];
   listColor: any[] = [];
   listColorandSize: any[] = [];
-  selectedImage: File | undefined;
+  selectedItem: any;
 
   constructor(
     private sizeService: SizeService,
@@ -27,7 +28,8 @@ export class AddProductComponent implements OnInit {
     private categoryService: CategoryService,
     private formBuild: FormBuilder,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -35,18 +37,18 @@ export class AddProductComponent implements OnInit {
     this.getCategory();
     this.getColor();
     this.inputForm = this.formBuild.group({
-      nameproduct : [''],
-      image : [''],
-      priceProduct : [''],
-      decription : [''],
-      quantityProduct: [''],
-      idcolor: [''],
-      idsize: [''],
-      status: [1],
-      idcategory: ['']
+      nameproduct : ['', [Validators.required]],
+      image : ['', [Validators.required]],
+      priceProduct : ['', [Validators.required]],
+      decription : ['', [Validators.required]],
+      quantityProduct: ['', [Validators.required]],
+      idcolor: ['', [Validators.required]],
+      idsize: ['', [Validators.required]],
+      status: [0],
+      idcategory: ['', [Validators.required]]
     });
   }
-  get if(): any {
+  get iF(): any {
     return this.inputForm.controls;
   }
   getSize() {
@@ -71,14 +73,18 @@ export class AddProductComponent implements OnInit {
     });
   }
   add() {
+    if (this.inputForm.invalid) {
+      this.toastService.error("Vui lòng nhập đầy đủ thông tin !!!");
+      return;
+    }
     let obj = {
-      idcategory : this.if.idcategory.value,
-      nameproduct : this.if.nameproduct.value,
-      priceProduct : this.if.priceProduct.value,
-      image: this.if.image.value,
-      decription : this.if.decription.value,
+      idcategory : this.iF.idcategory.value,
+      nameproduct : this.iF.nameproduct.value,
+      priceProduct : this.iF.priceProduct.value,
+      image: this.iF.image.value,
+      decription : this.iF.decription.value,
       productDetails: this.listColorandSize,
-      status: this.if.status.value ? 1 : 0,
+      status: this.iF.status.value ? 1 : 0,
     };
     this.productService.createProduct(obj).subscribe(res => {
       if (res) {
@@ -88,16 +94,28 @@ export class AddProductComponent implements OnInit {
     });
   }
   addColor() {
+    if (this.iF.idcolor.value == "") {
+      this.toastService.error("Vui lòng chọn size !!");
+      return;
+    }
+    if (this.iF.idsize.value == "") {
+      this.toastService.error("Vui lòng chọn màu !!");
+      return;
+    }
+    if (this.iF.quantityProduct.value == "") {
+      this.toastService.error("Vui lòng chọn số lượng !!");
+      return;
+    }
     let params = {
-      idcolor: this.if.idcolor.value,
-      idsize: this.if.idsize.value,
-      quantityProduct: this.if.quantityProduct.value,
+      id : uuid(),
+      idcolor: this.iF.idcolor.value,
+      idsize: this.iF.idsize.value,
+      quantityProduct: this.iF.quantityProduct.value,
     };
     this.listColorandSize.push(params);
-    
+    console.log(this.listColorandSize);
+
   }
-  
- 
   // tslint:disable-next-line:typedef
   // @ts-ignore
   // tslint:disable-next-line:typedef
@@ -123,36 +141,33 @@ export class AddProductComponent implements OnInit {
   // tslint:disable-next-line:typedef
   getTextSize(text: any) {
     if (text === '1') {
-      return "XX";
-    }
-    if (text === '2') {
-      return "XL";
-    }
-    if (text === '3') {
-      return "M";
-    }
-    if (text === '4') {
       return "S";
     }
-    if (text === '5') {
+    if (text === '2') {
+      return "M";
+    }
+    if (text === '3') {
       return "L";
     }
+    if (text === '4') {
+      return "XL";
+    }
+    if (text === '5') {
+      return "XX";
+    }
   }
-  xoa() {
+  xoa(items: any) {
     Swal.fire({
-      title: 'Chắc chắn chưa bạn êii ?',
+      title: 'Are you sure',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Xóa hộ cái bạn êii !',
-      cancelButtonText: 'Bỏ ra bạn êii !',
+      confirmButtonText: 'Chắc chắn',
+      cancelButtonText: 'Không',
     }).then((result) => {
       if (result.isConfirmed) {
-        let index = 0;
-        this.listColorandSize.splice(index, 1);
+        this.listColorandSize = this.listColorandSize.filter((i) => i !== items);
       }
     });
   }
-  
 }
- 

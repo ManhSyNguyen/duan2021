@@ -44,9 +44,9 @@
                                 <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                                 <span class="header__cart-notice">{{listDataCart.length}}</span>
                             </div>
-                          <div *ngIf="!listDataCart">
-                            <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
-                          </div>
+                            <div *ngIf="!listDataCart">
+                                <a routerLink="cart" class="mt-2"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                            </div>
                             <div class="inforCus ml-5">
                                 <a routerLink="login">
                                     <i class="fa fa-lock"></i> Đăng nhập
@@ -97,10 +97,12 @@
                     </div>
                 </div>
                 <div class="col-sm-3" [formGroup]="searchForm">
+                  <form>
                     <div class="search_box pull-right form-group">
                         <input #seach type="text" placeholder="Tìm kiếm" class="form-control" formControlName="search" />
-                        <i class="fa fa-search" (click)="searchName(seach.value)"></i>
+                        <button types="submit" class="fa fa-search" style="cursor: pointer" (click)="searchName(seach.value)"></button>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>

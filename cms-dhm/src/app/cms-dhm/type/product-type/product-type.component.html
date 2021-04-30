@@ -21,7 +21,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of listCategory">
+                                    <tr *ngFor="let item of listCategory | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                                         <td>{{item.name}}</td>
                                         <td>{{item.decription}}</td>
                                         <td>{{item.createdate | date:'dd/MM/yyy'}}</td>
@@ -38,6 +38,8 @@
 
                                 </tbody>
                             </table>
+                          <ngb-pagination class="d-flex justify-content-end" [(page)]="page" [pageSize]="pageSize"
+                                          [collectionSize]="listCategory.length"></ngb-pagination>
                         </div>
                     </div>
                 </div>
@@ -51,11 +53,31 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Tên thương hiệu</label>
-                      <input type="text" class="form-control" formControlName="name"/>
+                      <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': iF.name.touched && iF.name.errors }"/>
+                      <div *ngIf="iF.name.touched && iF.name.errors" class="invalid-feedback"
+                           style="margin-top: 5px;">
+                        <div *ngIf="iF.name.errors.required" class="fa fa-exclamation-triangle"><span
+                          class="ml-1">Email khách hàng không được để trống</span>
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="example">Ghi chú</label>
-                      <input type="text" class="form-control" formControlName="decription"/>
+                      <input type="text" class="form-control" formControlName="decription"
+                             [ngClass]="{ 'is-invalid': iF.decription.touched && iF.decription.errors }"
+                      />
+                      <div *ngIf="iF.decription.touched && iF.decription.errors" class="invalid-feedback"
+                           style="margin-top: 5px;">
+                        <div *ngIf="iF.decription.errors.required" class="fa fa-exclamation-triangle"><span
+                          class="ml-1">Email khách hàng không được để trống</span>
+                        </div>
+                        <div *ngIf="iF.decription.errors.minLength" class="fa fa-exclamation-triangle"><span
+                          class="ml-1">Tên thương hiệu không được ngắn quá</span>
+                        </div>
+                        <div *ngIf="iF.decription.errors.maxLength" class="fa fa-exclamation-triangle"><span
+                          class="ml-1">Tên thương hiệu tối đa 50 kí tự</span>
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group" style="padding-top: 20px;">
                       <button type="submit" class="btn btn-primary btn-sm" *ngIf="!itemSelected" (click)="add()">Lưu</button>&nbsp;

@@ -29,24 +29,27 @@
 
 </mat-horizontal-stepper>
 
+
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-7">
                 <div class="card shadow mb-4 mt-15">
                     <div class="card-header py-3">
-                        <h3 class="m-0 font-weight-bold text-dark">Thông tin đơn hàng: <span>NS8292929</span>
+                        <h3 class="m-0 font-weight-bold text-dark">Thông tin đơn hàng: <span>{{sku}}</span>
                         </h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Tìm kiếm SKU sản phẩm" value="">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit"><i
-                                            class="fas fa-search-plus"></i></button>
-                                </div>
+                          <div class="input-group mb-3" [formGroup]="searchForm">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm SKU sản phẩm" formControlName="sku">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="submit" (click)="searchProductBySku()"><i
+                                class="fas fa-search-plus"></i></button>
                             </div>
+                          </div>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -58,17 +61,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>SIGNATURE-PINK</td>
+                                    <tr *ngFor = "let item of listOrderBySku">
+                                        <td>{{item.productDetail.product.nameproduct}}</td>
                                         <td>
-                                            <input type="number" class="form-control form-control-sm qty-inp"
-                                                placeholder="">
+                                          <input class="minus is-form" (click)="incrementQuantity(item)" type="button"
+                                                 [disabled]="item.quantity == 1" value="-">
+                                            <input type="number" class="form-control form-control-sm qty-inp" value="{{item.quantity}}"
+                                                placeholder="" />
+                                          <input class="plus is-form" (click)="tangsoluong(item)" type="button"
+                                                 value="+" [disabled]="item.quantity == item.productDetail.quantityProduct">
                                         </td>
-                                        <td>2.000.000đ</td>
+                                        <td>{{item.productDetail.product.priceProduct | number}}đ</td>
                                         <td>
-                                            M
+                                            {{item.productDetail.size.namesize}}
                                         </td>
-                                        <td>2.000.000đ</td>
+                                        <td>{{item.quantity * item.productDetail.product.priceProduct | number}}đ</td>
                                     </tr>
 
                                 </tbody>
@@ -81,17 +88,17 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div>
-                                        <p>Tổng tiền: </p>
                                         <p>VAT: </p>
-                                        <p>Đã thanh toán: </p>
+                                        <p>Tổng tiền: </p>
+                                        <p>Tiền cọc: </p>
                                         <p>Chưa thanh toán: </p>
                                     </div>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <p>2.000.000đ</p>
                                     <p>10%</p>
-                                    <p>0đ</p>
-                                    <p>0đ</p>
+                                    <p>{{totalPrice | number}}đ</p>
+                                    <p><input class="form-control form-control-sm" type="number" [(ngModel)]="coc" (ngModelChange)="modelchange($event)"></p>
+                                    <p>{{totalPrice - coc | number}}đ</p>
                                 </div>
                             </div>
                         </div>
@@ -106,32 +113,31 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên khách hàng</label>
-                            <input type="text" class="form-control" disabled value="Nguyen Sy Manh" />
+                            <input type="text" class="form-control" disabled value="{{nameuser}}" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số điện thoại</label>
-                            <input type="text" class="form-control" disabled value="03344934393" />
+                            <input type="text" class="form-control" disabled value="{{sdt}}" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="text" class="form-control" disabled value="manh15@gmail.com" />
+                            <input type="text" class="form-control" disabled value="{{email}}" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa chỉ</label>
-                            <input type="text" class="form-control" disabled value="Thanh Hóa" />
+                            <input type="text" class="form-control" disabled value="{{addr}}" />
                         </div>
                         <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"
-                                disabled checked>
+                                disabled [checked]="paymentmethod == 0">
                             <label class="custom-control-label" for="customRadio1">Thanh toán khi nhận hàng</label>
                         </div>
 
                         <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input"
-                                disabled>
+                                disabled [checked]="paymentmethod == 1">
                             <label class="custom-control-label" for="customRadio2">Thanh toán qua chuyển khoản</label>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -140,6 +146,6 @@
 </div>
 <hr>
 <div class="form-group pt-2">
-    <button type="submit" class="btn btn-primary btn-sm">Cập nhập</button>&nbsp;
+    <button type="submit" class="btn btn-primary btn-sm" (click)="update()">Cập nhập</button>&nbsp;
     <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
 </div>

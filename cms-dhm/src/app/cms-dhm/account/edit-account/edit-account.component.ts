@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SizeService} from "../../../service/size.service";
 import {ColorService} from "../../../service/color.service";
 import {CategoryService} from "../../../service/categorys.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -27,14 +27,15 @@ export class EditAccountComponent implements OnInit {
   ngOnInit(): void {
     this.getUserById();
     this.inputForm = this.formBuild.group({
-      username: [''],
-      sodienthoai: [''],
-      email: [''],
-      status: [],
-      role: [],
+      username: ['', [Validators.required]],
+      sodienthoai: ['', [Validators.required, Validators.pattern('(09|03|01[2|6|8|9])+([0-9]{8})\\b')]],
+      email: ['', [Validators.required, Validators.pattern('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]],
+      password: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+      status: [1],
     });
   }
-  get if(): any {
+  get iF(): any {
     return this.inputForm.controls;
   }
 
@@ -43,12 +44,12 @@ export class EditAccountComponent implements OnInit {
       let userId = params.get('id');
       this.userService.findUserById(userId).subscribe(data => {
         this.userDetail = data;
-        this.if.username.setValue(data.username);
-        this.if.sodienthoai.setValue(data.sodienthoai);
-        this.if.email.setValue(data.email);
-        this.if.status.setValue(data.status);
+        this.iF.username.setValue(data.username);
+        this.iF.sodienthoai.setValue(data.sodienthoai);
+        this.iF.email.setValue(data.email);
+        this.iF.status.setValue(data.status);
         data.roles.map( (e: any) => {
-          this.if.role.setValue(e.namerole);
+          this.iF.role.setValue('mod');
         });
       });
     });
@@ -58,13 +59,12 @@ export class EditAccountComponent implements OnInit {
       let userId = params.get('id');
       let param = {
         id: userId,
-        username: this.if.username.value,
-        sodienthoai: this.if.sodienthoai.value,
-        email: this.if.email.value,
-        role: [this.if.role.value],
-        status: this.if.status.value,
+        username: this.iF.username.value,
+        sodienthoai: this.iF.sodienthoai.value,
+        email: this.iF.email.value,
+        role: [this.iF.role.value],
+        status: this.iF.status.value,
       };
-      console.log("hehe",param);
       this.userService.update(param, userId).subscribe(res => {
         if (res){
           this.router.navigate(['/accounts']);

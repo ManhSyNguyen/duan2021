@@ -18,13 +18,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a class="text-decoration-none" routerLink="detail-bill">NS8292929</a></td>
-                        <td>Nguyen Sy Manh</td>
-                        <td>03344934393</td>
-                        <td>Thanh Hóa</td>
+                    <tr *ngFor="let item of listDataSuccess">
+                        <td><a class="text-decoration-none" routerLink="detail-bill/{{item.sku}}">{{item.sku}}</a></td>
+                        <td>{{item.namecustom}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.address}}</td>
                         <td><span class="badge badge-success">Hoàn thành</span></td>
-                        <td>2021/03/12</td>
+                        <td>{{item.createdate | date:'dd/MM/yyyy'}}</td>
                     </tr>
                 </tbody>
             </table>

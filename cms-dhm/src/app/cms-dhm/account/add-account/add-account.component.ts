@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../service/auth.service";
 import {ToastrService} from "ngx-toastr";
 import Swal from "sweetalert2";
@@ -16,37 +16,42 @@ export class AddAccountComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuild : FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastService: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuild.group({
-      username: [''],
-      sodienthoai: [''],
-      email: [''],
-      password: [''],
-      role: [''],
-      status: [],
+      username: ['', [Validators.required]],
+      sodienthoai: ['', [Validators.required, Validators.pattern('(09|03|01[2|6|8|9])+([0-9]{8})\\b')]],
+      email: ['', [Validators.required, Validators.pattern('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]],
+      password: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+      status: [1],
     });
   }
-  get if(): any {
+  get iF(): any {
     return this.registerForm.controls;
   }
   onAdd() {
+    if (this.registerForm.invalid) {
+      this.toastService.error("Vui lòng nhập đầy đủ thông tin !!!");
+      return;
+    }
     let obj = {
-      username: this.if.username.value,
-      sodienthoai: this.if.sodienthoai.value,
-      email: this.if.email.value,
-      password: this.if.password.value,
-      role: [this.if.role.value],
-      status: this.if.status.value,
+      username: this.iF.username.value,
+      sodienthoai: this.iF.sodienthoai.value,
+      email: this.iF.email.value,
+      password: this.iF.password.value,
+      role: [this.iF.role.value],
+      status: this.iF.status.value,
     };
     this.authService.register(obj).subscribe(res => {
       if (res) {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Thêm thành công rồi bạn êiii !!',
+          title: 'Thêm nhân viên thành công !!!',
           showConfirmButton: false,
           timer: 1500
         });

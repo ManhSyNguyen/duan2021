@@ -8,6 +8,8 @@ import {UserService} from "../../../service/user.service";
 })
 export class AccountsComponent implements OnInit {
   listUser: any[] = [];
+  page = 1;
+  pageSize = 8;
   constructor(
     private userService: UserService,
   ) { }
@@ -18,6 +20,7 @@ export class AccountsComponent implements OnInit {
   getUser() {
     this.userService.findAllUser().subscribe(res => {
       if (res) {
+        console.log(res);
         res.map((x: any) => {
             x.roles.map((o: any) => {
               if (o.namerole === 'ROLE_MODERATOR')

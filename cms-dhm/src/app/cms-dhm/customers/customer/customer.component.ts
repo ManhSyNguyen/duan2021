@@ -8,7 +8,8 @@ import {UserService} from '../../../service/user.service';
 })
 export class CustomerComponent implements OnInit {
   listUser: any[] = [];
-
+  page = 1;
+  pageSize = 8;
   constructor(
     private userService: UserService,
   ) {
@@ -33,7 +34,5 @@ export class CustomerComponent implements OnInit {
       }
     });
   }
-  delete(item: any) {
 
-  }
 }

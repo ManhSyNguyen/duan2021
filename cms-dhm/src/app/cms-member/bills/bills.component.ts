@@ -16,9 +16,10 @@ export class BillsComponent implements OnInit {
     this.getData();
   }
   getData() {
-    this.orderService.getOrderByStatus(3).subscribe(res => {
+    this.orderService.getOrderUserByStatus(3).subscribe(res => {
       if (res) {
-
+        console.log(res);
+        this.listDataSuccess = res;
       }
     });
   }

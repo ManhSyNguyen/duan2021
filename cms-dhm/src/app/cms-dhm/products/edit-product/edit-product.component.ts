@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
 import {SizeService} from "../../../service/size.service";
@@ -39,17 +39,16 @@ export class EditProductComponent implements OnInit {
     this.getColor();
     this.getCategory();
     this.inputForm = this.formBuild.group({
-      nameproduct : [''],
-      sku: [''],
-      image : [''],
-      priceProduct : [''],
-      decription : [''],
-      quantityProduct: [''],
-      idcolor: [''],
-      idsize: [''],
-      status: [],
-      idcategory: [''],
-      statussize: [],
+      statussize: [1],
+      nameproduct : ['', [Validators.required]],
+      image : ['', [Validators.required]],
+      priceProduct : ['', [Validators.required]],
+      decription : ['', [Validators.required]],
+      quantityProduct: ['', [Validators.required]],
+      idcolor: ['', [Validators.required]],
+      idsize: ['', [Validators.required]],
+      status: [1],
+      idcategory: ['', [Validators.required]]
     });
   }
   getSize() {
@@ -73,29 +72,40 @@ export class EditProductComponent implements OnInit {
       }
     });
   }
-  get if(): any {
+  get iF(): any {
     return this.inputForm.controls;
   }
-  xoa() {
+  xoa(items: any) {
     Swal.fire({
-      title: 'Chắc chắn chưa bạn êii ?',
+      title: 'Are you sure ?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Xóa hộ cái bạn êii !',
-      cancelButtonText: 'Bỏ ra bạn êii !',
+      confirmButtonText: 'Chắc chắn',
+      cancelButtonText: 'Không',
     }).then((result) => {
       if (result.isConfirmed) {
-        let index = 1;
-        this.listColorSize.splice(index, 1);
+        this.listColorSize = this.listColorSize.filter((i) => i !== items);
       }
     });
   }
   addColor() {
+    if (this.iF.idcolor.value == "") {
+      this.toastService.error("Vui lòng chọn size !!");
+      return;
+    }
+    if (this.iF.idsize.value == "") {
+      this.toastService.error("Vui lòng chọn màu !!");
+      return;
+    }
+    if (this.iF.quantityProduct.value == "") {
+      this.toastService.error("Vui lòng chọn số lượng !!");
+      return;
+    }
     let params = {
-      idcolor: this.if.idcolor.value,
-      idsize: this.if.idsize.value,
-      quantityProduct: this.if.quantityProduct.value,
+      idcolor: this.iF.idcolor.value,
+      idsize: this.iF.idsize.value,
+      quantityProduct: this.iF.quantityProduct.value,
     };
     this.listColorSize.push(params);
   }
@@ -104,11 +114,11 @@ export class EditProductComponent implements OnInit {
       let productId = params.get('id');
       this.productService.getProductByIdProduct(productId).subscribe(res => {
         this.product = res;
-        this.if.nameproduct.setValue(res.nameproduct);
-        this.if.priceProduct.setValue(res.priceProduct);
-        this.if.decription.setValue(res.decription);
-        this.if.status.setValue(res.status);
-        this.if.idcategory.setValue(res.category.id);
+        this.iF.nameproduct.setValue(res.nameproduct);
+        this.iF.priceProduct.setValue(res.priceProduct);
+        this.iF.decription.setValue(res.decription);
+        this.iF.status.setValue(res.status);
+        this.iF.idcategory.setValue(res.category.id);
       });
       this.productService.getProductByIdDetail(productId).subscribe(data => {
           this.productDetail = data;
@@ -119,30 +129,34 @@ export class EditProductComponent implements OnInit {
             this.listColorSize.push(obj);
         });
           console.log(data);
-          this.if.sku.setValue(data[0].sku);
-          this.if.statussize.setValue(data[0].size.status);
+          this.iF.sku.setValue(data[0].sku);
+          this.iF.statussize.setValue(data[0].size.status);
       });
     });
   }
   update() {
+    if (this.inputForm.invalid) {
+      this.toastService.error("Vui lòng nhập đầy đủ thông tin !!!");
+      return;
+    }
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
       const obj = {
         id: productId,
-        idcategory : this.if.idcategory.value,
-        nameproduct : this.if.nameproduct.value,
-        priceProduct : this.if.priceProduct.value,
-        image: this.if.image.value,
-        decription : this.if.decription.value,
+        idcategory : this.iF.idcategory.value,
+        nameproduct : this.iF.nameproduct.value,
+        priceProduct : this.iF.priceProduct.value,
+        image: this.iF.image.value,
+        decription : this.iF.decription.value,
         productDetails: this.listColorSize,
-        status: this.if.status.value ? 1 : 0,
+        status: this.iF.status.value ? 1 : 0,
       };
       this.productService.updateProduct(obj, productId).subscribe(res => {
         if (res) {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Sửa thành công rồi bạn êiii !!',
+            title: 'Sửa thành công !!',
             showConfirmButton: false,
             timer: 1500
           });

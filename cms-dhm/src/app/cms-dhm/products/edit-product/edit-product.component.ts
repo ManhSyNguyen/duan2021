@@ -137,9 +137,9 @@ export class EditProductComponent implements OnInit {
   }
 
   update() {
+    debugger
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
-
       this.errorMsg = '';
       if (this.selectedFiles) {
         const file: File | null = this.selectedFiles.item(0);
@@ -171,7 +171,30 @@ export class EditProductComponent implements OnInit {
             idcategory: this.if.idcategory.value,
             nameproduct: this.if.nameproduct.value,
             priceProduct: this.if.priceProduct.value,
-            image: this.currentFile.name,
+            image: this.currentFile.name ? this.currentFile.name : this.if.image.value ,
+            decription: this.if.decription.value,
+            productDetails: this.listColorSize,
+            status: this.if.status.value ? 1 : 0,
+          };
+          this.productService.updateProduct(obj, productId).subscribe(res => {
+            if (res) {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Sửa thành công rồi bạn êiii !!',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              this.router.navigate(['/products']);
+            }
+          });
+        }else {
+          const obj = {
+            id: productId,
+            idcategory: this.if.idcategory.value,
+            nameproduct: this.if.nameproduct.value,
+            priceProduct: this.if.priceProduct.value,
+            image: this.if.image.value ,
             decription: this.if.decription.value,
             productDetails: this.listColorSize,
             status: this.if.status.value ? 1 : 0,

@@ -1,16 +1,26 @@
 package com.example.demosecurity.Controller;
 
+import com.example.demosecurity.Config.jwt.AuthRequest;
+import com.example.demosecurity.Config.jwt.AuthenticationResponse;
 import com.example.demosecurity.Config.jwt.SignupRequest;
+import com.example.demosecurity.Config.service.UserDetailsImpl;
 import com.example.demosecurity.Repository.RoleRepository;
 import com.example.demosecurity.Repository.UsersRepository;
 import com.example.demosecurity.Service.auth.UserService;
+import com.example.demosecurity.model.dto.CheckPass;
 import com.example.demosecurity.model.dto.ERole;
 import com.example.demosecurity.model.dto.MessageResponse;
 import com.example.demosecurity.model.entity.Role;
 import com.example.demosecurity.model.entity.Users;
+import com.example.demosecurity.util.JwtUtil;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +30,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("v1/api")
 public class UserController {
+    @Autowired
+    JwtUtil jwtUtils;
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -34,6 +48,9 @@ public class UserController {
 
     @Autowired
     BCryptPasswordEncoder encode;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     @GetMapping("/users")
     public ResponseEntity<?> findAllUser(@RequestParam(defaultValue = "0") Integer pageNo,
@@ -87,6 +104,7 @@ public class UserController {
         }else{
             newUser.setSodienthoai(signUpRequest.getSodienthoai());
         }
+        newUser.setCodeOtp(us.getCodeOtp());
         newUser.setPassword(us.getPassword());
         newUser.setCreateby(us.getCreateby());
         newUser.setCreatedate(us.getCreatedate());
@@ -100,26 +118,26 @@ public class UserController {
         Set<Role> roles = new HashSet<>();
         if (strRoles==null) {
             Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByNamerole(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(adminRole);
 
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByNamerole(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(modRole);
 
                         break;
                     default:
                         Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(userRole);
                 }
             });
@@ -127,7 +145,7 @@ public class UserController {
 
         newUser.setRoles(roles);
         usersRepository.save(newUser);
-        return ResponseEntity.ok(new MessageResponse("User update successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Cập nhật tài khoản thành công!"));
     }
 
     @PostMapping("/user")
@@ -163,26 +181,26 @@ public class UserController {
         Set<Role> roles = new HashSet<>();
         if (strRoles==null) {
             Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByNamerole(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(adminRole);
 
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByNamerole(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(modRole);
 
                         break;
                     default:
                         Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(userRole);
                 }
             });
@@ -191,7 +209,26 @@ public class UserController {
         user.setRoles(roles);
         usersRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Đăng ký tài khoản thành công!"));
     }
+
+
+    //api check password
+    @PostMapping("/changepass")
+    public boolean checkPass(@RequestBody CheckPass ck, Principal pc){
+        System.out.println(pc.getName());
+        Users us = userService.findUserUsername(pc.getName());
+        System.out.println(us.getUsername());
+            boolean rest = encode.matches(ck.getCurrentPass(), us.getPassword());
+        if (rest) {
+            us.setPassword(encode.encode(ck.getNewPass()));
+            usersRepository.save(us);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
 }

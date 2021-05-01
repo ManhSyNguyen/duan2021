@@ -4,6 +4,7 @@ import com.example.demosecurity.Repository.RoleRepository;
 import com.example.demosecurity.Repository.UsersRepository;
 import com.example.demosecurity.Service.auth.MapValidationService;
 import com.example.demosecurity.Config.service.UserDetailsImpl;
+import com.example.demosecurity.Service.auth.UserService;
 import com.example.demosecurity.model.dto.ERole;
 import com.example.demosecurity.model.dto.MessageResponse;
 import com.example.demosecurity.model.entity.Role;
@@ -40,6 +41,8 @@ public class APIAdminController {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private UserService userService;
     @Autowired
     private RoleRepository roleRepository;
 
@@ -116,26 +119,26 @@ public class APIAdminController {
         Set<Role> roles = new HashSet<>();
         if (strRoles==null) {
             Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByNamerole(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(adminRole);
 
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByNamerole(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(modRole);
 
                         break;
                     default:
                         Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
                         roles.add(userRole);
                 }
             });
@@ -144,6 +147,64 @@ public class APIAdminController {
         user.setRoles(roles);
         usersRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(new MessageResponse("Đăng ký tài khoản thành công!"));
     }
+
+    public String getAlphaNumericString(int n)
+    {
+        // chose a Character random from this String
+        String AlphaNumericString = "0123456789";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+        return sb.toString();
+    }
+
+    @PostMapping("/lostpass")
+    public ResponseEntity<?> lostUser(@RequestBody SignupRequest signUpRequest) {
+        Users us = userService.findUserByEmailAndSodienthoai(signUpRequest.getEmail(),signUpRequest.getSodienthoai());
+        if(us!=null){
+            if (signUpRequest.getEmail().equals(us.getEmail()) && us.getEmail()!=null || signUpRequest.getSodienthoai().equals(us.getSodienthoai()) && us.getSodienthoai()!=null ) {
+            us.setPassword(encode.encode("12345dhm"));
+//                us.setCodeOtp(getAlphaNumericString(5));
+                usersRepository.save(us);
+            }else {
+                return ResponseEntity
+                        .badRequest()
+                        .body(new MessageResponse("Lỗi: Sai số điện thoại hoặc email!"));
+            }
+        } else {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Lỗi: không tìm thấy điện thoại hoặc email!"));
+        }
+        return ResponseEntity.ok(new MessageResponse("Thông tin chính xác mã otp đã được gửi về!"));
+    }
+
+//    @PostMapping("/checkotp")
+//    public ResponseEntity<?> CheckotpUser(@RequestBody SignupRequest signUpRequest) {
+//        Users us = userService.findUserByOtp(signUpRequest.getCodeOtp());
+//        if (us != null) {
+//            if (signUpRequest.getCodeOtp().equals(us.getCodeOtp())) {
+//                us.setPassword(encode.encode("12345dhm"));
+//                usersRepository.save(us);
+//            } else {
+//                return ResponseEntity
+//                        .badRequest()
+//                        .body(new MessageResponse("Lỗi: sai mã otp!"));
+//            }
+//        }
+//        return ResponseEntity.ok(new MessageResponse("Thay đổi thành công!"));
+//    }
+
 }

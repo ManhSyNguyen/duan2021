@@ -69,7 +69,7 @@ public class OrderController {
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public OrderDTO createOrder(@RequestBody OrderDTO orderDTO) {
+    public OrderDTO createOrder(@RequestBody OrderDTO orderDTO,Principal pc) {
 //        if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
 //            MailRequest mailRequest = new MailRequest();
 //            mailRequest.setName(orderDTO.getNamecustom());
@@ -83,7 +83,7 @@ public class OrderController {
 //            model.put("Don", "Đơn hàng #208WUMU" + orderDTO.getPhone());
 //            emailService.sendEmail(mailRequest, model);
 //        }
-        return orderService.save(orderDTO);
+        return orderService.save(orderDTO,pc.getName());
     }
 
     @PutMapping(value = "/orders/{id}")

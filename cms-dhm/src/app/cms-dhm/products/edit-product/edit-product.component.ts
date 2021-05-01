@@ -7,6 +7,8 @@ import {CategoryService} from "../../../service/categorys.service";
 import {ColorService} from "../../../service/color.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from "sweetalert2";
+import { UploadFileServiceService } from 'src/app/service/upload-file-service.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-product',
@@ -23,13 +25,19 @@ export class EditProductComponent implements OnInit {
   product: any[] = [];
   idcolor: any;
   idsize: any;
+  selectedFiles?: FileList;
+  currentFile?: File;
+  message = '';
+  errorMsg = '';
+  nameFiles = null;
   constructor(
-    private sizeService : SizeService,
-    private colorService : ColorService,
+    private sizeService: SizeService,
+    private colorService: ColorService,
     private categoryService: CategoryService,
-    private formBuild : FormBuilder,
+    private formBuild: FormBuilder,
     private productService: ProductService,
     private toastService: ToastrService,
+    private uploadService: UploadFileServiceService,
     private activateRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -41,14 +49,14 @@ export class EditProductComponent implements OnInit {
     this.inputForm = this.formBuild.group({
       statussize: [1],
       nameproduct : ['', [Validators.required]],
-      image : ['', [Validators.required]],
+      image : [''],
       priceProduct : ['', [Validators.required]],
       decription : ['', [Validators.required]],
-      quantityProduct: ['', [Validators.required]],
-      idcolor: ['', [Validators.required]],
-      idsize: ['', [Validators.required]],
+      quantityProduct: [''],
+      idcolor: [''],
+      idsize: [''],
       status: [1],
-      idcategory: ['', [Validators.required]]
+      idcategory: ['']
     });
   }
   getSize() {
@@ -113,11 +121,9 @@ export class EditProductComponent implements OnInit {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
       this.productService.getProductByIdProduct(productId).subscribe(res => {
+        console.log('res', res);
+        this.nameFiles = res.image;
         this.product = res;
-        this.iF.nameproduct.setValue(res.nameproduct);
-        this.iF.priceProduct.setValue(res.priceProduct);
-        this.iF.decription.setValue(res.decription);
-        this.iF.status.setValue(res.status);
         this.iF.idcategory.setValue(res.category.id);
       });
       this.productService.getProductByIdDetail(productId).subscribe(data => {
@@ -128,12 +134,21 @@ export class EditProductComponent implements OnInit {
             };
             this.listColorSize.push(obj);
         });
-          console.log(data);
-          this.iF.sku.setValue(data[0].sku);
+          console.log('data', data);
           this.iF.statussize.setValue(data[0].size.status);
+          this.iF.nameproduct.setValue(data[0].product.nameproduct);
+          this.iF.priceProduct.setValue(data[0].product.priceProduct);
+          this.iF.decription.setValue(data[0].product.decription);
+          this.iF.status.setValue(data[0].product.status);
       });
     });
   }
+
+  // xử lý ảnh
+  onFileChanged(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
+
   update() {
     if (this.inputForm.invalid) {
       this.toastService.error("Vui lòng nhập đầy đủ thông tin !!!");
@@ -141,28 +156,77 @@ export class EditProductComponent implements OnInit {
     }
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id');
-      const obj = {
-        id: productId,
-        idcategory : this.iF.idcategory.value,
-        nameproduct : this.iF.nameproduct.value,
-        priceProduct : this.iF.priceProduct.value,
-        image: this.iF.image.value,
-        decription : this.iF.decription.value,
-        productDetails: this.listColorSize,
-        status: this.iF.status.value ? 1 : 0,
-      };
-      this.productService.updateProduct(obj, productId).subscribe(res => {
-        if (res) {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Sửa thành công !!',
-            showConfirmButton: false,
-            timer: 1500
-          });
-          this.router.navigate(['/products']);
+      this.errorMsg = '';
+      if (this.selectedFiles) {
+        const file: File | null = this.selectedFiles.item(0);
+        if (file) {
+          this.currentFile = file;
+          this.uploadService.upload(this.currentFile).subscribe(
+            (event: any) => {
+              if (event.type === HttpEventType.UploadProgress) {
+                console.log(Math.round(100 * event.loaded / event.total));
+
+              } else if (event instanceof HttpResponse) {
+                this.message = event.body.responseMessage;
+              }
+            },
+            (err: any) => {
+              console.log(err);
+
+              if (err.error && err.error.responseMessage) {
+                this.errorMsg = err.error.responseMessage;
+              } else {
+                this.errorMsg = 'Xẩy rả lỗi khi upload file có thể đã tồn tại hoặc không có !';
+              }
+              this.currentFile = undefined;
+            });
+            const obj = {
+              id: productId,
+              idcategory: this.iF.idcategory.value,
+              nameproduct: this.iF.nameproduct.value,
+              priceProduct: this.iF.priceProduct.value,
+              image: this.currentFile.name,
+              decription: this.iF.decription.value,
+              productDetails: this.listColorSize,
+              status: this.iF.status.value ? 1 : 0,
+            };
+            this.productService.updateProduct(obj, productId).subscribe(res => {
+              if (res) {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Sửa thành công rồi bạn êiii !!',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                this.router.navigate(['/products']);
+              }
+            });
         }
-      });
+      } else {
+        const obj = {
+          id: productId,
+          idcategory: this.iF.idcategory.value,
+          nameproduct: this.iF.nameproduct.value,
+          priceProduct: this.iF.priceProduct.value,
+          image: this.nameFiles,
+          decription: this.iF.decription.value,
+          productDetails: this.listColorSize,
+          status: this.iF.status.value ? 1 : 0,
+        };
+        this.productService.updateProduct(obj, productId).subscribe(res => {
+          if (res) {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Sửa thành công rồi bạn êiii !!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            this.router.navigate(['/products']);
+          }
+        });
+      }
     });
-  }
+}
 }

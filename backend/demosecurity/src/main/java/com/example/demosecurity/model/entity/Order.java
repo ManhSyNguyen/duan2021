@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
-@Getter;
+@Getter
 @Setter
 @Entity(name = "orders")
 @EntityListeners(AuditingEntityListener.class)
@@ -50,10 +50,12 @@ public class Order {
     @Column(length = 255)
     private String decription;
     private Float totalMonenyOrder;
+    private Float deposit;
+    private Integer reason;
     @CreatedDate
     private Date createdate;
     @Column(length = 50)
     @CreatedBy
     private String createby;
-    private Integer status;/
+    private Integer status;
 }

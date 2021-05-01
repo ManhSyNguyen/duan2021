@@ -27,5 +27,6 @@ public class SignupRequest {
     private String fullname;
     private Boolean status;
     private String address;
+    private String image;
     private Set<String> role;
 }

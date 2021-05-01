@@ -8,6 +8,8 @@ import {ColorService} from "../../../service/color.service";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
 import { v4 as uuid } from 'uuid' ;
+import { UploadFileServiceService } from 'src/app/service/upload-file-service.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-product',
@@ -15,12 +17,15 @@ import { v4 as uuid } from 'uuid' ;
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  inputForm! : FormGroup;
-  listSize : any[] = [];
+  inputForm!: FormGroup;
+  listSize: any[] = [];
   listCategory: any[] = [];
   listColor: any[] = [];
   listColorandSize: any[] = [];
-  selectedItem: any;
+  selectedFiles?: FileList;
+  currentFile?: File;
+  message = '';
+  errorMsg = '';
 
   constructor(
     private sizeService: SizeService,
@@ -28,8 +33,9 @@ export class AddProductComponent implements OnInit {
     private categoryService: CategoryService,
     private formBuild: FormBuilder,
     private productService: ProductService,
-    private router: Router,
     private toastService: ToastrService,
+    private uploadService: UploadFileServiceService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +60,8 @@ export class AddProductComponent implements OnInit {
   getSize() {
     this.sizeService.getAll().subscribe(res => {
       if (res) {
-       this.listSize = res;
+        this.listSize = res;
+        console.log('this.listSize',this.listSize);
       }
     });
   }
@@ -72,26 +79,62 @@ export class AddProductComponent implements OnInit {
       }
     });
   }
+
+  // xử lý ảnh
+  onFileChanged(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
+
+
   add() {
     if (this.inputForm.invalid) {
       this.toastService.error("Vui lòng nhập đầy đủ thông tin !!!");
       return;
     }
-    let obj = {
-      idcategory : this.iF.idcategory.value,
-      nameproduct : this.iF.nameproduct.value,
-      priceProduct : this.iF.priceProduct.value,
-      image: this.iF.image.value,
-      decription : this.iF.decription.value,
-      productDetails: this.listColorandSize,
-      status: this.iF.status.value ? 1 : 0,
-    };
-    this.productService.createProduct(obj).subscribe(res => {
-      if (res) {
-        Swal.fire('Success!', 'Thêm sản phẩm thành công!', 'success')
-        this.router.navigate(['/products']);
+    this.errorMsg = '';
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+
+      if (file) {
+        this.currentFile = file;
+        this.uploadService.upload(this.currentFile).subscribe(
+          (event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              console.log(Math.round(100 * event.loaded / event.total));
+
+            } else if (event instanceof HttpResponse) {
+              this.message = event.body.responseMessage;
+            }
+          },
+          (err: any) => {
+            console.log(err);
+
+            if (err.error && err.error.responseMessage) {
+              this.errorMsg = err.error.responseMessage;
+            } else {
+              this.errorMsg = 'Xẩy rả lỗi khi upload file có thể đã tồn tại hoặc không có !';
+            }
+
+            this.currentFile = undefined;
+          });
+        let obj = {
+          idcategory: this.iF.idcategory.value,
+          nameproduct: this.iF.nameproduct.value,
+          priceProduct: this.iF.priceProduct.value,
+          image: this.currentFile.name,
+          decription: this.iF.decription.value,
+          productDetails: this.listColorandSize,
+          status: this.iF.status.value ? 1 : 0,
+        };
+        this.productService.createProduct(obj).subscribe(res => {
+          if (res) {
+            Swal.fire('Success!', 'Thêm sản phẩm thành công!', 'success')
+            this.router.navigate(['/products']);
+          }
+        });
       }
-    });
+      this.selectedFiles = undefined;
+    }
   }
   addColor() {
     if (this.iF.idcolor.value == "") {
@@ -107,15 +150,13 @@ export class AddProductComponent implements OnInit {
       return;
     }
     let params = {
-      id : uuid(),
       idcolor: this.iF.idcolor.value,
       idsize: this.iF.idsize.value,
       quantityProduct: this.iF.quantityProduct.value,
     };
     this.listColorandSize.push(params);
-    console.log(this.listColorandSize);
-
   }
+
   // tslint:disable-next-line:typedef
   // @ts-ignore
   // tslint:disable-next-line:typedef
@@ -158,7 +199,7 @@ export class AddProductComponent implements OnInit {
   }
   xoa(items: any) {
     Swal.fire({
-      title: 'Are you sure',
+      title: 'Xóa sản phẩm?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,

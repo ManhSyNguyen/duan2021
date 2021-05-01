@@ -17,6 +17,10 @@ export class ProductComponent implements OnInit {
   listProduct : any[] = [];
   page = 1;
   pageSize = 8;
+  selectedFiles?: FileList;
+  currentFile?: File;
+  message = '';
+  errorMsg = '';
   constructor(
     private productService: ProductService,
     private toastService: ToastrService,

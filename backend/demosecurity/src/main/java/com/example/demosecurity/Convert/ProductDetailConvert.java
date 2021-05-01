@@ -36,7 +36,7 @@ public class ProductDetailConvert {
     public ProductDetail toEntity(ProductDetailDTO dto) {
         ProductDetail entity = new ProductDetail();
         entity.setQuantityProduct(dto.getQuantityProduct());
-        entity.setStatus(dto.getStatus());
+        entity.setStatus(dto.getStatusDetail());
         return entity;
     }
 
@@ -48,7 +48,7 @@ public class ProductDetailConvert {
         dto.setSize(entity.getSize());
         dto.setQuantityProduct(entity.getQuantityProduct());
         dto.setPriceProductDetail(entity.getPriceProductDetail());
-        dto.setStatus(entity.getStatus());
+        dto.setStatusDetail(entity.getStatus());
         dto.setSku(entity.getSku());
         dto.setCreatedate(entity.getCreatedate());
         dto.setCreateby(entity.getCreateby());
@@ -58,7 +58,7 @@ public class ProductDetailConvert {
     public ProductDetail toEntity(ProductDetailDTO dto, ProductDetail entity) {
         String generatedString = RandomStringUtils.randomAlphanumeric(7);
         entity.setQuantityProduct(dto.getQuantityProduct());
-        entity.setStatus(dto.getStatus());
+        entity.setStatus(dto.getStatusDetail());
         entity.setSku("DHM"+ getAlphaNumericString(5));
         return entity;
     }

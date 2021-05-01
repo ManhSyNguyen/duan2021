@@ -5,7 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
+
+import com.example.demosecurity.exceptions.FileUploadException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ public class ImageService {
     public void save(MultipartFile file) throws FileUploadException {
         try {
             Path root = Paths.get(uploadPath);
+            Files.createDirectories(root);
             Path resolve = root.resolve(file.getOriginalFilename());
             if (resolve.toFile()
                     .exists()) {

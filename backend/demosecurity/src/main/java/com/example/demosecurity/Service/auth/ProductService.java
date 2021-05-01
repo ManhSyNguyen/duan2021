@@ -68,6 +68,7 @@ public class ProductService {
                 productDetail.setSize(size);
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
+                productDetail.setStatus(1);
                 listpt.add(productDetail);
             }
             product.setProductDetail(listpt);
@@ -92,6 +93,7 @@ public class ProductService {
                 productDetail.setSize(size);
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
+                productDetail.setStatus(pt.getStatusDetail());
                 listpt.add(productDetail);
             }
             newroduct.setProductDetail(listpt);

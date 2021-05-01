@@ -30,7 +30,8 @@
                     <tr *ngFor="let item of listProduct | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
 
                         <td>{{item.nameproduct}}</td>
-                        <td><img src="{{item.image}}" width="80" alt=""></td>
+                        <td *ngIf="item.image!=null"><img [src]="'http://localhost:5000/images/' + item.image" width="80" alt=""></td>
+                        <td *ngIf="item.image==null"><img [src]="'http://localhost:5000/images/' + item.image" width="80" alt=""></td>
                         <td>{{item.priceProduct | number}} <sup>₫</sup></td>
                         <td *ngIf="item.status != 0"><span class="badge badge-success">{{getText(item.status)}}</span>
                         </td>

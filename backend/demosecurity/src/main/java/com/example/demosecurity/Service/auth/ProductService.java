@@ -68,6 +68,7 @@ public class ProductService {
                 productDetail.setSize(size);
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
+                productDetail.setStatus(1);
                 listpt.add(productDetail);
             }
             product.setProductDetail(listpt);
@@ -92,6 +93,7 @@ public class ProductService {
                 productDetail.setSize(size);
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
+                productDetail.setStatus(pt.getStatusDetail());
                 listpt.add(productDetail);
             }
             newroduct.setProductDetail(listpt);
@@ -157,6 +159,16 @@ public class ProductService {
     public List<ProductDTO> getProductByCategory(Long id) {
         List<ProductDTO> results = new ArrayList<>();
         List<Product> entities = productRepo.findByCategoryIdOrderByCreatedateDesc(id);
+        for (Product item : entities) {
+            ProductDTO newDTO = productConvert.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
+    }
+
+    public List<ProductDTO> getProductByName(String name) {
+        List<ProductDTO> results = new ArrayList<>();
+        List<Product> entities = productRepo.findAllByNameproductContaining(name);
         for (Product item : entities) {
             ProductDTO newDTO = productConvert.toDTO(item);
             results.add(newDTO);

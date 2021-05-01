@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
+import {UserService} from "../../service/user.service";
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
      private tokenStorage: TokenStorageService,
-     private route : Router
+     private route : Router,
+    private userService: UserService,
      ) { }
 
   ngOnInit(): void {
@@ -35,13 +38,32 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe(
       data => {
+        console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        this.userService.getUserById(data.id).subscribe(res => {
+          console.log('res', res);
+          if (res) {
+            if (res.status == true) {
+              this.reloadPage();
+            } else {
+              Swal.fire({
+                text: 'Tài khoản của bạn đã bị khóa, vui lòng liên hệ với shop !!!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.tokenStorage.signOut();
+                  this.route.navigate([""]);
+                }
+              });
+            }
+          }
+        });
+
       },
       err => {
         this.errorMessage = err.error.message;

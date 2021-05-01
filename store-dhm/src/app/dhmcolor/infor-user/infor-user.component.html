@@ -7,11 +7,16 @@
                     <div class="profile-sidebar ">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
-                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                <input type='file' id="imageUpload" (change)="onFileChanged($event)"
+                                    accept=".png, .jpg, .jpeg" />
                                 <label for="imageUpload"></label>
                             </div>
                             <div class="avatar-preview">
-                                <div id="imagePreview">
+                                <div *ngIf="nameFiles!=null" id="imagePreview">
+                                    <img [src]="'http://localhost:5000/images/' + nameFiles" class="img-responsive"
+                                        alt="Thông tin cá nhân">
+                                </div>
+                                <div *ngIf="nameFiles==null" id=" imagePreview">
                                     <img src="assets/images/51f6fb256629fc755b8870c801092942.png" class="img-responsive"
                                         alt="Thông tin cá nhân">
                                 </div>
@@ -52,7 +57,7 @@
                                 <label for="">Họ và tên</label>
                                 <input type="text" class="inp_checkout form-control" value="{{username}}" disabled>
                                 <label for="">Số điện thoại</label>
-                                <input type="text" class="inp_checkout form-control" disabled>
+                                <input type="text" class="inp_checkout form-control" disabled value="{{sodienthoai}}">
                             </div>
                             <div class="col">
                                 <label for="">Email</label>

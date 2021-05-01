@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
         this.roles.map(e => {
           if (e === "ROLE_ADMIN"){
             this.reloadPage();
+          }else if (e === "ROLE_MODERATOR"){
+            this.route.navigate(['/member']);
           }else{
             this.tokenStorage.signOut();
             window.location.reload();
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
       }
 
     },err => {
-      this.errorMessage = err.error.message;
+      this.errorMessage = err.error;
       this.isLoginFailed = true;
     });
   }

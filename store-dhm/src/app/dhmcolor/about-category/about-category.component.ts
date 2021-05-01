@@ -44,7 +44,12 @@ export class AboutCategoryComponent implements OnInit {
     this.activeRoute.paramMap.subscribe(params => {
       let id = params.get("id");
       this.CategoryService.getProductByCategory(id).subscribe(dataId => {
-        this.listProductByIdCate = dataId;
+        dataId.forEach((i: any) => {
+          const param = i.status;
+          if (param == 1) {
+            this.listProductByIdCate.push(i);
+          }
+        });
       });
     });
   }

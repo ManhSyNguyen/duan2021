@@ -54,7 +54,7 @@
                           </div>
                           <div class="dhm-image__content">
                             <div class="dhm-image__content--blur">
-                              <img src="{{item.productDetail.product.image}}" alt="">
+                              <img [src]="'http://localhost:5000/images/' + item.productDetail.product.image" alt="">
                             </div>
                           </div>
                         </div>
@@ -62,9 +62,10 @@
                       <div class="order-content__item__detail-content">
                         <div class="order-content__item__name">
                           {{item.productDetail.product.nameproduct}}</div>
-                        <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}
-                        </div>
-                        <div class="order-content__item__quantity">x {{item.productDetail.priceProductDetail}}</div>
+
+                        <div class="order-content__item__variation">Phân loại hàng: {{item.productDetail.size.namesize}}</div>
+                        <div class="order-content__item__quantity">x {{item.quantity}}</div>
+
                       </div>
                     </div>
                   </div>

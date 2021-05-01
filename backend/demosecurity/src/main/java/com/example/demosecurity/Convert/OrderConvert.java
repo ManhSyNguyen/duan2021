@@ -1,16 +1,24 @@
 package com.example.demosecurity.Convert;
 
+import com.example.demosecurity.Service.auth.UserService;
 import com.example.demosecurity.model.dto.OrderDTO;
 import com.example.demosecurity.model.dto.ProductDetailDTO;
 import com.example.demosecurity.model.entity.Order;
 import com.example.demosecurity.model.entity.ProductDetail;
+import com.example.demosecurity.model.entity.Role;
+import com.example.demosecurity.model.entity.Users;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class OrderConvert {
+    @Autowired
+    private UserService userService;
+
     public String getAlphaNumericString(int n)
     {
         // chose a Character random from this String
@@ -31,7 +39,8 @@ public class OrderConvert {
         }
         return sb.toString();
     }
-    public Order toEntity(OrderDTO dto) {
+    public Order toEntity(OrderDTO dto,String name) {
+        Users users = userService.findUserUsername(name);
         Order entity = new Order();
         entity.setPhone(dto.getPhone());
         entity.setNamecustom(dto.getNamecustom());
@@ -39,9 +48,20 @@ public class OrderConvert {
         entity.setAddress(dto.getAddress());
         entity.setSku(getAlphaNumericString(5));
         entity.setPaymentmethod(dto.getPaymentmethod());
-        entity.setStatus(dto.getStatus());
+        if (users != null) {
+            for (Role role: users.getRoles()
+            ) {
+                if(role.getNamerole().equals("ROLE_MODERATOR") && role.getNamerole().equals("ROLE_ADMIN")){
+                    entity.setStatus(4);
+                }
+            }
+        } else  {
+            entity.setStatus(1);
+        }
+        entity.setDeposit(dto.getDeposit());
+        entity.setReason(dto.getReason());
         entity.setVat(10);
-        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder());
+        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder()-dto.getDeposit());
         return entity;
     }
 
@@ -56,22 +76,24 @@ public class OrderConvert {
         dto.setStatus(entity.getStatus());
         dto.setCreatedate(entity.getCreatedate());
         dto.setVat(entity.getVat());
+        dto.setReason(entity.getReason());
+        dto.setDeposit(entity.getDeposit());
         dto.setCreateby(entity.getCreateby());
         entity.setPaymentmethod(dto.getPaymentmethod());
         dto.setOrderProductDetails(entity.getOrderProductDetails());
         return dto;
     }
 
-    public Order toEntity(OrderDTO dto, Order entity) {
+    public Order toEntityToDTO(OrderDTO dto, Order entity) {
         entity.setPhone(dto.getPhone());
         entity.setNamecustom(dto.getNamecustom());
         entity.setEmail(dto.getEmail());
         entity.setAddress(dto.getAddress());
-        if(dto.getStatus()==0){
-            entity.setQuantityOrder(dto.getQuantityOrder());
-        }
+        entity.setDeposit(dto.getDeposit());
+        entity.setQuantityOrder(dto.getQuantityOrder());
         entity.setVat(dto.getVat());
-        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder());
+        entity.setReason(dto.getReason());
+        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder()-dto.getDeposit());
         entity.setPaymentmethod(dto.getPaymentmethod());
         entity.setStatus(dto.getStatus());
         return entity;

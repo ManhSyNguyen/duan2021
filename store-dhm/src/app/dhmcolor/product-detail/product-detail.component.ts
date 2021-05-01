@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
   colorSizeDetail: any[] = [];
   sizeSelect: any;
   detailProduct: any;
+  sku: any;
 
   constructor(
     private ProductService: ProductService,
@@ -35,6 +36,7 @@ export class ProductDetailComponent implements OnInit {
   selectSize(iz: any) {
     this.sizeSelect = iz.size.namesize;
     this.detailProduct = iz;
+    this.sku = iz.sku;
     console.log("chọn size",iz);
   }
   getProductDetail() {
@@ -62,11 +64,35 @@ export class ProductDetailComponent implements OnInit {
     return -1;
   }
   addToCart() {
+    if (this.sizeSelect == null) {
+      this.toastService.error("Vui lòng chọn size !!");
+      return;
+    }
     const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
-    const conf = confirm("Bạn có muốn mua sản phẩm này không ??");
-    if (conf) {
-          if (listDataCart === null) {
-            this.CartService.addCart(this.detailProduct,listDataCart);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Bạn có muốn thêm sản phẩm này vào giỏ hàng không ?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (listDataCart === null) {
+          this.CartService.addCart(this.detailProduct,listDataCart);
+          Swal.fire({
+            text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          }).then(( result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }else {
+          const i = this.kiemtravitri(listDataCart, this.detailProduct);
+          if (i === -1){
+            this.CartService.addCart(this.detailProduct, listDataCart);
             Swal.fire({
               text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
               icon: 'success',
@@ -77,37 +103,27 @@ export class ProductDetailComponent implements OnInit {
               }
             });
           }else {
-            const i = this.kiemtravitri(listDataCart, this.detailProduct);
-            if (i === -1){
-              this.CartService.addCart(this.detailProduct, listDataCart);
-              Swal.fire({
-                text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
-                icon: 'success',
-                confirmButtonText: 'OK',
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  window.location.reload();
-                }
-              });
-            }else {
-              listDataCart.map((e: any) => {
-                if (e.id === listDataCart[i].id){
-                  // tslint:disable-next-line:no-unused-expression label-position
-                  priceProductDetail : listDataCart[i].priceProductDetail++;
-                }
-              });
-              localStorage.setItem("Cart", JSON.stringify(listDataCart));
-              Swal.fire({
-                text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
-                icon: 'success',
-                confirmButtonText: 'OK',
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  window.location.reload();
-                }
-              });
-            }
+            listDataCart.map((e: any) => {
+              if (e.id === listDataCart[i].id){
+                // tslint:disable-next-line:no-unused-expression label-position
+                priceProductDetail : listDataCart[i].priceProductDetail++;
+              }
+            });
+            localStorage.setItem("Cart", JSON.stringify(listDataCart));
+            Swal.fire({
+              text: 'Thêm sản phẩm vào giỏ hàng thành công !!!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+          }
+        }
+      } else if (result.isDismissed) {
+        window.location.reload();
       }
-    }
+    });
   }
 }

@@ -16,33 +16,18 @@ public class UserService {
     @Autowired
     private UsersRepository usersRepository;
 
-    public List<Users> findAllUser(Integer pageNo,Integer sizeNo){
-        Pageable page = PageRequest.of(pageNo,sizeNo);
-        Page<Users> result = usersRepository.findAll(page);
-        if(result.hasContent()){
-            return result.getContent();
-        }else{
-            return new ArrayList<Users>();
-        }
+    public List<Users> findAllUser(){
+        List<Users> result = usersRepository.findAll();
+            return result;
     }
-    public List<Users> findAllUserByRoleAdmin(Integer pageNo,Integer sizeNo){
-        Pageable page = PageRequest.of(pageNo,sizeNo);
-        Page<Users> result = usersRepository.findAll(page);
-        if(result.hasContent()){
-            return result.getContent();
-        }else{
-            return new ArrayList<Users>();
-        }
+    public List<Users> findAllUserByRoleAdmin(){
+        List<Users> result = usersRepository.findAll();
+            return result;
     }
 
-    public List<Users> findAllUserRoleMod(Integer pageNo,Integer sizeNo){
-        Pageable page = PageRequest.of(pageNo,sizeNo);
-        Page<Users> result = usersRepository.findAll(page);
-        if(result.hasContent()){
-            return result.getContent();
-        }else{
-            return new ArrayList<Users>();
-        }
+    public List<Users> findAllUserRoleMod(){
+        List<Users> result = usersRepository.findAll();
+            return result;
     }
     public Users findUserById(Long id){
        return usersRepository.findUsersById(id);

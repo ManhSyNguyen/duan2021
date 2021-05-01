@@ -20,7 +20,6 @@ export class UploadFileServiceService {
       reportProgress: true,
       responseType: 'json'
     });
-console.log(`req`, req)
     return this.http.request(req);
   }
 }

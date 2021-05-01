@@ -64,7 +64,7 @@ const routes: Routes = [
     path:'member', component: LayoutMemberComponent, canActivate: [AdminGuard],
     children:[
       {path:'bills', component:BillsComponent, canActivate: [AdminGuard]},
-      {path:'bills/detail-bill', component:DetailBillsComponent, canActivate: [AdminGuard]},
+      {path:'bills/detail-bill/:sku', component:DetailBillsComponent, canActivate: [AdminGuard]},
       {path:'add-bill', component:AddBillComponent, canActivate: [AdminGuard]},
     ]
   },

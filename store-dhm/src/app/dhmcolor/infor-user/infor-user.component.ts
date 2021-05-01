@@ -1,6 +1,7 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
+import {ProductService} from "../../service/product.service";
 import { UploadFileService } from 'src/app/service/upload-file.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class InforUserComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   email?: string;
+  sodienthoai?: any;
   selectedFiles?: FileList;
   currentFile?: File;
   message = '';
@@ -22,6 +24,7 @@ export class InforUserComponent implements OnInit {
   nameFiles = null;
   constructor(
     private token: TokenStorageService,
+    private productService: ProductService,
     private uploadService: UploadFileService,
   ) { }
 
@@ -30,8 +33,14 @@ export class InforUserComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.token.getUser();
       this.roles = user.roles;
-      this.username = user.username;
-      this.email = user.email;
+      this.productService.getInforUser().subscribe(res => {
+        if (res) {
+          console.log(res);
+          this.username = res.username;
+          this.email = res.email;
+          this.sodienthoai = res.sodienthoai;
+        }
+      });
     }
   }
 
@@ -41,7 +50,6 @@ export class InforUserComponent implements OnInit {
   }
 
   updateUser() {
-
     this.errorMsg = '';
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);

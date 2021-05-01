@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SizeService } from "../../../service/size.service";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { ProductService } from "../../../service/product.service";
-import { ToastrService } from "ngx-toastr";
-import { CategoryService } from "../../../service/categorys.service";
-import { ColorService } from "../../../service/color.service";
-import { Router } from "@angular/router";
+import {SizeService} from "../../../service/size.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProductService} from "../../../service/product.service";
+import {ToastrService} from "ngx-toastr";
+import {CategoryService} from "../../../service/categorys.service";
+import {ColorService} from "../../../service/color.service";
+import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import { v4 as uuid } from 'uuid' ;
 import { UploadFileServiceService } from 'src/app/service/upload-file-service.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
@@ -32,6 +33,7 @@ export class AddProductComponent implements OnInit {
     private categoryService: CategoryService,
     private formBuild: FormBuilder,
     private productService: ProductService,
+    private toastService: ToastrService,
     private uploadService: UploadFileServiceService,
     private router: Router
   ) { }
@@ -41,24 +43,25 @@ export class AddProductComponent implements OnInit {
     this.getCategory();
     this.getColor();
     this.inputForm = this.formBuild.group({
-      nameproduct: [''],
-      image: [''],
-      priceProduct: [''],
-      decription: [''],
-      quantityProduct: [''],
-      idcolor: [''],
-      idsize: [''],
-      status: [1],
-      idcategory: ['']
+      nameproduct : ['', [Validators.required]],
+      image : ['', [Validators.required]],
+      priceProduct : ['', [Validators.required]],
+      decription : ['', [Validators.required]],
+      quantityProduct: ['', [Validators.required]],
+      idcolor: ['', [Validators.required]],
+      idsize: ['', [Validators.required]],
+      status: [0],
+      idcategory: ['', [Validators.required]]
     });
   }
-  get if(): any {
+  get iF(): any {
     return this.inputForm.controls;
   }
   getSize() {
     this.sizeService.getAll().subscribe(res => {
       if (res) {
         this.listSize = res;
+        console.log('this.listSize',this.listSize);
       }
     });
   }
@@ -84,8 +87,11 @@ export class AddProductComponent implements OnInit {
 
 
   add() {
+    if (this.inputForm.invalid) {
+      this.toastService.error("Vui lòng nhập đầy đủ thông tin !!!");
+      return;
+    }
     this.errorMsg = '';
-
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
@@ -112,13 +118,13 @@ export class AddProductComponent implements OnInit {
             this.currentFile = undefined;
           });
         let obj = {
-          idcategory: this.if.idcategory.value,
-          nameproduct: this.if.nameproduct.value,
-          priceProduct: this.if.priceProduct.value,
+          idcategory: this.iF.idcategory.value,
+          nameproduct: this.iF.nameproduct.value,
+          priceProduct: this.iF.priceProduct.value,
           image: this.currentFile.name,
-          decription: this.if.decription.value,
+          decription: this.iF.decription.value,
           productDetails: this.listColorandSize,
-          status: this.if.status.value ? 1 : 0,
+          status: this.iF.status.value ? 1 : 0,
         };
         this.productService.createProduct(obj).subscribe(res => {
           if (res) {
@@ -128,35 +134,28 @@ export class AddProductComponent implements OnInit {
         });
       }
       this.selectedFiles = undefined;
-
     }
-
-    // let obj = {
-    //   idcategory : this.if.idcategory.value,
-    //   nameproduct : this.if.nameproduct.value,
-    //   priceProduct : this.if.priceProduct.value,
-    //   image: this.if.image.value,
-    //   decription : this.if.decription.value,
-    //   productDetails: this.listColorandSize,
-    //   status: this.if.status.value ? 1 : 0,
-    // };
-    // this.productService.createProduct(obj).subscribe(res => {
-    //   if (res) {
-    //     Swal.fire('Success!', 'Thêm sản phẩm thành công!', 'success')
-    //     this.router.navigate(['/products']);
-    //   }
-    // });
   }
   addColor() {
+    if (this.iF.idcolor.value == "") {
+      this.toastService.error("Vui lòng chọn size !!");
+      return;
+    }
+    if (this.iF.idsize.value == "") {
+      this.toastService.error("Vui lòng chọn màu !!");
+      return;
+    }
+    if (this.iF.quantityProduct.value == "") {
+      this.toastService.error("Vui lòng chọn số lượng !!");
+      return;
+    }
     let params = {
-      idcolor: this.if.idcolor.value,
-      idsize: this.if.idsize.value,
-      quantityProduct: this.if.quantityProduct.value,
+      idcolor: this.iF.idcolor.value,
+      idsize: this.iF.idsize.value,
+      quantityProduct: this.iF.quantityProduct.value,
     };
     this.listColorandSize.push(params);
-
   }
-
 
   // tslint:disable-next-line:typedef
   // @ts-ignore
@@ -198,20 +197,18 @@ export class AddProductComponent implements OnInit {
       return "XX";
     }
   }
-  xoa() {
+  xoa(items: any) {
     Swal.fire({
       title: 'Xóa sản phẩm?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Xóa hộ cái bạn êii !',
-      cancelButtonText: 'Bỏ ra bạn êii !',
+      confirmButtonText: 'Chắc chắn',
+      cancelButtonText: 'Không',
     }).then((result) => {
       if (result.isConfirmed) {
-        let index = 0;
-        this.listColorandSize.splice(index, 1);
+        this.listColorandSize = this.listColorandSize.filter((i) => i !== items);
       }
     });
   }
-
 }

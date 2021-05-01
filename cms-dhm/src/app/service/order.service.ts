@@ -25,5 +25,11 @@ export class OrderService {
   createOrder(obj: any): Observable<any> {
     return this.http.post<any>(this.api + '/orders', obj, httpOptions);
   }
+  getOrderUserByStatus(status: any): Observable<any> {
+    return this.http.get<any>(`${this.api + '/orders/user'}/${status}`);
+  }
+  updateOrder(obj: any, id: any): Observable<any> {
+    return this.http.put<any>(`${this.api + '/orders'}/${id}`, obj, httpOptions);
+  }
 }
 

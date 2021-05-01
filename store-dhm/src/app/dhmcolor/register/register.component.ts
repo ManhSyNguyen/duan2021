@@ -20,9 +20,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.regisForm = this.formBuild.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]],
       username: ['', [Validators.required]],
-      sodienthoai: ['', [Validators.required]],
+      sodienthoai: ['', [Validators.required, Validators.pattern('(09|03|01[2|6|8|9])+([0-9]{8})\\b')]],
       password: ['', [Validators.required]],
     });
   }
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     if (this.regisForm.invalid) {
-      this.toastService.error('Bạn hãy nhập đầy đủ thông tin để đăng kí !!!');
+      this.toastService.error('Vui lòng nhập đầy đủ thông tin để đăng kí hoặc email, số điện thoại không đúng định dạng !!!');
       return;
     }
     let obj = {
@@ -42,13 +42,14 @@ export class RegisterComponent implements OnInit {
       role: [''],
     };
     this.authService.register(obj).subscribe((res) => {
-      console.log('res :>> ', res);
       if (res) {
         this.toastService.success('Đãng kí tài khoản thành công');
         this.router.navigate(['login']);
-      } else {
-        console.log('res.message :>> ', res.message);
       }
-    });
+    },
+    (error) => {
+      this.toastService.error(error);
+    }
+    );
   }
 }

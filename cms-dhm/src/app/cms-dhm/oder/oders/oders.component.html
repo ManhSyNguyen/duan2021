@@ -7,7 +7,7 @@
                 <input type="text" class="form-control" formControlName="search"
                     placeholder="Tìm kiếm theo số điện thoại">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button">
+                    <button class="btn btn-secondary" type="button" (click)="searchSku()">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
@@ -47,7 +47,7 @@
                 </thead>
                 <tbody>
 
-                    <tr *ngFor="let item of listOrder">
+                    <tr *ngFor="let item of listOrder | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                         <td><a class="text-decoration-none" [routerLink]="['/detail-order',item.sku]">{{item.sku}}</a></td>
                         <td>{{item.namecustom}}</td>
                         <td>{{item.phone}}</td>
@@ -61,6 +61,8 @@
                     </tr>
                 </tbody>
             </table>
+          <ngb-pagination class="d-flex justify-content-end" [(page)]="page" [pageSize]="pageSize"
+                          [collectionSize]="listOrder.length"></ngb-pagination>
         </div>
     </div>
 </div>

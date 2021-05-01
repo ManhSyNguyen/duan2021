@@ -50,7 +50,7 @@ public class OrderController {
     public List<Order> findOrderByUser(Principal pc)  {
         return orderService.findOrderByUsername(pc.getName());
     }
-
+// đây là api lấy hóa đơn theo user
     @GetMapping("/orders/user/{status}")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Order> findOrderByUserAndStatus(@PathVariable("status") Integer status, Principal pc)  {

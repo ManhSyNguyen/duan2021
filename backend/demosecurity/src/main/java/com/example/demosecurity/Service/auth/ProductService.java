@@ -165,4 +165,14 @@ public class ProductService {
         }
         return results;
     }
+
+    public List<ProductDTO> getProductByName(String name) {
+        List<ProductDTO> results = new ArrayList<>();
+        List<Product> entities = productRepo.findAllByNameproductContaining(name);
+        for (Product item : entities) {
+            ProductDTO newDTO = productConvert.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
+    }
 }

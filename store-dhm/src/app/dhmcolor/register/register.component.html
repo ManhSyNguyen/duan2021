@@ -25,9 +25,8 @@
         <form action="" class="log-in" autocomplete="off" [formGroup]="regisForm">
             <h4>Fashion Color <span>DHM</span></h4>
             <p>Chào mừng! Hãy tạo cho mình một tài khoản và cùng DHM trải nghiệm!</p>
-
-            <div class="floating-label">
-                <input placeholder="Email" type="email" name="email" id="email" autocomplete="off"
+            <div class="form-group floating-label">
+                <input placeholder="Email" type="text" id="email"  class="form-control"
                     formControlName="email" />
                 <label for="email">Email:</label>
                 <div class="icon">
@@ -47,9 +46,9 @@
                 </div>
             </div>
             <div class="floating-label">
-                <input placeholder="Username" type="text" name="email" id="email" autocomplete="off"
-                    formControlName="username" [ngClass]="{ 'is-invalid': rf.username.touched && rf.username.errors }">
-                <label for="email">Tên tài khoản:</label>
+                <input placeholder="Username" type="text" id="username" autocomplete="off"
+                    formControlName="username" />
+              <label for="username">Tên tài khoản:</label>
                 <div class="icon">
                     <svg class="svg-icon" viewBox="0 0 20 20">
                         <path
@@ -60,7 +59,7 @@
             </div>
             <div class="floating-label">
                 <input placeholder="Phone" type="text" name="phone" id="phone" autocomplete="off"
-                    formControlName="sodienthoai">
+                    formControlName="sodienthoai" />
                 <label for="phone">Số điện thoại:</label>
                 <div class="icon">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -72,11 +71,9 @@
             </div>
             <div class="floating-label">
                 <input placeholder="Password" type="password" name="password" id="password" autocomplete="off"
-                    formControlName="password">
+                    formControlName="password" />
                 <label for="password">Mật khẩu:</label>
                 <div class="icon">
-
-
                     <svg enable-background="new 0 0 24 24" version="1.1" viewBox="0 0 24 24" xml:space="preserve"
                         xmlns="http://www.w3.org/2000/svg">
                         <style type="text/css">
@@ -96,7 +93,6 @@
                             d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z" />
                     </svg>
                 </div>
-
             </div>
             <button type="submit" onClick="return false;" (click)="register()">Đăng ký</button>
             <a routerLink="/login" class="discrete">Quay lại</a>

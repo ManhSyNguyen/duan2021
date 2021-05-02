@@ -20,7 +20,7 @@
                         <tr>
                             <td>{{index+1}}</td>
                             <td>
-                                <img src="{{item.product.image}}" width="100" alt="" />
+                              <img [src]="'http://localhost:5000/images/' + item.product.image" width="100" alt="" />
                             </td>
                             <td>{{item.product.nameproduct}}</td>
                             <td>{{item.size.namesize}}</td>
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label><i class="fa fa-user"></i>Họ và tên</label>
                                     <input class="inp_checkout form-control" type="text" name="fullname"
-                                        formControlName="hoten" value="{{name}}"
+                                        formControlName="hoten"
                                         [ngClass]="{ 'is-invalid': iF.hoten.touched && iF.hoten.errors }">
                                   <div *ngIf="iF.hoten.touched && iF.hoten.errors" class="invalid-feedback"
                                        style="margin-top: -15px;">
@@ -69,13 +69,13 @@
                                     <div *ngIf="iF.hoten.errors.minLength" class="fa fa-exclamation-triangle"><span
                                       class="ml-1">Họ tên quá ngắn</span></div>
                                     <div *ngIf="iF.hoten.errors.maxLength" class="fa fa-exclamation-triangle"><span
-                                      class="ml-1">Họ tên quá dài</span></div>
+                                      class="ml-1">Họ tên tối đa 50 kí tự</span></div>
                                   </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                     <input class="inp_checkout form-control" type="text" name="email"
-                                        formControlName="email" value="{{email}}"
+                                        formControlName="email"
                                         [ngClass]="{ 'is-invalid': iF.email.touched && iF.email.errors }">
                                     <div *ngIf="iF.email.touched && iF.email.errors" class="invalid-feedback"
                                         style="margin-top: -15px;">
@@ -83,6 +83,10 @@
                                                 class="ml-1">Email khách hàng không được để trống</span></div>
                                       <div *ngIf="iF.email.errors.pattern" class="fa fa-exclamation-triangle"><span
                                         class="ml-1">Email của bạn không đúng định dạng</span></div>
+                                      <div *ngIf="iF.email.errors.minLength" class="fa fa-exclamation-triangle"><span
+                                        class="ml-1">Email của bạn ngắn quá</span></div>
+                                      <div *ngIf="iF.email.errors.maxLength" class="fa fa-exclamation-triangle"><span
+                                        class="ml-1">Email tối đa 50 kí tự</span></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -94,6 +98,10 @@
                                         style="margin-top: -15px;">
                                         <div *ngIf="iF.addr.errors.required" class="fa fa-exclamation-triangle"><span
                                                 class="ml-1">Địa chỉ khách hàng không được để trống</span></div>
+                                        <div *ngIf="iF.addr.errors.minLength" class="fa fa-exclamation-triangle"><span
+                                          class="ml-1">Địa chỉ của bạn ngắn quá</span></div>
+                                        <div *ngIf="iF.addr.errors.maxLength" class="fa fa-exclamation-triangle"><span
+                                          class="ml-1">Địa chỉ tối đa 50 kí tự</span></div>
                                     </div>
                                 </div>
 
@@ -112,7 +120,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone"><i class="fa fa-phone"></i> Số điện thoại</label>
-                                    <input class="inp_checkout form-control" type="text" formControlName="phone" value="{{sodienthoai}}"
+                                    <input class="inp_checkout form-control" type="text" formControlName="phone"
                                         [ngClass]="{ 'is-invalid': iF.phone.value.touched && iF.phone.value.errors }">
                                     <div *ngIf="iF.phone.value.touched && iF.phone.value.errors" class="invalid-feedback"
                                         style="margin-top: -15px;">

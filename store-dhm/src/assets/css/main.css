@@ -1345,11 +1345,11 @@ span.price {
   z-index: 10px;
 }
 .inforCus {
-  padding-top: 4px;
   overflow: hidden;
 }
 .inforCus img {
   width: 25px;
+  height: 25px;
   border-radius: 25px;
   margin-right: 3px;
 }

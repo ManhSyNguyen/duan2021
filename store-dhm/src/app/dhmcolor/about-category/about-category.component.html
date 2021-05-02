@@ -38,7 +38,7 @@
                                                 <span class="buy-in" routerLink="/about/product-detail/{{item.id}}">Xem
                                                     chi tiết</span>
                                             </div>
-                                            <img src="{{item.image}}" alt="" />
+                                            <img [src]="'http://localhost:5000/images/' + item.image" alt="" />
                                         </div>
                                         <div routerLink="/about/product-detail/{{item.id}}">
                                             <h2>{{item.priceProduct | number}} <sup>₫</sup></h2>

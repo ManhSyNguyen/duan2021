@@ -10,6 +10,7 @@ import {OrderService} from '../../service/order.service';
 import {TokenStorageService} from "../../service/token-storage.service";
 import {AuthService} from "../../service/auth.service";
 import Swal from "sweetalert2";
+import {UserService} from "../../service/user.service";
 declare var $: any;
 @Component({
   selector: 'app-cart',
@@ -40,6 +41,7 @@ export class CartComponent implements OnInit {
     public toastService: ToastrService,
     public OrderService: OrderService,
     private token: TokenStorageService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -54,9 +56,9 @@ export class CartComponent implements OnInit {
       , {id: 62, name: 'Hải Phòng'}, {id: 63, name: 'Thành phố Hồ Chí Minh'}];
     this.listCartProduct();
     this.inputForm = this.formBuilder.group({
-      hoten: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(70)]],
-      email: ['', [Validators.required, Validators.pattern('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]],
-      addr: ['', [Validators.required]],
+      hoten: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.pattern('^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'), Validators.minLength(2), Validators.maxLength(50)]],
+      addr: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       phone: ['', [Validators.required, Validators.pattern('(09|03|01[2|6|8|9])+([0-9]{8})\\b')]],
       citys: ['', [Validators.required]],
       type: [],
@@ -98,7 +100,6 @@ export class CartComponent implements OnInit {
 
   delete(id: string) {
     Swal.fire({
-      title: 'Are you sure?',
       text: 'Bạn có chắc chắn muốn xóa sản phẩm này không ?',
       icon: 'warning',
       showCancelButton: true,
@@ -109,15 +110,7 @@ export class CartComponent implements OnInit {
         const index = this.listDataCart.findIndex((i: any) => i.id === id);
         this.listDataCart.splice(index, 1);
         localStorage.setItem('Cart', JSON.stringify(this.listDataCart));
-        Swal.fire({
-          text: 'Xóa sản phẩm khỏi giỏ hàng thành công !!!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.reload();
-          }
-        });
+        Swal.fire('Success!', 'Sửa thông tin!', 'success');
       } else if (result.isDismissed) {
         window.location.reload();
       }
@@ -152,7 +145,7 @@ export class CartComponent implements OnInit {
     });
   }
   getInforUser() {
-    this.ProductService.getInforUser().subscribe(res => {
+    this.userService.getInforUser().subscribe(res => {
       if (res) {
         console.log(res);
         this.name = res.fullName;

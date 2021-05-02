@@ -13,7 +13,7 @@
                             </div>
                             <div class="avatar-preview">
                                 <div *ngIf="nameFiles!=null" id="imagePreview">
-                                    <img [src]="'http://localhost:5000/images/' + nameFiles" class="img-responsive"
+                                    <img [src]="'http://localhost:5000/images/' + nameFiles" class="avatar-preview img-responsive"
                                         alt="Thông tin cá nhân">
                                 </div>
                                 <div *ngIf="nameFiles==null" id=" imagePreview">
@@ -50,24 +50,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="my-account-profile__left">
+                    <div class="my-account-profile__left" [formGroup]="inforForm">
 
                         <div class="form-row">
                             <div class="col">
                                 <label for="">Họ và tên</label>
-                                <input type="text" class="inp_checkout form-control" value="{{username}}" disabled>
+                                <input type="text" class="inp_checkout form-control" formControlName="fullname">
                                 <label for="">Số điện thoại</label>
-                                <input type="text" class="inp_checkout form-control" disabled value="{{sodienthoai}}">
+                                <input type="text" class="inp_checkout form-control" formControlName="sdt">
                             </div>
                             <div class="col">
                                 <label for="">Email</label>
-                                <input type="text" class="inp_checkout form-control" disabled value="{{email}}">
+                                <input type="text" class="inp_checkout form-control" formControlName="email">
                                 <label for="">Địa chỉ</label>
-                                <input type="text" class="inp_checkout form-control" disabled>
+                                <input type="text" class="inp_checkout form-control" formControlName="addr">
                             </div>
                         </div>
                         <div class="profile-sm">
-                            <button type="submit" class="btn btn-success btn-sm">Thay đổi</button>
+                            <button type="submit" class="btn btn-success btn-sm" (click)="updateUser()">Thay đổi</button>
                             <button type="submit" class="btn btn-danger btn-sm" disabled>Hủy</button>
                         </div>
 

@@ -22,7 +22,5 @@ export class ProductService {
     getProductById(id: any): Observable<any> {
         return this.http.get<any>(`${this.api + '/productdetails'}/${id}`);
     }
-    getInforUser(): Observable<any> {
-      return this.http.get(this.api + '/user/username');
-    }
+
 }

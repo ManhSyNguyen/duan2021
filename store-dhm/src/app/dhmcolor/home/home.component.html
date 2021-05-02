@@ -11,7 +11,8 @@
                         <div class="product-image-wrapper">
                             <div class="single-products" routerLink="product-detail/{{item.id}}">
                                 <div class="productinfo text-center">
-                                    <img src="{{item.image}}" alt="" />
+                                    <img [src]="'http://localhost:5000/images/' + item.image" alt="" />
+
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">

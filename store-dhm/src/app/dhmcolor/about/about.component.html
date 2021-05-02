@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="about">
+
                 <div class="col-sm-3">
                     <div class="left-sidebar">
                         <h2>Danh mục</h2>
@@ -24,7 +25,7 @@
                         <!--/category-products-->
                         <div class="shipping text-center">
                             <!--shipping-->
-                            <img src="../../../assets/images/1.png" alt="" />
+                            <img src="/assets/images/Khoác lên mình những thương hiệu lớn.png" alt="" />
                         </div>
                         <!--/shipping-->
                     </div>
@@ -44,7 +45,7 @@
                                                         routerLink="/about/product-detail/{{item.id}}">Xem
                                                         chi tiết</span>
                                                 </div>
-                                                <img src="{{item.image}}" alt="" routerLink="cart" />
+                                                <img [src]="'http://localhost:5000/images/' + item.image" alt="" routerLink="cart" />
                                             </div>
                                             <div class="p-3" routerLink="/about/product-detail/{{item.id}}">
                                                 <h2>{{item.priceProduct | number}} <sup>₫</sup></h2>

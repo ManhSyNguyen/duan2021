@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ProductService } from "../../../service/product.service";
 import { ToastrService } from "ngx-toastr";
@@ -48,6 +49,7 @@ export class EditProductComponent implements OnInit {
     this.getCategory();
     this.inputForm = this.formBuild.group({
       statussize: [1],
+
       nameproduct: ['', [Validators.required]],
       image: [''],
       priceProduct: ['', [Validators.required]],
@@ -85,7 +87,6 @@ export class EditProductComponent implements OnInit {
   }
   xoa(items: any) {
     Swal.fire({
-      title: 'Are you sure ?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
@@ -127,6 +128,7 @@ export class EditProductComponent implements OnInit {
         this.iF.idcategory.setValue(res.category.id);
       });
       this.productService.getProductByIdDetail(productId).subscribe(data => {
+
         this.productDetail = data;
         this.productDetail.forEach((i: any) => {
           let obj = {
@@ -180,28 +182,28 @@ export class EditProductComponent implements OnInit {
               }
               this.currentFile = undefined;
             });
-          const obj = {
-            id: productId,
-            idcategory: this.iF.idcategory.value,
-            nameproduct: this.iF.nameproduct.value,
-            priceProduct: this.iF.priceProduct.value,
-            image: this.currentFile.name,
-            decription: this.iF.decription.value,
-            productDetails: this.listColorSize,
-            status: this.iF.status.value ? 1 : 0,
-          };
-          this.productService.updateProduct(obj, productId).subscribe(res => {
-            if (res) {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Sửa thành công rồi bạn êiii !!',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              this.router.navigate(['/products']);
-            }
-          });
+            const obj = {
+              id: productId,
+              idcategory: this.iF.idcategory.value,
+              nameproduct: this.iF.nameproduct.value,
+              priceProduct: this.iF.priceProduct.value,
+              image: this.currentFile.name,
+              decription: this.iF.decription.value,
+              productDetails: this.listColorSize,
+              status: this.iF.status.value ? 1 : 0,
+            };
+            this.productService.updateProduct(obj, productId).subscribe(res => {
+              if (res) {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Sửa thành công !!',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                this.router.navigate(['/products']);
+              }
+            });
         }
       } else {
         const obj = {
@@ -219,7 +221,7 @@ export class EditProductComponent implements OnInit {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Sửa thành công rồi bạn êiii !!',
+              title: 'Sửa thành công!!',
               showConfirmButton: false,
               timer: 1500
             });
@@ -228,5 +230,5 @@ export class EditProductComponent implements OnInit {
         });
       }
     });
-  }
+}
 }

@@ -7,6 +7,7 @@ import {ProductService} from "../../../service/product.service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../service/user.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-account',
@@ -67,6 +68,13 @@ export class EditAccountComponent implements OnInit {
       };
       this.userService.update(param, userId).subscribe(res => {
         if (res){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Sửa thành công !!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.router.navigate(['/accounts']);
         }
       });

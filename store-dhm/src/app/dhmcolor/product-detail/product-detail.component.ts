@@ -70,7 +70,6 @@ export class ProductDetailComponent implements OnInit {
     }
     const listDataCart = JSON.parse(localStorage.getItem("Cart")!);
     Swal.fire({
-      title: 'Are you sure?',
       text: 'Bạn có muốn thêm sản phẩm này vào giỏ hàng không ?',
       icon: 'question',
       showCancelButton: true,

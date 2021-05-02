@@ -29,7 +29,7 @@
                 <input placeholder="Username" type="text" name="username" [(ngModel)]="form.username" required
                     #username="ngModel" autocomplete="off">
                 <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
-                    Username is required!
+                    Không để trống tài khoản
                 </div>
                 <label for="username">Tên tài khoản:</label>
                 <div class="icon">
@@ -45,9 +45,9 @@
                     [(ngModel)]="form.password" required minlength="6" #password="ngModel">
                 <label for="password">Mật khẩu:</label>
                 <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
-                    <div *ngIf="password.errors.required">Password is required</div>
+                    <div *ngIf="password.errors.required">Không để trống mật khẩu</div>
                     <div *ngIf="password.errors.minlength">
-                        Password must be at least 6 characters
+                        Mật khẩu ít nhất 6 kí tự
                     </div>
                 </div>
                 <div class="icon">

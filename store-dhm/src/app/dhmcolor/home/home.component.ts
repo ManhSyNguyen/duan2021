@@ -7,7 +7,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  fileImage: any;
   constructor(private ProductService: ProductService,
     ) { }
 

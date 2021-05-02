@@ -68,6 +68,7 @@ public class ProductService {
                 productDetail.setSize(size);
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
+                productDetail.setPriceProductDetail(1);
                 productDetail.setStatus(1);
                 listpt.add(productDetail);
             }

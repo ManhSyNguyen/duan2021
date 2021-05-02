@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
@@ -21,6 +25,9 @@ export class ProductService {
     }
     getProductById(id: any): Observable<any> {
         return this.http.get<any>(`${this.api + '/productdetails'}/${id}`);
+    }
+    addCartLogin(obj: any): Observable<any> {
+      return this.http.post<any>(this.api + '/cart', obj, httpOptions);
     }
 
 }

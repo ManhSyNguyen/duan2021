@@ -28,9 +28,6 @@ export class CartComponent implements OnInit {
   isLoggedIn = false;
   id?: string;
   city: any[] = [];
-  name: any;
-  sodienthoai: any;
-  email: any;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -148,9 +145,9 @@ export class CartComponent implements OnInit {
     this.userService.getInforUser().subscribe(res => {
       if (res) {
         console.log(res);
-        this.name = res.fullName;
-        this.email = res.email;
-        this.sodienthoai = res.sodienthoai;
+        this.iF.hoten.setValue(res.fullname);
+        this.iF.email.setValue(res.email);
+        this.iF.phone.setValue(res.sodienthoai);
       }
     });
   }

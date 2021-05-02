@@ -6,8 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
+import javax.persistence.EntityListeners;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,6 +19,7 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class CartDTO {
     private Long id;
     private Long idcustomer;
@@ -25,6 +30,7 @@ public class CartDTO {
     private String paymentmethod;
     private String decription;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
     @CreatedBy
     private String createby;

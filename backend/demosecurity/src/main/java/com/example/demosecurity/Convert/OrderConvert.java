@@ -58,12 +58,12 @@ public class OrderConvert {
             }
         }
         else  {
-            entity.setStatus(1);
+            entity.setStatus(0);
         }
         entity.setDeposit(dto.getDeposit());
         entity.setReason(dto.getReason());
         entity.setVat(10);
-        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder()-dto.getDeposit());
+
         return entity;
     }
 
@@ -99,11 +99,11 @@ public class OrderConvert {
         entity.setQuantityOrder(dto.getQuantityOrder());
         entity.setVat(dto.getVat());
         entity.setReason(dto.getReason());
-        if(dto.getStatus() == 5 || entity.getReason()==2){
+        if(dto.getStatus() == 4 || entity.getReason()==2){
             entity.setStatus(dto.getStatus());
             entity.setBoom(1);
         }
-        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder());
+        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder()-dto.getDeposit());
         entity.setPaymentmethod(dto.getPaymentmethod());
         entity.setStatus(dto.getStatus());
         return entity;

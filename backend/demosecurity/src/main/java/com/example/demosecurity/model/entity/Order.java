@@ -54,6 +54,7 @@ public class Order {
     private Integer reason;
     private Integer boom;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
     @Column(length = 50)
     @CreatedBy

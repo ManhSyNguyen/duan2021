@@ -30,6 +30,7 @@ public class Transaction {
     private String cardNumber;
     @Column (length=50)
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
 
     @CreatedBy

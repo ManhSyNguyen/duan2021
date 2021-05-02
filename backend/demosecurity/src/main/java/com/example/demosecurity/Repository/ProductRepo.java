@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,4 +18,6 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
     Product findProductById(@Param("id") Long id);
     List<Product> findByCategoryIdOrderByCreatedateDesc(Long idcategory);
     List<Product> findAllByNameproductContaining(String name);
+    @Query("select count(c) FROM product c where c.status = :status")
+    Integer findAllCoutnTotalProduct(@Param("status") Integer status);
 }

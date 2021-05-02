@@ -48,6 +48,7 @@ public class ProductDetail implements Serializable {
     private Integer status;
 
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
     @Column(length = 50)
     @CreatedBy

@@ -30,6 +30,7 @@ public class Category implements Serializable {
     private String decription;
     private boolean status;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
     @CreatedBy
     private String createby;

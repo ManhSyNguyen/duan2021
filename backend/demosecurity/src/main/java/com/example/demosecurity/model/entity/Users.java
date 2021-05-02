@@ -45,10 +45,12 @@ public class Users {
 
     @Column(name = "address",columnDefinition = "VARCHAR(200)")
     private String address;
+
     private String codeOtp;
 
     private String image;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
 
     @CreatedBy

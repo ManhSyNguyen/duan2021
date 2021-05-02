@@ -21,8 +21,8 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Boolean existsByEmail(String email);
     Boolean existsBySodienthoai(String sodienthoai);
-    @Query("SELECT u FROM users u WHERE u.email= :email and u.sodienthoai= :sdt")
-    Users findUserByEmailAndSodienthoai(@Param("email") String email, @Param("sdt") String sdt);
+    @Query("SELECT u FROM users u WHERE u.email= :email")
+    Users findUserByEmailAndSodienthoai(@Param("email") String email);
     @Query("SELECT u FROM users u WHERE u.codeOtp= :otp")
     Users findUserByCodeOtp(@Param("otp") String otp);
 

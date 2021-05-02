@@ -37,8 +37,8 @@ public class UserService {
         return usersRepository.findUserByUsername(username);
     }
 
-    public Users findUserByEmailAndSodienthoai(String email,String sdt){
-        return usersRepository.findUserByEmailAndSodienthoai(email,sdt);
+    public Users findUserByEmailAndSodienthoai(String email){
+        return usersRepository.findUserByEmailAndSodienthoai(email);
     }
     public Users findUserByOtp(String otp){
         return usersRepository.findUserByCodeOtp(otp);

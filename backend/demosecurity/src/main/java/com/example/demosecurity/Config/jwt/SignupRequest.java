@@ -28,5 +28,6 @@ public class SignupRequest {
     private Boolean status;
     private String address;
     private String image;
+    private String codeOtp;
     private Set<String> role;
 }

@@ -33,10 +33,10 @@ public class OrderService {
 
     private static final Logger logger = LogManager.getLogger(OrderService.class);
 
-    public OrderDTO save(OrderDTO orderDTO) {
+    public OrderDTO save(OrderDTO orderDTO,String name) {
         System.out.println(orderDTO.getTotalMonenyOrder());
         Order neworder = new Order();
-        neworder = orderConvert.toEntity(orderDTO);
+        neworder = orderConvert.toEntity(orderDTO,name);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
         neworder.setUsers(users);
         orderRepo.save(neworder);
@@ -49,14 +49,13 @@ public class OrderService {
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
                 orderProductDetaildto.setQuantity(pd.getPriceProductDetail());
-                orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct()*pd.getQuantityProduct());
+                orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct() * pd.getQuantityProduct());
 
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();
                 orderProductDetail.setId(orderProductDetaildto.getId());
                 orderProductDetail.setQuantity(orderProductDetaildto.getQuantity());
                 orderProductDetail.setPrice(orderProductDetaildto.getPrice());
-
                 orderProductDetail.setStatus(1);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
@@ -73,11 +72,11 @@ public class OrderService {
     public OrderDTO update(OrderDTO orderDTO) {
         Order newOrder;
         Order oldOrder = orderRepo.findOrdersById(orderDTO.getId());
-        newOrder = orderConvert.toEntity(orderDTO, oldOrder);
+        newOrder = orderConvert.toEntityToDTO(orderDTO, oldOrder);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
         newOrder.setUsers(users);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
-        float totalMoney =0;
+        float totalMoney = 0;
         if (orderRepo.save(newOrder) != null) {
             for (ProductDetailDTO pd : productDetailList) {
 
@@ -87,6 +86,7 @@ public class OrderService {
 
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
+
                 orderProductDetaildto.setQuantity(pd.getPriceProductDetail());
                 orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct()*pd.getQuantityProduct());
 
@@ -97,14 +97,14 @@ public class OrderService {
                 Float totalorderdetail = orderProductDetaildto.getQuantity() * pd.getProduct().getPriceProduct();
                 orderProductDetail.setPrice(totalorderdetail);
                 orderProductDetail.setStatus(orderProductDetaildto.getStatus());
-                totalMoney +=totalorderdetail;
+                totalMoney += totalorderdetail;
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
-                if (orderDTO.getStatus().equals(4) && productDetail.getQuantityProduct()>0) {
+                if (orderDTO.getStatus().equals(4) && productDetail.getQuantityProduct() > 0) {
                     productDetail.setId(pd.getId());
-                    int total = productDetail.getQuantityProduct()-pd.getQuantityProduct();
+                    int total = productDetail.getQuantityProduct() - pd.getQuantityProduct();
                     productDetail.setQuantityProduct(total);
-                    if(total==0) {
+                    if (total == 0) {
                         productDetail.setStatus(0);
                     }
                 }
@@ -177,6 +177,7 @@ public class OrderService {
         }
         return results;
     }
+
     public List<OrderDTO> findAllByUser(String username) {
         List<OrderDTO> results = new ArrayList<>();
         List<Order> entities = orderRepo.findAll();
@@ -202,11 +203,12 @@ public class OrderService {
         return list;
     }
 
-    public List<Order> findOrderByUsernameAndStatus(Integer status,String name) {
-        List<Order> list = orderRepo.findAllByUsernameAndStatus(status,name);
+    public List<Order> findOrderByUsernameAndStatus(Integer status, String name) {
+        List<Order> list = orderRepo.findAllByUsernameAndStatus(status, name);
         return list;
     }
-    public Order findOrderBySku(String sku){
+
+    public Order findOrderBySku(String sku) {
         Order order = orderRepo.findOrderBySku(sku);
         return order;
     }

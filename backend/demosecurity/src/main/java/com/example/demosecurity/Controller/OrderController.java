@@ -3,6 +3,7 @@ package com.example.demosecurity.Controller;
 
 import com.example.demosecurity.Service.auth.EmailService;
 import com.example.demosecurity.Service.auth.OrderService;
+import com.example.demosecurity.model.dto.Bom;
 import com.example.demosecurity.model.dto.MailRequest;
 import com.example.demosecurity.model.dto.OrderDTO;
 
@@ -31,6 +32,19 @@ public class OrderController {
     @ResponseBody
     public List<OrderDTO> getAll() {
         return orderService.findAll();
+    }
+
+    @GetMapping("orders/boom")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public List<Order> getOrderByDom() {
+        return orderService.findAllOrderByBoom();
+    }
+    @GetMapping("orders/boom/{phone}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public List<Order> getOrderByDomAndPhone(@PathVariable String phone) {
+        return orderService.findAllOrderByBoomAndPhone(phone);
     }
 
     @GetMapping("/orders/status")
@@ -70,20 +84,25 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public OrderDTO createOrder(@RequestBody OrderDTO orderDTO,Principal pc) {
-//        if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
-//            MailRequest mailRequest = new MailRequest();
-//            mailRequest.setName(orderDTO.getNamecustom());
-//            mailRequest.setFrom("dhmcolor11@gmail.com");
-//            mailRequest.setTo(orderDTO.getEmail());
-//            mailRequest.setSubject("Đơn hàng #208WUMU" + orderDTO.getPhone());
-//            Map<String, Object> model = new HashMap<>();
-//            model.put("Name", mailRequest.getName());
-//            model.put("location", "Can Lộc , Hà Tĩnh");
-//            model.put("Email", mailRequest.getTo());
-//            model.put("Don", "Đơn hàng #208WUMU" + orderDTO.getPhone());
-//            emailService.sendEmail(mailRequest, model);
-//        }
-        return orderService.save(orderDTO,pc.getName());
+        if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
+            MailRequest mailRequest = new MailRequest();
+            mailRequest.setName(orderDTO.getNamecustom());
+            mailRequest.setFrom("dhmcolor11@gmail.com");
+            mailRequest.setTo(orderDTO.getEmail());
+            mailRequest.setSubject("Đơn hàng #208WUMU" + orderDTO.getPhone());
+            Map<String, Object> model = new HashMap<>();
+            model.put("Name", mailRequest.getName());
+            model.put("location", "Can Lộc , Hà Tĩnh");
+            model.put("Email", mailRequest.getTo());
+            model.put("Don", "Đơn hàng #208WUMU" + orderDTO.getPhone());
+            emailService.sendEmail(mailRequest, model);
+        }
+        if(pc!=null){
+            return orderService.save(orderDTO,pc.getName());
+        }else{
+            return orderService.save(orderDTO,null);
+        }
+
     }
 
     @PutMapping(value = "/orders/{id}")

@@ -4,6 +4,7 @@ import com.example.demosecurity.Convert.OrderConvert;
 import com.example.demosecurity.Convert.ProductConvert;
 import com.example.demosecurity.Convert.ProductDetailConvert;
 import com.example.demosecurity.Repository.*;
+import com.example.demosecurity.model.dto.Bom;
 import com.example.demosecurity.model.dto.OrderDTO;
 import com.example.demosecurity.model.dto.OrderProductDetailDTO;
 import com.example.demosecurity.model.dto.ProductDetailDTO;
@@ -49,7 +50,7 @@ public class OrderService {
                 OrderProductDetailDTO orderProductDetaildto = new OrderProductDetailDTO();
                 orderProductDetaildto.setId(opdi);
                 orderProductDetaildto.setQuantity(pd.getPriceProductDetail());
-                orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct() * pd.getQuantityProduct());
+                orderProductDetaildto.setPrice(pd.getProduct().getPriceProduct() * pd.getPriceProductDetail());
 
 
                 OrderProductDetail orderProductDetail = new OrderProductDetail();
@@ -176,6 +177,41 @@ public class OrderService {
             results.add(newDTO);
         }
         return results;
+    }
+    public List<Order> findAllOrderByBoom() {
+        Integer boom = 0;
+        List list = new ArrayList() ;
+            List<String> entities1 = orderRepo.findDistinctByPhone(boom);
+            for (String o : entities1) {
+                List<Order> entities = orderRepo.findAllByBoomGreaterThanAndPhone(boom,o);
+                Integer dem=0;
+                for (Order item : entities) {
+                    if (item.getPhone().equals(o) && dem==0) {
+                        dem++;
+                        Integer bom = orderRepo.countByBoomAndBoomGreaterThanEqual(0, o);
+                        item.setBoom(bom);
+                        list.add(item);
+                    }
+                }
+            }
+           return list;
+    }
+
+    public List<Order> findAllOrderByBoomAndPhone(String phone) {
+        Integer boom = 0;
+        List list = new ArrayList() ;
+        List<Order> entities = orderRepo.findAllByBoomGreaterThanAndPhone(boom,phone);
+        Integer dem=0;
+        for (Order item : entities) {
+            if (item.getPhone().equals(phone) && dem==0) {
+                dem++;
+                Integer bom = orderRepo.countByBoomAndBoomGreaterThanEqual(0, phone);
+                item.setBoom(bom);
+                list.add(item);
+            }
+        }
+        return  list;
+
     }
 
     public List<OrderDTO> findAllByUser(String username) {

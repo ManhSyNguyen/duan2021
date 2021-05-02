@@ -87,7 +87,6 @@ export class EditProductComponent implements OnInit {
   }
   xoa(items: any) {
     Swal.fire({
-      title: 'Are you sure ?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
@@ -183,29 +182,28 @@ export class EditProductComponent implements OnInit {
               }
               this.currentFile = undefined;
             });
-
-          const obj = {
-            id: productId,
-            idcategory: this.iF.idcategory.value,
-            nameproduct: this.iF.nameproduct.value,
-            priceProduct: this.iF.priceProduct.value,
-            image: this.currentFile.name,
-            decription: this.iF.decription.value,
-            productDetails: this.listColorSize,
-            status: this.iF.status.value ? 1 : 0,
-          };
-          this.productService.updateProduct(obj, productId).subscribe(res => {
-            if (res) {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Sửa thành công rồi bạn êiii !!',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              this.router.navigate(['/products']);
-            }
-          });
+            const obj = {
+              id: productId,
+              idcategory: this.iF.idcategory.value,
+              nameproduct: this.iF.nameproduct.value,
+              priceProduct: this.iF.priceProduct.value,
+              image: this.currentFile.name,
+              decription: this.iF.decription.value,
+              productDetails: this.listColorSize,
+              status: this.iF.status.value ? 1 : 0,
+            };
+            this.productService.updateProduct(obj, productId).subscribe(res => {
+              if (res) {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Sửa thành công !!',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                this.router.navigate(['/products']);
+              }
+            });
         }
       } else {
         const obj = {
@@ -223,7 +221,7 @@ export class EditProductComponent implements OnInit {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Sửa thành công rồi bạn êiii !!',
+              title: 'Sửa thành công!!',
               showConfirmButton: false,
               timer: 1500
             });

@@ -6,7 +6,7 @@
                     <div class="layout_img product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a>
-                                <img id="zoom1" src="{{productDetail.image}}" alt="big-1" />
+                              <img id="zoom1" [src]="'http://localhost:5000/images/' + productDetail.image" alt="big-1" />
                             </a>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-customer',
@@ -61,6 +62,13 @@ export class EditCustomerComponent implements OnInit {
       };
       this.userService.update(param, userId).subscribe(res => {
         if (res){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Sửa thành công !!',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.router.navigate(['/customer']);
         }
       });

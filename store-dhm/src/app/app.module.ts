@@ -28,6 +28,7 @@ import { BillOfProductComponent } from './dhmcolor/bill-of-product/bill-of-produ
 import { ForgotPassComponent } from './dhmcolor/forgot-pass/forgot-pass.component';
 import { ChangePassComponent } from './dhmcolor/change-pass/change-pass.component';
 import { DetailBillComponent } from './dhmcolor/detail-bill/detail-bill.component';
+import { IntroduceComponent } from './dhmcolor/introduce/introduce.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { DetailBillComponent } from './dhmcolor/detail-bill/detail-bill.componen
     ForgotPassComponent,
     ChangePassComponent,
     DetailBillComponent,
+    IntroduceComponent,
   ],
   imports: [
     BrowserModule,

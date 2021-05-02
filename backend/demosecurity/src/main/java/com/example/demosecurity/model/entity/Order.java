@@ -52,6 +52,7 @@ public class Order {
     private Float totalMonenyOrder;
     private Float deposit;
     private Integer reason;
+    private Integer boom;
     @CreatedDate
     private Date createdate;
     @Column(length = 50)

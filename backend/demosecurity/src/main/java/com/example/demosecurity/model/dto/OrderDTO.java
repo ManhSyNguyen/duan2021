@@ -30,6 +30,7 @@ public class OrderDTO {
     private String sku;
     private Integer reason;
     private Integer vat;
+    private Integer boom;
     private Integer status;
     private Date createdate;
     private String createby;

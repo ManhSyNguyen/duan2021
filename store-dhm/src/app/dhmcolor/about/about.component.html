@@ -45,7 +45,7 @@
                                                         routerLink="/about/product-detail/{{item.id}}">Xem
                                                         chi tiết</span>
                                                 </div>
-                                                <img src="{{item.image}}" alt="" routerLink="cart" />
+                                                <img [src]="'http://localhost:5000/images/' + item.image" alt="" routerLink="cart" />
                                             </div>
                                             <div class="p-3" routerLink="/about/product-detail/{{item.id}}">
                                                 <h2>{{item.priceProduct | number}} <sup>₫</sup></h2>

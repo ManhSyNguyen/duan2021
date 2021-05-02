@@ -48,6 +48,7 @@ public class OrderConvert {
         entity.setAddress(dto.getAddress());
         entity.setSku(getAlphaNumericString(5));
         entity.setPaymentmethod(dto.getPaymentmethod());
+        entity.setBoom(0);
         if (users != null) {
             for (Role role: users.getRoles()
             ) {
@@ -55,7 +56,8 @@ public class OrderConvert {
                     entity.setStatus(4);
                 }
             }
-        } else  {
+        }
+        else  {
             entity.setStatus(1);
         }
         entity.setDeposit(dto.getDeposit());
@@ -71,10 +73,14 @@ public class OrderConvert {
         dto.setNamecustom(entity.getNamecustom());
         dto.setUser(entity.getUsers());
         dto.setPhone(entity.getPhone());
+        dto.setEmail(entity.getEmail());
         dto.setSku(entity.getSku());
         dto.setAddress(entity.getAddress());
         dto.setStatus(entity.getStatus());
+        dto.setTotalMonenyOrder(entity.getTotalMonenyOrder());
+        dto.setPaymentmethod(entity.getPaymentmethod());
         dto.setCreatedate(entity.getCreatedate());
+        dto.setBoom(entity.getBoom());
         dto.setVat(entity.getVat());
         dto.setReason(entity.getReason());
         dto.setDeposit(entity.getDeposit());
@@ -93,7 +99,11 @@ public class OrderConvert {
         entity.setQuantityOrder(dto.getQuantityOrder());
         entity.setVat(dto.getVat());
         entity.setReason(dto.getReason());
-        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder()-dto.getDeposit());
+        if(dto.getStatus() == 5 || entity.getReason()==2){
+            entity.setStatus(dto.getStatus());
+            entity.setBoom(1);
+        }
+        entity.setTotalMonenyOrder(dto.getTotalMonenyOrder());
         entity.setPaymentmethod(dto.getPaymentmethod());
         entity.setStatus(dto.getStatus());
         return entity;

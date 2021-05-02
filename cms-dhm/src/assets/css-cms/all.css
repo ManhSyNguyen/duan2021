@@ -6224,5 +6224,6 @@ input:checked + .slider:before {
   display: flex;
 }
 .qty-inp {
-  width: 80px !important;
+  width: 45px !important;
+  font-size: 13px;
 }

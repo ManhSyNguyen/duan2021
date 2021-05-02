@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../../../service/product.service";
-import {ToastrService} from "ngx-toastr";
-import {SizeService} from "../../../service/size.service";
-import {CategoryService} from "../../../service/categorys.service";
-import {ColorService} from "../../../service/color.service";
-import {ActivatedRoute, Router} from "@angular/router";
+
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ProductService } from "../../../service/product.service";
+import { ToastrService } from "ngx-toastr";
+import { SizeService } from "../../../service/size.service";
+import { CategoryService } from "../../../service/categorys.service";
+import { ColorService } from "../../../service/color.service";
+import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { UploadFileServiceService } from 'src/app/service/upload-file-service.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
@@ -48,10 +49,11 @@ export class EditProductComponent implements OnInit {
     this.getCategory();
     this.inputForm = this.formBuild.group({
       statussize: [1],
-      nameproduct : ['', [Validators.required]],
-      image : [''],
-      priceProduct : ['', [Validators.required]],
-      decription : ['', [Validators.required]],
+
+      nameproduct: ['', [Validators.required]],
+      image: [''],
+      priceProduct: ['', [Validators.required]],
+      decription: ['', [Validators.required]],
       quantityProduct: [''],
       idcolor: [''],
       idsize: [''],
@@ -126,19 +128,20 @@ export class EditProductComponent implements OnInit {
         this.iF.idcategory.setValue(res.category.id);
       });
       this.productService.getProductByIdDetail(productId).subscribe(data => {
-          this.productDetail = data;
-          this.productDetail.forEach((i: any) => {
-            let obj = {
-              idcolor : i.color.id , idsize : i.size.id , quantityProduct : i.quantityProduct
-            };
-            this.listColorSize.push(obj);
+
+        this.productDetail = data;
+        this.productDetail.forEach((i: any) => {
+          let obj = {
+            idcolor: i.color.id, idsize: i.size.id, quantityProduct: i.quantityProduct
+          };
+          this.listColorSize.push(obj);
         });
-          console.log('data', data);
-          this.iF.statussize.setValue(data[0].size.status);
-          this.iF.nameproduct.setValue(data[0].product.nameproduct);
-          this.iF.priceProduct.setValue(data[0].product.priceProduct);
-          this.iF.decription.setValue(data[0].product.decription);
-          this.iF.status.setValue(data[0].product.status);
+        console.log('data', data);
+        this.iF.statussize.setValue(data[0].size.status);
+        this.iF.nameproduct.setValue(data[0].product.nameproduct);
+        this.iF.priceProduct.setValue(data[0].product.priceProduct);
+        this.iF.decription.setValue(data[0].product.decription);
+        this.iF.status.setValue(data[0].product.status);
       });
     });
   }

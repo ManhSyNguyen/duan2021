@@ -85,7 +85,6 @@ export class EditProductComponent implements OnInit {
   }
   xoa(items: any) {
     Swal.fire({
-      title: 'Are you sure ?',
       text: 'Bạn chắc chắn muốn xóa chi tiết khỏi danh sách!',
       icon: 'warning',
       showCancelButton: true,
@@ -195,7 +194,7 @@ export class EditProductComponent implements OnInit {
                 Swal.fire({
                   position: 'center',
                   icon: 'success',
-                  title: 'Sửa thành công rồi bạn êiii !!',
+                  title: 'Sửa thành công !!',
                   showConfirmButton: false,
                   timer: 1500
                 });
@@ -219,7 +218,7 @@ export class EditProductComponent implements OnInit {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Sửa thành công rồi bạn êiii !!',
+              title: 'Sửa thành công!!',
               showConfirmButton: false,
               timer: 1500
             });

@@ -26,6 +26,7 @@ export class AddProductComponent implements OnInit {
   currentFile?: File;
   message = '';
   errorMsg = '';
+  image: any;
 
   constructor(
     private sizeService: SizeService,
@@ -97,6 +98,7 @@ export class AddProductComponent implements OnInit {
 
       if (file) {
         this.currentFile = file;
+        this.image = this.currentFile.name;
         this.uploadService.upload(this.currentFile).subscribe(
           (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
@@ -128,7 +130,9 @@ export class AddProductComponent implements OnInit {
         };
         this.productService.createProduct(obj).subscribe(res => {
           if (res) {
-            Swal.fire('Success!', 'Thêm sản phẩm thành công!', 'success')
+            console.log('res', res);
+
+            Swal.fire('Success!', 'Thêm sản phẩm thành công!', 'success');
             this.router.navigate(['/products']);
           }
         });
@@ -161,6 +165,7 @@ export class AddProductComponent implements OnInit {
   // @ts-ignore
   // tslint:disable-next-line:typedef
   getTextColor(text: any) {
+
     if (text === '1') {
       return "Pink";
     }

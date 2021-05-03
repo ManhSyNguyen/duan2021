@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -18,6 +19,12 @@ import java.util.*;
 
 @Service
 public class OrderService {
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private EmailNoAcountService emailNoAcountService;
+
     @Autowired
     private OrderConvert orderConvert;
     @Autowired
@@ -31,13 +38,71 @@ public class OrderService {
     @Autowired
     private OrderProductDetailRepo orderProductDetailRepo;
 
+    @Autowired
+    BCryptPasswordEncoder encode;
+    @Autowired
+    private RoleRepository roleRepository;
+
     private static final Logger logger = LogManager.getLogger(OrderService.class);
+    public String getAlphaNumericString(int n)
+    {
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+        return sb.toString();
+    }
 
     public OrderDTO save(OrderDTO orderDTO,String name) {
-        System.out.println(orderDTO.getTotalMonenyOrder());
         Order neworder = new Order();
         neworder = orderConvert.toEntity(orderDTO,name);
         Users users = usersRepository.findUsersById(orderDTO.getIdUser());
+        Boolean userssdt = usersRepository.existsBySodienthoai(orderDTO.getPhone());
+        Boolean usersemail = usersRepository.existsByEmail(orderDTO.getEmail());
+        String string =orderDTO.getEmail();
+        String[] parts = string.split("@");
+        String part1 = parts[0]; // 004
+        if(userssdt!=true && usersemail!=true){
+            Boolean usersus = usersRepository.existsByUsername(part1);
+            Users user=null;
+            if(usersus!=true){
+                user = new Users(part1,
+                        encode.encode("dhm12345"),
+                        orderDTO.getEmail(),
+                        orderDTO.getPhone()
+                );
+            }else {
+                String username = part1+getAlphaNumericString(3);
+                user = new Users(username,
+                        encode.encode("dhm12345"),
+                        orderDTO.getEmail(),
+                        orderDTO.getPhone()
+                );
+            }
+
+            user.setStatus(true);
+            Set<String> strRoles = null;
+            Set<Role> roles = new HashSet<>();
+            if (strRoles==null) {
+                Role userRole = roleRepository.findByNamerole(ERole.ROLE_USER)
+                        .orElseThrow(() -> new RuntimeException("Lỗi: Quyền này không tồn tại."));
+                roles.add(userRole);
+            }
+            user.setRoles(roles);
+            usersRepository.save(user);
+        }
         neworder.setUsers(users);
         orderRepo.save(neworder);
         Set<ProductDetailDTO> productDetailList = orderDTO.getProductDetailList();
@@ -65,6 +130,42 @@ public class OrderService {
                 orderProductDetailRepo.save(orderProductDetail);
             }
         }
+        if(users!=null || userssdt!=true || usersemail!=true){
+            if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
+                MailRequest mailRequest = new MailRequest();
+                mailRequest.setName(orderDTO.getNamecustom());
+                mailRequest.setFrom("dhmcolor11@gmail.com");
+                mailRequest.setTo(orderDTO.getEmail());
+                mailRequest.setSubject(neworder.getSku());
+                Map<String, Object> model = new HashMap<>();
+                model.put("Name", mailRequest.getName());
+                model.put("location", neworder.getAddress());
+                model.put("Email", mailRequest.getTo());
+                model.put("Don", "Đơn hàng #" + mailRequest.getSubject());
+                model.put("SDT", "Số điện thoại: " + neworder.getPhone());
+                model.put("Tien", "Tổng tiền :"+ orderDTO.getTotalMonenyOrder()+" VND");
+                emailService.sendEmail(mailRequest, model);
+            }
+        }else{
+            if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
+                MailRequest mailRequest = new MailRequest();
+                mailRequest.setName(orderDTO.getNamecustom());
+                mailRequest.setFrom("dhmcolor11@gmail.com");
+                mailRequest.setTo(orderDTO.getEmail());
+                mailRequest.setSubject(neworder.getSku());
+                Map<String, Object> model = new HashMap<>();
+                model.put("Username", part1);
+                model.put("Password", "dhm12345");
+                model.put("Name", mailRequest.getName());
+                model.put("location", neworder.getAddress());
+                model.put("Email", mailRequest.getTo());
+                model.put("Don", "Đơn hàng #" + mailRequest.getSubject());
+                model.put("SDT", "Số điện thoại: " + neworder.getPhone());
+                model.put("Tien", "Tổng tiền :"+ orderDTO.getTotalMonenyOrder()+" VND");
+                emailNoAcountService.sendEmail(mailRequest, model);
+            }
+        }
+
         return orderConvert.toDTO(neworder);
 
     }

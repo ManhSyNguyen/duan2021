@@ -48,8 +48,12 @@
                                         Sau khi bạn xác nhận, chúng tôi sẽ thực hiện đóng gói sản phẩm và giao cho đơn vị vận chuyển.<br>
                                         Nếu bạn không xác nhận trong khoảng thời gian này.<br>
                                         Shop DHM cũng sẽ hủy đơn hàng của bạn và xem đó là hình thức bom hàng. <br>
-                                        <br> THÔNG TIN ĐƠN HÀNG - DÀNH CHO NGƯỜI MUA
-                                        <br><b>Họ tên: ${Name}</b><br>
+                                        <br> THÔNG TIN ĐƠN HÀNG - DÀNH CHO NGƯỜI MUA<br>
+
+                                        Do bạn là người mới nên chúng tôi đã tạo tài khoản để cho bạn dễ theo dõi đơn hàng trực tiếp trên website
+                                        <br>Tên tài khoản: <b>${Username}</b><br>
+                                        <br>Mật khẩu: <b>${Password}</b><br>
+                                        <br>Họ tên: <b>${Name}</b><br>
                                         <br><b>${SDT}</b><br>
                                         <br><b>${location}</b><br>
                                         <br><b>${Tien}</b><br>

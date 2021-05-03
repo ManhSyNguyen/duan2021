@@ -682,6 +682,7 @@ h2.title {
   right: 0;
 }
 .about {
+  width: 100%;
   padding: 10px 0;
 }
 .productinfo h2 {
@@ -1846,4 +1847,45 @@ svg:not(:root) {
   z-index: 1;
   position: absolute;
   top: 0;
+}
+.breadcrumb-shop {
+  background: #fafafa;
+  margin-bottom: 20px;
+}
+.breadcrumb-shop .breadcrumb-arrows {
+  padding: 15px 0;
+  background: transparent;
+  border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+}
+.breadcrumb-shop a {
+  color: #272727;
+}
+.breadcrumb-shop a:hover {
+  text-decoration: none;
+  color: #272727;
+}
+.breadcrumb-shop .breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: #ccc;
+  content: "/\00a0";
+  padding: 0 3px;
+}
+.breadcrumb-shop .breadcrumb-arrows li {
+  font-size: 13px;
+}
+.content-page {
+  line-height: 35px !important;
+}
+.icon-intro {
+  display: flex;
+}
+.icon-intro li {
+  padding: 10px 10px 0 0;
+}
+.icon-intro img {
+  width: 20px;
 }

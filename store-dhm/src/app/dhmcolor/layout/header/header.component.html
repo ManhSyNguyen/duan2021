@@ -91,12 +91,13 @@
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a routerLink="/">Trang chủ</a></li>
                             <li><a routerLink="/about">Sản phẩm</a></li>
-                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a routerLink="/introduce">Giới thiệu</a></li>
                             <li><a routerLink="/contact">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
+
                   <form  [formGroup]="searchForm">
                     <div class="search_box pull-right form-group">
                         <input #seach type="text" placeholder="Tìm kiếm" class="form-control" formControlName="search" />

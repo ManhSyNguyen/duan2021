@@ -15,6 +15,7 @@ import { Page404Component } from './dhmcolor/page404/page404.component';
 import { ProductDetailComponent } from './dhmcolor/product-detail/product-detail.component';
 import { RegisterComponent } from './dhmcolor/register/register.component';
 import {DetailBillComponent} from './dhmcolor/detail-bill/detail-bill.component';
+import { IntroduceComponent } from './dhmcolor/introduce/introduce.component';
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'about/search/:keyword', component: AboutComponent },
       { path: 'about/:id', component: AboutCategoryComponent },
+      { path: 'introduce', component: IntroduceComponent},
       { path: 'cart', component: CartComponent },
       { path: 'product-detail/:id', component: ProductDetailComponent },
       { path: 'about/product-detail/:id', component: ProductDetailComponent },

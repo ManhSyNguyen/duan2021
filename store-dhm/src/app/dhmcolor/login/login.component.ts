@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.errorMessage = "Tài khoản, mật khẩu của bạn không đúng !!";
+        this.errorMessage = "Tài khoản, mật khẩu của bạn không đúng!";
         this.isLoginFailed = true;
       }
     );

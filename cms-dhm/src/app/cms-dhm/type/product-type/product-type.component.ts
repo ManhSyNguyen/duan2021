@@ -35,6 +35,7 @@ export class ProductTypeComponent implements OnInit {
     this.Category.getAll().subscribe(res => {
       if (res) {
         this.listCategory = res;
+        console.log('this.listCategory', this.listCategory);
       }
     });
   }

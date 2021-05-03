@@ -1,6 +1,19 @@
 <h1 class="h3 mb-2 text-gray-800">Danh sách đen </h1>
-<!-- <a routerLink="/add-account"><button class="btn btn-dark">Thêm tài khoản</button></a> -->
-
+<form [formGroup]="searchForm">
+  <div class="row">
+    <div class="col-8">
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="search"
+               placeholder="Tìm kiếm theo số điện thoại">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" (click)="searchPhone()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 <div class="card shadow mb-4" style="margin-top: 15px;">
     <div class="card-header py-3">
         <h3 class="m-0 font-weight-bold text-dark">Danh sách khách hàng hủy đơn</h3>
@@ -15,29 +28,17 @@
                         <th>Email</th>
                         <th>Địa chỉ</th>
                         <th>Số lần hủy đơn</th>
-                        <th>Tùy chọn</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Nguyen Sy Manh</td>
-                        <td>066383838</td>
-                        <td>manhns15@gmail.com</td>
-                        <td>Hà Nội</td>
-                        <td><span class="badge badge-danger">10</span></td>
-                        <td>
-                            <div class="btn-option">
-                                <a routerLink="/edit-account">
-                                    <button class="btn btn-dark btn-sm" type="button">
-                                        <i class="fas fa-edit"></i></button></a>
-                                &nbsp;
-                                <button class="btn btn-danger btn-sm" type="button">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </td>
+                    <tr *ngFor="let item of listBoom">
+                        <td>{{item.namecustom}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.address}}</td>
+                        <td *ngIf="item.boom < 3"><span class="badge badge-warning">{{item.boom}}</span></td>
+                        <td *ngIf="item.boom >= 3 "><span class="badge badge-danger">{{item.boom}}</span></td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

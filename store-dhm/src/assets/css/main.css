@@ -1354,6 +1354,10 @@ span.price {
   border-radius: 25px;
   margin-right: 3px;
 }
+.inforCus-dn{
+  overflow: hidden;
+  padding-top: 5px;
+}
 .dropdown-content {
   display: none;
   position: absolute;

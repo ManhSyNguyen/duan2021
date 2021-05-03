@@ -1,14 +1,14 @@
 <h1 class="h3 mb-2 text-gray-800">Chi tiết đơn hàng</h1>
 <mat-horizontal-stepper class="card shadow mb-4">
-    <mat-step label="Chờ xác nhận" state="cf">
+    <mat-step label="Chờ xác nhận" state="cf" *ngIf="status == 0">
     </mat-step>
-    <mat-step label="Chờ lấy hàng" state="card">
+    <mat-step label="Chờ lấy hàng" state="card" *ngIf="status == 1">
     </mat-step>
-    <mat-step label="Đang giao" state="local">
+    <mat-step label="Đang giao" state="local" *ngIf="status == 2">
     </mat-step>
-    <mat-step label="Thành công" state="succs">
+    <mat-step label="Thành công" state="succs" *ngIf="status == 3">
     </mat-step>
-    <mat-step label="Hủy" state="del">
+    <mat-step label="Hủy" state="del" *ngIf="status == 4">
     </mat-step>
 
     <ng-template matStepperIcon="cf">
@@ -106,48 +106,47 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5 mt-15">
+          <div class="col-md-5 mt-15">
             <div class="card">
-                <div class="card-header py-3">
-                    <h3 class="m-0 font-weight-bold text-dark">Thông tin khách hàng</h3>
+              <div class="card-header py-3">
+                <h3 class="m-0 font-weight-bold text-dark">Thông tin khách hàng</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Tên khách hàng</label>
+                  <input type="text" class="form-control" disabled value="{{nameuser}}" />
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tên khách hàng</label>
-                        <input type="text" class="form-control" disabled value="{{nameuser}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Số điện thoại</label>
-                        <input type="text" class="form-control" disabled value="{{sdt}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" disabled value="{{email}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Địa chỉ</label>
-                        <input type="text" class="form-control" disabled value="{{addr}}" />
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" disabled
-                            [checked]="paymentmethod == 0">
-                        <label class="custom-control-label" for="customRadio1">Thanh toán khi nhận hàng</label>
-                    </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Số điện thoại</label>
+                  <input type="text" class="form-control" disabled value="{{sdt}}" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="text" class="form-control" disabled value="{{email}}" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Địa chỉ</label>
+                  <input type="text" class="form-control" disabled value="{{addr}}" />
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" disabled
+                         [checked]="paymentmethod == 0">
+                  <label class="custom-control-label" for="customRadio1">Thanh toán khi nhận hàng</label>
+                </div>
 
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" disabled
-                            [checked]="paymentmethod == 1">
-                        <label class="custom-control-label" for="customRadio2">Thanh toán qua chuyển khoản</label>
-                    </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" disabled
+                         [checked]="paymentmethod == 1">
+                  <label class="custom-control-label" for="customRadio2">Thanh toán qua chuyển khoản</label>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
     </div>
 </div>
-
 <hr>
 <div class="form-group pt-2">
     <button type="submit" class="btn btn-primary btn-sm" (click)="update()">Cập nhập</button>&nbsp;
-    <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
+    <button type="submit" class="btn btn-danger btn-sm" (click)="cancel()">Hủy</button>
 </div>

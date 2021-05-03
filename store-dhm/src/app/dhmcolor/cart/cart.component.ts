@@ -28,9 +28,6 @@ export class CartComponent implements OnInit {
   isLoggedIn = false;
   id?: string;
   city: any[] = [];
-  name: any;
-  sodienthoai: any;
-  email: any;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -45,15 +42,15 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.city = [{id: 1, name: 'Hà Nội'}, {id: 2, name: 'Thái Bình'}, {id: 3, name: 'An Giang'}, {id: 4, name: 'Bà Rịa - Vũng Tàu'}, {id: 5, name: 'Bắc Giang'}
-      , {id: 6, name: 'Bắc Kạn'}, {id: 7, name: 'Bạc Liêu'}, {id: 8, name: 'Bắc Ninh'}, {id: 9, name: 'Bến Tre'}, {id: 10, name: 'Bình Định'}, {id: 11, name: 'Bình Dương'}, {id: 12, name: 'Bình Phước'}, {id: 13, name: 'Bình Thuận'}
-      , {id: 14, name: 'Cà Mau'}, {id: 15, name: 'Cao Bằng'}, {id: 16, name: 'Đắk Lắk'}, {id: 17, name: 'Đắk Nông'}, {id: 18, name: 'Điện Biên'}, {id: 19, name: 'Đồng Nai'}, {id: 20, name: 'Đồng Tháp'}, {id: 21, name: 'Gia Lai'}
-      , {id: 22, name: 'Hà Giang'}, {id: 23, name: 'Hà Nam'}, {id: 24, name: 'Hà Tĩnh'}, {id: 25, name: 'Hải Dương'}, {id: 26, name: 'Hậu Giang'}, {id: 27, name: 'Hòa Bình'}, {id: 28, name: 'Hưng Yên'}, {id: 29, name: 'Khánh Hòa'}
-      , {id: 30, name: 'Kiên Giang'}, {id: 31, name: 'Kon Tum'}, {id: 32, name: 'Lai Châu'}, {id: 33, name: 'Lâm Đồng'}, {id: 34, name: 'Lạng Sơn'}, {id: 35, name: 'Lào Cai'}, {id: 36, name: 'Long An'}, {id: 37, name: 'Nam Định'}
-      , {id: 38, name: 'Nghệ An'}, {id: 39, name: 'Ninh Bình'}, {id: 40, name: 'Ninh Thuận'}, {id: 41, name: 'Phú Thọ'}, {id: 42, name: 'Quảng Bình'}, {id: 43, name: 'Quảng Nam'}, {id: 44, name: 'Quảng Ngãi'}, {id: 45, name: 'Quảng Ninh'}
-      , {id: 46, name: 'Quảng Trị'}, {id: 47, name: 'Sóc Trăng'}, {id: 48, name: 'Sơn La'}, {id: 49, name: 'Tây Ninh'}, {id: 50, name: 'Thái Nguyên'}, {id: 51, name: 'Thanh Hóa'}, {id: 52, name: 'Thừa Thiên Huế'}, {id: 53, name: 'Tiền Giang'}
-      , {id: 54, name: 'Trà Vinh'}, {id: 55, name: 'Tuyên Quang'}, {id: 56, name: 'Vĩnh Long'}, {id: 57, name: 'Vĩnh Phúc'}, {id: 58, name: 'Yên Bái'}, {id: 59, name: 'Phú Yên'}, {id: 60, name: 'Cần Thơ'}, {id: 61, name: 'Đà Nẵng'}
-      , {id: 62, name: 'Hải Phòng'}, {id: 63, name: 'Thành phố Hồ Chí Minh'}];
+    this.city = [{id: 1, name: 'An Giang'}, {id: 2, name: 'Bà Rịa - Vũng Tàu'}, {id: 3, name: 'Bắc Giang'}, {id: 4, name: 'Bắc Kạn'}, {id: 5, name: 'Bạc Liêu'}
+      , {id: 6, name: 'Bắc Ninh'}, {id: 7, name: 'Bến Tre'}, {id: 8, name: 'Bình Định'}, {id: 9, name: 'Bình Dương'}, {id: 10, name: 'Bình Phước'}, {id: 11, name: 'Bình Thuận'}, {id: 12, name: 'Cà Mau'}, {id: 13, name: 'Cần Thơ'}
+      , {id: 14, name: 'Cao Bằng'}, {id: 15, name: 'Đà Nẵng'}, {id: 16, name: 'Đắk Lắk'}, {id: 17, name: 'Đắk Nông'}, {id: 18, name: 'Điện Biên'}, {id: 19, name: 'Đồng Nai'}, {id: 20, name: 'Đồng Tháp'}, {id: 21, name: 'Gia Lai'}
+      , {id: 22, name: 'Hà Giang'}, {id: 23, name: 'Hà Nam'}, {id: 24, name: 'Hà Nội'}, {id: 25, name: 'Hà Tĩnh'}, {id: 26, name: 'Hải Dương'}, {id: 27, name: 'Hải Phòng'}, {id: 28, name: 'Hậu Giang'}, {id: 29, name: 'Hòa Bình'}
+      , {id: 30, name: 'Hưng Yên'}, {id: 31, name: 'Khánh Hòa'}, {id: 32, name: 'Kiên Giang'}, {id: 33, name: 'Kon Tum'}, {id: 34, name: 'Lai Châu'}, {id: 35, name: 'Lâm Đồng'}, {id: 36, name: 'Lạng Sơn'}, {id: 37, name: 'Lào Cai'}
+      , {id: 38, name: 'Long An'}, {id: 39, name: 'Nam Định'}, {id: 40, name: 'Nghệ An'}, {id: 41, name: 'Ninh Bình'}, {id: 42, name: 'Ninh Thuận'}, {id: 43, name: 'Phú Thọ'}, {id: 44, name: 'Phú Yên'}, {id: 45, name: 'Quảng Bình'}
+      , {id: 46, name: 'Quảng Nam'}, {id: 47, name: 'Quảng Ngãi'}, {id: 48, name: 'Quảng Ninh'}, {id: 49, name: 'Quảng Trị'}, {id: 50, name: 'Sóc Trăng'}, {id: 51, name: 'Sơn La'}, {id: 52, name: 'Tây Ninh'}, {id: 53, name: 'Thái Bình'}
+      , {id: 54, name: 'Thái Nguyên'}, {id: 55, name: 'Thanh Hóa'}, {id: 56, name: 'Thừa Thiên Huế'}, {id: 57, name: 'Tiền Giang'}, {id: 58, name: 'Thành phố Hồ Chí Minh'}, {id: 59, name: 'Trà Vinh'}, {id: 60, name: 'Tuyên Quang'}, {id: 61, name: 'Vĩnh Long'}
+      , {id: 62, name: 'Vĩnh Phúc'}, {id: 63, name: 'Yên Bái'}];
     this.listCartProduct();
     this.inputForm = this.formBuilder.group({
       hoten: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -98,7 +95,7 @@ export class CartComponent implements OnInit {
     this.cartService.CartTotal();
   }
 
-  delete(id: string) {
+  delete(item: any) {
     Swal.fire({
       text: 'Bạn có chắc chắn muốn xóa sản phẩm này không ?',
       icon: 'warning',
@@ -107,8 +104,7 @@ export class CartComponent implements OnInit {
       cancelButtonText: 'Không',
     }).then((result) => {
       if (result.isConfirmed) {
-        const index = this.listDataCart.findIndex((i: any) => i.id === id);
-        this.listDataCart.splice(index, 1);
+        this.listDataCart = this.listDataCart.filter((i) => i !== item);
         localStorage.setItem('Cart', JSON.stringify(this.listDataCart));
         Swal.fire('Success!', 'Sửa thông tin!', 'success');
       } else if (result.isDismissed) {
@@ -136,9 +132,21 @@ export class CartComponent implements OnInit {
     };
     this.OrderService.createOrder(obj).subscribe(data => {
       if (data) {
-        this.toastService.success('Mua hàng thành công !!!');
-        window.localStorage.removeItem('Cart');
-        window.location.reload();
+        Swal.fire({
+          text: 'Bạn đã đọc kĩ điều khoản của chưa hàng chưa?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Đã đọc',
+          cancelButtonText: 'Chưa',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.toastService.success('Mua hàng thành công !!!');
+            window.localStorage.removeItem('Cart');
+            window.location.reload();
+          }else {
+            window.location.reload();
+          }
+        });
       } else {
         this.toastService.error('Lỗi mua hàng không thành công !!!');
       }
@@ -148,9 +156,9 @@ export class CartComponent implements OnInit {
     this.userService.getInforUser().subscribe(res => {
       if (res) {
         console.log(res);
-        this.name = res.fullName;
-        this.email = res.email;
-        this.sodienthoai = res.sodienthoai;
+        this.iF.hoten.setValue(res.fullname);
+        this.iF.email.setValue(res.email);
+        this.iF.phone.setValue(res.sodienthoai);
       }
     });
   }

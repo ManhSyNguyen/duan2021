@@ -42,7 +42,6 @@ export class DetailBillComponent implements OnInit {
             this.productOrder = el;
             this.listOrderBySku.push(this.productOrder);
             console.log(this.listOrderBySku);
-            
           });
         }
       });

@@ -80,4 +80,7 @@ export class EditAccountComponent implements OnInit {
       });
     });
   }
+  cancel() {
+    this.router.navigate(['/accounts']);
+  }
 }

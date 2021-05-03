@@ -51,7 +51,6 @@ export class CartService {
       console.log('-----------');
     }
     addQuantity(theCartItem: any, arr: any) {
-      debugger;
       if (arr.length > 0){
         arr.map((e: any) => {
           if (e.id === theCartItem.id){

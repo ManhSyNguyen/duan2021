@@ -13,9 +13,11 @@ export class OdersComponent implements OnInit {
   listOrder: any[] = [];
   page = 1;
   pageSize = 8;
+  countBoom: any;
+  phone: any;
   constructor(
     private orderService: OrderService,
-    private formBuild: FormBuilder
+    private formBuild: FormBuilder,
   ) {}
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class OdersComponent implements OnInit {
       if (res) {
         this.listOrder = res;
         console.log(res);
+        this.getBoom();
       }
     });
   }
@@ -54,10 +57,24 @@ export class OdersComponent implements OnInit {
         if (res) {
           console.log(res);
           this.listOrder = [res];
+          this.getBoom();
         }
       });
     } else {
       this.getAll();
     }
+  }
+  getBoom() {
+    this.listOrder.forEach(i => {
+      this.orderService.getCountBoomByPhone(i.phone).subscribe(res => {
+        if (res) {
+          let data = res;
+          data.forEach((el: any) => {
+            i.boom = el.boom;
+            console.log(i.boom);
+          });
+        }
+      });
+    });
   }
 }

@@ -16,13 +16,14 @@ export class ChangePassComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private toastService: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.changeForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required]],
       newPassword: ['', [Validators.required]],
-      newPassword1: ['', [Validators.required]],
+      // newPassword1: ['', [Validators.required]],
     });
   }
   get cf(): any {
@@ -30,6 +31,10 @@ export class ChangePassComponent implements OnInit {
   }
 
   changePass() {
+    if (this.changeForm.invalid) {
+      this.toastService.error("Vui lòng nhập đầy đủ thông tin để đổi mật khẩu!");
+      return;
+    }
     let param = {
       currentPass: this.cf.oldPassword.value,
       newPass: this.cf.newPassword.value,
@@ -39,7 +44,7 @@ export class ChangePassComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Đổi mật khẩu thành công !!',
+          title: 'Đổi mật khẩu thành công!',
           showConfirmButton: false,
           timer: 1500
         });
@@ -48,7 +53,7 @@ export class ChangePassComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: 'Đổi mật khẩu thất bại !!',
+          title: 'Đổi mật khẩu thất bại!',
           showConfirmButton: false,
           timer: 1500
         });

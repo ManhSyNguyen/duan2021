@@ -98,6 +98,7 @@ export class InforUserComponent implements OnInit {
             this.currentFile = undefined;
           });
         let param = {
+          username: this.username,
           fullname: this.iF.fullname.value,
           sodienthoai: this.iF.sdt.value,
           image: this.currentFile.name,

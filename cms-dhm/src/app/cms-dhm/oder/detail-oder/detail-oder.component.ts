@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {ProductService} from '../../../service/product.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-detail-oder',
@@ -18,8 +19,10 @@ import {ProductService} from '../../../service/product.service';
 export class DetailOderComponent implements OnInit {
   inputForm!: FormGroup;
   searchForm!: FormGroup;
+  statusForm!: FormGroup;
   listOrderBySku: any[] = [];
   listOrderSearch: any[] = [];
+  listOrderDetail: any[] = [];
   idUser: any;
   sku: any;
   nameuser: any;
@@ -34,6 +37,11 @@ export class DetailOderComponent implements OnInit {
   thanhtoan: any;
   coc: any;
   idOrders!: number;
+  statusCheck: any;
+  statusCheck1: any;
+  statusCheck2: any;
+  statusCheck3: any;
+  statusCheck4: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private orderService: OrderService,
@@ -47,16 +55,24 @@ export class DetailOderComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       sku: ['']
     });
+    this.statusForm = this.formBuilder.group({
+      statusSelect: [0],
+      reason: [''],
+    });
     this.getOrderBySku();
     this.totalPriceAll.subscribe(data => {
       this.totalPrice = ((data / 10) + data);
     });
+
   }
   get if(): any {
     return this.inputForm.controls;
   }
   get sf(): any {
     return this.searchForm.controls;
+  }
+  get st(): any {
+    return this.statusForm.controls;
   }
   // tslint:disable-next-line:typedef
   modelchange(event: any){
@@ -149,20 +165,33 @@ export class DetailOderComponent implements OnInit {
     }
   }
   update() {
+    this.listOrderBySku.forEach(i => {
+      this.listOrderDetail = i.productDetail;
+    });
     let param = {
-      idUser: this.idUser,
+      id: this.idOrders,
       namecustom: this.nameuser,
       email: this.email,
       phone: this.sdt,
       address: this.addr,
-      status: this.status,
-      productDetailList: this.listOrderBySku,
+      status: this.st.statusSelect.value,
+      productDetailList: [this.listOrderDetail],
+      paymentmethod: this.paymentmethod,
       deposit: this.coc,
       totalMonenyOrder: this.totalPrice - this.coc,
+      reason: 1,
+      sku: this.sku,
     };
     this.orderService.updateOrder(param, this.idOrders).subscribe(res => {
       if (res) {
-        console.log(res);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Sửa thành công !!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.router.navigate(['/oders']);
       }
     });
   }

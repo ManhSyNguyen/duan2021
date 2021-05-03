@@ -25,8 +25,6 @@ import java.util.Map;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private EmailService emailService;
 
     @GetMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
@@ -52,7 +50,7 @@ public class OrderController {
     @PostMapping("/statistical")
     public ResponseEntity<?> create(@RequestBody Statistical statistical) throws ParseException {
         Statistical period1 = orderService.findStatisticalPeriod(statistical);
-       return ResponseEntity.ok().body(period1);
+        return ResponseEntity.ok().body(period1);
     }
 
     @GetMapping("orders/boom/{phone}")
@@ -70,55 +68,45 @@ public class OrderController {
 
     @GetMapping("/orders/bystatus/{status}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Order> getOrderAllByStatus(@PathVariable Integer status)  {
+    public List<Order> getOrderAllByStatus(@PathVariable Integer status) {
         return orderService.findOrderBySatatus(status);
     }
 
     @GetMapping("/orders/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Order> findOrderByUser(Principal pc)  {
+    public List<Order> findOrderByUser(Principal pc) {
         return orderService.findOrderByUsername(pc.getName());
     }
 
-// đây là api lấy hóa đơn theo user
+    // đây là api lấy hóa đơn theo user
     @GetMapping("/orders/user/{status}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Order> findOrderByUserAndStatus(@PathVariable("status") Integer status, Principal pc)  {
-        return orderService.findOrderByUsernameAndStatus(status,pc.getName());
+    public List<Order> findOrderByUserAndStatus(@PathVariable("status") Integer status, Principal pc) {
+        return orderService.findOrderByUsernameAndStatus(status, pc.getName());
     }
 
     @GetMapping("/orders/sku/{sku}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Order findOrderBySku(@PathVariable("sku") String sku)  {
+    public Order findOrderBySku(@PathVariable("sku") String sku) {
         return orderService.findOrderBySku(sku);
     }
-
-
 
 
     @PostMapping("/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public OrderDTO createOrder(@RequestBody OrderDTO orderDTO,Principal pc) {
-        if(!orderDTO.getEmail().isEmpty()&&!orderDTO.getNamecustom().isEmpty()) {
-            MailRequest mailRequest = new MailRequest();
-            mailRequest.setName(orderDTO.getNamecustom());
-            mailRequest.setFrom("dhmcolor11@gmail.com");
-            mailRequest.setTo(orderDTO.getEmail());
-            mailRequest.setSubject("Đơn hàng #208WUMU" + orderDTO.getPhone());
-            Map<String, Object> model = new HashMap<>();
-            model.put("Name", mailRequest.getName());
-            model.put("location", "Can Lộc , Hà Tĩnh");
-            model.put("Email", mailRequest.getTo());
-            model.put("Don", "Đơn hàng #208WUMU" + orderDTO.getPhone());
-            emailService.sendEmail(mailRequest, model);
-        }
-        if(pc!=null){
-            return orderService.save(orderDTO,pc.getName());
-        }else{
-            return orderService.save(orderDTO,null);
+    public OrderDTO createOrder(@RequestBody OrderDTO orderDTO, Principal pc) {
+        try {
+            if (pc != null) {
+                return orderService.save(orderDTO, pc.getName());
+            } else {
+                return orderService.save(orderDTO, null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        return null;
     }
 
     @PutMapping(value = "/orders/{id}")

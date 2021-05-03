@@ -28,6 +28,9 @@ export class OrderService {
   getOrderUserByStatus(status: any): Observable<any> {
     return this.http.get<any>(`${this.api + '/orders/user'}/${status}`);
   }
+  getOrderUser(): Observable<any> {
+    return this.http.get<any>(`${this.api + '/orders/user'}`);
+  }
   updateOrder(obj: any, id: any): Observable<any> {
     return this.http.put<any>(`${this.api + '/orders'}/${id}`, obj, httpOptions);
   }

@@ -1,14 +1,14 @@
 <h1 class="h3 mb-2 text-gray-800">Chi tiết đơn hàng</h1>
 <mat-horizontal-stepper class="card shadow mb-4">
-    <mat-step label="Chờ xác nhận" state="cf" *ngIf="status == 0">
+    <mat-step label="Chờ xác nhận" state="cf">
     </mat-step>
-    <mat-step label="Chờ lấy hàng" state="card" *ngIf="status == 1">
+    <mat-step label="Chờ lấy hàng" state="card">
     </mat-step>
-    <mat-step label="Đang giao" state="local" *ngIf="status == 2">
+    <mat-step label="Đang giao" state="local">
     </mat-step>
-    <mat-step label="Thành công" state="succs" *ngIf="status == 3">
+    <mat-step label="Thành công" state="succs">
     </mat-step>
-    <mat-step label="Hủy" state="del" *ngIf="status == 4">
+    <mat-step label="Hủy" state="del">
     </mat-step>
 
     <ng-template matStepperIcon="cf">
@@ -37,9 +37,21 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="card shadow mb-4 mt-15">
-                    <div class="card-header py-3">
-                        <h3 class="m-0 font-weight-bold text-dark">Thông tin đơn hàng: <span>{{sku}}</span>
-                        </h3>
+                    <div class="row card-header py-3">
+
+                        <div class="col-md-6">
+                          <h3 class="m-0 font-weight-bold text-dark">Thông tin đơn hàng: <span>{{sku}}</span>
+                          </h3>
+                        </div>
+                        <div class="col-md-6" [formGroup]="statusForm">
+                          <select class="form-control form-control-sm" formControlName="statusSelect">
+                            <option value="0" [disabled]="statusCheck">Chờ xác nhận</option>
+                            <option value="1" [disabled]="statusCheck1">Chờ lấy hàng</option>
+                            <option value="2" [disabled]="statusCheck2 == 2">Đang giao</option>
+                            <option value="3" [disabled]="statusCheck3">Thành công</option>
+                            <option value="4" [disabled]="statusCheck4">Hủy</option>
+                          </select>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -92,17 +104,33 @@
                                     <p>VAT: </p>
                                     <p>Tổng tiền: </p>
                                     <p>Tiền cọc: </p>
-                                    <p>Chưa thanh toán: </p>
+                                    <p class="pt-2">Chưa thanh toán: </p>
+                                    <p class="pt-1" *ngIf="this.st.statusSelect.value == 4">Lí do hủy đơn:</p>
                                 </div>
                             </div>
-                            <div class="col-6 text-end">
-                                <p>10%</p>
-                                <p>{{totalPrice | number}}đ</p>
-                                <p><input class="form-control form-control-sm" type="number" [(ngModel)]="coc"
+                            <div class="col-6">
+                                <p class="text-end">10%</p>
+                                <p class="text-end">{{totalPrice | number}}đ</p>
+                                <p class="text-end"><input class="form-control form-control-sm" type="number" [(ngModel)]="coc"
                                         (ngModelChange)="modelchange($event)"></p>
-                                <p>{{totalPrice - coc | number}}đ</p>
+                                <p class="text-end">{{totalPrice - coc | number}}đ</p>
+                              <div class="form-group" *ngIf="this.st.statusSelect.value == 4" [formGroup]="statusForm">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" formControlName="reason" value="1" checked>
+                                  <label class="form-check-label" for="exampleRadios1">
+                                    Cửa hàng hủy
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" formControlName="reason" id="exampleRadios2" value="2">
+                                  <label class="form-check-label" for="exampleRadios2">
+                                    Khách không nhận hàng
+                                  </label>
+                                </div>
+                              </div>
                             </div>
-                        </div>
+                          </div>
+
                     </div>
                 </div>
             </div>
@@ -147,6 +175,6 @@
 </div>
 <hr>
 <div class="form-group pt-2">
-    <button type="submit" class="btn btn-primary btn-sm" (click)="update()">Cập nhập</button>&nbsp;
+    <button type="submit" class="btn btn-primary btn-sm" *ngIf="status != 4" (click)="update()">Cập nhập</button>&nbsp;
     <button type="submit" class="btn btn-danger btn-sm" (click)="cancel()">Hủy</button>
 </div>

@@ -6,7 +6,6 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,8 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-
 @Service
-public class EmailService {
+public class EmailNoAcountService {
     @Autowired
     private JavaMailSender sender;// thu vien cua thang sent mail
 
@@ -36,7 +34,7 @@ public class EmailService {
             // add attachment
 //             helper.addAttachment("dhm_logo.png", new ClassPathResource("dhm_logo.png"));
 
-            Template t = config.getTemplate("email-template.ftl");
+            Template t = config.getTemplate("email-noacount.ftl");
             String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
 
             helper.setTo(request.getTo());

@@ -32,6 +32,7 @@ export class DetailBillComponent implements OnInit {
       let sku = param.get('sku');
       this.orderService.getOrderBySku(sku).subscribe(res => {
         if (res) {
+          console.log(res);
           this.totalOrder = res.totalMonenyOrder;
           this.skuOrder = res.sku;
           this.user = res.namecustom;

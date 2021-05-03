@@ -130,26 +130,26 @@ export class CartComponent implements OnInit {
       status: 0,
       totalMonenyOrder: (this.totalPrice / 10) + this.totalPrice,
     };
-    this.OrderService.createOrder(obj).subscribe(data => {
-      if (data) {
         Swal.fire({
-          text: 'Bạn đã đọc kĩ điều khoản của chưa hàng chưa?',
+          text: 'Bạn đã đọc kĩ điều khoản của cửa hàng chưa?',
           icon: 'question',
           showCancelButton: true,
           confirmButtonText: 'Đã đọc',
           cancelButtonText: 'Chưa',
         }).then((result) => {
           if (result.isConfirmed) {
-            this.toastService.success('Mua hàng thành công !!!');
-            window.localStorage.removeItem('Cart');
-            window.location.reload();
+            this.OrderService.createOrder(obj).subscribe(data => {
+              if (data) {
+                this.toastService.success('Mua hàng thành công!');
+                window.localStorage.removeItem('Cart');
+                window.location.reload();
+              } else {
+                this.toastService.error('Lỗi mua hàng không thành công !!!');
+              }
+            });
           }else {
             window.location.reload();
           }
-        });
-      } else {
-        this.toastService.error('Lỗi mua hàng không thành công !!!');
-      }
     });
   }
   getInforUser() {

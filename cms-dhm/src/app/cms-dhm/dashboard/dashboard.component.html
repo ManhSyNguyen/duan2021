@@ -13,14 +13,48 @@
 </div>
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-dark shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                Tổng tiền hóa đơn</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Tổng : {{totalmoney | number}} vnđ</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-dark shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                Tổng tiền hóa đơn hủy</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Tổng : {{totalmoneyCancle | number}} vnđ</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-dark shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Sản phẩm</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{totalProduct}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -30,46 +64,14 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-dark shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Đơn hàng</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
-                            Khách hàng</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
-                            Nhân viên</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{totalOrder}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -79,14 +81,15 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
+
+    <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-dark shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Đơn hàng đang chờ</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{statusAccept}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -95,15 +98,30 @@
             </div>
         </div>
     </div>
-
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-dark shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                Đơn hàng chờ lấy</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{statusGetProduct}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-dark shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Đơn hàng đang giao</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{statusDelivery}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -113,14 +131,14 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-dark shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Đơn hàng thành công</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{statusSucces}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -129,14 +147,14 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-dark shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                             Đơn hàng đã hủy</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng :</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Số lượng : {{statusCancel}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>

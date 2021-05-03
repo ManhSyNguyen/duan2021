@@ -55,7 +55,6 @@ export class OdersComponent implements OnInit {
     if (this.sf.search.value) {
       this.orderService.getOrderBySku(this.sf.search.value).subscribe(res => {
         if (res) {
-          console.log(res);
           this.listOrder = [res];
           this.getBoom();
         }

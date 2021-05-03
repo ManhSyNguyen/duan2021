@@ -34,6 +34,7 @@ public class Role {
     }
 
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
 
     @Column(name = "createby",columnDefinition = "VARCHAR(30)  NULL")

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../../service/order.service';
 import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup} from '@angular/forms';
@@ -40,6 +40,7 @@ export class DetailOderComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastService: ToastrService,
     private productService: ProductService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -66,7 +67,7 @@ export class DetailOderComponent implements OnInit {
     this.activeRoute.paramMap.subscribe(param => {
       const sku = param.get('sku');
       this.orderService.getOrderBySku(sku).subscribe(res => {
-        console.log('res', res);
+        console.log('res1', res);
         this.idOrders = res.id;
         this.idUser = res.id;
         this.sku = res.sku;
@@ -78,7 +79,6 @@ export class DetailOderComponent implements OnInit {
         this.paymentmethod = res.paymentmethod;
         this.listOrderBySku = res.orderProductDetails;
         console.log('this.listOrderBySku', this.listOrderBySku);
-        console.log('res', res);
         this.CartTotal();
       });
     });
@@ -165,5 +165,8 @@ export class DetailOderComponent implements OnInit {
         console.log(res);
       }
     });
+  }
+  cancel() {
+    this.router.navigate(['/oders']);
   }
 }

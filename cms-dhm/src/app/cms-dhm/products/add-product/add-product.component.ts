@@ -216,4 +216,7 @@ export class AddProductComponent implements OnInit {
       }
     });
   }
+  cancel() {
+    this.router.navigate(['/products']);
+  }
 }

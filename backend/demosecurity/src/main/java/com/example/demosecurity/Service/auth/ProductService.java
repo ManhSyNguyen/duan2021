@@ -66,6 +66,7 @@ public class ProductService {
                 Color color = colorRepo.findColorById(pt.getIdcolor());
                 productDetail.setColor(color);
                 productDetail.setSize(size);
+
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
                 productDetail.setPriceProductDetail(1);
@@ -90,11 +91,13 @@ public class ProductService {
                 ProductDetail productDetail = new ProductDetail();
                 Size size = sizeRepo.findSizeById(pt.getIdsize());
                 Color color = colorRepo.findColorById(pt.getIdcolor());
+                productDetail.setProduct(newroduct);
                 productDetail.setColor(color);
                 productDetail.setSize(size);
                 productDetail.setSku("DHM" + getAlphaNumericString(5));
                 productDetail.setQuantityProduct(pt.getQuantityProduct());
                 productDetail.setStatus(pt.getStatusDetail());
+                productDetail.setPriceProductDetail(1);
                 listpt.add(productDetail);
             }
             newroduct.setProductDetail(listpt);

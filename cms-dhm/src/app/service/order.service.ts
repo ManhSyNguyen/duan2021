@@ -31,5 +31,11 @@ export class OrderService {
   updateOrder(obj: any, id: any): Observable<any> {
     return this.http.put<any>(`${this.api + '/orders'}/${id}`, obj, httpOptions);
   }
+  getCountBoom(): Observable<any> {
+    return this.http.get<any>(this.api + '/orders/boom');
+  }
+  getCountBoomByPhone(phone: any): Observable<any> {
+    return this.http.get<any>(`${this.api + '/orders/boom'}/${phone}`);
+  }
 }
 

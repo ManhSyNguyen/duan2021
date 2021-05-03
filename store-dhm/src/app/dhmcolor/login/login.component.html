@@ -75,7 +75,7 @@
 
             <button>Đăng nhập</button>
             <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                Login failed: {{ errorMessage }}
+                {{ errorMessage }}
             </div>
             <a routerLink="/register" class="discrete">Bạn chưa có tài khoản? Đăng ký</a>
             <a routerLink="/forgot-pass" class="discrete-edit">Quên mật khẩu</a>

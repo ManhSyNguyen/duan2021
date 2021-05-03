@@ -3,17 +3,18 @@ package com.example.demosecurity.Controller;
 
 import com.example.demosecurity.Service.auth.EmailService;
 import com.example.demosecurity.Service.auth.OrderService;
-import com.example.demosecurity.model.dto.Bom;
-import com.example.demosecurity.model.dto.MailRequest;
-import com.example.demosecurity.model.dto.OrderDTO;
+import com.example.demosecurity.model.dto.*;
 
+import com.example.demosecurity.model.entity.Cart;
 import com.example.demosecurity.model.entity.Order;
-import com.example.demosecurity.model.entity.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,20 @@ public class OrderController {
     public List<Order> getOrderByDom() {
         return orderService.findAllOrderByBoom();
     }
+
+    @GetMapping("orders/statistical")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Statistical getStatisticalToDay() throws ParseException {
+        return orderService.findStatisticalToDay();
+    }
+
+    @PostMapping("/statistical")
+    public ResponseEntity<?> create(@RequestBody Statistical statistical) throws ParseException {
+        Statistical period1 = orderService.findStatisticalPeriod(statistical);
+       return ResponseEntity.ok().body(period1);
+    }
+
     @GetMapping("orders/boom/{phone}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -64,6 +79,7 @@ public class OrderController {
     public List<Order> findOrderByUser(Principal pc)  {
         return orderService.findOrderByUsername(pc.getName());
     }
+
 // đây là api lấy hóa đơn theo user
     @GetMapping("/orders/user/{status}")
     @ResponseStatus(HttpStatus.CREATED)

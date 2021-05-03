@@ -43,6 +43,7 @@ public class Product {
     private String decription;
     private Integer purchase;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
 
     @Column(name = "createby",columnDefinition = "VARCHAR(30)  NULL")

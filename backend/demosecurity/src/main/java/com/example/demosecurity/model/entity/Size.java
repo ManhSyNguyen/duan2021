@@ -26,6 +26,7 @@ public class Size implements Serializable {
 
     private  boolean status;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
 
     @Column(name = "createby",columnDefinition = "VARCHAR(40)  NULL")

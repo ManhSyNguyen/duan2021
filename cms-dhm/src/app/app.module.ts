@@ -41,6 +41,7 @@ import { LayoutMemberComponent } from './cms-member/layout-member/layout-member.
 import { FooterMemberComponent } from './cms-member/layout-member/footer-member/footer-member.component';
 import { NavbarMemberComponent } from './cms-member/layout-member/navbar-member/navbar-member.component';
 import { SidebarMemberComponent } from './cms-member/layout-member/sidebar-member/sidebar-member.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { SidebarMemberComponent } from './cms-member/layout-member/sidebar-membe
         FormsModule,
         HttpClientModule,
         ReactiveFormsModule,
+        NgxDaterangepickerMd.forRoot(),
         ToastrModule.forRoot({
           timeOut: 5000,
           positionClass: 'toast-top-right',

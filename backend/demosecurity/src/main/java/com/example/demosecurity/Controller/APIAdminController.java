@@ -172,11 +172,10 @@ public class APIAdminController {
 
     @PostMapping("/lostpass")
     public ResponseEntity<?> lostUser(@RequestBody SignupRequest signUpRequest) {
-        Users us = userService.findUserByEmailAndSodienthoai(signUpRequest.getEmail(),signUpRequest.getSodienthoai());
+        Users us = userService.findUserByEmailAndSodienthoai(signUpRequest.getEmail());
         if(us!=null){
-            if (signUpRequest.getEmail().equals(us.getEmail()) && us.getEmail()!=null || signUpRequest.getSodienthoai().equals(us.getSodienthoai()) && us.getSodienthoai()!=null ) {
+            if (signUpRequest.getEmail().equals(us.getEmail()) && us.getEmail()!=null  ) {
             us.setPassword(encode.encode("12345dhm"));
-//                us.setCodeOtp(getAlphaNumericString(5));
                 usersRepository.save(us);
             }else {
                 return ResponseEntity

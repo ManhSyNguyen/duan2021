@@ -1,13 +1,8 @@
 package com.example.demosecurity.Service.auth;
 
 import com.example.demosecurity.Convert.OrderConvert;
-import com.example.demosecurity.Convert.ProductConvert;
-import com.example.demosecurity.Convert.ProductDetailConvert;
 import com.example.demosecurity.Repository.*;
-import com.example.demosecurity.model.dto.Bom;
-import com.example.demosecurity.model.dto.OrderDTO;
-import com.example.demosecurity.model.dto.OrderProductDetailDTO;
-import com.example.demosecurity.model.dto.ProductDetailDTO;
+import com.example.demosecurity.model.dto.*;
 import com.example.demosecurity.model.entity.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -27,6 +24,8 @@ public class OrderService {
     private UsersRepository usersRepository;
     @Autowired
     private ProductDetailRepo productDetailRepo;
+    @Autowired
+    private ProductRepo productRepo;
     @Autowired
     private OrderRepo orderRepo;
     @Autowired
@@ -57,7 +56,7 @@ public class OrderService {
                 orderProductDetail.setId(orderProductDetaildto.getId());
                 orderProductDetail.setQuantity(orderProductDetaildto.getQuantity());
                 orderProductDetail.setPrice(orderProductDetaildto.getPrice());
-                orderProductDetail.setStatus(1);
+                orderProductDetail.setStatus(0);
                 Order order = orderRepo.findOrdersById(orderProductDetaildto.getId().getIdOrder());
                 ProductDetail productDetail = productDetailRepo.findProductDetailById(orderProductDetaildto.getId().getIdProductDetail());
                 orderProductDetail.setOrder(order);
@@ -144,10 +143,10 @@ public class OrderService {
     }
 
 
-    public List<OrderDTO> findAll(Pageable pageable) {
+    public List<OrderDTO> findAll() {
         List<OrderDTO> results = new ArrayList<>();
         try {
-            List<Order> entities = orderRepo.findAll(pageable).getContent();
+            List<Order> entities = orderRepo.findAll();
             for (Order item : entities) {
                 OrderDTO productDetailDTO = orderConvert.toDTO(item);
                 results.add(productDetailDTO);
@@ -169,15 +168,10 @@ public class OrderService {
         return 1;
     }
 
-    public List<OrderDTO> findAll() {
-        List<OrderDTO> results = new ArrayList<>();
-        List<Order> entities = orderRepo.findAll();
-        for (Order item : entities) {
-            OrderDTO newDTO = orderConvert.toDTO(item);
-            results.add(newDTO);
-        }
-        return results;
-    }
+
+
+
+
     public List<Order> findAllOrderByBoom() {
         Integer boom = 0;
         List list = new ArrayList() ;
@@ -196,7 +190,7 @@ public class OrderService {
             }
            return list;
     }
-
+// danh sach den
     public List<Order> findAllOrderByBoomAndPhone(String phone) {
         Integer boom = 0;
         List list = new ArrayList() ;
@@ -222,6 +216,81 @@ public class OrderService {
             results.add(newDTO);
         }
         return results;
+    }
+    // Thống kê
+
+    public Statistical findStatisticalToDay() throws ParseException {
+        List<OrderDTO> results = new ArrayList<>();
+        DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date today = new Date();
+        Date todayWithZeroTime = formatter.parse(formatter.format(today));
+        Integer totalProduct = productRepo.findAllCoutnTotalProduct(1);
+        Integer totalOrder = orderRepo.findAllCoutnOrderByCreatedateAndTotalOrder(todayWithZeroTime);
+        Integer totalStatus0 = orderRepo.findAllCoutnOrderByCreatedateAndStatus(todayWithZeroTime,0);
+        Integer totalStatus1 = orderRepo.findAllCoutnOrderByCreatedateAndStatus(todayWithZeroTime,1);
+        Integer totalStatus2 = orderRepo.findAllCoutnOrderByCreatedateAndStatus(todayWithZeroTime,2);
+        Integer totalStatus3 = orderRepo.findAllCoutnOrderByCreatedateAndStatus(todayWithZeroTime,3);
+        Integer totalStatus4 = orderRepo.findAllCoutnOrderByCreatedateAndStatus(todayWithZeroTime,4);
+        List<Order> entities = orderRepo.findAllByTotalMoney(todayWithZeroTime);
+        Statistical newDTO = new Statistical();
+        float total = 0;
+        for (Order o : entities){
+            total += o.getTotalMonenyOrder();
+            newDTO.setTotalmoney(total);
+        }
+        List<Order> statusCancle = orderRepo.findAllByStatusCancle(todayWithZeroTime,4);
+        float totalStatusCancle = 0;
+        for (Order o : statusCancle){
+            totalStatusCancle += o.getTotalMonenyOrder();
+            newDTO.setTotalmoneyCancle(totalStatusCancle);
+        }
+
+            newDTO.setTotalOrder(totalOrder);
+            newDTO.setStatusAccept(totalStatus0);
+            newDTO.setStatusGetProduct(totalStatus1);
+            newDTO.setStatusDelivery(totalStatus2);
+            newDTO.setStatusSucces(totalStatus3);
+            newDTO.setStatusCancel(totalStatus4);
+            newDTO.setTotalProduct(totalProduct);
+//            newDTO.setMoney(totalMoney);
+        return newDTO;
+    }
+
+    public Statistical findStatisticalPeriod(Statistical statistical) throws ParseException {
+//        Date periodTime = new Date("2021/05/01");
+        Date today = new SimpleDateFormat("dd/MM/yyyy").parse(statistical.getCurnentTime());
+        Date period = new SimpleDateFormat("dd/MM/yyyy").parse(statistical.getPeriodTime());
+        System.out.println("today "+today);
+        System.out.println("period "+period);
+        List<Order> entities = orderRepo.findAllByTotalMoneyBetween(today,period);
+        List<Order> entitieStatus = orderRepo.findAllByTotalMoneyStatusCancleBetween(today,period,4);
+        Statistical newDTO = new Statistical();
+
+        float total = 0;
+        for (Order o : entities){
+            total += o.getTotalMonenyOrder();
+            newDTO.setTotalmoney(total);
+        }
+        float totalStatusCancle = 0;
+        for (Order o : entitieStatus){
+            totalStatusCancle += o.getTotalMonenyOrder();
+            newDTO.setTotalmoneyCancle(totalStatusCancle);
+        }
+        Integer totalProduct = productRepo.findAllCoutnTotalProduct(1);
+        Integer totalOrder = orderRepo.findAllCoutnOrderByCreatedateAndTotalOrderBetween(today,period);
+        Integer totalStatus0 = orderRepo.findAllCoutnOrderByCreatedateAndStatusBetween(today,period,0);
+        Integer totalStatus1 = orderRepo.findAllCoutnOrderByCreatedateAndStatusBetween(today,period,1);
+        Integer totalStatus2 = orderRepo.findAllCoutnOrderByCreatedateAndStatusBetween(today,period,2);
+        Integer totalStatus3 = orderRepo.findAllCoutnOrderByCreatedateAndStatusBetween(today,period,3);
+        Integer totalStatus4 = orderRepo.findAllCoutnOrderByCreatedateAndStatusBetween(today,period,4);
+        newDTO.setTotalOrder(totalOrder);
+        newDTO.setStatusAccept(totalStatus0);
+        newDTO.setStatusGetProduct(totalStatus1);
+        newDTO.setStatusDelivery(totalStatus2);
+        newDTO.setStatusSucces(totalStatus3);
+        newDTO.setStatusCancel(totalStatus4);
+        newDTO.setTotalProduct(totalProduct);
+        return newDTO;
     }
 
     public List<Integer> findStatus() {

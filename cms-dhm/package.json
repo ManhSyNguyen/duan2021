@@ -25,6 +25,8 @@
     "@angular/router": "~11.2.10",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.5.0",
+    "moment": "^2.18.1",
+    "ngx-daterangepicker-material": "^4.0.1",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.16.6",

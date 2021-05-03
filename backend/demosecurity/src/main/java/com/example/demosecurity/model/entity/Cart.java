@@ -32,6 +32,7 @@ public class Cart {
     private Integer Soluong;
     private String thanhtien;
     @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createdate;
     @Column(length = 50)
     @CreatedBy
